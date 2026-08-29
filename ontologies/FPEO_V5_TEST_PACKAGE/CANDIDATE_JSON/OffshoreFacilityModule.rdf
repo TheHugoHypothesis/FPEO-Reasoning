@@ -1,0 +1,385 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/rodriguez/ontologies/2026/3/untitled-ontology-60/"
+     xml:base="http://www.semanticweb.org/rodriguez/ontologies/2026/3/untitled-ontology-60/"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:obo="http://purl.obolibrary.org/obo/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:foaf="http://xmlns.com/foaf/0.1/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:schema="https://schema.org/"
+     xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+     xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#"
+     xmlns:AnnotationVocabulary="https://spec.industrialontologies.org/ontology/core/meta/AnnotationVocabulary/"
+     xmlns:CommonCoreOntologies="http://www.ontologyrepository.com/CommonCoreOntologies/"
+     xmlns:OffshoreFacilityModule="http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#">
+    <owl:Ontology rdf:about="http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule">
+        <owl:imports rdf:resource="https://www.inf.ufrgs.br/ontologies/o3po/2.0"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#fpsoName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#fpsoName">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="https://www.inf.ufrgs.br/ontologies/o3po#FPSO"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Alpha -->
+
+    <owl:NamedIndividual rdf:about="http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Alpha">
+        <rdf:type rdf:resource="https://www.inf.ufrgs.br/ontologies/o3po#FPSO"/>
+        <OffshoreFacilityModule:fpsoName>Alpha</OffshoreFacilityModule:fpsoName>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Bravo -->
+
+    <owl:NamedIndividual rdf:about="http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Bravo">
+        <rdf:type rdf:resource="https://www.inf.ufrgs.br/ontologies/o3po#FPSO"/>
+        <OffshoreFacilityModule:fpsoName>Bravo</OffshoreFacilityModule:fpsoName>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Charlie -->
+
+    <owl:NamedIndividual rdf:about="http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Charlie">
+        <rdf:type rdf:resource="https://www.inf.ufrgs.br/ontologies/o3po#FPSO"/>
+        <OffshoreFacilityModule:fpsoName>Charlie</OffshoreFacilityModule:fpsoName>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Delta -->
+
+    <owl:NamedIndividual rdf:about="http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Delta">
+        <rdf:type rdf:resource="https://www.inf.ufrgs.br/ontologies/o3po#FPSO"/>
+        <OffshoreFacilityModule:fpsoName>Delta</OffshoreFacilityModule:fpsoName>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Echo -->
+
+    <owl:NamedIndividual rdf:about="http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Echo">
+        <rdf:type rdf:resource="https://www.inf.ufrgs.br/ontologies/o3po#FPSO"/>
+        <OffshoreFacilityModule:fpsoName>Echo</OffshoreFacilityModule:fpsoName>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_P-66 -->
+
+    <owl:NamedIndividual rdf:about="http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_P-66">
+        <rdf:type rdf:resource="https://www.inf.ufrgs.br/ontologies/o3po#FPSO"/>
+        <OffshoreFacilityModule:fpsoName>P-66</OffshoreFacilityModule:fpsoName>
+    </owl:NamedIndividual>
+
+
+    <!-- http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_01 -->
+
+    <owl:NamedIndividual rdf:about="http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_01">
+        <rdf:type rdf:resource="https://www.inf.ufrgs.br/ontologies/o3po#FPSO"/>
+        <OffshoreFacilityModule:fpsoName>Scenario 01</OffshoreFacilityModule:fpsoName>
+        <rdfs:label xml:lang="en">FPSO Scenario 01</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+    <!-- http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_02 -->
+
+    <owl:NamedIndividual rdf:about="http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_02">
+        <rdf:type rdf:resource="https://www.inf.ufrgs.br/ontologies/o3po#FPSO"/>
+        <OffshoreFacilityModule:fpsoName>Scenario 02</OffshoreFacilityModule:fpsoName>
+        <rdfs:label xml:lang="en">FPSO Scenario 02</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+    <!-- http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_03 -->
+
+    <owl:NamedIndividual rdf:about="http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_03">
+        <rdf:type rdf:resource="https://www.inf.ufrgs.br/ontologies/o3po#FPSO"/>
+        <OffshoreFacilityModule:fpsoName>Scenario 03</OffshoreFacilityModule:fpsoName>
+        <rdfs:label xml:lang="en">FPSO Scenario 03</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+    <!-- http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_04 -->
+
+    <owl:NamedIndividual rdf:about="http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_04">
+        <rdf:type rdf:resource="https://www.inf.ufrgs.br/ontologies/o3po#FPSO"/>
+        <OffshoreFacilityModule:fpsoName>Scenario 04</OffshoreFacilityModule:fpsoName>
+        <rdfs:label xml:lang="en">FPSO Scenario 04</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+    <!-- http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_05 -->
+
+    <owl:NamedIndividual rdf:about="http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_05">
+        <rdf:type rdf:resource="https://www.inf.ufrgs.br/ontologies/o3po#FPSO"/>
+        <OffshoreFacilityModule:fpsoName>Scenario 05</OffshoreFacilityModule:fpsoName>
+        <rdfs:label xml:lang="en">FPSO Scenario 05</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+    <!-- http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_06 -->
+
+    <owl:NamedIndividual rdf:about="http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_06">
+        <rdf:type rdf:resource="https://www.inf.ufrgs.br/ontologies/o3po#FPSO"/>
+        <OffshoreFacilityModule:fpsoName>Scenario 06</OffshoreFacilityModule:fpsoName>
+        <rdfs:label xml:lang="en">FPSO Scenario 06</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+    <!-- http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_07 -->
+
+    <owl:NamedIndividual rdf:about="http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_07">
+        <rdf:type rdf:resource="https://www.inf.ufrgs.br/ontologies/o3po#FPSO"/>
+        <OffshoreFacilityModule:fpsoName>Scenario 07</OffshoreFacilityModule:fpsoName>
+        <rdfs:label xml:lang="en">FPSO Scenario 07</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+    <!-- http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_08 -->
+
+    <owl:NamedIndividual rdf:about="http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_08">
+        <rdf:type rdf:resource="https://www.inf.ufrgs.br/ontologies/o3po#FPSO"/>
+        <OffshoreFacilityModule:fpsoName>Scenario 08</OffshoreFacilityModule:fpsoName>
+        <rdfs:label xml:lang="en">FPSO Scenario 08</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+    <!-- http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_09 -->
+
+    <owl:NamedIndividual rdf:about="http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_09">
+        <rdf:type rdf:resource="https://www.inf.ufrgs.br/ontologies/o3po#FPSO"/>
+        <OffshoreFacilityModule:fpsoName>Scenario 09</OffshoreFacilityModule:fpsoName>
+        <rdfs:label xml:lang="en">FPSO Scenario 09</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+    <!-- http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_10 -->
+
+    <owl:NamedIndividual rdf:about="http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_10">
+        <rdf:type rdf:resource="https://www.inf.ufrgs.br/ontologies/o3po#FPSO"/>
+        <OffshoreFacilityModule:fpsoName>Scenario 10</OffshoreFacilityModule:fpsoName>
+        <rdfs:label xml:lang="en">FPSO Scenario 10</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+    <!-- http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_11 -->
+
+    <owl:NamedIndividual rdf:about="http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_11">
+        <rdf:type rdf:resource="https://www.inf.ufrgs.br/ontologies/o3po#FPSO"/>
+        <OffshoreFacilityModule:fpsoName>Scenario 11</OffshoreFacilityModule:fpsoName>
+        <rdfs:label xml:lang="en">FPSO Scenario 11</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+    <!-- http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_12 -->
+
+    <owl:NamedIndividual rdf:about="http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_12">
+        <rdf:type rdf:resource="https://www.inf.ufrgs.br/ontologies/o3po#FPSO"/>
+        <OffshoreFacilityModule:fpsoName>Scenario 12</OffshoreFacilityModule:fpsoName>
+        <rdfs:label xml:lang="en">FPSO Scenario 12</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+    <!-- http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_13 -->
+
+    <owl:NamedIndividual rdf:about="http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_13">
+        <rdf:type rdf:resource="https://www.inf.ufrgs.br/ontologies/o3po#FPSO"/>
+        <OffshoreFacilityModule:fpsoName>Scenario 13</OffshoreFacilityModule:fpsoName>
+        <rdfs:label xml:lang="en">FPSO Scenario 13</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+    <!-- http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_14 -->
+
+    <owl:NamedIndividual rdf:about="http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_14">
+        <rdf:type rdf:resource="https://www.inf.ufrgs.br/ontologies/o3po#FPSO"/>
+        <OffshoreFacilityModule:fpsoName>Scenario 14</OffshoreFacilityModule:fpsoName>
+        <rdfs:label xml:lang="en">FPSO Scenario 14</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+    <!-- http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_15 -->
+
+    <owl:NamedIndividual rdf:about="http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_15">
+        <rdf:type rdf:resource="https://www.inf.ufrgs.br/ontologies/o3po#FPSO"/>
+        <OffshoreFacilityModule:fpsoName>Scenario 15</OffshoreFacilityModule:fpsoName>
+        <rdfs:label xml:lang="en">FPSO Scenario 15</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+    <!-- http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_16 -->
+
+    <owl:NamedIndividual rdf:about="http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_16">
+        <rdf:type rdf:resource="https://www.inf.ufrgs.br/ontologies/o3po#FPSO"/>
+        <OffshoreFacilityModule:fpsoName>Scenario 16</OffshoreFacilityModule:fpsoName>
+        <rdfs:label xml:lang="en">FPSO Scenario 16</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+    <!-- http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_17 -->
+
+    <owl:NamedIndividual rdf:about="http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_17">
+        <rdf:type rdf:resource="https://www.inf.ufrgs.br/ontologies/o3po#FPSO"/>
+        <OffshoreFacilityModule:fpsoName>Scenario 17</OffshoreFacilityModule:fpsoName>
+        <rdfs:label xml:lang="en">FPSO Scenario 17</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+    <!-- http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_18 -->
+
+    <owl:NamedIndividual rdf:about="http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_18">
+        <rdf:type rdf:resource="https://www.inf.ufrgs.br/ontologies/o3po#FPSO"/>
+        <OffshoreFacilityModule:fpsoName>Scenario 18</OffshoreFacilityModule:fpsoName>
+        <rdfs:label xml:lang="en">FPSO Scenario 18</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+    <!-- http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_19 -->
+
+    <owl:NamedIndividual rdf:about="http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_19">
+        <rdf:type rdf:resource="https://www.inf.ufrgs.br/ontologies/o3po#FPSO"/>
+        <OffshoreFacilityModule:fpsoName>Scenario 19</OffshoreFacilityModule:fpsoName>
+        <rdfs:label xml:lang="en">FPSO Scenario 19</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+    <!-- http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_20 -->
+
+    <owl:NamedIndividual rdf:about="http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_20">
+        <rdf:type rdf:resource="https://www.inf.ufrgs.br/ontologies/o3po#FPSO"/>
+        <OffshoreFacilityModule:fpsoName>Scenario 20</OffshoreFacilityModule:fpsoName>
+        <rdfs:label xml:lang="en">FPSO Scenario 20</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+    <!-- http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_21 -->
+
+    <owl:NamedIndividual rdf:about="http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_21">
+        <rdf:type rdf:resource="https://www.inf.ufrgs.br/ontologies/o3po#FPSO"/>
+        <OffshoreFacilityModule:fpsoName>Scenario 21</OffshoreFacilityModule:fpsoName>
+        <rdfs:label xml:lang="en">FPSO Scenario 21</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+    <!-- http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_22 -->
+
+    <owl:NamedIndividual rdf:about="http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_22">
+        <rdf:type rdf:resource="https://www.inf.ufrgs.br/ontologies/o3po#FPSO"/>
+        <OffshoreFacilityModule:fpsoName>Scenario 22</OffshoreFacilityModule:fpsoName>
+        <rdfs:label xml:lang="en">FPSO Scenario 22</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+    <!-- http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_23 -->
+
+    <owl:NamedIndividual rdf:about="http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_23">
+        <rdf:type rdf:resource="https://www.inf.ufrgs.br/ontologies/o3po#FPSO"/>
+        <OffshoreFacilityModule:fpsoName>Scenario 23</OffshoreFacilityModule:fpsoName>
+        <rdfs:label xml:lang="en">FPSO Scenario 23</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+    <!-- http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_24 -->
+
+    <owl:NamedIndividual rdf:about="http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_24">
+        <rdf:type rdf:resource="https://www.inf.ufrgs.br/ontologies/o3po#FPSO"/>
+        <OffshoreFacilityModule:fpsoName>Scenario 24</OffshoreFacilityModule:fpsoName>
+        <rdfs:label xml:lang="en">FPSO Scenario 24</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+    <!-- http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_25 -->
+
+    <owl:NamedIndividual rdf:about="http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_25">
+        <rdf:type rdf:resource="https://www.inf.ufrgs.br/ontologies/o3po#FPSO"/>
+        <OffshoreFacilityModule:fpsoName>Scenario 25</OffshoreFacilityModule:fpsoName>
+        <rdfs:label xml:lang="en">FPSO Scenario 25</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+    <!-- http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_26 -->
+
+    <owl:NamedIndividual rdf:about="http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_26">
+        <rdf:type rdf:resource="https://www.inf.ufrgs.br/ontologies/o3po#FPSO"/>
+        <OffshoreFacilityModule:fpsoName>Scenario 26</OffshoreFacilityModule:fpsoName>
+        <rdfs:label xml:lang="en">FPSO Scenario 26</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+    <!-- http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_27 -->
+
+    <owl:NamedIndividual rdf:about="http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_27">
+        <rdf:type rdf:resource="https://www.inf.ufrgs.br/ontologies/o3po#FPSO"/>
+        <OffshoreFacilityModule:fpsoName>Scenario 27</OffshoreFacilityModule:fpsoName>
+        <rdfs:label xml:lang="en">FPSO Scenario 27</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+    <!-- http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_28 -->
+
+    <owl:NamedIndividual rdf:about="http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_28">
+        <rdf:type rdf:resource="https://www.inf.ufrgs.br/ontologies/o3po#FPSO"/>
+        <OffshoreFacilityModule:fpsoName>Scenario 28</OffshoreFacilityModule:fpsoName>
+        <rdfs:label xml:lang="en">FPSO Scenario 28</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+    <!-- http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_29 -->
+
+    <owl:NamedIndividual rdf:about="http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_29">
+        <rdf:type rdf:resource="https://www.inf.ufrgs.br/ontologies/o3po#FPSO"/>
+        <OffshoreFacilityModule:fpsoName>Scenario 29</OffshoreFacilityModule:fpsoName>
+        <rdfs:label xml:lang="en">FPSO Scenario 29</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+    <!-- http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_30 -->
+
+    <owl:NamedIndividual rdf:about="http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule#FPSO_-_Scenario_30">
+        <rdf:type rdf:resource="https://www.inf.ufrgs.br/ontologies/o3po#FPSO"/>
+        <OffshoreFacilityModule:fpsoName>Scenario 30</OffshoreFacilityModule:fpsoName>
+        <rdfs:label xml:lang="en">FPSO Scenario 30</rdfs:label>
+    </owl:NamedIndividual>
+    
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi -->
+

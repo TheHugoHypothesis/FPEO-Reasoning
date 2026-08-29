@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns:owl="http://www.w3.org/2002/07/owl#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/FlaringProcessModule">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <rdfs:label xml:lang="en">Flaring process Module</rdfs:label>
+    <rdfs:comment xml:lang="en">FPEO V5 candidate generated 2026-08-21. This ontology is part of the JSON-compatible, BFO-2020-aligned test architecture and is not the immutable production baseline.</rdfs:comment>
+    <owl:versionIRI rdf:resource="http://www.usp.ai/Ontologies/FPEO/FlaringProcessModule/versions/2026-08-21"/>
+    <owl:imports rdf:resource="http://www.usp.ai/Ontologies/FPEO/EmissionProcessModule"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/FlaringProcessModule#FlaringProcess">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Flaring process</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.usp.ai/Ontologies/FPEO/EmissionProcessModule#EmissionProcess"/>
+    <rdfs:comment xml:lang="en">What it is: An emission process involving controlled combustion of gas in a flare system. BFO/IOF placement: process. Why it is here: Provides a named process specialization for the FPSO emissions architecture and future scenario accounting.</rdfs:comment>
+  </rdf:Description>
+</rdf:RDF>

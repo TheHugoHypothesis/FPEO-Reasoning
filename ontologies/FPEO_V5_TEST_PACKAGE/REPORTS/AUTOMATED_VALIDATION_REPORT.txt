@@ -1,0 +1,121 @@
+FPEO V5 AUTOMATED VALIDATION REPORT
+PASS=53 FAIL=0
+
+[PASS] RDF parse/roundtrip CombustionProcessModule.rdf
+  24 triples; roundtrip 24
+[PASS] RDF parse/roundtrip EmissionProcessModule.rdf
+  78 triples; roundtrip 78
+[PASS] RDF parse/roundtrip EquipmentModule.rdf
+  2498 triples; roundtrip 2498
+[PASS] RDF parse/roundtrip FPSO_ScenarioModule.rdf
+  106 triples; roundtrip 106
+[PASS] RDF parse/roundtrip FlaringProcessModule.rdf
+  9 triples; roundtrip 9
+[PASS] RDF parse/roundtrip FugitiveEmissionModule.rdf
+  9 triples; roundtrip 9
+[PASS] RDF parse/roundtrip MeasurementTemporalModule.rdf
+  33 triples; roundtrip 33
+[PASS] RDF parse/roundtrip OffshoreFacilityModule.rdf
+  144 triples; roundtrip 144
+[PASS] RDF parse/roundtrip OperationalScenario.rdf
+  7 triples; roundtrip 7
+[PASS] RDF parse/roundtrip PowerModule.rdf
+  309 triples; roundtrip 309
+[PASS] RDF parse/roundtrip VentingProcessModule.rdf
+  9 triples; roundtrip 9
+[PASS] Fingerprint ElectricalBus
+  baseline=35, candidate=35, expected=35
+[PASS] Fingerprint SolarPanel
+  baseline=35, candidate=35, expected=35
+[PASS] Fingerprint WindTurbine
+  baseline=35, candidate=35, expected=35
+[PASS] Fingerprint PLM GasTurbine
+  baseline=35, candidate=35, expected=35
+[PASS] Fingerprint PLM PowerCable
+  baseline=35, candidate=35, expected=35
+[PASS] Fingerprint O3PO FPSO
+  baseline=36, candidate=36, expected=36
+[PASS] IRI set ElectricalBus
+  35 baseline IRIs == 35 candidate IRIs
+[PASS] IRI set SolarPanel
+  35 baseline IRIs == 35 candidate IRIs
+[PASS] IRI set WindTurbine
+  35 baseline IRIs == 35 candidate IRIs
+[PASS] IRI set PCA_100005927
+  35 baseline IRIs == 35 candidate IRIs
+[PASS] IRI set PCA_100004105
+  35 baseline IRIs == 35 candidate IRIs
+[PASS] IRI set FPSO
+  36 platform IRIs retained
+[PASS] Equipment additive preservation
+  missing baseline triples (excluding 2 deliberate refactor triples)=0
+[PASS] Production baseline remains BFO 2019
+  original immutable Equipment baseline still imports BFO 2019
+[PASS] Candidate Equipment uses BFO 2020
+  candidate imports BFO 2020 and not 2019
+[PASS] Catalog has no absolute file URI
+  12 portable entries
+[PASS] Power IRI alias present
+  both historical logical forms resolve locally
+[PASS] Candidate local import closure
+  all local imports resolvable by ontology identity/catalog; external BFO/O3PO imports intentionally remain external
+[PASS] Unique Power ObjectProperty hasConnectedBus
+  1 declaration(s): http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#hasConnectedBus
+[PASS] Unique Power ObjectProperty hasConnectedEquipment
+  1 declaration(s): http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#hasConnectedEquipment
+[PASS] Unique Power ObjectProperty isConnectedToOther_BUS_ByCable
+  1 declaration(s): http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#isConnectedToOther_BUS_ByCable
+[PASS] HermiT-safe named hierarchy EquipmentModule.rdf
+  anonymous/restriction constructs=0; named equivalentClass/disjointWith are permitted legacy OWL-DL axioms
+[PASS] HermiT-safe named hierarchy PowerModule.rdf
+  anonymous/restriction constructs=0; named equivalentClass/disjointWith are permitted legacy OWL-DL axioms
+[PASS] HermiT-safe named hierarchy FPSO_ScenarioModule.rdf
+  anonymous/restriction constructs=0; named equivalentClass/disjointWith are permitted legacy OWL-DL axioms
+[PASS] HermiT-safe named hierarchy MeasurementTemporalModule.rdf
+  anonymous/restriction constructs=0; named equivalentClass/disjointWith are permitted legacy OWL-DL axioms
+[PASS] HermiT-safe named hierarchy EmissionProcessModule.rdf
+  anonymous/restriction constructs=0; named equivalentClass/disjointWith are permitted legacy OWL-DL axioms
+[PASS] HermiT-safe named hierarchy CombustionProcessModule.rdf
+  anonymous/restriction constructs=0; named equivalentClass/disjointWith are permitted legacy OWL-DL axioms
+[PASS] HermiT-safe named hierarchy FlaringProcessModule.rdf
+  anonymous/restriction constructs=0; named equivalentClass/disjointWith are permitted legacy OWL-DL axioms
+[PASS] HermiT-safe named hierarchy VentingProcessModule.rdf
+  anonymous/restriction constructs=0; named equivalentClass/disjointWith are permitted legacy OWL-DL axioms
+[PASS] HermiT-safe named hierarchy FugitiveEmissionModule.rdf
+  anonymous/restriction constructs=0; named equivalentClass/disjointWith are permitted legacy OWL-DL axioms
+[PASS] rdfs:comment coverage local vocabulary
+  missing comments=0
+[PASS] Local vocabulary declaration hygiene
+  undefined predicate/class references=0
+[PASS] Official JSON field count
+  ledger fields=73
+[PASS] JSON 73 semantic mapping completeness
+  implemented=73/73
+[PASS] JSON ledger entities exist in RDF
+  missing referenced ontology entities=0
+[PASS] Official JSON comprehensive sample
+  0 schema errors
+[PASS] JSON negative reject additional property
+  invalid payload correctly rejected
+[PASS] JSON negative reject efficiency > 1
+  invalid payload correctly rejected
+[PASS] JSON negative reject bad load strategy
+  invalid payload correctly rejected
+[PASS] JSON negative reject one-point keyframe
+  invalid payload correctly rejected
+[PASS] JSON negative reject missing required alternative-source id
+  invalid payload correctly rejected
+[PASS] No filesystem-specific owl:imports
+  candidate imports are logical IRIs only
+
+NOT EXECUTED IN THIS ENVIRONMENT
+- Owlready2 local-load regression: package not installed and bounded pip installation failed because this runtime has no package-network access.
+- HermiT semantic reasoner: no HermiT/ROBOT/Protégé reasoner executable or jar is installed. Structural HermiT-safety checks were executed, but this is not a substitute for a reasoner run.
+- Protégé GUI import-closure test: Protégé is not installed/available as an interactive GUI in this runtime. Portable catalog and logical import closure were checked structurally.
+- Selenium GUI test: not run because this architecture package does not include the user application/GUI endpoint; Chromium alone is insufficient to test the ontology application path.
+
+KNOWN OPEN ISSUES TO OBSERVE
+- Historical PowerModule ontology identity ends in .rdf while older imports/catalogs also use the no-.rdf form. Candidate preserves the public .rdf ontology IRI and provides both catalog aliases.
+- Candidate Equipment intentionally moves from production BFO 2019 import to BFO 2020; production baseline is retained untouched for regression comparison.
+- External BFO 2020 and O3PO imports are logical network IRIs; this package does not bundle third-party ontology copies. Protégé must resolve them via its normal catalog/import mechanism or a local institutional mirror.
+- JSON cross-reference integrity (e.g. source_id actually names an element in gas_turbines/alternative_sources) is not enforced by JSON Schema itself and belongs in application/SHACL validation.

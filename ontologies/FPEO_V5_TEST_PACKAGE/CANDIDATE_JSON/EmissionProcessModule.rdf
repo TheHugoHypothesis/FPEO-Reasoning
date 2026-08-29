@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns:owl="http://www.w3.org/2002/07/owl#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/EmissionProcessModule#hasDisplayName">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">has display name</rdfs:label>
+    <rdfs:comment xml:lang="en">What it is: Human-readable display name. BFO/IOF placement: literal-bearing information attribute. Why it is here: Supports JSON fuel and GHG names.</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/EmissionProcessModule#hasGlobalWarmingPotential">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">has global warming potential</rdfs:label>
+    <rdfs:comment xml:lang="en">What it is: Dimensionless global warming potential value. BFO/IOF placement: literal-bearing information attribute. Why it is here: Supports GhgEmissionIn.gwp.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/EmissionProcessModule#GlobalWarmingPotentialSpecification"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/EmissionProcessModule#EmissionFactorSpecification">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Emission factor specification</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000031"/>
+    <rdfs:comment xml:lang="en">What it is: An information content entity specifying an emission conversion factor. BFO/IOF placement: generically dependent continuant. Why it is here: Supports both source ECF and fuel-to-GHG emission factors.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/EmissionProcessModule#hasEmissionSpecification">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">has emission specification</rdfs:label>
+    <rdfs:comment xml:lang="en">What it is: Relates a fuel specification to an emission-factor specification. BFO/IOF placement: relation between ontology entities. Why it is here: Supports FuelIn.emissions.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/EmissionProcessModule#FuelSpecification"/>
+    <rdfs:range rdf:resource="http://www.usp.ai/Ontologies/FPEO/EmissionProcessModule#EmissionFactorSpecification"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/EmissionProcessModule#hasGWPSpecification">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">has GWP specification</rdfs:label>
+    <rdfs:comment xml:lang="en">What it is: Relates a greenhouse gas to its GWP specification. BFO/IOF placement: relation between ontology entities. Why it is here: Supports GhgEmissionIn.gwp.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/EmissionProcessModule#GreenhouseGas"/>
+    <rdfs:range rdf:resource="http://www.usp.ai/Ontologies/FPEO/EmissionProcessModule#GlobalWarmingPotentialSpecification"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/EmissionProcessModule#GlobalWarmingPotentialSpecification">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Global warming potential specification</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000031"/>
+    <rdfs:comment xml:lang="en">What it is: An information content entity specifying the relative global warming potential of a greenhouse gas. BFO/IOF placement: generically dependent continuant. Why it is here: Supports JSON gwp without making a bare numeric value the chemical species itself.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/EmissionProcessModule#hasChemicalFormula">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">has chemical formula</rdfs:label>
+    <rdfs:comment xml:lang="en">What it is: Chemical formula of a greenhouse gas. BFO/IOF placement: literal-bearing information attribute. Why it is here: Supports GhgEmissionIn.formula.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/EmissionProcessModule#GreenhouseGas"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/EmissionProcessModule">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <rdfs:label xml:lang="en">FPEO Emission Process Module</rdfs:label>
+    <rdfs:comment xml:lang="en">FPEO V5 candidate generated 2026-08-21. This ontology is part of the JSON-compatible, BFO-2020-aligned test architecture and is not the immutable production baseline.</rdfs:comment>
+    <owl:versionIRI rdf:resource="http://www.usp.ai/Ontologies/FPEO/EmissionProcessModule/versions/2026-08-21"/>
+    <owl:imports rdf:resource="http://purl.obolibrary.org/obo/bfo/2020/bfo.owl"/>
+    <owl:imports rdf:resource="http://www.usp.ai/Ontologies/FPEO/MeasurementTemporalModule"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/EmissionProcessModule#EmissionProcess">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Emission process</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000015"/>
+    <rdfs:comment xml:lang="en">What it is: A process during which matter including an emission species is released to the environment. BFO/IOF placement: process. Why it is here: Provides the common process root for combustion, flaring, venting, and fugitive emission specializations.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/EmissionProcessModule#hasCostPerGramUSD">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">has cost per gram USD</rdfs:label>
+    <rdfs:comment xml:lang="en">What it is: Fuel cost in US dollars per gram. BFO/IOF placement: literal-bearing information attribute. Why it is here: Supports FuelIn.cost_per_gram_usd.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/EmissionProcessModule#FuelSpecification"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/EmissionProcessModule#hasFuelType">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">has fuel type</rdfs:label>
+    <rdfs:comment xml:lang="en">What it is: Relates a fuel specification to its controlled fuel type. BFO/IOF placement: relation between ontology entities. Why it is here: Supports fuel key/name semantics.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/EmissionProcessModule#FuelSpecification"/>
+    <rdfs:range rdf:resource="http://www.usp.ai/Ontologies/FPEO/EmissionProcessModule#FuelType"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/EmissionProcessModule#FuelType">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Fuel type</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000031"/>
+    <rdfs:comment xml:lang="en">What it is: A controlled information classification of a fuel. BFO/IOF placement: generically dependent continuant. Why it is here: Separates controlled fuel identity/type from an individual scenario fuel specification.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/EmissionProcessModule#GreenhouseGas">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Greenhouse gas</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000040"/>
+    <rdfs:comment xml:lang="en">What it is: A material entity representing a greenhouse-gas chemical species for scenario emission accounting. BFO/IOF placement: material entity. Why it is here: Provides the semantic object behind JSON GHG emission records.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/EmissionProcessModule#hasEmissionConversionFactor">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">has emission conversion factor</rdfs:label>
+    <rdfs:comment xml:lang="en">What it is: Emission conversion factor; interpretation and unit are fixed by the consuming JSON field. BFO/IOF placement: literal-bearing information attribute. Why it is here: Supports AlternativeSourceIn.ECF and GhgEmissionIn.ecf.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/EmissionProcessModule#EmissionFactorSpecification"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/EmissionProcessModule#hasFuelKey">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">has fuel key</rdfs:label>
+    <rdfs:comment xml:lang="en">What it is: Stable scenario lookup key for a fuel specification. BFO/IOF placement: literal-bearing information attribute. Why it is here: Supports FuelIn.key and GasTurbineIn.fuel_key.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/EmissionProcessModule#FuelSpecification"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/EmissionProcessModule#FuelSpecification">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Fuel specification</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000031"/>
+    <rdfs:comment xml:lang="en">What it is: An information content entity specifying an available fuel and its quantitative characteristics. BFO/IOF placement: generically dependent continuant. Why it is here: Represents scenario fuels referenced by gas turbines through stable keys.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/EmissionProcessModule#forGreenhouseGas">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">for greenhouse gas</rdfs:label>
+    <rdfs:comment xml:lang="en">What it is: Relates an emission-factor or GWP specification to the greenhouse gas it characterizes. BFO/IOF placement: relation between ontology entities. Why it is here: Connects quantitative factors to a chemical species.</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.usp.ai/Ontologies/FPEO/EmissionProcessModule#GreenhouseGas"/>
+  </rdf:Description>
+</rdf:RDF>

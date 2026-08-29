@@ -1,0 +1,7 @@
+PASS EquipmentModule_v4_full(3).rdf -> EquipmentModule.rdf SHA256_equal=True
+PASS PowerModule(3).rdf -> PowerModule.rdf SHA256_equal=True
+PASS OffshoreFacilityModule_PRODUCTION_36_FPSO(4).rdf -> OffshoreFacilityModule.rdf SHA256_equal=True
+PASS FPSO_ScenarioModule(2)(1).rdf -> FPSO_ScenarioModule.rdf SHA256_equal=True
+PASS OperationalScenario(4).rdf -> OperationalScenario.rdf SHA256_equal=True
+PASS catalog-v001(6).xml -> catalog-v001.xml SHA256_equal=True
+PASS schema_in (2)(1).json -> schema_in.json SHA256_equal=True

@@ -1,0 +1,570 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns:owl="http://www.w3.org/2002/07/owl#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#Power">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000019"/>
+    <rdfs:comment>Suggested Reuse
+Conceptually compatible with the SEAS notion that electric power systems can produce or consume electric power.
+
+Rationale
+Power here is not the physical equipment, the process, or the information artifact. It is the electrical power quality/quantity borne by systems or involved in generation/consumption contexts. Power is not a Material Entity, and it is not a GDC in the usual physical sense. The electrical power output of a generator or the power demand of a bus. It implies: the best BFO reading is: a power instance is a quality, because in BFO, a quality is a specifically dependent continuant, something that depends on a bearer and does not need a separate realization process, the way a role or disposition does.
+
+So I would separate the options like this:
+Material Entity? No. Material entities are bearers such as turbines, cables, buses, generators, and platforms. Power is not the equipment; it is something of the equipment or system.
+GDC? Normally no. A GDC could be something like a formula, a demand profile document, a measurement record, a specification sheet, or a dataset entry. If you store “Power = 4.5 MW” in a database, that record is a GDC / information artifact; the underlying physical power itself is not.
+Quality? Usually yes, if you mean the physical magnitude inhering in a bearer or system. BFO defines quality exactly in that family.
+
+There is another nuance: standards for quantities and units treat power as a Quantity Kind, and explicitly list power among observable properties that can be measured numerically. QUDT says a Quantity Kind includes things like length, mass, time, force, energy, and power, while a Quantity is the measurement of such a property for a particular object or system.
+
+ That aligns very nicely with a BFO-style interpretation:
+Power as a universal/type of measurable property → subclass of bfo:Quality
+a particular actual power of a specific generator → instance of that quality class
+the numeric record “4.5 MW” → information artifact/measurement datum, not the quality itself. 
+	
+Suggested child classes
+power:GeneratedPower [001 - 002]
+power:ConsumedPower  [001 - 003]
+
+Formal Definition (DL)
+power:Power ⊑BFO:Quality
+power:GeneratedPower ⊑ power:Power
+power:ConsumedPower⊑power:Power
+
+Elucidation
+Power represents electrical power as a domain quantity/quality relevant to offshore generation, transmission, and consumption contexts. The primary operational distinction required at this stage is between generated and consumed power.</rdfs:comment>
+    <rdfs:label>FPEO - power: Power  [001-001]</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#hasPlateauDemandWatts">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">has plateau demand watts</rdfs:label>
+    <rdfs:comment xml:lang="en">What it is: Steady-state plateau demand in watts. BFO/IOF placement: literal-bearing information attribute. Why it is here: Supports FieldLifecycleDemand.plateau_demand_watts.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#FieldLifecyclePowerDemandProfile"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#constant">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#InterpolationMethod"/>
+    <rdfs:label xml:lang="en">constant</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#usesInterpolationMethod">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">uses interpolation method</rdfs:label>
+    <rdfs:comment xml:lang="en">What it is: Relates an interpolation segment to its method. BFO/IOF placement: relation between ontology entities. Why it is here: Supports constant, linear, exp_decay, and exp_growth.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#InterpolationSegment"/>
+    <rdfs:range rdf:resource="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#InterpolationMethod"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#hasMaximumCapacityWatts">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">has maximum capacity watts</rdfs:label>
+    <rdfs:comment xml:lang="en">What it is: Maximum transfer capacity of a cable configuration in watts. BFO/IOF placement: literal-bearing information attribute. Why it is here: Supports CableIn.max_capacity.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#CablePowerTransferConfiguration"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#ImportedPowerSupply">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Imported power supply</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000031"/>
+    <rdfs:comment xml:lang="en">What it is: A configuration/information entity describing electrical power imported from outside the modeled offshore generation set. BFO/IOF placement: generically dependent continuant. Why it is here: Supports AlternativeSourceIn imported-power cases without inventing physical equipment.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#hasConnectedBus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://www.inf.ufrgs.br/ontologies/o3po#FPSO"/>
+    <rdfs:range rdf:resource="http://www.usp.ai/Ontologies/FPEO/EquipmentModule#ElectricalBus"/>
+    <rdfs:comment xml:lang="en">What it is: legacy FPEO entity hasConnectedBus, preserved from the production ontology. BFO/IOF placement: inherited from its existing asserted hierarchy. Why it is here: retained unchanged at the public IRI to preserve production Python, SPARQL, Protégé, and scenario compatibility.</rdfs:comment>
+    <rdfs:label xml:lang="en">hasConnectedBus</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#InterpolationMethod">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Interpolation method</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000031"/>
+    <rdfs:comment xml:lang="en">What it is: A controlled information entity naming a method used to interpolate between demand breakpoints. BFO/IOF placement: generically dependent continuant. Why it is here: Supports keyframe connections enum values.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#ElectricalPowerSource">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Electrical power source</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000023"/>
+    <rdfs:comment xml:lang="en">What it is: A role borne by an entity that supplies electrical power to a scenario bus. BFO/IOF placement: role. Why it is here: Provides a common semantic classification for gas, wind, solar, and imported sources without changing their physical equipment classes.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#equal">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#LoadSharingStrategy"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#hasDemandWatts">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">has demand watts</rdfs:label>
+    <rdfs:comment xml:lang="en">What it is: Power demand value in watts. BFO/IOF placement: literal-bearing information attribute. Why it is here: Supports ConstantDemand and breakpoint demand values.</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#hasDeclineRate">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">has decline rate</rdfs:label>
+    <rdfs:comment xml:lang="en">What it is: Annual exponential decline rate. BFO/IOF placement: literal-bearing information attribute. Why it is here: Supports FieldLifecycleDemand.decline_rate.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#FieldLifecyclePowerDemandProfile"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#hasStartYear">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">has start year</rdfs:label>
+    <rdfs:comment xml:lang="en">What it is: Calendar year at which field lifecycle demand begins. BFO/IOF placement: literal-bearing information attribute. Why it is here: Supports FieldLifecycleDemand.start_year.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#FieldLifecyclePowerDemandProfile"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N2df9750ed8614db6a3acb62e95cec71f">
+    <rdf:first rdf:resource="https://spec.industrialontologies.org/ontology/core/Core/EquipmentRole"/>
+    <rdf:rest rdf:nodeID="N5ca0e35db73e494f8adf87da7980efb8"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#hasBreakpoint">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">has breakpoint</rdfs:label>
+    <rdfs:comment xml:lang="en">What it is: Relates a keyframe profile to one of its ordered demand breakpoints. BFO/IOF placement: relation between ontology entities. Why it is here: Supports KeyframeDemand.breakpoints.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#KeyframePowerDemandProfile"/>
+    <rdfs:range rdf:resource="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#PowerDemandBreakpoint"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#has_Formula">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#PowerDemandProfile"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment xml:lang="en">What it is: legacy FPEO entity has_Formula, preserved from the production ontology. BFO/IOF placement: inherited from its existing asserted hierarchy. Why it is here: retained unchanged at the public IRI to preserve production Python, SPARQL, Protégé, and scenario compatibility.</rdfs:comment>
+    <rdfs:label xml:lang="en">has_Formula</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#KeyframePowerDemandProfile">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Keyframe power demand profile</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#PowerDemandProfile"/>
+    <rdfs:comment xml:lang="en">What it is: A demand profile defined by ordered breakpoints and segment interpolation methods. BFO/IOF placement: information content entity. Why it is here: Supports KeyframeDemand.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#hasConnectedEquipment">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/EquipmentModule#ElectricalBus"/>
+    <rdfs:comment xml:lang="en">What it is: legacy FPEO entity hasConnectedEquipment, preserved from the production ontology. BFO/IOF placement: inherited from its existing asserted hierarchy. Why it is here: retained unchanged at the public IRI to preserve production Python, SPARQL, Protégé, and scenario compatibility.</rdfs:comment>
+    <rdfs:label xml:lang="en">hasConnectedEquipment</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#linear">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#InterpolationMethod"/>
+    <rdfs:label xml:lang="en">linear</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#hasLoadSharingStrategy">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/EquipmentModule#ElectricalBus"/>
+    <rdfs:range rdf:resource="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#LoadSharingStrategy"/>
+    <rdfs:comment xml:lang="en">What it is: legacy FPEO entity hasLoadSharingStrategy, preserved from the production ontology. BFO/IOF placement: inherited from its existing asserted hierarchy. Why it is here: retained unchanged at the public IRI to preserve production Python, SPARQL, Protégé, and scenario compatibility.</rdfs:comment>
+    <rdfs:label xml:lang="en">hasLoadSharingStrategy</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N2d814df5c3d14eeca04774edf0437999">
+    <rdf:first rdf:resource="https://www.inf.ufrgs.br/ontologies/o3po#Riser"/>
+    <rdf:rest rdf:nodeID="N934cec891b0f496dac9b708926354ba0"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <owl:imports rdf:resource="http://www.usp.ai/Ontologies/FPEO/EquipmentModule"/>
+    <owl:imports rdf:resource="http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule"/>
+    <owl:imports rdf:resource="http://purl.obolibrary.org/obo/bfo/2020/bfo.owl"/>
+    <owl:imports rdf:resource="http://www.usp.ai/Ontologies/FPEO/MeasurementTemporalModule"/>
+    <owl:versionIRI rdf:resource="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf/versions/2026-08-21"/>
+    <rdfs:comment xml:lang="en">V5 candidate PowerModule. Existing public ontology and property IRIs are retained, including the three Python-discovered topology properties; JSON demand, source/consumer connection, and cable-transfer configuration vocabulary is added.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#hasInterpolationSegment">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">has interpolation segment</rdfs:label>
+    <rdfs:comment xml:lang="en">What it is: Relates a keyframe profile to a segment between consecutive breakpoints. BFO/IOF placement: relation between ontology entities. Why it is here: Supports KeyframeDemand.connections.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#KeyframePowerDemandProfile"/>
+    <rdfs:range rdf:resource="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#InterpolationSegment"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#configuresCable">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">configures cable</rdfs:label>
+    <rdfs:comment xml:lang="en">What it is: Relates a transfer configuration to the physical cable it configures. BFO/IOF placement: relation between ontology entities. Why it is here: Separates cable identity from scenario direction.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#CablePowerTransferConfiguration"/>
+    <rdfs:range rdf:resource="http://rds.posccaesar.org/ontology/plm/rdl/PCA_100004105"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#hasSegmentIndex">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">has segment index</rdfs:label>
+    <rdfs:comment xml:lang="en">What it is: Zero-based/ordered segment position in a keyframe profile. BFO/IOF placement: literal-bearing information attribute. Why it is here: Supports deterministic JSON serialization of connections.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#InterpolationSegment"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#hasPowerDemand">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#PowerDemand"/>
+    <rdfs:comment xml:lang="en">What it is: legacy FPEO entity hasPowerDemand, preserved from the production ontology. BFO/IOF placement: inherited from its existing asserted hierarchy. Why it is here: retained unchanged at the public IRI to preserve production Python, SPARQL, Protégé, and scenario compatibility.</rdfs:comment>
+    <rdfs:label xml:lang="en">hasPowerDemand</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#CablePowerTransferConfiguration">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Cable power transfer configuration</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000031"/>
+    <rdfs:comment xml:lang="en">What it is: A scenario-specific information entity assigning origin bus, destination bus, capacity, and efficiency to a physical cable transfer. BFO/IOF placement: generically dependent continuant. Why it is here: Represents from_bus/to_bus as scenario direction rather than intrinsic cable direction.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N43edec1a246a49fa8299d59fd9f45473">
+    <rdf:first rdf:resource="https://spec.industrialontologies.org/ontology/core/Core/MaterialResourceRole"/>
+    <rdf:rest rdf:nodeID="N2b3d18c9d27d48a4b26cd2a4c1ceb023"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N775c6e66c55c43e1bfac378786ff8b2c">
+    <rdf:first rdf:resource="https://www.inf.ufrgs.br/ontologies/o3po#ProducerRole"/>
+    <rdf:rest rdf:nodeID="Nd958993a382a4489853bdfeb9c2c3142"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#hasBreakpointYear">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">has breakpoint year</rdfs:label>
+    <rdfs:comment xml:lang="en">What it is: Calendar year coordinate of a keyframe breakpoint. BFO/IOF placement: literal-bearing information attribute. Why it is here: Supports BreakpointIn.year.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#PowerDemandBreakpoint"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#ConsumerRole">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000023"/>
+    <rdfs:comment>BFO Classification
+BFO Type: BFO:Role
+The class power:ConsumerRole represents a specialization, characterizing the role assumed by an instance of power:FPSO when it acts as an energy consumer in the system, being a context-dependent entity that describes the participation of the FPSO as an energy receiver in a given operational scenario, being able to coexist with other energy roles simultaneously and not being a fixed or inherent characteristic of the material entity that instantiates it.</rdfs:comment>
+    <rdfs:label>FPEO - power:ConsumerRole [009-001]</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#feedsElectricalBus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">feeds electrical bus</rdfs:label>
+    <rdfs:comment xml:lang="en">What it is: Relates a source entity/configuration to the electrical bus it supplies. BFO/IOF placement: relation between ontology entities. Why it is here: Supports source_connections.</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.usp.ai/Ontologies/FPEO/EquipmentModule#ElectricalBus"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#LoadSharingStrategy">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://spec.industrialontologies.org/ontology/core/Core/InformationContentEntity"/>
+    <rdfs:comment>Suggested Reuse
+No direct external import is required. This should remain local because it is application-control semantics.
+
+Rationale
+The necessary and exclusive instances equal, proportional, and merit_order are not material entities or processes by themselves. They are strategy specifications used by the BUS to govern balancing behavior.
+
+Formal Definition (DL)
+power:LoadSharingStrategy⊑BFO:GenericallyDependentContinuant
+
+Recommended individuals
+power:equal
+power:proportional
+power:merit_order
+
+Elucidation
+A LoadSharingStrategy is a specification that determines how the BUS distributes demand across connected generation sources.</rdfs:comment>
+    <rdfs:label>FPEO - power:LoadSharingStrategy [005-001]</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#has_Period">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#PowerDemand"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTimeStamp"/>
+    <rdfs:comment xml:lang="en">What it is: legacy FPEO entity has_Period, preserved from the production ontology. BFO/IOF placement: inherited from its existing asserted hierarchy. Why it is here: retained unchanged at the public IRI to preserve production Python, SPARQL, Protégé, and scenario compatibility.</rdfs:comment>
+    <rdfs:label xml:lang="en">has_Period</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#hasRampUpYears">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">has ramp-up years</rdfs:label>
+    <rdfs:comment xml:lang="en">What it is: Duration of linear ramp-up phase in years. BFO/IOF placement: literal-bearing information attribute. Why it is here: Supports FieldLifecycleDemand.ramp_up_years.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#FieldLifecyclePowerDemandProfile"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N48683b848d674be0bc09b6524a487398">
+    <rdf:first rdf:resource="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#ConsumerRole"/>
+    <rdf:rest rdf:nodeID="N8dc249d9c2bb47ae8b3ec1e8aeb147d8"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#InterpolationSegment">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Interpolation segment</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000031"/>
+    <rdfs:comment xml:lang="en">What it is: An information entity connecting two consecutive breakpoints using a selected interpolation method. BFO/IOF placement: generically dependent continuant. Why it is here: Makes KeyframeDemand.connections explicit and ordered by segment index.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#PowerDemandProfile">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://spec.industrialontologies.org/ontology/core/Core/InformationContentEntity"/>
+    <rdfs:label>FPEO - power:PowerDemandProfile [003-001]</rdfs:label>
+    <rdfs:comment xml:lang="en">What it is: legacy FPEO entity PowerDemandProfile, preserved from the production ontology. BFO/IOF placement: inherited from its existing asserted hierarchy. Why it is here: retained unchanged at the public IRI to preserve production Python, SPARQL, Protégé, and scenario compatibility.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#PowerGenerationModule">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://spec.industrialontologies.org/ontology/core/Core/EngineeredSystem"/>
+    <rdfs:comment>BFO Classification
+BFO:Object (subclass of BFO:MaterialEntity)
+IOF Classification
+Best aligned with iof-constr:EngineeredSystem (material artifact pattern)
+
+Rationale
+A PowerGenerationModule is a physical piece of equipment (e.g., turbine, generator unit) that participates in the offshore electrical architecture. It is not itself a role, but rather a material entity that can bear realizable entities, such as a power generation function or generation role, which are realized when the equipment is connected to the BUS and operating.
+
+Formal Definition (DL)
+power:PowerGenerationModule ⊑ BFO:Object
+power:PowerGenerationModule ⊑ ∃ power:connectedToBUS.power:BUS
+power:PowerGenerationModule ⊑ ∃ BFO:bearer_of.power:PowerGenerationFunction
+
+Elucidation
+A PowerGenerationModule is a material device designed to generate electrical power within a BUS-centered offshore system. Typical examples include gas turbines, diesel generators, or renewable generation units.</rdfs:comment>
+    <rdfs:label>FPEO - power:PowerGenerationModule [008-001]</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N934cec891b0f496dac9b708926354ba0">
+    <rdf:first rdf:resource="https://www.inf.ufrgs.br/ontologies/o3po#TubingRole"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#hasDestinationBus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">has destination bus</rdfs:label>
+    <rdfs:comment xml:lang="en">What it is: Relates a cable transfer configuration to its destination bus. BFO/IOF placement: relation between ontology entities. Why it is here: Supports CableIn.to_bus.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#CablePowerTransferConfiguration"/>
+    <rdfs:range rdf:resource="http://www.usp.ai/Ontologies/FPEO/EquipmentModule#ElectricalBus"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#PowerConsumer">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Power consumer</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000023"/>
+    <rdfs:comment xml:lang="en">What it is: A role borne by a platform or other entity that draws electrical power. BFO/IOF placement: role. Why it is here: Supports consumer_connections while preserving O3PO FPSO as the physical platform class.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#transfersPowerTo">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/EquipmentModule#ElectricalBus"/>
+    <rdfs:range rdf:resource="http://www.usp.ai/Ontologies/FPEO/EquipmentModule#ElectricalBus"/>
+    <rdfs:comment xml:lang="en">What it is: legacy FPEO entity transfersPowerTo, preserved from the production ontology. BFO/IOF placement: inherited from its existing asserted hierarchy. Why it is here: retained unchanged at the public IRI to preserve production Python, SPARQL, Protégé, and scenario compatibility.</rdfs:comment>
+    <rdfs:label xml:lang="en">transfersPowerTo</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#has_PowerDemandProfile">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#PowerDemand"/>
+    <rdfs:range rdf:resource="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#PowerDemandProfile"/>
+    <rdfs:comment xml:lang="en">What it is: legacy FPEO entity has_PowerDemandProfile, preserved from the production ontology. BFO/IOF placement: inherited from its existing asserted hierarchy. Why it is here: retained unchanged at the public IRI to preserve production Python, SPARQL, Protégé, and scenario compatibility.</rdfs:comment>
+    <rdfs:label xml:lang="en">has_PowerDemandProfile</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N162d840deed043f49bb5112a4fb652a5">
+    <rdf:first rdf:resource="http://purl.obolibrary.org/obo/IAO_0000442"/>
+    <rdf:rest rdf:nodeID="N48683b848d674be0bc09b6524a487398"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#ProviderRole">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000023"/>
+    <rdfs:comment>BFO Classification
+BFO Type: BFO:Role
+The class power:ProviderRole represents a specialization, characterizing the role assumed by an instance of power:FPSO when it acts as an energy provider in the system, being a context-dependent entity that describes the participation of the FPSO as an energy source in a given operational scenario, being able to coexist with other energy roles simultaneously and being determined by the operational conditions of the system, not constituting an intrinsic property of the material entity.</rdfs:comment>
+    <rdfs:label>FPEO - power:ProviderRole [010-001]</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N2b3d18c9d27d48a4b26cd2a4c1ceb023">
+    <rdf:first rdf:resource="https://spec.industrialontologies.org/ontology/core/Core/RawMaterialRole"/>
+    <rdf:rest rdf:nodeID="N0f135feddfb045e19e3084feebf2dc2c"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#PowerDemandBreakpoint">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Power demand breakpoint</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000031"/>
+    <rdfs:comment xml:lang="en">What it is: An information entity pairing a calendar-year coordinate with a power demand value. BFO/IOF placement: generically dependent continuant. Why it is here: Supports BreakpointIn.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#proportional">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#LoadSharingStrategy"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#FieldLifecyclePowerDemandProfile">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Field lifecycle power demand profile</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#PowerDemandProfile"/>
+    <rdfs:comment xml:lang="en">What it is: A ramp-up, plateau, and exponential-decline demand profile. BFO/IOF placement: information content entity. Why it is here: Supports FieldLifecycleDemand.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#ConsumedPower">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#Power"/>
+    <owl:disjointWith rdf:resource="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#GeneratedPower"/>
+    <rdfs:comment>Formal Definition (DL)
+power:Power ⊑BFO:Quality
+power:GeneratedPower ⊑ power:Power
+power:ConsumedPower⊑power:Power</rdfs:comment>
+    <rdfs:label>FPEO - power:GeneratedPower [001 - 002]</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#ConstantPowerDemandProfile">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Constant power demand profile</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#PowerDemandProfile"/>
+    <rdfs:comment xml:lang="en">What it is: A demand profile specifying a time-invariant power demand. BFO/IOF placement: information content entity. Why it is here: Supports ConstantDemand.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#exp_growth">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#InterpolationMethod"/>
+    <rdfs:label xml:lang="en">exp_growth</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#isConnectedToOther_BUS_ByCable">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/EquipmentModule#ElectricalBus"/>
+    <rdfs:range rdf:resource="http://www.usp.ai/Ontologies/FPEO/EquipmentModule#PowerCable"/>
+    <rdfs:comment xml:lang="en">What it is: legacy FPEO entity isConnectedToOther_BUS_ByCable, preserved from the production ontology. BFO/IOF placement: inherited from its existing asserted hierarchy. Why it is here: retained unchanged at the public IRI to preserve production Python, SPARQL, Protégé, and scenario compatibility.</rdfs:comment>
+    <rdfs:label xml:lang="en">isConnectedToOther_BUS_ByCable</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#consumesPowerFrom">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/EquipmentModule#ElectricalBus"/>
+    <rdfs:range rdf:resource="http://www.usp.ai/Ontologies/FPEO/EquipmentModule#ElectricalBus"/>
+    <rdfs:comment xml:lang="en">What it is: legacy FPEO entity consumesPowerFrom, preserved from the production ontology. BFO/IOF placement: inherited from its existing asserted hierarchy. Why it is here: retained unchanged at the public IRI to preserve production Python, SPARQL, Protégé, and scenario compatibility.</rdfs:comment>
+    <rdfs:label xml:lang="en">consumesPowerFrom</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N0a38bac841994d51bb4dd8159010aa1e">
+    <rdf:first rdf:resource="https://www.inf.ufrgs.br/ontologies/o3po#ObservationRole"/>
+    <rdf:rest rdf:nodeID="N775c6e66c55c43e1bfac378786ff8b2c"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#hasDistributionEfficiency">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">has distribution efficiency</rdfs:label>
+    <rdfs:comment xml:lang="en">What it is: Bus-to-consumer delivery efficiency fraction. BFO/IOF placement: literal-bearing information attribute. Why it is here: Supports BusIn.distribution_efficiency.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/EquipmentModule#ElectricalBus"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#PowerDemand">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://spec.industrialontologies.org/ontology/core/Core/InformationContentEntity"/>
+    <rdfs:comment>Suggested Reuse
+Close to demand/profile modeling in SAREF4ENER.
+
+Rationale: PowerDemand is directly related to:
+a specific demand profile;
+The BUS demand period datatype property.
+That means PowerDemand is best treated as an information artifact specifying required electrical demand, not as a material entity or process.
+
+Formal Definition (DL)
+
+	power:PowerDemand ⊑BFO:GenericallyDependentContinuant
+power:PowerDemand ⊑∃ power:hasPowerDemandProfile.power:PowerDemandProfile
+power:PowerDemand ⊑∃ power:dependsOnDemandPeriod.power:BUS
+
+Elucidation
+A PowerDemand is a specified electrical-demand requirement associated with a BUS and constrained by the BUS demand period. It is interpreted through a demand profile that provides the defining curve or formula.</rdfs:comment>
+    <rdfs:label>FPEO - power:PowerDemand [002-001]</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#GeneratedPower">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#Power"/>
+    <rdfs:comment>Formal Definition (DL)
+power:Power ⊑BFO:Quality
+power:GeneratedPower ⊑ power:Power
+power:ConsumedPower⊑power:Power</rdfs:comment>
+    <rdfs:label>FPEO - power:ConsumedPower  [001 - 003]</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#exp_decay">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#InterpolationMethod"/>
+    <rdfs:label xml:lang="en">exp_decay</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#hasEnergyUnitCostUSDPerJoule">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">has energy unit cost USD per joule</rdfs:label>
+    <rdfs:comment xml:lang="en">What it is: Unit energy cost in US dollars per joule. BFO/IOF placement: literal-bearing information attribute. Why it is here: Supports AlternativeSourceIn.energy_unit_cost.</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#hasPowerDemandPeriod">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#PowerDemand"/>
+    <rdfs:comment xml:lang="en">What it is: legacy FPEO entity hasPowerDemandPeriod, preserved from the production ontology. BFO/IOF placement: inherited from its existing asserted hierarchy. Why it is here: retained unchanged at the public IRI to preserve production Python, SPARQL, Protégé, and scenario compatibility.</rdfs:comment>
+    <rdfs:label xml:lang="en">hasPowerDemandPeriod</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#isConnectedToPowerGenerationModule">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/EquipmentModule#ElectricalBus"/>
+    <rdfs:comment xml:lang="en">What it is: legacy FPEO entity isConnectedToPowerGenerationModule, preserved from the production ontology. BFO/IOF placement: inherited from its existing asserted hierarchy. Why it is here: retained unchanged at the public IRI to preserve production Python, SPARQL, Protégé, and scenario compatibility.</rdfs:comment>
+    <rdfs:label xml:lang="en">isConnectedToPowerGenerationModule</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#hasOriginBus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">has origin bus</rdfs:label>
+    <rdfs:comment xml:lang="en">What it is: Relates a cable transfer configuration to its source bus. BFO/IOF placement: relation between ontology entities. Why it is here: Supports CableIn.from_bus.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#CablePowerTransferConfiguration"/>
+    <rdfs:range rdf:resource="http://www.usp.ai/Ontologies/FPEO/EquipmentModule#ElectricalBus"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#hasTransferEfficiency">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">has transfer efficiency</rdfs:label>
+    <rdfs:comment xml:lang="en">What it is: End-to-end cable transfer efficiency fraction. BFO/IOF placement: literal-bearing information attribute. Why it is here: Supports CableIn.transmission_efficiency.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#CablePowerTransferConfiguration"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#drawsElectricalPowerFrom">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">draws electrical power from</rdfs:label>
+    <rdfs:comment xml:lang="en">What it is: Relates a power consumer to the bus from which it draws power. BFO/IOF placement: relation between ontology entities. Why it is here: Supports consumer_connections.</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.usp.ai/Ontologies/FPEO/EquipmentModule#ElectricalBus"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Ncce5af25426e4064984a964a9867f210">
+    <rdf:first rdf:resource="https://www.inf.ufrgs.br/ontologies/o3po#InjectorRole"/>
+    <rdf:rest rdf:nodeID="N0a38bac841994d51bb4dd8159010aa1e"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N5ca0e35db73e494f8adf87da7980efb8">
+    <rdf:first rdf:resource="https://spec.industrialontologies.org/ontology/core/Core/MaintainableMaterialItemRole"/>
+    <rdf:rest rdf:nodeID="Nd8743e8937204594bc5b5bc567b3eb54"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#hasInitialDemandWatts">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">has initial demand watts</rdfs:label>
+    <rdfs:comment xml:lang="en">What it is: Demand at start year before ramp-up. BFO/IOF placement: literal-bearing information attribute. Why it is here: Supports FieldLifecycleDemand.initial_demand_watts.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#FieldLifecyclePowerDemandProfile"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N8dc249d9c2bb47ae8b3ec1e8aeb147d8">
+    <rdf:first rdf:resource="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#ProviderRole"/>
+    <rdf:rest rdf:nodeID="N6e5bc49d2e2c454e9cc535bcd6341154"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N6e5bc49d2e2c454e9cc535bcd6341154">
+    <rdf:first rdf:resource="https://spec.industrialontologies.org/ontology/core/Core/AgentRole"/>
+    <rdf:rest rdf:nodeID="N2df9750ed8614db6a3acb62e95cec71f"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N8fe8425e74ad4cd2bfcd4f445ea9e97e">
+    <rdf:first rdf:resource="https://www.inf.ufrgs.br/ontologies/o3po#ReservoirRole"/>
+    <rdf:rest rdf:nodeID="N2d814df5c3d14eeca04774edf0437999"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N0f135feddfb045e19e3084feebf2dc2c">
+    <rdf:first rdf:resource="https://www.inf.ufrgs.br/ontologies/o3po#InjectionRole"/>
+    <rdf:rest rdf:nodeID="Ncce5af25426e4064984a964a9867f210"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N23d398b3030d43499961195650d4adac">
+    <rdf:first rdf:resource="https://spec.industrialontologies.org/ontology/core/Core/MaterialProductRole"/>
+    <rdf:rest rdf:nodeID="N43edec1a246a49fa8299d59fd9f45473"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#merit-order">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#LoadSharingStrategy"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#PowerTransmissionModule">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://spec.industrialontologies.org/ontology/core/Core/Assembly"/>
+    <rdfs:comment>Suggested Reuse
+Conceptually related to SEAS electrical-connection semantics, but should remain your local engineered-equipment class.
+
+Rationale
+It is a physical module composed of transmission equipment and explicitly has booleans transmits and consumes. Therefore it is a material artifact/module.
+
+Formal Definition (DL)
+power:PowerTransmissionModule⊑BFO:Object
+power:PowerTransmissionModule⊑∃power:transmits.xsd:boolean
+power:PowerTransmissionModule⊑∃power:consumes.xsd:boolean
+
+Elucidation
+A PowerTransmissionModule is the physical equipment module responsible for transmitting electrical power in the offshore electrical architecture.</rdfs:comment>
+    <rdfs:label>FPEO -  power:PowerTransmissionModule [006-001]</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nd8743e8937204594bc5b5bc567b3eb54">
+    <rdf:first rdf:resource="https://spec.industrialontologies.org/ontology/core/Core/MaterialComponentRole"/>
+    <rdf:rest rdf:nodeID="N23d398b3030d43499961195650d4adac"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#hasPlateauYears">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">has plateau years</rdfs:label>
+    <rdfs:comment xml:lang="en">What it is: Duration of plateau phase in years. BFO/IOF placement: literal-bearing information attribute. Why it is here: Supports FieldLifecycleDemand.plateau_years.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#FieldLifecyclePowerDemandProfile"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nf84fee1ec8de44fb8c988ab215a4e0c9">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+    <owl:members rdf:nodeID="N162d840deed043f49bb5112a4fb652a5"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nd958993a382a4489853bdfeb9c2c3142">
+    <rdf:first rdf:resource="https://www.inf.ufrgs.br/ontologies/o3po#ProductionRole"/>
+    <rdf:rest rdf:nodeID="N8fe8425e74ad4cd2bfcd4f445ea9e97e"/>
+  </rdf:Description>
+</rdf:RDF>

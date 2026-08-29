@@ -1,0 +1,143 @@
+{
+  "name": "V5 comprehensive validation scenario",
+  "description": "Exercises every schema branch and top-level collection.",
+  "fuels": [
+    {
+      "key": "ng",
+      "name": "Natural Gas",
+      "cost_per_gram_usd": 0.0005,
+      "emissions": [
+        {
+          "name": "Carbon Dioxide",
+          "formula": "CO2",
+          "gwp": 1,
+          "ecf": 2.75
+        }
+      ]
+    }
+  ],
+  "platforms": [
+    {
+      "id": "P-1"
+    },
+    {
+      "id": "P-2"
+    }
+  ],
+  "buses": [
+    {
+      "id": "BUS-1",
+      "fpso_id": "P-1",
+      "distribution_efficiency": 0.98,
+      "load_sharing_strategy": "merit_order"
+    },
+    {
+      "id": "BUS-2",
+      "fpso_id": "P-2"
+    }
+  ],
+  "alternative_sources": [
+    {
+      "id": "WIND-1",
+      "model": "WT-15",
+      "max_power": 15000000,
+      "energy_unit_cost": 1e-08,
+      "ECF": 0.0,
+      "generator_efficiency": 0.95,
+      "transmission_efficiency": 0.98,
+      "acquisition_cost": 1,
+      "maintenance_cost": 1
+    }
+  ],
+  "gas_turbines": [
+    {
+      "id": "GT-1",
+      "model": "LM2500",
+      "max_power": 25000000,
+      "fuel_key": "ng",
+      "SFC": 1e-07,
+      "generator_efficiency": 0.95,
+      "transmission_efficiency": 0.99,
+      "acquisition_cost": 1,
+      "maintenance_cost": 1
+    }
+  ],
+  "cables": [
+    {
+      "id": "CABLE-1",
+      "from_bus": "BUS-1",
+      "to_bus": "BUS-2",
+      "max_capacity": 50000000,
+      "transmission_efficiency": 0.97,
+      "acquisition_cost": 1,
+      "maintenance_cost": 1
+    }
+  ],
+  "source_connections": [
+    {
+      "source_id": "GT-1",
+      "bus_id": "BUS-1"
+    },
+    {
+      "source_id": "WIND-1",
+      "bus_id": "BUS-1"
+    }
+  ],
+  "consumer_connections": [
+    {
+      "consumer_id": "P-1",
+      "bus_id": "BUS-1"
+    },
+    {
+      "consumer_id": "P-2",
+      "bus_id": "BUS-2"
+    }
+  ],
+  "demand_periods": [
+    {
+      "start_date": "2026-01-01",
+      "end_date": "2027-01-01",
+      "bus_id": "BUS-1",
+      "active_source_ids": [
+        "GT-1",
+        "WIND-1"
+      ],
+      "local_demand": {
+        "type": "constant",
+        "demand_watts": 10000000
+      },
+      "remote_demands": {
+        "P-2": {
+          "type": "field_lifecycle",
+          "start_year": 2026,
+          "ramp_up_years": 1,
+          "plateau_demand_watts": 8000000,
+          "plateau_years": 2,
+          "decline_rate": 0.1,
+          "initial_demand_watts": 1000000
+        }
+      }
+    },
+    {
+      "start_date": "2027-01-01",
+      "end_date": "2028-01-01",
+      "bus_id": "BUS-2",
+      "local_demand": {
+        "type": "keyframe",
+        "breakpoints": [
+          {
+            "year": 2027,
+            "demand_watts": 5000000
+          },
+          {
+            "year": 2028,
+            "demand_watts": 4000000
+          }
+        ],
+        "connections": [
+          "linear"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns:dcterms="http://purl.org/dc/terms/"
+   xmlns:owl="http://www.w3.org/2002/07/owl#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/Operational_Scenario">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <owl:imports rdf:resource="http://www.usp.ai/Ontologies/FPEO/FPSO-ScenarioModule"/>
+    <rdfs:label xml:lang="en">Operational Scenario Module</rdfs:label>
+    <rdfs:comment xml:lang="en">Scenario aggregation ontology. It imports the canonical FPSO-ScenarioModule as one specific scenario module. Additional scenario modules may be imported here. It must not import BFO, EquipmentModule, OffshoreFacilityModule, GasTurbineModule, or PowerModule directly, because those dependencies are inherited through the specific scenario modules.</rdfs:comment>
+    <dcterms:description xml:lang="en">Top-level importer for operational scenario ontologies. It aggregates specific scenario ontologies without duplicating their assertions or the imported static/power vocabulary.</dcterms:description>
+  </rdf:Description>
+</rdf:RDF>

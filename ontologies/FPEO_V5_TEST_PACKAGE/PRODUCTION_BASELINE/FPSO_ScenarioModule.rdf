@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns:owl="http://www.w3.org/2002/07/owl#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/FPSO-ScenarioModule">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <owl:imports rdf:resource="http://www.usp.ai/Ontologies/FPEO/PowerModule"/>
+    <rdfs:label xml:lang="en">FPSO Scenario Module</rdfs:label>
+    <rdfs:comment xml:lang="en">Scenario ontology layer. This ontology imports PowerModule only. PowerModule supplies the complete transitive access to EquipmentModule and OffshoreFacilityModule; EquipmentModule supplies GasTurbineModule. No lower ontology is imported directly here.</rdfs:comment>
+  </rdf:Description>
+</rdf:RDF>

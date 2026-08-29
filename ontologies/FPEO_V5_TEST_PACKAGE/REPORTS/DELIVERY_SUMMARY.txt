@@ -1,0 +1,35 @@
+FPEO V5 REFACTOR DELIVERY SUMMARY
+
+ARCHITECTURE
+OperationalScenario.rdf
+  -> FPSO_ScenarioModule.rdf
+      -> PowerModule.rdf
+          -> EquipmentModule.rdf
+          -> OffshoreFacilityModule.rdf
+          -> MeasurementTemporalModule.rdf
+      -> EmissionProcessModule.rdf
+      -> CombustionProcessModule.rdf
+      -> FlaringProcessModule.rdf
+      -> VentingProcessModule.rdf
+      -> FugitiveEmissionModule.rdf
+      -> MeasurementTemporalModule.rdf
+
+KEY CONTRACTS PRESERVED
+- O3PO FPSO class and all 36 FPSO individual IRIs
+- EquipmentModule#ElectricalBus, SolarPanel, WindTurbine, PowerCable
+- PLM PCA_100005927 GasTurbine and PCA_100004105 PowerCable
+- Existing legacy equipment data properties
+- Exactly one hasConnectedBus, hasConnectedEquipment, isConnectedToOther_BUS_ByCable
+- Production Equipment baseline remains BFO 2019 untouched; candidate Equipment uses BFO 2020
+
+AUTOMATED TEST RESULT
+53 PASS / 0 FAIL. See REPORTS/AUTOMATED_VALIDATION_REPORT.txt.
+
+NOT COUNTED AS PASS
+- Owlready2: unavailable; bounded pip installation attempted once and failed because package network/DNS is unavailable.
+- HermiT execution: unavailable; no HermiT/ROBOT/Protégé reasoner binary/JAR. Structural HermiT-safety gate passed, but it is not a semantic reasoner run.
+- Protégé GUI: unavailable here; catalog and import closure were tested structurally instead.
+- Selenium application test: Chromium exists, but no user Django/GUI application or endpoint was supplied in this task, so there is nothing honest to drive with Selenium.
+
+KNOWN IRI ISSUE
+PowerModule retains its historical logical ontology IRI ending in .rdf. The candidate catalog deliberately maps BOTH .../PowerModule.rdf and .../PowerModule to PowerModule.rdf. This is compatibility handling, not a claim that the historical identity inconsistency has disappeared.

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog prefer="system" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <uri id="Imports Wizard Entry" name="http://www.usp.ai/Ontologies/FPEO/PowerModule" uri="file:/home/rodriguez/Desktop/2026/PostDoc_USP/Ontologias/OTIC_Software_Version/Sprint2/Atualizadas/PowerModule_BFO2020_CONFIGURATION_ALIGNED.rdf"/>
+    <uri id="Imports Wizard Entry" name="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf" uri="file:/home/rodriguez/Desktop/2026/PostDoc_USP/Ontologias/OTIC_Software_Version/Sprint2/PowerModule.rdf"/>
+    <uri name="http://www.usp.ai/Ontologies/FPEO/GasTurbineModule" uri="GasTurbineModule.rdf"/>
+    <uri name="http://www.usp.ai/Ontologies/FPEO/EquipmentModule" uri="EquipmentModule.rdf"/>
+    <uri name="http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule" uri="OffshoreFacilityModule.rdf"/>
+    <uri name="http://www.usp.ai/Ontologies/FPEO/PowerModule" uri="PowerModule.rdf"/>
+    <uri name="http://www.usp.ai/Ontologies/FPEO/FPSO-ScenarioModule" uri="FPSO_ScenarioModule.rdf"/>
+    <uri name="http://www.usp.ai/Ontologies/FPEO/Operational_Scenario" uri="OperationalScenario.rdf"/>
+</catalog>

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns:owl="http://www.w3.org/2002/07/owl#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/FPSO-ScenarioModule#hasDescription">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">has description</rdfs:label>
+    <rdfs:comment xml:lang="en">What it is: Human-readable operational scenario description. BFO/IOF placement: literal-bearing information attribute. Why it is here: Supports top-level description.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/FPSO-ScenarioModule#OperationalScenario"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/FPSO-ScenarioModule#hasRemoteDemandAssignment">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">has remote demand assignment</rdfs:label>
+    <rdfs:comment xml:lang="en">What it is: Relates a bus period to a remote demand assignment. BFO/IOF placement: relation between ontology entities. Why it is here: Supports remote_demands.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/FPSO-ScenarioModule#BusDemandPeriod"/>
+    <rdfs:range rdf:resource="http://www.usp.ai/Ontologies/FPEO/FPSO-ScenarioModule#RemoteDemandAssignment"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/FPSO-ScenarioModule#hasDemandPeriod">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">has demand period</rdfs:label>
+    <rdfs:comment xml:lang="en">What it is: Relates a scenario to a bus demand period. BFO/IOF placement: relation between ontology entities. Why it is here: Supports top-level demand_periods.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/FPSO-ScenarioModule#OperationalScenario"/>
+    <rdfs:range rdf:resource="http://www.usp.ai/Ontologies/FPEO/FPSO-ScenarioModule#BusDemandPeriod"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/FPSO-ScenarioModule#hasLocalDemandProfile">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">has local demand profile</rdfs:label>
+    <rdfs:comment xml:lang="en">What it is: Relates a bus demand period to its local power-demand profile. BFO/IOF placement: relation between ontology entities. Why it is here: Supports local_demand.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/FPSO-ScenarioModule#BusDemandPeriod"/>
+    <rdfs:range rdf:resource="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#PowerDemandProfile"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/FPSO-ScenarioModule#hasCableTransferConfiguration">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">has cable transfer configuration</rdfs:label>
+    <rdfs:comment xml:lang="en">What it is: Relates a scenario to a scenario-specific cable transfer configuration. BFO/IOF placement: relation between ontology entities. Why it is here: Supports cable direction/capacity/efficiency.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/FPSO-ScenarioModule#OperationalScenario"/>
+    <rdfs:range rdf:resource="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#CablePowerTransferConfiguration"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/FPSO-ScenarioModule#BusDemandPeriod">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Bus demand period</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000031"/>
+    <rdfs:comment xml:lang="en">What it is: An information content entity specifying demand for one bus over a bounded interval. BFO/IOF placement: generically dependent continuant. Why it is here: Supports DemandPeriodIn.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/FPSO-ScenarioModule#hasName">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">has name</rdfs:label>
+    <rdfs:comment xml:lang="en">What it is: Human-readable operational scenario name. BFO/IOF placement: literal-bearing information attribute. Why it is here: Supports top-level name.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/FPSO-ScenarioModule#OperationalScenario"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/FPSO-ScenarioModule#activatesPowerSource">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">activates power source</rdfs:label>
+    <rdfs:comment xml:lang="en">What it is: Relates a demand period to a source active during that period. BFO/IOF placement: relation between ontology entities. Why it is here: Supports active_source_ids.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/FPSO-ScenarioModule#BusDemandPeriod"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/FPSO-ScenarioModule#appliesToBus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">applies to bus</rdfs:label>
+    <rdfs:comment xml:lang="en">What it is: Relates a bus demand period to its bus. BFO/IOF placement: relation between ontology entities. Why it is here: Supports DemandPeriodIn.bus_id.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/FPSO-ScenarioModule#BusDemandPeriod"/>
+    <rdfs:range rdf:resource="http://www.usp.ai/Ontologies/FPEO/EquipmentModule#ElectricalBus"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/FPSO-ScenarioModule#hasAvailableFuelSpecification">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">has available fuel specification</rdfs:label>
+    <rdfs:comment xml:lang="en">What it is: Relates a scenario to a fuel specification available to its turbines. BFO/IOF placement: relation between ontology entities. Why it is here: Supports top-level fuels.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/FPSO-ScenarioModule#OperationalScenario"/>
+    <rdfs:range rdf:resource="http://www.usp.ai/Ontologies/FPEO/EmissionProcessModule#FuelSpecification"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/FPSO-ScenarioModule">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <owl:imports rdf:resource="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf"/>
+    <owl:imports rdf:resource="http://www.usp.ai/Ontologies/FPEO/EmissionProcessModule"/>
+    <owl:imports rdf:resource="http://www.usp.ai/Ontologies/FPEO/CombustionProcessModule"/>
+    <owl:imports rdf:resource="http://www.usp.ai/Ontologies/FPEO/FlaringProcessModule"/>
+    <owl:imports rdf:resource="http://www.usp.ai/Ontologies/FPEO/VentingProcessModule"/>
+    <owl:imports rdf:resource="http://www.usp.ai/Ontologies/FPEO/FugitiveEmissionModule"/>
+    <owl:imports rdf:resource="http://www.usp.ai/Ontologies/FPEO/MeasurementTemporalModule"/>
+    <rdfs:label xml:lang="en">FPSO Scenario Module</rdfs:label>
+    <rdfs:comment xml:lang="en">Scenario ontology layer. This ontology imports PowerModule only. PowerModule supplies the complete transitive access to EquipmentModule and OffshoreFacilityModule; EquipmentModule supplies GasTurbineModule. No lower ontology is imported directly here.</rdfs:comment>
+    <rdfs:comment xml:lang="en">V5 candidate FPSO Scenario Module. It remains the application scenario layer but now carries JSON scenario membership, demand-period, remote-demand, active-source, fuel, temporal, and cable-transfer configuration vocabulary.</rdfs:comment>
+    <owl:versionIRI rdf:resource="http://www.usp.ai/Ontologies/FPEO/FPSO-ScenarioModule/versions/2026-08-21"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/FPSO-ScenarioModule#OperationalScenario">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Operational scenario</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000031"/>
+    <rdfs:comment xml:lang="en">What it is: An information content entity specifying a complete FPSO power/emission operational scenario. BFO/IOF placement: generically dependent continuant. Why it is here: Acts as the OWL source for the POST /solve JSON payload.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/FPSO-ScenarioModule#hasDemandProfile">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">has demand profile</rdfs:label>
+    <rdfs:comment xml:lang="en">What it is: Relates a remote demand assignment to the corresponding demand profile. BFO/IOF placement: relation between ontology entities. Why it is here: Supports each remote-demand value.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/FPSO-ScenarioModule#RemoteDemandAssignment"/>
+    <rdfs:range rdf:resource="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf#PowerDemandProfile"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/FPSO-ScenarioModule#includesAlternativePowerSource">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">includes alternative power source</rdfs:label>
+    <rdfs:comment xml:lang="en">What it is: Relates a scenario to a non-fuel source such as wind, solar, or imported supply. BFO/IOF placement: relation between ontology entities. Why it is here: Supports top-level alternative_sources.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/FPSO-ScenarioModule#OperationalScenario"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/FPSO-ScenarioModule#includesOffshorePlatform">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">includes offshore platform</rdfs:label>
+    <rdfs:comment xml:lang="en">What it is: Relates a scenario to an O3PO FPSO platform. BFO/IOF placement: relation between ontology entities. Why it is here: Supports top-level platforms.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/FPSO-ScenarioModule#OperationalScenario"/>
+    <rdfs:range rdf:resource="https://www.inf.ufrgs.br/ontologies/o3po#FPSO"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/FPSO-ScenarioModule#hasDestinationPlatform">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">has destination platform</rdfs:label>
+    <rdfs:comment xml:lang="en">What it is: Relates a remote demand assignment to its destination FPSO. BFO/IOF placement: relation between ontology entities. Why it is here: Supports the remote_demands dictionary key.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/FPSO-ScenarioModule#RemoteDemandAssignment"/>
+    <rdfs:range rdf:resource="https://www.inf.ufrgs.br/ontologies/o3po#FPSO"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/FPSO-ScenarioModule#hasTemporalInterval">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">has temporal interval</rdfs:label>
+    <rdfs:comment xml:lang="en">What it is: Relates a bus demand period to its date interval specification. BFO/IOF placement: relation between ontology entities. Why it is here: Supports start_date/end_date.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/FPSO-ScenarioModule#BusDemandPeriod"/>
+    <rdfs:range rdf:resource="http://www.usp.ai/Ontologies/FPEO/MeasurementTemporalModule#TemporalIntervalSpecification"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/FPSO-ScenarioModule#includesGasTurbinePowerSource">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">includes gas turbine power source</rdfs:label>
+    <rdfs:comment xml:lang="en">What it is: Relates a scenario to a PLM gas turbine used as a source. BFO/IOF placement: relation between ontology entities. Why it is here: Supports top-level gas_turbines without replacing PLM:PCA_100005927.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/FPSO-ScenarioModule#OperationalScenario"/>
+    <rdfs:range rdf:resource="http://rds.posccaesar.org/ontology/plm/rdl/PCA_100005927"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/FPSO-ScenarioModule#includesElectricalBus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">includes electrical bus</rdfs:label>
+    <rdfs:comment xml:lang="en">What it is: Relates a scenario to an electrical bus. BFO/IOF placement: relation between ontology entities. Why it is here: Supports top-level buses.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/FPSO-ScenarioModule#OperationalScenario"/>
+    <rdfs:range rdf:resource="http://www.usp.ai/Ontologies/FPEO/EquipmentModule#ElectricalBus"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/FPSO-ScenarioModule#RemoteDemandAssignment">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Remote demand assignment</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000031"/>
+    <rdfs:comment xml:lang="en">What it is: An information entity assigning a demand profile routed through a bus to a destination platform. BFO/IOF placement: generically dependent continuant. Why it is here: Supports DemandPeriodIn.remote_demands.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.usp.ai/Ontologies/FPEO/FPSO-ScenarioModule#includesPowerCable">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">includes power cable</rdfs:label>
+    <rdfs:comment xml:lang="en">What it is: Relates a scenario to a physical power cable. BFO/IOF placement: relation between ontology entities. Why it is here: Supports top-level cables.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.usp.ai/Ontologies/FPEO/FPSO-ScenarioModule#OperationalScenario"/>
+  </rdf:Description>
+</rdf:RDF>

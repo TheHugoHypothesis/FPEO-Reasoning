@@ -1,0 +1,730 @@
+{
+  "$defs": {
+    "AlternativeSourceIn": {
+      "additionalProperties": false,
+      "description": "A non-fuel power source (wind, solar, imported power).",
+      "properties": {
+        "ECF": {
+          "description": "Emission conversion factor (g CO2eq/J)",
+          "minimum": 0,
+          "title": "Ecf",
+          "type": "number"
+        },
+        "acquisition_cost": {
+          "default": 0.0,
+          "description": "One-time acquisition cost (USD)",
+          "minimum": 0,
+          "title": "Acquisition Cost",
+          "type": "number"
+        },
+        "energy_unit_cost": {
+          "description": "USD per joule",
+          "minimum": 0,
+          "title": "Energy Unit Cost",
+          "type": "number"
+        },
+        "generator_efficiency": {
+          "default": 1.0,
+          "description": "Conversion efficiency from the source's primary energy input to its electrical output (fraction, 0\u20131); source-type-dependent \u2014 e.g. shaft-to-generator for wind, panel-to-DC for photovoltaic, ~1.0 for imported power",
+          "exclusiveMinimum": 0,
+          "maximum": 1,
+          "title": "Generator Efficiency",
+          "type": "number"
+        },
+        "id": {
+          "description": "Unique component ID (e.g., \"WIND-1\")",
+          "title": "Id",
+          "type": "string"
+        },
+        "maintenance_cost": {
+          "default": 0.0,
+          "description": "Recurring maintenance cost (USD per month)",
+          "minimum": 0,
+          "title": "Maintenance Cost",
+          "type": "number"
+        },
+        "max_power": {
+          "description": "Maximum power (W)",
+          "exclusiveMinimum": 0,
+          "title": "Max Power",
+          "type": "number"
+        },
+        "model": {
+          "description": "Source model name (e.g., a wind-turbine model or solar-panel type)",
+          "title": "Model",
+          "type": "string"
+        },
+        "transmission_efficiency": {
+          "default": 1.0,
+          "description": "Source-to-bus transmission efficiency (fraction, 0\u20131); fraction of the source's electrical output reaching the bus",
+          "exclusiveMinimum": 0,
+          "maximum": 1,
+          "title": "Transmission Efficiency",
+          "type": "number"
+        }
+      },
+      "required": [
+        "id",
+        "model",
+        "max_power",
+        "energy_unit_cost",
+        "ECF"
+      ],
+      "title": "AlternativeSourceIn",
+      "type": "object"
+    },
+    "BreakpointIn": {
+      "additionalProperties": false,
+      "description": "One (year, demand) point in a keyframe demand profile.",
+      "properties": {
+        "demand_watts": {
+          "description": "Demand at this breakpoint (W)",
+          "minimum": 0,
+          "title": "Demand Watts",
+          "type": "number"
+        },
+        "year": {
+          "description": "Calendar year of this breakpoint (decimal allowed for sub-year resolution)",
+          "title": "Year",
+          "type": "number"
+        }
+      },
+      "required": [
+        "year",
+        "demand_watts"
+      ],
+      "title": "BreakpointIn",
+      "type": "object"
+    },
+    "BusIn": {
+      "additionalProperties": false,
+      "description": "An electrical bus connecting power sources to consumers.",
+      "properties": {
+        "distribution_efficiency": {
+          "default": 1.0,
+          "description": "Bus-to-consumer delivery efficiency (last stage of the chain)",
+          "exclusiveMinimum": 0,
+          "maximum": 1,
+          "title": "Distribution Efficiency",
+          "type": "number"
+        },
+        "fpso_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Platform ID to which this bus belongs, or null for a shore bus",
+          "title": "Fpso Id"
+        },
+        "id": {
+          "description": "Unique component ID (e.g., \"BUS-1\")",
+          "title": "Id",
+          "type": "string"
+        },
+        "load_sharing_strategy": {
+          "default": "proportional",
+          "description": "How the bus splits demand across its connected sources: \"equal\" splits evenly; \"proportional\" splits in proportion to each source's max_power; \"merit_order\" loads the most efficient (lowest SFC / ECF) source first.",
+          "enum": [
+            "equal",
+            "proportional",
+            "merit_order"
+          ],
+          "title": "Load Sharing Strategy",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "title": "BusIn",
+      "type": "object"
+    },
+    "CableIn": {
+      "additionalProperties": false,
+      "description": "An inter-platform power cable connecting two buses.",
+      "properties": {
+        "acquisition_cost": {
+          "default": 0.0,
+          "description": "One-time acquisition cost (USD)",
+          "minimum": 0,
+          "title": "Acquisition Cost",
+          "type": "number"
+        },
+        "from_bus": {
+          "description": "Source bus ID (power flows from here)",
+          "title": "From Bus",
+          "type": "string"
+        },
+        "id": {
+          "description": "Unique component ID (e.g., \"CABLE-1\")",
+          "title": "Id",
+          "type": "string"
+        },
+        "maintenance_cost": {
+          "default": 0.0,
+          "description": "Recurring maintenance cost (USD per month)",
+          "minimum": 0,
+          "title": "Maintenance Cost",
+          "type": "number"
+        },
+        "max_capacity": {
+          "default": 50000000.0,
+          "description": "Cable power rating (W)",
+          "exclusiveMinimum": 0,
+          "title": "Max Capacity",
+          "type": "number"
+        },
+        "to_bus": {
+          "description": "Destination bus ID (power flows to here)",
+          "title": "To Bus",
+          "type": "string"
+        },
+        "transmission_efficiency": {
+          "default": 1.0,
+          "description": "End-to-end cable transmission efficiency (fraction, 0\u20131)",
+          "exclusiveMinimum": 0,
+          "maximum": 1,
+          "title": "Transmission Efficiency",
+          "type": "number"
+        }
+      },
+      "required": [
+        "id",
+        "from_bus",
+        "to_bus"
+      ],
+      "title": "CableIn",
+      "type": "object"
+    },
+    "ConstantDemand": {
+      "additionalProperties": false,
+      "description": "Time-invariant power demand.",
+      "properties": {
+        "demand_watts": {
+          "description": "Constant demand level (W)",
+          "minimum": 0,
+          "title": "Demand Watts",
+          "type": "number"
+        },
+        "type": {
+          "const": "constant",
+          "default": "constant",
+          "description": "Discriminator selecting this demand variant; must be \"constant\"",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "demand_watts"
+      ],
+      "title": "ConstantDemand",
+      "type": "object"
+    },
+    "ConsumerConnection": {
+      "additionalProperties": false,
+      "description": "Connect a power consumer (platform) to a bus.",
+      "properties": {
+        "bus_id": {
+          "description": "ID of the bus the consumer draws from (matches a buses[*].id)",
+          "title": "Bus Id",
+          "type": "string"
+        },
+        "consumer_id": {
+          "description": "ID of the consumer to attach (matches a platforms[*].id)",
+          "title": "Consumer Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "consumer_id",
+        "bus_id"
+      ],
+      "title": "ConsumerConnection",
+      "type": "object"
+    },
+    "DemandPeriodIn": {
+      "additionalProperties": false,
+      "description": "A time-bounded demand specification for a single bus.",
+      "properties": {
+        "active_source_ids": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Sources active in this period; defaults to all sources connected to the bus",
+          "title": "Active Source Ids"
+        },
+        "bus_id": {
+          "description": "ID of the bus to which this demand period applies (matches a buses[*].id)",
+          "title": "Bus Id",
+          "type": "string"
+        },
+        "end_date": {
+          "description": "Exclusive end date of this demand period (YYYY-MM-DD)",
+          "format": "date",
+          "title": "End Date",
+          "type": "string"
+        },
+        "local_demand": {
+          "description": "Demand drawn locally on this bus's owning platform during the period",
+          "discriminator": {
+            "mapping": {
+              "constant": "#/$defs/ConstantDemand",
+              "field_lifecycle": "#/$defs/FieldLifecycleDemand",
+              "keyframe": "#/$defs/KeyframeDemand"
+            },
+            "propertyName": "type"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/ConstantDemand"
+            },
+            {
+              "$ref": "#/$defs/FieldLifecycleDemand"
+            },
+            {
+              "$ref": "#/$defs/KeyframeDemand"
+            }
+          ],
+          "title": "Local Demand"
+        },
+        "remote_demands": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "discriminator": {
+                  "mapping": {
+                    "constant": "#/$defs/ConstantDemand",
+                    "field_lifecycle": "#/$defs/FieldLifecycleDemand",
+                    "keyframe": "#/$defs/KeyframeDemand"
+                  },
+                  "propertyName": "type"
+                },
+                "oneOf": [
+                  {
+                    "$ref": "#/$defs/ConstantDemand"
+                  },
+                  {
+                    "$ref": "#/$defs/FieldLifecycleDemand"
+                  },
+                  {
+                    "$ref": "#/$defs/KeyframeDemand"
+                  }
+                ]
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional demands routed through this bus to other platforms, keyed by destination platform_id",
+          "title": "Remote Demands"
+        },
+        "start_date": {
+          "description": "Inclusive start date of this demand period (YYYY-MM-DD)",
+          "format": "date",
+          "title": "Start Date",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start_date",
+        "end_date",
+        "bus_id",
+        "local_demand"
+      ],
+      "title": "DemandPeriodIn",
+      "type": "object"
+    },
+    "FieldLifecycleDemand": {
+      "additionalProperties": false,
+      "description": "Ramp-up, plateau, exponential decline \u2014 typical oil/gas field profile.",
+      "properties": {
+        "decline_rate": {
+          "description": "Annual exponential decline rate (e.g., 0.10 for 10%/year)",
+          "minimum": 0,
+          "title": "Decline Rate",
+          "type": "number"
+        },
+        "initial_demand_watts": {
+          "default": 0.0,
+          "description": "Demand at start_year, before the ramp begins (W)",
+          "minimum": 0,
+          "title": "Initial Demand Watts",
+          "type": "number"
+        },
+        "plateau_demand_watts": {
+          "description": "Steady-state demand during the plateau phase (W)",
+          "minimum": 0,
+          "title": "Plateau Demand Watts",
+          "type": "number"
+        },
+        "plateau_years": {
+          "description": "Number of years the plateau is held before exponential decline begins",
+          "minimum": 0,
+          "title": "Plateau Years",
+          "type": "number"
+        },
+        "ramp_up_years": {
+          "description": "Number of years between start_year and the plateau (linear ramp)",
+          "minimum": 0,
+          "title": "Ramp Up Years",
+          "type": "number"
+        },
+        "start_year": {
+          "description": "Year production begins",
+          "title": "Start Year",
+          "type": "number"
+        },
+        "type": {
+          "const": "field_lifecycle",
+          "default": "field_lifecycle",
+          "description": "Discriminator selecting this demand variant; must be \"field_lifecycle\"",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start_year",
+        "ramp_up_years",
+        "plateau_demand_watts",
+        "plateau_years",
+        "decline_rate"
+      ],
+      "title": "FieldLifecycleDemand",
+      "type": "object"
+    },
+    "FuelIn": {
+      "additionalProperties": false,
+      "description": "A fuel registered with the operational scenario; turbines reference it by `key`.",
+      "properties": {
+        "cost_per_gram_usd": {
+          "description": "USD per gram",
+          "minimum": 0,
+          "title": "Cost Per Gram Usd",
+          "type": "number"
+        },
+        "emissions": {
+          "description": "GHGs released per gram burned",
+          "items": {
+            "$ref": "#/$defs/GhgEmissionIn"
+          },
+          "title": "Emissions",
+          "type": "array"
+        },
+        "key": {
+          "description": "Lookup key (e.g., \"ng\", \"diesel\")",
+          "title": "Key",
+          "type": "string"
+        },
+        "name": {
+          "description": "Display name (e.g., \"Natural Gas\")",
+          "title": "Name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "key",
+        "name",
+        "cost_per_gram_usd"
+      ],
+      "title": "FuelIn",
+      "type": "object"
+    },
+    "GasTurbineIn": {
+      "additionalProperties": false,
+      "description": "A gas turbine power source.",
+      "properties": {
+        "SFC": {
+          "description": "Specific fuel consumption (g/(W*s))",
+          "exclusiveMinimum": 0,
+          "title": "Sfc",
+          "type": "number"
+        },
+        "acquisition_cost": {
+          "default": 0.0,
+          "description": "One-time acquisition cost (USD)",
+          "minimum": 0,
+          "title": "Acquisition Cost",
+          "type": "number"
+        },
+        "fuel_key": {
+          "description": "Key of a fuel in the operational scenario's fuels list",
+          "title": "Fuel Key",
+          "type": "string"
+        },
+        "generator_efficiency": {
+          "default": 0.95,
+          "description": "Shaft-to-generator conversion efficiency (fraction, 0\u20131)",
+          "exclusiveMinimum": 0,
+          "maximum": 1,
+          "title": "Generator Efficiency",
+          "type": "number"
+        },
+        "id": {
+          "description": "Unique component ID (e.g., \"GT-1\")",
+          "title": "Id",
+          "type": "string"
+        },
+        "maintenance_cost": {
+          "default": 0.0,
+          "description": "Recurring maintenance cost (USD per month)",
+          "minimum": 0,
+          "title": "Maintenance Cost",
+          "type": "number"
+        },
+        "max_power": {
+          "description": "Maximum shaft power (W)",
+          "exclusiveMinimum": 0,
+          "title": "Max Power",
+          "type": "number"
+        },
+        "model": {
+          "description": "Turbine model name (e.g., LM2500+G4)",
+          "title": "Model",
+          "type": "string"
+        },
+        "transmission_efficiency": {
+          "default": 1.0,
+          "description": "Generator-to-bus transmission efficiency (fraction, 0\u20131)",
+          "exclusiveMinimum": 0,
+          "maximum": 1,
+          "title": "Transmission Efficiency",
+          "type": "number"
+        }
+      },
+      "required": [
+        "id",
+        "model",
+        "max_power",
+        "fuel_key",
+        "SFC"
+      ],
+      "title": "GasTurbineIn",
+      "type": "object"
+    },
+    "GhgEmissionIn": {
+      "additionalProperties": false,
+      "description": "A greenhouse gas produced when this fuel burns, with its GWP.",
+      "properties": {
+        "ecf": {
+          "description": "Emission factor: grams of this gas per gram of fuel burned",
+          "minimum": 0,
+          "title": "Ecf",
+          "type": "number"
+        },
+        "formula": {
+          "description": "Chemical formula (e.g., \"CO2\")",
+          "title": "Formula",
+          "type": "string"
+        },
+        "gwp": {
+          "description": "Global warming potential (dimensionless)",
+          "minimum": 0,
+          "title": "Gwp",
+          "type": "number"
+        },
+        "name": {
+          "description": "Display name (e.g., \"Carbon Dioxide\")",
+          "title": "Name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "formula",
+        "gwp",
+        "ecf"
+      ],
+      "title": "GhgEmissionIn",
+      "type": "object"
+    },
+    "KeyframeDemand": {
+      "additionalProperties": false,
+      "description": "User-defined breakpoints with per-segment interpolation.",
+      "properties": {
+        "breakpoints": {
+          "description": "(year, demand) breakpoints in chronological order; at least two are required",
+          "items": {
+            "$ref": "#/$defs/BreakpointIn"
+          },
+          "minItems": 2,
+          "title": "Breakpoints",
+          "type": "array"
+        },
+        "connections": {
+          "description": "Interpolation between consecutive breakpoints; length must equal len(breakpoints) - 1",
+          "items": {
+            "enum": [
+              "constant",
+              "linear",
+              "exp_decay",
+              "exp_growth"
+            ],
+            "type": "string"
+          },
+          "title": "Connections",
+          "type": "array"
+        },
+        "type": {
+          "const": "keyframe",
+          "default": "keyframe",
+          "description": "Discriminator selecting this demand variant; must be \"keyframe\"",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "breakpoints",
+        "connections"
+      ],
+      "title": "KeyframeDemand",
+      "type": "object"
+    },
+    "PlatformIn": {
+      "additionalProperties": false,
+      "description": "An offshore platform (power consumer / topology node).",
+      "properties": {
+        "id": {
+          "description": "Unique component ID (e.g., \"P-1\")",
+          "title": "Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "title": "PlatformIn",
+      "type": "object"
+    },
+    "SourceConnection": {
+      "additionalProperties": false,
+      "description": "Connect a power source to a bus.",
+      "properties": {
+        "bus_id": {
+          "description": "ID of the bus the source feeds (matches a buses[*].id)",
+          "title": "Bus Id",
+          "type": "string"
+        },
+        "source_id": {
+          "description": "ID of the source to attach (matches a gas_turbines[*].id or alternative_sources[*].id)",
+          "title": "Source Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source_id",
+        "bus_id"
+      ],
+      "title": "SourceConnection",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Inbound payload for POST /solve.\n\nDescribes a full operational scenario: fuels, components, wiring, and\ndemand periods. The server reconstructs an OperationalScenario from\nthis payload, solves it, returns results, and discards. No state is\nretained between requests.",
+  "properties": {
+    "alternative_sources": {
+      "description": "Non-fuel sources such as wind, solar, or imported shore power",
+      "items": {
+        "$ref": "#/$defs/AlternativeSourceIn"
+      },
+      "title": "Alternative Sources",
+      "type": "array"
+    },
+    "buses": {
+      "description": "Electrical buses that connect sources to consumers",
+      "items": {
+        "$ref": "#/$defs/BusIn"
+      },
+      "title": "Buses",
+      "type": "array"
+    },
+    "cables": {
+      "description": "Inter-bus cables for transferring power between platforms",
+      "items": {
+        "$ref": "#/$defs/CableIn"
+      },
+      "title": "Cables",
+      "type": "array"
+    },
+    "consumer_connections": {
+      "description": "Consumer-to-bus attachments: which platform draws from which bus",
+      "items": {
+        "$ref": "#/$defs/ConsumerConnection"
+      },
+      "title": "Consumer Connections",
+      "type": "array"
+    },
+    "demand_periods": {
+      "description": "Time-bounded demand specifications, one entry per (bus, period) pair",
+      "items": {
+        "$ref": "#/$defs/DemandPeriodIn"
+      },
+      "title": "Demand Periods",
+      "type": "array"
+    },
+    "description": {
+      "default": "",
+      "description": "Optional human-readable description",
+      "title": "Description",
+      "type": "string"
+    },
+    "fuels": {
+      "description": "Fuels available in this operational scenario; gas turbines reference them by `key`",
+      "items": {
+        "$ref": "#/$defs/FuelIn"
+      },
+      "title": "Fuels",
+      "type": "array"
+    },
+    "gas_turbines": {
+      "description": "Natural-gas-fired turbines that produce power",
+      "items": {
+        "$ref": "#/$defs/GasTurbineIn"
+      },
+      "title": "Gas Turbines",
+      "type": "array"
+    },
+    "name": {
+      "description": "Human-readable operational-scenario name",
+      "title": "Name",
+      "type": "string"
+    },
+    "platforms": {
+      "description": "Offshore platforms (power consumers and topology nodes)",
+      "items": {
+        "$ref": "#/$defs/PlatformIn"
+      },
+      "title": "Platforms",
+      "type": "array"
+    },
+    "source_connections": {
+      "description": "Source-to-bus attachments: which source feeds which bus",
+      "items": {
+        "$ref": "#/$defs/SourceConnection"
+      },
+      "title": "Source Connections",
+      "type": "array"
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "title": "OperationalScenarioIn",
+  "type": "object"
+}

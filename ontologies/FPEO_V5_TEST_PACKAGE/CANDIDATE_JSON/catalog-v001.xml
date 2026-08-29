@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog prefer="system" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+  <uri name="http://www.usp.ai/Ontologies/FPEO/EquipmentModule" uri="EquipmentModule.rdf"/>
+  <uri name="http://www.usp.ai/Ontologies/FPEO/OffshoreFacilityModule" uri="OffshoreFacilityModule.rdf"/>
+  <uri name="http://www.usp.ai/Ontologies/FPEO/PowerModule.rdf" uri="PowerModule.rdf"/>
+  <uri name="http://www.usp.ai/Ontologies/FPEO/PowerModule" uri="PowerModule.rdf"/>
+  <uri name="http://www.usp.ai/Ontologies/FPEO/MeasurementTemporalModule" uri="MeasurementTemporalModule.rdf"/>
+  <uri name="http://www.usp.ai/Ontologies/FPEO/EmissionProcessModule" uri="EmissionProcessModule.rdf"/>
+  <uri name="http://www.usp.ai/Ontologies/FPEO/CombustionProcessModule" uri="CombustionProcessModule.rdf"/>
+  <uri name="http://www.usp.ai/Ontologies/FPEO/FlaringProcessModule" uri="FlaringProcessModule.rdf"/>
+  <uri name="http://www.usp.ai/Ontologies/FPEO/VentingProcessModule" uri="VentingProcessModule.rdf"/>
+  <uri name="http://www.usp.ai/Ontologies/FPEO/FugitiveEmissionModule" uri="FugitiveEmissionModule.rdf"/>
+  <uri name="http://www.usp.ai/Ontologies/FPEO/FPSO-ScenarioModule" uri="FPSO_ScenarioModule.rdf"/>
+  <uri name="http://www.usp.ai/Ontologies/FPEO/Operational_Scenario" uri="OperationalScenario.rdf"/>
+</catalog>
