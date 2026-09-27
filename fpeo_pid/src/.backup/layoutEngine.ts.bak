@@ -1,0 +1,409 @@
+import dagre from '@dagrejs/dagre';
+import { Node, Edge } from '@xyflow/react';
+import { OntologyGraph, Equipment, FpsoModule } from './types';
+
+const NODE_WIDTH = 280;
+const NODE_HEIGHT = 160;
+
+export function layoutGraphWithDagre(
+  graph: OntologyGraph,
+  direction: 'LR' | 'TB' = 'LR',
+  modulesList?: FpsoModule[]
+): { nodes: Node[]; edges: Edge[] } {
+  if (!graph || graph.equipments.length === 0) {
+    return { nodes: [], edges: [] };
+  }
+
+  // Identify distinct modules present in the graph
+  const moduleMap = new Map<string, Equipment[]>();
+  graph.equipments.forEach(eq => {
+    const modCode = eq.moduleCode || 'UNASSIGNED';
+    if (!moduleMap.has(modCode)) {
+      moduleMap.set(modCode, []);
+    }
+    moduleMap.get(modCode)!.push(eq);
+  });
+
+  const isMultiModule = moduleMap.size > 1;
+
+  // Single module view layout
+  if (!isMultiModule) {
+    const dagreGraph = new dagre.graphlib.Graph();
+    dagreGraph.setDefaultEdgeLabel(() => ({}));
+    dagreGraph.setGraph({
+      rankdir: direction,
+      nodesep: 80,
+      ranksep: 140,
+      marginx: 50,
+      marginy: 50,
+    });
+
+    graph.equipments.forEach(eq => {
+      dagreGraph.setNode(eq.uri, { width: NODE_WIDTH, height: NODE_HEIGHT });
+    });
+
+    graph.connections.forEach(conn => {
+      dagreGraph.setEdge(conn.sourceEquipmentUri, conn.targetEquipmentUri);
+    });
+
+    dagre.layout(dagreGraph);
+
+    const nodes: Node[] = graph.equipments.map((eq, idx) => {
+      const nodeWithPos = dagreGraph.node(eq.uri);
+      const fallbackCol = idx % 3;
+      const fallbackRow = Math.floor(idx / 3);
+      const x = nodeWithPos ? nodeWithPos.x - NODE_WIDTH / 2 : fallbackCol * 360;
+      const y = nodeWithPos ? nodeWithPos.y - NODE_HEIGHT / 2 : fallbackRow * 240;
+
+      return {
+        id: eq.uri,
+        type: 'equipmentNode',
+        position: { x, y },
+        zIndex: 10,
+        data: {
+          equipment: eq,
+          label: eq.label,
+          category: eq.category,
+          classLabel: eq.classLabel,
+          hasError: eq.hasError,
+          errorMessage: eq.errorMessage,
+        },
+      };
+    });
+
+    const edges: Edge[] = graph.connections.map(conn => {
+      const isPower = conn.connectionType === 'powersEquipment';
+      const isFeed = conn.connectionType === 'feedsFluidToEquipment';
+
+      return {
+        id: conn.id,
+        source: conn.sourceEquipmentUri,
+        sourceHandle: conn.sourcePortUri,
+        target: conn.targetEquipmentUri,
+        targetHandle: conn.targetPortUri,
+        type: 'customEditableEdge',
+        animated: true,
+        zIndex: 20,
+        style: {
+          stroke: isPower ? '#eab308' : isFeed ? '#06b6d4' : '#10b981',
+          strokeWidth: 2.5,
+          strokeDasharray: isPower ? '6 6' : undefined,
+        },
+        label: conn.connectionType === 'powersEquipment' ? 'Power' : undefined,
+        labelStyle: { fill: '#94a3b8', fontSize: 10, fontWeight: 600 },
+        labelBgStyle: { fill: '#0f172a', fillOpacity: 0.8 },
+      };
+    });
+
+    return { nodes, edges };
+  }
+
+  // MULTI-MODULE OVERVIEW ("ALL") LAYOUT
+  interface CalculatedModuleCluster {
+    modCode: string;
+    isUnassigned: boolean;
+    modEquipments: Equipment[];
+    boxWidth: number;
+    boxHeight: number;
+    equipmentPositions: Map<string, { x: number; y: number }>;
+  }
+
+  const clusters: CalculatedModuleCluster[] = [];
+
+  moduleMap.forEach((modEquipments, modCode) => {
+    const isUnassigned = modCode === 'UNASSIGNED';
+
+    const subDagre = new dagre.graphlib.Graph();
+    subDagre.setDefaultEdgeLabel(() => ({}));
+    subDagre.setGraph({
+      rankdir: 'LR',
+      nodesep: 80,
+      ranksep: 140,
+      marginx: 50,
+      marginy: 60,
+    });
+
+    modEquipments.forEach(eq => {
+      subDagre.setNode(eq.uri, { width: NODE_WIDTH, height: NODE_HEIGHT });
+    });
+
+    let internalEdgeCount = 0;
+    graph.connections.forEach(conn => {
+      const hasSrc = modEquipments.some(e => e.uri === conn.sourceEquipmentUri);
+      const hasTgt = modEquipments.some(e => e.uri === conn.targetEquipmentUri);
+      if (hasSrc && hasTgt) {
+        subDagre.setEdge(conn.sourceEquipmentUri, conn.targetEquipmentUri);
+        internalEdgeCount++;
+      }
+    });
+
+    dagre.layout(subDagre);
+
+    const positions = new Map<string, { x: number; y: number }>();
+    let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+
+    modEquipments.forEach((eq, eqIdx) => {
+      const pos = subDagre.node(eq.uri);
+      let posX: number;
+      let posY: number;
+
+      if (internalEdgeCount === 0 || !pos) {
+        const col = eqIdx % 2;
+        const row = Math.floor(eqIdx / 2);
+        posX = col * 360;
+        posY = row * 240;
+      } else {
+        posX = pos.x - NODE_WIDTH / 2;
+        posY = pos.y - NODE_HEIGHT / 2;
+      }
+
+      positions.set(eq.uri, { x: posX, y: posY });
+
+      if (posX < minX) minX = posX;
+      if (posX + NODE_WIDTH > maxX) maxX = posX + NODE_WIDTH;
+      if (posY < minY) minY = posY;
+      if (posY + NODE_HEIGHT > maxY) maxY = posY + NODE_HEIGHT;
+    });
+
+    if (minX === Infinity) {
+      minX = 0; maxX = 600; minY = 0; maxY = 350;
+    }
+
+    const paddingX = 50;
+    const paddingY = 70;
+    const boxWidth = Math.max(680, maxX - minX + paddingX * 2);
+    const boxHeight = Math.max(420, maxY - minY + paddingY * 2);
+
+    const normalizedPositions = new Map<string, { x: number; y: number }>();
+    positions.forEach((pos, uri) => {
+      normalizedPositions.set(uri, {
+        x: pos.x - minX + paddingX,
+        y: pos.y - minY + paddingY,
+      });
+    });
+
+    clusters.push({
+      modCode,
+      isUnassigned,
+      modEquipments,
+      boxWidth,
+      boxHeight,
+      equipmentPositions: normalizedPositions,
+    });
+  });
+
+  // Tile Module Clusters dynamically into a 3-column grid
+  const groupNodes: Node[] = [];
+  const equipmentNodes: Node[] = [];
+  const COLS = 3;
+  const GAP_X = 240;
+  const GAP_Y = 200;
+
+  let currentX = 0;
+  let currentY = 0;
+  let maxRowHeight = 0;
+
+  clusters.forEach((cluster, idx) => {
+    const col = idx % COLS;
+    if (col === 0 && idx > 0) {
+      currentX = 0;
+      currentY += maxRowHeight + GAP_Y;
+      maxRowHeight = 0;
+    }
+
+    const parentGroupId = `group_${cluster.modCode}`;
+    const matchedModObj = modulesList?.find(m => m.code === cluster.modCode);
+    const modTitle = cluster.isUnassigned
+      ? 'Equipamentos Gerais (Sem Módulo)'
+      : matchedModObj?.title || `Módulo ${cluster.modCode}`;
+
+    // Background Module Enclosure Group Node (Draggable container!)
+    groupNodes.push({
+      id: parentGroupId,
+      type: 'moduleGroupNode',
+      position: { x: currentX, y: currentY },
+      selectable: true,
+      draggable: true,
+      zIndex: -10,
+      style: { zIndex: -10 },
+      data: {
+        code: cluster.isUnassigned ? 'GERAL' : cluster.modCode,
+        title: modTitle,
+        equipmentCount: cluster.modEquipments.length,
+        width: cluster.boxWidth,
+        height: cluster.boxHeight,
+      },
+    });
+
+    // Add equipment nodes.
+    // If equipment is assigned to a module, set parentId and extent: 'parent'
+    // so dragging is strictly locked inside the module boundary box!
+    cluster.modEquipments.forEach(eq => {
+      const localPos = cluster.equipmentPositions.get(eq.uri) || { x: 50, y: 50 };
+
+      if (cluster.isUnassigned) {
+        // Unassigned equipment: free dragging on canvas
+        equipmentNodes.push({
+          id: eq.uri,
+          type: 'equipmentNode',
+          position: {
+            x: currentX + localPos.x,
+            y: currentY + localPos.y,
+          },
+          zIndex: 10,
+          data: {
+            equipment: eq,
+            label: eq.label,
+            category: eq.category,
+            classLabel: eq.classLabel,
+            hasError: eq.hasError,
+            errorMessage: eq.errorMessage,
+          },
+        });
+      } else {
+        // Assigned equipment: parentId & extent: 'parent' enforces boundary constraint!
+        equipmentNodes.push({
+          id: eq.uri,
+          type: 'equipmentNode',
+          parentId: parentGroupId,
+          extent: 'parent',
+          position: {
+            x: localPos.x,
+            y: localPos.y,
+          },
+          zIndex: 10,
+          data: {
+            equipment: eq,
+            label: eq.label,
+            category: eq.category,
+            classLabel: eq.classLabel,
+            hasError: eq.hasError,
+            errorMessage: eq.errorMessage,
+          },
+        });
+      }
+    });
+
+    maxRowHeight = Math.max(maxRowHeight, cluster.boxHeight);
+    currentX += cluster.boxWidth + GAP_X;
+  });
+
+  // Render connections (both intra-module and inter-module)
+  const edges: Edge[] = graph.connections.map(conn => {
+    const srcEq = graph.equipments.find(e => e.uri === conn.sourceEquipmentUri);
+    const tgtEq = graph.equipments.find(e => e.uri === conn.targetEquipmentUri);
+
+    const isInterModule = srcEq?.moduleCode && tgtEq?.moduleCode && srcEq.moduleCode !== tgtEq.moduleCode;
+    const isPower = conn.connectionType === 'powersEquipment';
+
+    return {
+      id: conn.id,
+      source: conn.sourceEquipmentUri,
+      sourceHandle: conn.sourcePortUri,
+      target: conn.targetEquipmentUri,
+      targetHandle: conn.targetPortUri,
+      type: 'customEditableEdge',
+      animated: true,
+      zIndex: 20,
+      style: {
+        stroke: isInterModule ? '#c084fc' : isPower ? '#eab308' : '#06b6d4',
+        strokeWidth: isInterModule ? 3.5 : 2.5,
+        strokeDasharray: isInterModule ? '8 4' : isPower ? '6 6' : undefined,
+      },
+      label: isInterModule ? `Inter-Mapeamento (${srcEq?.moduleCode} → ${tgtEq?.moduleCode})` : isPower ? 'Power' : undefined,
+      labelStyle: { fill: isInterModule ? '#f0abfc' : '#94a3b8', fontSize: 10, fontWeight: 700 },
+      labelBgStyle: { fill: '#3b0764', fillOpacity: 0.9 },
+    };
+  });
+
+  return { nodes: [...groupNodes, ...equipmentNodes], edges };
+}
+
+/**
+ * Level 2 Layout: Component specification sub-graph layout for a specific equipment
+ */
+export function layoutComponentSubGraph(parentEquipment: Equipment): { nodes: Node[]; edges: Edge[] } {
+  const dagreGraph = new dagre.graphlib.Graph();
+  dagreGraph.setDefaultEdgeLabel(() => ({}));
+
+  dagreGraph.setGraph({
+    rankdir: 'LR',
+    nodesep: 60,
+    ranksep: 140,
+    marginx: 50,
+    marginy: 50,
+  });
+
+  // 1. Add Parent Equipment Node
+  dagreGraph.setNode(parentEquipment.uri, { width: NODE_WIDTH, height: NODE_HEIGHT });
+
+  // 2. Add Component Nodes
+  parentEquipment.components.forEach(comp => {
+    dagreGraph.setNode(comp.uri, { width: 260, height: 100 });
+    dagreGraph.setEdge(parentEquipment.uri, comp.uri);
+  });
+
+  dagre.layout(dagreGraph);
+
+  // Parent node
+  const parentPos = dagreGraph.node(parentEquipment.uri);
+  const nodes: Node[] = [
+    {
+      id: parentEquipment.uri,
+      type: 'equipmentNode',
+      position: {
+        x: parentPos ? parentPos.x - NODE_WIDTH / 2 : 50,
+        y: parentPos ? parentPos.y - NODE_HEIGHT / 2 : 150,
+      },
+      zIndex: 10,
+      data: {
+        equipment: parentEquipment,
+        label: parentEquipment.label,
+        category: parentEquipment.category,
+        classLabel: parentEquipment.classLabel,
+        hasError: parentEquipment.hasError,
+        errorMessage: parentEquipment.errorMessage,
+        isRootInSubGraph: true,
+      },
+    },
+  ];
+
+  // Component nodes
+  parentEquipment.components.forEach(comp => {
+    const pos = dagreGraph.node(comp.uri);
+    nodes.push({
+      id: comp.uri,
+      type: 'componentNode',
+      position: {
+        x: pos ? pos.x - 130 : 400,
+        y: pos ? pos.y - 50 : 150,
+      },
+      zIndex: 10,
+      data: {
+        component: comp,
+        parentEquipment,
+      },
+    });
+  });
+
+  // Edges (o3po:hasComponent)
+  const edges: Edge[] = parentEquipment.components.map(comp => ({
+    id: `edge_${parentEquipment.uri}_to_${comp.uri}`,
+    source: parentEquipment.uri,
+    sourceHandle: `${parentEquipment.uri}_out`,
+    target: comp.uri,
+    targetHandle: `${comp.uri}_target`,
+    type: 'customEditableEdge',
+    animated: true,
+    zIndex: 20,
+    style: {
+      stroke: '#c084fc',
+      strokeWidth: 3,
+    },
+    label: 'o3po:hasComponent',
+    labelStyle: { fill: '#e9d5ff', fontSize: 11, fontWeight: 700 },
+    labelBgStyle: { fill: '#581c87', fillOpacity: 0.9 },
+  }));
+
+  return { nodes, edges };
+}

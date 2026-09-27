@@ -1,0 +1,404 @@
+@prefix : <http://usp.ai/ontologies/fpeo-equipments-rules#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix swrl: <http://www.w3.org/2003/11/swrl#> .
+@prefix swrlb: <http://www.w3.org/2003/11/swrlb#> .
+
+# Ontologias de Referência Externa
+@prefix obo: <http://purl.obolibrary.org/obo/> .
+@prefix o3po: <https://www.inf.ufrgs.br/ontologies/o3po#> .
+@prefix iof-core: <https://spec.industrialontologies.org/ontology/core/Core/> .
+
+# Core e Módulos de Domínio FPEO
+@prefix core: <http://usp.ai/ontologies/fpeo-equipments-core#> .
+@prefix static: <http://usp.ai/ontologies/fpeo-static-equipments#> .
+@prefix dynamical: <http://usp.ai/ontologies/fpeo-dynamical-equipments#> .
+@prefix electrical: <http://usp.ai/ontologies/fpeo-electrical-equipments#> .
+@prefix valve: <http://usp.ai/ontologies/fpeo-valves-security#> .
+@prefix renewable: <http://usp.ai/ontologies/fpeo-renewable-equipments#> .
+@prefix sensors: <http://usp.ai/ontologies/fpeo-sensors-equipments#> .
+@prefix crosswalk: <http://usp.ai/ontologies/fpeo-crosswalk-equipments#> .
+@prefix prop: <http://usp.ai/ontologies/fpeo-properties-equipments#> .
+
+@base <http://usp.ai/ontologies/fpeo-rules-equipments#> .
+
+<http://usp.ai/ontologies/fpeo-rules-equipments> rdf:type owl:Ontology ;
+    owl:imports <http://usp.ai/ontologies/fpeo-properties-equipments> ;
+    dc:creator "Hugo Cardoso Ferreira de Araújo" ;
+    dc:description "SWRL Rules and Process Safety Axioms Module for FPEO-Equipments Ontology"@en .
+
+
+#################################################################
+# 1. REGRAS TOPOLÓGICAS E INTEGRAÇÃO DE FLUXO (DINÂMICO -> ESTÁTICO)
+#################################################################
+
+### 1.1 Bomba do Separador de Teste DEVE alimentar a malha de aquecimento/tratamento
+dynamical:TestSeparatorOilPump rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:someValuesFrom [
+        rdf:type owl:Class ;
+        owl:unionOf ( static:TestInletHeater static:CrudeExchanger static:CrudePreheater )
+    ]
+] .
+
+### 1.2 Bomba de Captação de Água do Mar DEVE alimentar os filtros grossos
+dynamical:SeawaterLiftPump rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:someValuesFrom static:SeawaterCoarseStrainer
+] , [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:minCardinality "1"^^xsd:nonNegativeInteger
+] .
+
+### 1.3 Bomba de Alimentação do SRU DEVE alimentar o filtro de cartucho
+dynamical:SRUFeedPump rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:someValuesFrom static:SRUCartridgeFilter
+] , [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:minCardinality "1"^^xsd:nonNegativeInteger
+] .
+
+### 1.4 Bomba de Circulação do Fluido Aquecedor DEVE alimentar trocadores de aquecimento
+dynamical:HeatingMediumCirculationPump rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:someValuesFrom [
+        rdf:type owl:Class ;
+        owl:unionOf ( static:CrudeHeater static:DilutionWaterHeater static:PIPWaterHeater static:TestInletHeater )
+    ]
+] .
+
+### 1.5 Bomba do Vaso Desnatador DEVE alimentar o Hidrociclone Desoleador
+dynamical:WaterSkimVesselPump rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:someValuesFrom static:DeoilingHydrocyclone
+] .
+
+### 1.6 Compressor de VRU DEVE alimentar o Compressor Principal de Baixa Pressão
+dynamical:ProcessVRUCompressor rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:someValuesFrom dynamical:LowPressureCompressor
+] .
+
+### 1.7 Compressor de Ar de Instrumentos DEVE alimentar o Vaso Pulmão de Ar Comprimido
+dynamical:InstrumentAirCompressor rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:someValuesFrom static:AirReceiverTank
+] , [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:minCardinality "1"^^xsd:nonNegativeInteger
+] .
+
+
+#################################################################
+# 2. REGRAS ANTI-SURGE, ANTI-RUPTURA E PROTEÇÃO MECÂNICA (API / ISO)
+#################################################################
+
+### 2.1 Compressores NÃO podem alimentar diretamente o Flare sem passar por Vaso Knockout
+dynamical:CompressorEquipment rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:someValuesFrom [ owl:complementOf static:IntegratedHPFlareTip ]
+] .
+
+### 2.2 Regra Anti-Ruptura: Compressor de Alta Pressão NÃO PODE alimentar o KO Drum de Baixa Pressão
+dynamical:HighPressureCompressor rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:someValuesFrom [ owl:complementOf static:LPFlareKnockoutDrum ]
+] .
+
+### 2.3 Equipamentos Estáticos de Baixa Pressão SÃO DISJUNTOS de qualquer jusante de Compressor HP
+static:LPFlareKnockoutDrum owl:disjointWith [
+    rdf:type owl:Restriction ;
+    owl:onProperty [ owl:inverseOf core:feedsFluidToEquipment ] ;
+    owl:someValuesFrom dynamical:HighPressureCompressor
+] .
+
+### 2.4 Trocador de Resfriamento Seawater NÃO pode receber gás direto de Compressor HP
+static:CoolingMediumSeawaterExchanger owl:disjointWith [
+    rdf:type owl:Restriction ;
+    owl:onProperty [ owl:inverseOf core:feedsFluidToEquipment ] ;
+    owl:someValuesFrom dynamical:HighPressureCompressor
+] .
+
+### 2.5 Subcomponentes de Turbina NÃO alimentam fluidos a equipamentos de processo
+dynamical:TurbineComponentEquipment rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:cardinality "0"^^xsd:nonNegativeInteger
+] .
+
+
+#################################################################
+# 3. REGRAS DE SEGREGAÇÃO DE DRENAGEM E EFLUENTES
+#################################################################
+
+### 3.1 Bomba do Dreno Fechado NÃO pode descartar direto em Tanque de Slop Limpo
+dynamical:ClosedDrainPump rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:someValuesFrom [ owl:complementOf static:CleanSlopTank ]
+] .
+
+### 3.2 Bomba de Injeção Química NÃO pode alimentar Header de Dreno Aberto Não-Perigoso
+dynamical:ChemicalInjectionPump rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:someValuesFrom [ owl:complementOf static:NonHazardousOpenDrainHeader ]
+] .
+
+### 3.3 Header de Dreno Aberto Perigoso NÃO descarrega em Header Não-Perigoso
+static:HazardousOpenDrainHeader rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:someValuesFrom [ owl:complementOf static:NonHazardousOpenDrainHeader ]
+] .
+
+### 3.4 Vaso de Dreno Fechado NÃO descarrega em Tanque de Slop Limpo
+static:ClosedDrainDrum rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:someValuesFrom [ owl:complementOf static:CleanSlopTank ]
+] .
+
+
+#################################################################
+# 4. REGRAS DE INTEGRIDADE DO SISTEMA DE FLARE (ISO 23251 / API 521)
+#################################################################
+
+### 4.1 Flare Tip HP é nó terminal (cardinalidade 0 de saída de fluido)
+static:IntegratedHPFlareTip rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:cardinality "0"^^xsd:nonNegativeInteger
+] .
+
+### 4.2 Flare Tip LP é nó terminal (cardinalidade 0 de saída de fluido)
+static:IntegratedLPFlareTip rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:cardinality "0"^^xsd:nonNegativeInteger
+] .
+
+### 4.3 HP Flare Knockout Drum DEVE descarregar no Flare Tip HP
+static:HPFlareKnockoutDrum rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:someValuesFrom static:IntegratedHPFlareTip
+] .
+
+### 4.4 LP Flare Knockout Drum DEVE descarregar no Flare Tip LP
+static:LPFlareKnockoutDrum rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:someValuesFrom static:IntegratedLPFlareTip
+] .
+
+
+#################################################################
+# 5. SEQUENCIAMENTO DE ÁGUA PRODUZIDA E PROTEÇÃO DE MEMBRANAS
+#################################################################
+
+### 5.1 Sequenciamento do Hidrociclone Desoleador
+static:DeoilingHydrocyclone rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:someValuesFrom [
+        rdf:type owl:Class ;
+        owl:unionOf ( static:GasFlotationCell
+                      static:ProducedWaterInletCooler
+                      static:ProducedWaterOverboardCooler
+                      static:WaterSkimVessel )
+    ]
+] .
+
+### 5.2 Célula de Flotação a Gás NÃO retroalimenta o Hidrociclone
+static:GasFlotationCell rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:someValuesFrom [ owl:complementOf static:DeoilingHydrocyclone ]
+] .
+
+### 5.3 Filtro de Cartucho do SRU alimenta o Trem de Membranas SRU
+static:SRUCartridgeFilter rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:someValuesFrom static:SRUMembraneTrain
+] .
+
+### 5.4 Unidade de Geração de Nitrogênio alimenta o Vaso Pulmão de Nitrogênio
+static:NitrogenGenerationUnit rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:someValuesFrom static:NitrogenReceiverTank
+] .
+
+### 5.5 Pré-Filtro do Trocador de Óleo Cru exige conexão jusante com trocadores/aquecedores
+static:CrudeExchangerPreFilter rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:someValuesFrom [
+        rdf:type owl:Class ;
+        owl:unionOf ( static:CrudeExchanger static:CrudePreheater static:CrudeHeater )
+    ]
+] , [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:minCardinality "1"^^xsd:nonNegativeInteger
+] .
+
+### 5.6 Pré-Filtro do Trocador de Água do Mar exige conexão jusante com Cooler de SW
+static:SWExchangerPreFilter rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:someValuesFrom static:CoolingMediumSeawaterExchanger
+] , [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:minCardinality "1"^^xsd:nonNegativeInteger
+] .
+
+
+#################################################################
+# 6. REGRAS DE DISTRIBUIÇÃO ELÉTRICA E SEGREGAÇÃO (SOLAS / IEC)
+#################################################################
+
+### 6.1 Turbogerador Principal DEVE alimentar o Painel de Alta Tensão (HV)
+electrical:MainTurbineGenerator rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:powersEquipment ;
+    owl:someValuesFrom electrical:HighVoltageSwitchgear
+] , [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:powersEquipment ;
+    owl:minCardinality "1"^^xsd:nonNegativeInteger
+] .
+
+### 6.2 Painel HV DEVE alimentar Transformadores, VSDs ou Motores de Alta Tensão
+electrical:HighVoltageSwitchgear rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:powersEquipment ;
+    owl:someValuesFrom [
+        rdf:type owl:Class ;
+        owl:unionOf ( electrical:PowerTransformer electrical:VariableSpeedDrive electrical:ElectricMotorEquipment )
+    ]
+] .
+
+### 6.3 Transformador de Potência Rebaixador DEVE alimentar Painel LV ou CCM
+electrical:PowerTransformer rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:powersEquipment ;
+    owl:someValuesFrom [
+        rdf:type owl:Class ;
+        owl:unionOf ( electrical:LowVoltageSwitchgear electrical:MotorControlCenter )
+    ]
+] .
+
+### 6.4 Centro de Controle de Motores (CCM) DEVE alimentar Motores Elétricos ou VSDs
+electrical:MotorControlCenter rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:powersEquipment ;
+    owl:someValuesFrom [
+        rdf:type owl:Class ;
+        owl:unionOf ( electrical:ElectricMotorEquipment electrical:VariableSpeedDrive )
+    ]
+] .
+
+### 6.5 VSD (Inversor de Frequência) DEVE alimentar Motores Elétricos
+electrical:VariableSpeedDrive rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:powersEquipment ;
+    owl:someValuesFrom electrical:ElectricMotorEquipment
+] .
+
+### 6.6 Segregação de Emergência: Gerador Diesel de Emergência NÃO alimenta Painel HV Principal
+electrical:EmergencyDieselGenerator rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:powersEquipment ;
+    owl:someValuesFrom [ owl:complementOf electrical:HighVoltageSwitchgear ]
+] .
+
+
+#################################################################
+# 7. REGRAS DE ARQUITETURA DE TURBINAS A GÁS (ISO 3977 / GTO)
+#################################################################
+
+### 7.1 GCI: Turbina Monoeixo NÃO possui Turbina de Potência de Eixo Independente (ISO 3977-1)
+dynamical:SingleShaftGasTurbine rdfs:subClassOf [
+    rdf:type owl:Class ;
+    owl:complementOf [
+        rdf:type owl:Restriction ;
+        owl:onProperty prop:hasPowerTurbine ;
+        owl:someValuesFrom dynamical:PowerTurbine
+    ]
+] .
+
+### 7.2 Turbina Multieixo DEVE possuir Gerador de Gás e Turbina de Potência
+dynamical:MultiShaftGasTurbine rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty prop:hasGasGenerator ;
+    owl:someValuesFrom dynamical:GasGenerator
+] , [
+    rdf:type owl:Restriction ;
+    owl:onProperty prop:hasPowerTurbine ;
+    owl:someValuesFrom dynamical:PowerTurbine
+] .
+
+### 7.3 Turbina a Gás possui pelo menos 1 Câmara de Combustão
+dynamical:GasTurbineEquipment rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty prop:hasCombustionChamber ;
+    owl:someValuesFrom dynamical:CombustionChamber
+] .
+
+### 7.4 Especificação de Desempenho Realista: A Turbina possui Especificações de Potência e Rotação (IOF / ISO 3977)
+dynamical:GasTurbineEquipment rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty iof-core:isPrescribedBy ;
+    owl:someValuesFrom prop:RatedPowerSpecification
+] , [
+    rdf:type owl:Restriction ;
+    owl:onProperty iof-core:isPrescribedBy ;
+    owl:someValuesFrom prop:RatedSpeedSpecification
+] .
+
+
+#################################################################
+# 8. REGRAS DE CONECTIVIDADE DE PORTAS
+#################################################################
+
+### 8.1 Porta de Entrada só pode se conectar com Portas que NÃO sejam de Entrada
+core:InletPort rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:portConnectedTo ;
+    owl:allValuesFrom [
+        rdf:type owl:Class ;
+        owl:complementOf core:InletPort
+    ]
+] .
+
+### 8.2 Porta de Saída só pode se conectar com Portas que NÃO sejam de Saída
+core:OutletPort rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:portConnectedTo ;
+    owl:allValuesFrom [
+        rdf:type owl:Class ;
+        owl:complementOf core:OutletPort
+    ]
+] .

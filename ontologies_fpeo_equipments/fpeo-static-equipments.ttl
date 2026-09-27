@@ -1,0 +1,511 @@
+@prefix : <http://usp.ai/ontologies/fpeo-static-equipments#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix core: <http://usp.ai/ontologies/fpeo-equipments-core#> .
+@prefix o3po: <https://www.inf.ufrgs.br/ontologies/o3po#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@base <http://usp.ai/ontologies/fpeo-static-equipments#> .
+
+<http://usp.ai/ontologies/fpeo-static-equipments> rdf:type owl:Ontology ;
+                                                   owl:imports <http://usp.ai/ontologies/fpeo-equipments-core> ;
+                                                   dc:creator "Hugo Cardoso Ferreira de Araújo" ;
+                                                   dc:description "Static Equipments Module for FPEO-Equipments Ontology with Integrity Axioms"@en .
+
+#################################################################
+#    Classes Base e Abstrações Principais
+#################################################################
+
+:HeatExchangeEquipment rdf:type owl:Class ;
+                       rdfs:subClassOf core:StaticEquipment ;
+                       rdfs:label "Equipamento de Troca Térmica"@pt ,
+                                  "Heat Exchange Equipment"@en ;
+                       skos:definition "A static equipment designed to transfer thermal energy between fluids at different temperatures."@en .
+
+:PressureVesselEquipment rdf:type owl:Class ;
+                         rdfs:subClassOf core:StaticEquipment ;
+                         rdfs:label "Equipamento Vaso de Pressão"@pt ,
+                                    "Pressure Vessel Equipment"@en ;
+                         skos:definition "A static equipment engineered to contain fluids under internal or external pressure."@en .
+
+:SeparationAndFilterEquipment rdf:type owl:Class ;
+                              rdfs:subClassOf core:StaticEquipment ;
+                              rdfs:label "Equipamento de Separação e Filtração"@pt ,
+                                         "Separation and Filter Equipment"@en ;
+                              skos:definition "A static equipment designed to separate fluid phases, particulate solids, or molecular compounds."@en .
+
+:StorageAndPipingHeaderEquipment rdf:type owl:Class ;
+                                 rdfs:subClassOf core:StaticEquipment ;
+                                 rdfs:label "Equipamento de Armazenamento e Coleta"@pt ,
+                                            "Storage and Piping Header Equipment"@en ;
+                                 skos:definition "A static equipment designed for fluid storage or collection from multiple drain/process lines."@en .
+
+
+#################################################################
+#    Abstrações Intermediárias de Filtração (DECLARAÇÕES OBRIGATÓRIAS)
+#################################################################
+
+:FilterEquipment rdf:type owl:Class ;
+                 rdfs:subClassOf :SeparationAndFilterEquipment ;
+                 rdfs:label "Equipamento Filtro"@pt ,
+                            "Filter Equipment"@en ;
+                 skos:definition "A static separation equipment designed to remove solid particles or liquid droplets from a fluid stream."@en .
+
+:ParticulateFilterEquipment rdf:type owl:Class ;
+                            rdfs:subClassOf :FilterEquipment ;
+                            rdfs:label "Filtro de Particulados"@pt ,
+                                       "Particulate Filter Equipment"@en ;
+                            skos:definition "A filter designed primarily for retaining suspended solid particles from fluid streams."@en .
+
+:CoalescingFilterEquipment rdf:type owl:Class ;
+                           rdfs:subClassOf :FilterEquipment ;
+                           rdfs:label "Filtro Coalescente"@pt ,
+                                      "Coalescing Filter Equipment"@en ;
+                           skos:definition "A filter designed to aggregate fine liquid droplets into larger drops for phase separation."@en .
+
+
+#################################################################
+#    Equipamentos Concretos: Vasos de Pressão e Armazenamento
+#################################################################
+
+:AirReceiverTank rdf:type owl:Class ;
+                 rdfs:subClassOf :PressureVesselEquipment ;
+                 rdfs:isDefinedBy "API Spec 12J" ;
+                 rdfs:label "Air Receiver Tank"@en ,
+                            "Vaso Pulmão de Ar Comprimido"@pt .
+
+:ChemicalStorageTank rdf:type owl:Class ;
+                     rdfs:subClassOf :StorageAndPipingHeaderEquipment ;
+                     rdfs:isDefinedBy "API Spec 12J / API Spec 14E" ;
+                     rdfs:label "Chemical Storage Tank"@en ,
+                                "Tanque de Armazenamento de Produtos Químicos"@pt .
+
+:CleanSlopTank rdf:type owl:Class ;
+               rdfs:subClassOf :StorageAndPipingHeaderEquipment ;
+               rdfs:isDefinedBy "API Spec 14E" ;
+               rdfs:label "Clean Slop Tank"@en ,
+                          "Tanque de Slop Limpo"@pt .
+
+:ClosedDrainDrum rdf:type owl:Class ;
+                 rdfs:subClassOf :PressureVesselEquipment ;
+                 rdfs:isDefinedBy "API Spec 12J" ;
+                 rdfs:label "Closed Drain Drum"@en ,
+                            "Vaso de Dreno Fechado"@pt .
+
+:DirtySlopTank rdf:type owl:Class ;
+               rdfs:subClassOf :StorageAndPipingHeaderEquipment ;
+               rdfs:isDefinedBy "API Spec 14E" ;
+               rdfs:label "Dirty Slop Tank"@en ,
+                          "Tanque de Slop Sujo"@pt .
+
+:ElectrostaticTreaterFlashVessel rdf:type owl:Class ;
+                                 rdfs:subClassOf :PressureVesselEquipment ;
+                                 rdfs:isDefinedBy "API Spec 12L / API 12J" ;
+                                 rdfs:label "Electrostatic Treater Flash Vessel"@en ,
+                                            "Vaso Flash do Tratador Eletrostático"@pt .
+
+:FlareTower rdf:type owl:Class ;
+            rdfs:subClassOf :StorageAndPipingHeaderEquipment ;
+            rdfs:isDefinedBy "ISO 23251 (API 521)" ;
+            rdfs:label "Flare Tower"@en ,
+                       "Torre do Flare"@pt .
+
+:FreeWaterKnockOutDrum rdf:type owl:Class ;
+                       rdfs:subClassOf :PressureVesselEquipment ;
+                       rdfs:isDefinedBy "API Spec 12J" ;
+                       rdfs:label "Free Water Knock Out Drum"@en ,
+                                  "Vaso Separador de Água Livre (FWKO)"@pt .
+
+:HPFlareKnockoutDrum rdf:type owl:Class ;
+                     rdfs:subClassOf :PressureVesselEquipment ;
+                     rdfs:isDefinedBy "ISO 23251 (API 521)" ;
+                     rdfs:label "HP Flare Knockout Drum"@en ,
+                                "Vaso Knockout de Alta Pressão do Flare"@pt ;
+                     skos:altLabel "HP Flare Scrubber"@en ,
+                                   "Vaso Ciclônico de Alta Pressão do Flare"@pt .
+
+:LPFlareKnockoutDrum rdf:type owl:Class ;
+                     rdfs:subClassOf :PressureVesselEquipment ;
+                     rdfs:isDefinedBy "ISO 23251 (API 521)" ;
+                     rdfs:label "LP Flare Knockout Drum"@en ,
+                                "Vaso Knockout de Baixa Pressão do Flare"@pt ;
+                     skos:altLabel "LP Flare Scrubber"@en ,
+                                   "Vaso Ciclônico de Baixa Pressão do Flare"@pt .
+
+:HazardousOpenDrainHeader rdf:type owl:Class ;
+                          rdfs:subClassOf :StorageAndPipingHeaderEquipment ;
+                          rdfs:isDefinedBy "API Spec 14E" ;
+                          rdfs:label "Coletor de Dreno Aberto Perigoso"@pt ,
+                                     "Hazardous Open Drain Header"@en .
+
+:HeatingMediumExpansionTank rdf:type owl:Class ;
+                            rdfs:subClassOf :PressureVesselEquipment ;
+                            rdfs:isDefinedBy "API Spec 12J" ;
+                            rdfs:label "Heating Medium Expansion Tank"@en ,
+                                       "Tanque de Expansão do Fluido Aquecedor"@pt .
+
+:IntegratedHPFlareTip rdf:type owl:Class ;
+                      rdfs:subClassOf :StorageAndPipingHeaderEquipment ;
+                      rdfs:isDefinedBy "ISO 23251 (API 521)" ;
+                      rdfs:label "Integrated HP Flare Tip"@en ,
+                                 "Ponteira do Flare de Alta Pressão"@pt .
+
+:IntegratedLPFlareTip rdf:type owl:Class ;
+                      rdfs:subClassOf :StorageAndPipingHeaderEquipment ;
+                      rdfs:isDefinedBy "ISO 23251 (API 521)" ;
+                      rdfs:label "Integrated LP Flare Tip"@en ,
+                                 "Ponteira do Flare de Baixa Pressão"@pt .
+
+:NitrogenReceiverTank rdf:type owl:Class ;
+                      rdfs:subClassOf :PressureVesselEquipment ;
+                      rdfs:isDefinedBy "API Spec 12J" ;
+                      rdfs:label "Nitrogen Receiver Tank"@en ,
+                                 "Vaso Pulmão de Nitrogênio"@pt .
+
+:NonHazardousOpenDrainHeader rdf:type owl:Class ;
+                             rdfs:subClassOf :StorageAndPipingHeaderEquipment ;
+                             rdfs:isDefinedBy "API Spec 14E" ;
+                             rdfs:label "Coletor de Dreno Aberto Não-Perigoso"@pt ,
+                                        "Non-Hazardous Open Drain Header"@en .
+
+:OffSpecTank rdf:type owl:Class ;
+             rdfs:subClassOf :StorageAndPipingHeaderEquipment ;
+             rdfs:isDefinedBy "API Spec 14E" ;
+             rdfs:label "Off-Spec Tank (Hull)"@en ,
+                        "Tanque de Óleo Fora de Especificação (Casco)"@pt .
+
+:TestSeparator rdf:type owl:Class ;
+               rdfs:subClassOf :PressureVesselEquipment ;
+               rdfs:isDefinedBy "API Spec 12J" ;
+               rdfs:label "Separador de Teste"@pt ,
+                          "Test Separator"@en .
+
+:VacuumDeaerator rdf:type owl:Class ;
+                 rdfs:subClassOf :PressureVesselEquipment ;
+                 rdfs:isDefinedBy "API Spec 12J" ;
+                 rdfs:label "Desaereador a Vácuo"@pt ,
+                            "Vacuum Deaerator"@en .
+
+:WaterSkimVessel rdf:type owl:Class ;
+                 rdfs:subClassOf :PressureVesselEquipment ;
+                 rdfs:isDefinedBy "API Spec 12J" ;
+                 rdfs:label "Vaso Desnatador de Água Produzida"@pt ,
+                            "Water Collection / Skim Vessel"@en .
+
+
+#################################################################
+#    Equipamentos Concretos: Filtros
+#################################################################
+
+:CoolingMediumPreFilter rdf:type owl:Class ;
+                        rdfs:subClassOf :ParticulateFilterEquipment ;
+                        rdfs:isDefinedBy "API Spec 14E" ;
+                        rdfs:label "Cooling Medium Pre-Filter"@en ,
+                                   "Pré-Filtro do Fluido Refrigerante"@pt .
+
+:CrudeExchangerPreFilter rdf:type owl:Class ;
+                         rdfs:subClassOf :ParticulateFilterEquipment ;
+                         rdfs:isDefinedBy "API Spec 14E / ISO 15761" ;
+                         rdfs:label "Crude Exchanger Pre-Filter"@en ,
+                                    "Pré-Filtro do Trocador de Petróleo"@pt .
+
+:MultiMediaFilter rdf:type owl:Class ;
+                  rdfs:subClassOf :ParticulateFilterEquipment ;
+                  rdfs:isDefinedBy "API Spec 14E / API Spec 12L" ;
+                  rdfs:label "Filtro Multimídia"@pt ,
+                             "Multi-Media Filter"@en .
+
+:SRUCartridgeFilter rdf:type owl:Class ;
+                    rdfs:subClassOf :ParticulateFilterEquipment ;
+                    rdfs:isDefinedBy "API Spec 14E" ;
+                    rdfs:label "Filtro de Cartucho do SRU"@pt ,
+                               "SRU Cartridge Filter"@en .
+
+:SWExchangerPreFilter rdf:type owl:Class ;
+                      rdfs:subClassOf :ParticulateFilterEquipment ;
+                      rdfs:label "Pré-Filtro do Trocador de Água do Mar"@pt ,
+                                 "SW Exchanger Pre-Filter"@en .
+
+:SeawaterCoarseStrainer rdf:type owl:Class ;
+                        rdfs:subClassOf :ParticulateFilterEquipment ;
+                        rdfs:isDefinedBy "API Spec 14E" ;
+                        rdfs:label "Filtro Groso de Água do Mar"@pt ,
+                                   "Seawater Coarse Strainer"@en .
+
+:OffSpecFilter rdf:type owl:Class ;
+               rdfs:subClassOf :CoalescingFilterEquipment ;
+               rdfs:isDefinedBy "API Spec 14E" ;
+               rdfs:label "Filtro de Óleo Fora de Especificação"@pt ,
+                          "Off-Spec Filter"@en .
+
+
+#################################################################
+#    Equipamentos Concretos: Outros Sistemas de Separação
+#################################################################
+
+:DeoilingHydrocyclone rdf:type owl:Class ;
+                      rdfs:subClassOf :SeparationAndFilterEquipment ;
+                      rdfs:isDefinedBy "API Spec 12L" ;
+                      rdfs:label "Deoiling Hydrocyclone"@en ,
+                                 "Hidrocclone Desoleador"@pt .
+
+:ElectrostaticTreater rdf:type owl:Class ;
+                      rdfs:subClassOf :SeparationAndFilterEquipment ;
+                      rdfs:isDefinedBy "API Spec 12L" ;
+                      rdfs:label "Electrostatic Treater"@en ,
+                                 "Tratador Eletrostático"@pt .
+
+:GasFlotationCell rdf:type owl:Class ;
+                  rdfs:subClassOf :SeparationAndFilterEquipment ;
+                  rdfs:isDefinedBy "API Spec 12L" ;
+                  rdfs:label "Célula de Flotação a Gás"@pt ,
+                             "Flotation Unit Cell"@en .
+
+:MolecularSieveGasDehydrator rdf:type owl:Class ;
+                             rdfs:subClassOf :SeparationAndFilterEquipment ;
+                             rdfs:isDefinedBy "API Spec 12J / ISO 10439" ;
+                             rdfs:label "Gas Dehydration Unit (Molecular Sieve)"@en ,
+                                        "Unidade de Desidratação de Gás (Peneira Molecular)"@pt .
+
+:NitrogenGenerationUnit rdf:type owl:Class ;
+                        rdfs:subClassOf :SeparationAndFilterEquipment ;
+                        rdfs:isDefinedBy "API Spec 14E" ;
+                        rdfs:label "Membrane Nitrogen Generation Unit"@en ,
+                                   "Unidade Geradora de Nitrogênio por Membrana"@pt .
+
+:ReverseOsmosisUnit rdf:type owl:Class ;
+                    rdfs:subClassOf :SeparationAndFilterEquipment ;
+                    rdfs:isDefinedBy "API Spec 14E" ;
+                    rdfs:label "Reverse Osmosis Unit"@en ,
+                               "Unidade de Osmose Reversa"@pt .
+
+:SRUMembraneTrain rdf:type owl:Class ;
+                  rdfs:subClassOf :SeparationAndFilterEquipment ;
+                  rdfs:isDefinedBy "API Spec 14E" ;
+                  rdfs:label "SRU Membrane Train"@en ,
+                             "Trem de Membranas de Remoção de Sulfato"@pt .
+
+
+#################################################################
+#    Equipamentos Concretos: Troca Térmica
+#################################################################
+
+:CoolingMediumSeawaterExchanger rdf:type owl:Class ;
+                                rdfs:subClassOf :HeatExchangeEquipment ;
+                                rdfs:isDefinedBy "ISO 16812" ;
+                                rdfs:label "Cooling Medium Seawater Exchanger"@en ,
+                                           "Trocador de Calor Fluido Refrigerante e Água do Mar"@pt ;
+                                skos:altLabel "Cooling Medium SW Heat Exchanger"@en ,
+                                              "Trocador de Calor Fluido Refrigerante / Água do Mar"@pt .
+
+:CrudeExchanger rdf:type owl:Class ;
+                rdfs:subClassOf :HeatExchangeEquipment ;
+                rdfs:isDefinedBy "ISO 16812" ;
+                rdfs:label "Crude Exchanger"@en ,
+                           "Trocador de Calor de Petróleo"@pt .
+
+:CrudeHeater rdf:type owl:Class ;
+             rdfs:subClassOf :HeatExchangeEquipment ;
+             rdfs:isDefinedBy "API Spec 12K" ;
+             rdfs:label "Aquecedor de Petróleo"@pt ,
+                        "Crude Heater"@en .
+
+:CrudePreheater rdf:type owl:Class ;
+                rdfs:subClassOf :HeatExchangeEquipment ;
+                rdfs:isDefinedBy "ISO 16812 / API Spec 12K" ;
+                rdfs:label "Crude Preheater"@en ,
+                           "Pré-aquecedor de Petróleo"@pt .
+
+:DieselInjectionHeater rdf:type owl:Class ;
+                       rdfs:subClassOf :HeatExchangeEquipment ;
+                       rdfs:isDefinedBy "ISO 16812 / API Spec 12K" ;
+                       rdfs:label "Aquecedor de Injeção de Diesel"@pt ,
+                                  "Diesel Injection Heater"@en .
+
+:DilutionWaterHeater rdf:type owl:Class ;
+                     rdfs:subClassOf :HeatExchangeEquipment ;
+                     rdfs:isDefinedBy "ISO 16812 / API Spec 12K" ;
+                     rdfs:label "Aquecedor de Água de Diluição"@pt ,
+                                "Dilution Water Heater"@en .
+
+:HeatingCoil rdf:type owl:Class ;
+             rdfs:subClassOf :HeatExchangeEquipment ;
+             rdfs:isDefinedBy "API Spec 14E" ;
+             rdfs:label "Heating Coil"@en ,
+                        "Serpentina de Aquecimento"@pt .
+
+:HeatingMediumTrimCooler rdf:type owl:Class ;
+                         rdfs:subClassOf :HeatExchangeEquipment ;
+                         rdfs:isDefinedBy "ISO 16812" ;
+                         rdfs:label "Heating Medium Trim Cooler"@en ,
+                                    "Resfriador Secundário do Fluido Aquecedor"@pt .
+
+:PIPWaterHeater rdf:type owl:Class ;
+                rdfs:subClassOf :HeatExchangeEquipment ;
+                rdfs:isDefinedBy "ISO 16812 / API Spec 12K" ;
+                rdfs:label "Aquecedor de Água PIP"@pt ,
+                           "PIP Water Heater"@en .
+
+:ProducedWaterInletCooler rdf:type owl:Class ;
+                          rdfs:subClassOf :HeatExchangeEquipment ;
+                          rdfs:isDefinedBy "ISO 16812" ;
+                          rdfs:label "Produced Water Inlet Cooler"@en ,
+                                     "Resfriador de Entrada de Água Produzida"@pt .
+
+:ProducedWaterOverboardCooler rdf:type owl:Class ;
+                              rdfs:subClassOf :HeatExchangeEquipment ;
+                              rdfs:isDefinedBy "ISO 16812" ;
+                              rdfs:label "Produced Water Overboard Cooler"@en ,
+                                         "Resfriador de Descarte de Água Produzida"@pt .
+
+:SalesOilCooler rdf:type owl:Class ;
+                rdfs:subClassOf :HeatExchangeEquipment ;
+                rdfs:isDefinedBy "ISO 16812" ;
+                rdfs:label "Resfriador de Óleo de Exportação"@pt ,
+                           "Sales Oil Cooler"@en .
+
+:TestInletHeater rdf:type owl:Class ;
+                 rdfs:subClassOf :HeatExchangeEquipment ;
+                 rdfs:isDefinedBy "API Spec 12K" ;
+                 rdfs:label "Aquecedor de Entrada do Separador de Teste"@pt ,
+                            "Test Inlet Heater"@en .
+
+:WasteHeatRecoveryUnit rdf:type owl:Class ;
+                       rdfs:subClassOf :HeatExchangeEquipment ;
+                       rdfs:isDefinedBy "ISO 16812" ;
+                       rdfs:label "Unidade de Recuperação de Calor Residual (WHRU)"@pt ,
+                                  "Waste Heat Recovery Unit (WHRU)"@en .
+
+
+#################################################################
+#    AXIOMAS DE DISJUNÇÃO RAIZ E SUB-CATEGORIAS
+#################################################################
+
+[] rdf:type owl:AllDisjointClasses ;
+   owl:members ( :HeatExchangeEquipment
+                 :PressureVesselEquipment
+                 :SeparationAndFilterEquipment
+                 :StorageAndPipingHeaderEquipment ) .
+
+:ParticulateFilterEquipment owl:disjointWith :CoalescingFilterEquipment .
+:HazardousOpenDrainHeader owl:disjointWith :NonHazardousOpenDrainHeader .
+:CleanSlopTank owl:disjointWith :DirtySlopTank .
+:HPFlareKnockoutDrum owl:disjointWith :LPFlareKnockoutDrum .
+:IntegratedHPFlareTip owl:disjointWith :IntegratedLPFlareTip .
+
+
+#################################################################
+# 1. Regras de Drenagem, Segregação e Proteção de Efluentes
+#################################################################
+
+:HazardousOpenDrainHeader rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:someValuesFrom [ owl:complementOf :NonHazardousOpenDrainHeader ]
+] .
+
+:ClosedDrainDrum rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:someValuesFrom [ owl:complementOf :CleanSlopTank ]
+] .
+
+
+#################################################################
+# 2. Regras de Integridade do Sistema de Flare (ISO 23251 / API 521)
+#################################################################
+
+:IntegratedHPFlareTip rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:cardinality "0"^^xsd:nonNegativeInteger
+] .
+
+:IntegratedLPFlareTip rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:cardinality "0"^^xsd:nonNegativeInteger
+] .
+
+:HPFlareKnockoutDrum rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:someValuesFrom :IntegratedHPFlareTip
+] .
+
+:LPFlareKnockoutDrum rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:someValuesFrom :IntegratedLPFlareTip
+] .
+
+
+#################################################################
+# 3. Sequenciamento Físico de Tratamento de Água Produzida
+#################################################################
+
+:DeoilingHydrocyclone rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:someValuesFrom [
+        rdf:type owl:Class ;
+        owl:unionOf ( :GasFlotationCell
+                      :ProducedWaterInletCooler
+                      :ProducedWaterOverboardCooler
+                      :WaterSkimVessel )
+    ]
+] .
+
+:GasFlotationCell rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:someValuesFrom [ owl:complementOf :DeoilingHydrocyclone ]
+] .
+
+
+#################################################################
+# 4. Proteção de Membranas de Processo e Utilidades
+#################################################################
+
+:SRUCartridgeFilter rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:someValuesFrom :SRUMembraneTrain
+] .
+
+:NitrogenGenerationUnit rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:someValuesFrom :NitrogenReceiverTank
+] .
+
+
+#################################################################
+# 5. Restrições de Conexão Obrigatória (Exigência de Jusante)
+#################################################################
+
+:CrudeExchangerPreFilter rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:someValuesFrom [
+        rdf:type owl:Class ;
+        owl:unionOf ( :CrudeExchanger :CrudePreheater :CrudeHeater )
+    ]
+] , [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:minCardinality "1"^^xsd:nonNegativeInteger
+] .
+
+:SWExchangerPreFilter rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:someValuesFrom :CoolingMediumSeawaterExchanger
+] , [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:minCardinality "1"^^xsd:nonNegativeInteger
+] .

@@ -1,0 +1,588 @@
+@prefix : <http://usp.ai/ontologies/fpeo-collect-equipments-abox#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+
+# Ontologias de Referência Externa
+@prefix obo: <http://purl.obolibrary.org/obo/> .
+@prefix uo: <http://purl.obolibrary.org/obo/> .
+@prefix o3po: <https://www.inf.ufrgs.br/ontologies/o3po#> .
+@prefix iof-core: <https://spec.industrialontologies.org/ontology/core/Core/> .
+
+# Core e Módulos FPEO
+@prefix core: <http://usp.ai/ontologies/fpeo-equipments-core#> .
+@prefix static: <http://usp.ai/ontologies/fpeo-static-equipments#> .
+@prefix dynamical: <http://usp.ai/ontologies/fpeo-dynamical-equipments#> .
+@prefix electrical: <http://usp.ai/ontologies/fpeo-electrical-equipments#> .
+@prefix valve: <http://usp.ai/ontologies/fpeo-valves-security#> .
+@prefix sensors: <http://usp.ai/ontologies/fpeo-sensors-equipments#> .
+@prefix renewable: <http://usp.ai/ontologies/fpeo-renewable-equipments#> .
+@prefix prop: <http://usp.ai/ontologies/fpeo-properties-equipments#> .
+@prefix rules: <http://usp.ai/ontologies/fpeo-rules-equipments#> .
+
+@base <http://usp.ai/ontologies/fpeo-collect-equipments-abox#> .
+
+<http://usp.ai/ontologies/fpeo-collect-equipments-abox> rdf:type owl:Ontology ;
+    owl:imports <http://usp.ai/ontologies/fpeo-rules-equipments> ;
+    dc:creator "Hugo Cardoso Ferreira de Araújo" ;
+    dc:description "Complete FPSO Topside Equipment ABox Assertion Model for FPEO Validation, fully instantiated with Realist Data Properties (IOF-Core & UO)"@en .
+
+
+#################################################################
+# 1. INSTÂNCIAS DE NAVIOS FPSO (o3po:FPSO)
+#################################################################
+
+### 1.1 FPSO P-78 Marechal Duque
+:FPSO_P78 rdf:type owl:NamedIndividual , o3po:FPSO ;
+    rdfs:label "FPSO P-78 Marechal Duque"@en ;
+    rdfs:comment "Navio Plataforma FPSO P-78 alocado no Campo de Búzios, Pré-Sal da Bacia de Santos"@pt .
+
+:Doc_FPSO_P78 rdf:type owl:NamedIndividual , prop:EquipmentDesignDocument ;
+    rdfs:label "Datasheet Geral de Capacidade da Planta - FPSO P-78"@pt ;
+    iof-core:describes :FPSO_P78 ;
+    iof-core:hasContinuantPartAtAllTimes :Spec_OilCapacity_P78 , :Spec_GasCapacity_P78 .
+
+:Spec_OilCapacity_P78 rdf:type owl:NamedIndividual , prop:DesignFlowRateSpecification ;
+    rdfs:label "Capacidade Nominal de Processamento de Óleo"@pt ;
+    iof-core:prescribes :FPSO_P78 ;
+    iof-core:hasContinuantPartAtAllTimes :Val_OilCapacity_P78 .
+
+:Val_OilCapacity_P78 rdf:type owl:NamedIndividual , prop:FlowRateValueExpression ;
+    obo:IAO_0000039 uo:UO_0000099 ; # barrels per day / m3/h
+    iof-core:hasSimpleExpressionValue "180000.0"^^xsd:double .
+
+:Spec_GasCapacity_P78 rdf:type owl:NamedIndividual , prop:DesignFlowRateSpecification ;
+    rdfs:label "Capacidade Nominal de Tratamento e Compressão de Gás"@pt ;
+    iof-core:prescribes :FPSO_P78 ;
+    iof-core:hasContinuantPartAtAllTimes :Val_GasCapacity_P78 .
+
+:Val_GasCapacity_P78 rdf:type owl:NamedIndividual , prop:FlowRateValueExpression ;
+    obo:IAO_0000099 uo:UO_0000099 ;
+    iof-core:hasSimpleExpressionValue "7.2"^^xsd:double .
+
+
+### 1.2 FPSO P-79 Guanabara
+:FPSO_P79 rdf:type owl:NamedIndividual , o3po:FPSO ;
+    rdfs:label "FPSO P-79 Guanabara"@en ;
+    rdfs:comment "Navio Plataforma FPSO P-79 alocado na Bacia de Santos"@pt .
+
+
+#################################################################
+# 2. INSTÂNCIAS DE MÓDULOS TOPSIDE (core:FPSOModule)
+#################################################################
+
+### Módulos localizados no FPSO P-78 (obo:RO_0001025)
+:Module_M01 rdf:type owl:NamedIndividual , core:FPSOModule ;
+    rdfs:label "M-01 CO2 & Seawater Module"@en ;
+    rdfs:comment "Módulo M-01: Captação de Água do Mar, Resfriamento e Compressão de CO2"@pt ;
+    obo:RO_0001025 :FPSO_P78 ;
+    core:isLocatedInFPSO :FPSO_P78 .
+
+:Module_M02 rdf:type owl:NamedIndividual , core:FPSOModule ;
+    rdfs:label "M-02 Flare & VRU System"@en ;
+    rdfs:comment "Módulo M-02: Sistema de Flare e Recuperação de Vapores (VRU)"@pt ;
+    obo:RO_0001025 :FPSO_P78 ;
+    core:isLocatedInFPSO :FPSO_P78 .
+
+### Módulos localizados no FPSO P-79 (obo:RO_0001025)
+:Module_M06 rdf:type owl:NamedIndividual , core:FPSOModule ;
+    rdfs:label "M-06 Main Gas Compression & Power"@en ;
+    rdfs:comment "Módulo M-06: Compressão Principal de Gás e Geração de Energia"@pt ;
+    obo:RO_0001025 :FPSO_P79 ;
+    core:isLocatedInFPSO :FPSO_P79 .
+
+:Module_M08 rdf:type owl:NamedIndividual , core:FPSOModule ;
+    rdfs:label "M-08 Oil Processing Module"@en ;
+    rdfs:comment "Módulo M-08: Separação, Aquecimento e Tratamento Eletrostático de Petróleo"@pt ;
+    obo:RO_0001025 :FPSO_P79 ;
+    core:isLocatedInFPSO :FPSO_P79 .
+
+
+#################################################################
+# 3. SUBSISTEMA DE CAPTAÇÃO E REFRIGERAÇÃO DE ÁGUA DO MAR (SEAWATER)
+#################################################################
+
+### 3.1 Bomba de Elevação de Água do Mar (P-01)
+:SeawaterLiftPump_P01 rdf:type owl:NamedIndividual , dynamical:SeawaterLiftPump ;
+    rdfs:label "P-01 Seawater Lift Pump"@en ;
+    core:isLocatedInModule :Module_M01 ;
+    core:hasPort :P01_Port_Out , :P01_Port_Elec .
+
+:P01_Port_Out rdf:type owl:NamedIndividual , core:OutletPort ;
+    core:isPortOf :SeawaterLiftPump_P01 ;
+    core:portConnectedTo :F01_Port_In .
+
+:P01_Port_Elec rdf:type owl:NamedIndividual , core:ElectricalPort ;
+    core:isPortOf :SeawaterLiftPump_P01 .
+
+:Doc_Datasheet_P01 rdf:type owl:NamedIndividual , prop:EquipmentDesignDocument ;
+    rdfs:label "Datasheet Técnico - Bomba P-01"@pt ;
+    iof-core:describes :SeawaterLiftPump_P01 ;
+    iof-core:hasContinuantPartAtAllTimes :Tag_P01 , :Spec_RatedPower_P01 , :Spec_DesignPressure_P01 , :Spec_DesignFlow_P01 .
+
+:Tag_P01 rdf:type owl:NamedIndividual , prop:EquipmentTagIdentifier ;
+    iof-core:identifies :SeawaterLiftPump_P01 ;
+    iof-core:hasSimpleExpressionValue "P-01" .
+
+:Spec_RatedPower_P01 rdf:type owl:NamedIndividual , prop:RatedPowerSpecification ;
+    rdfs:label "Rated Power Specification"@en ;
+    iof-core:prescribes :SeawaterLiftPump_P01 ;
+    iof-core:hasContinuantPartAtAllTimes :Val_Power_P01 .
+
+:Val_Power_P01 rdf:type owl:NamedIndividual , prop:PowerValueExpression ;
+    obo:IAO_0000039 uo:UO_0000036 ; # kilowatt (UO)
+    iof-core:hasSimpleExpressionValue "3200.0"^^xsd:double .
+
+:Spec_DesignPressure_P01 rdf:type owl:NamedIndividual , prop:DesignPressureSpecification ;
+    rdfs:label "Design Discharge Pressure"@en ;
+    iof-core:prescribes :SeawaterLiftPump_P01 ;
+    iof-core:hasContinuantPartAtAllTimes :Val_Pressure_P01 .
+
+:Val_Pressure_P01 rdf:type owl:NamedIndividual , prop:PressureValueExpression ;
+    obo:IAO_0000039 uo:UO_0000062 ; # bar (UO)
+    iof-core:hasSimpleExpressionValue "180.0"^^xsd:double .
+
+:Spec_DesignFlow_P01 rdf:type owl:NamedIndividual , prop:DesignFlowRateSpecification ;
+    rdfs:label "Design Volumetric Flow Rate"@en ;
+    iof-core:prescribes :SeawaterLiftPump_P01 ;
+    iof-core:hasContinuantPartAtAllTimes :Val_Flow_P01 .
+
+:Val_Flow_P01 rdf:type owl:NamedIndividual , prop:FlowRateValueExpression ;
+    obo:IAO_0000039 uo:UO_0000099 ; # m3/h (UO)
+    iof-core:hasSimpleExpressionValue "2400.0"^^xsd:double .
+
+
+### 3.2 Filtro Grosso de Água do Mar (F-01)
+:SeawaterStrainer_F01 rdf:type owl:NamedIndividual , static:SeawaterCoarseStrainer ;
+    rdfs:label "F-01 Seawater Coarse Strainer"@en ;
+    core:isLocatedInModule :Module_M01 ;
+    core:hasPort :F01_Port_In , :F01_Port_Out .
+
+:F01_Port_In rdf:type owl:NamedIndividual , core:InletPort ;
+    core:isPortOf :SeawaterStrainer_F01 .
+
+:F01_Port_Out rdf:type owl:NamedIndividual , core:OutletPort ;
+    core:isPortOf :SeawaterStrainer_F01 ;
+    core:portConnectedTo :E01_Port_In .
+
+:Doc_Datasheet_F01 rdf:type owl:NamedIndividual , prop:EquipmentDesignDocument ;
+    rdfs:label "Datasheet Técnico - Filtro F-01"@pt ;
+    iof-core:describes :SeawaterStrainer_F01 ;
+    iof-core:hasContinuantPartAtAllTimes :Tag_F01 , :Spec_DesignPressure_F01 .
+
+:Tag_F01 rdf:type owl:NamedIndividual , prop:EquipmentTagIdentifier ;
+    iof-core:identifies :SeawaterStrainer_F01 ;
+    iof-core:hasSimpleExpressionValue "F-01" .
+
+:Spec_DesignPressure_F01 rdf:type owl:NamedIndividual , prop:DesignPressureSpecification ;
+    rdfs:label "Design Pressure Specification"@en ;
+    iof-core:prescribes :SeawaterStrainer_F01 ;
+    iof-core:hasContinuantPartAtAllTimes :Val_Pressure_F01 .
+
+:Val_Pressure_F01 rdf:type owl:NamedIndividual , prop:PressureValueExpression ;
+    obo:IAO_0000039 uo:UO_0000062 ; # bar (UO)
+    iof-core:hasSimpleExpressionValue "25.0"^^xsd:double .
+
+
+### 3.3 Trocador de Calor de Água do Mar / Fluido Refrigerante (E-01)
+:SeawaterCooler_E01 rdf:type owl:NamedIndividual , static:CoolingMediumSeawaterExchanger ;
+    rdfs:label "E-01 Cooling Medium Seawater Exchanger"@en ;
+    core:isLocatedInModule :Module_M01 ;
+    core:hasPort :E01_Port_In , :E01_Port_Out .
+
+:E01_Port_In rdf:type owl:NamedIndividual , core:InletPort ;
+    core:isPortOf :SeawaterCooler_E01 .
+
+:E01_Port_Out rdf:type owl:NamedIndividual , core:OutletPort ;
+    core:isPortOf :SeawaterCooler_E01 .
+
+:Doc_Datasheet_E01 rdf:type owl:NamedIndividual , prop:EquipmentDesignDocument ;
+    rdfs:label "Datasheet Técnico - Trocador E-01"@pt ;
+    iof-core:describes :SeawaterCooler_E01 ;
+    iof-core:hasContinuantPartAtAllTimes :Tag_E01 , :Spec_Duty_E01 , :Spec_DesignPressure_E01 .
+
+:Tag_E01 rdf:type owl:NamedIndividual , prop:EquipmentTagIdentifier ;
+    iof-core:identifies :SeawaterCooler_E01 ;
+    iof-core:hasSimpleExpressionValue "E-01" .
+
+:Spec_Duty_E01 rdf:type owl:NamedIndividual , prop:RatedPowerSpecification ;
+    rdfs:label "Rated Thermal Duty"@en ;
+    iof-core:prescribes :SeawaterCooler_E01 ;
+    iof-core:hasContinuantPartAtAllTimes :Val_Duty_E01 .
+
+:Val_Duty_E01 rdf:type owl:NamedIndividual , prop:PowerValueExpression ;
+    obo:IAO_0000039 uo:UO_0000037 ; # megawatt (UO)
+    iof-core:hasSimpleExpressionValue "25.0"^^xsd:double .
+
+:Spec_DesignPressure_E01 rdf:type owl:NamedIndividual , prop:DesignPressureSpecification ;
+    rdfs:label "Design Pressure Specification"@en ;
+    iof-core:prescribes :SeawaterCooler_E01 ;
+    iof-core:hasContinuantPartAtAllTimes :Val_Pressure_E01 .
+
+:Val_Pressure_E01 rdf:type owl:NamedIndividual , prop:PressureValueExpression ;
+    obo:IAO_0000039 uo:UO_0000062 ; # bar (UO)
+    iof-core:hasSimpleExpressionValue "30.0"^^xsd:double .
+
+
+#################################################################
+# 4. SUBSISTEMA DE SEPARAÇÃO E SEPARAÇÃO DE TESTE (OIL & GAS)
+#################################################################
+
+### 4.1 Aquecedor do Separador de Teste (E-02)
+:TestInletHeater_E02 rdf:type owl:NamedIndividual , static:TestInletHeater ;
+    rdfs:label "E-02 Test Inlet Heater"@en ;
+    core:isLocatedInModule :Module_M08 ;
+    core:hasPort :E02_Port_In , :E02_Port_Out .
+
+:E02_Port_In rdf:type owl:NamedIndividual , core:InletPort ;
+    core:isPortOf :TestInletHeater_E02 .
+
+:E02_Port_Out rdf:type owl:NamedIndividual , core:OutletPort ;
+    core:isPortOf :TestInletHeater_E02 ;
+    core:portConnectedTo :V01_Port_In .
+
+:Doc_Datasheet_E02 rdf:type owl:NamedIndividual , prop:EquipmentDesignDocument ;
+    rdfs:label "Datasheet Técnico - Aquecedor E-02"@pt ;
+    iof-core:describes :TestInletHeater_E02 ;
+    iof-core:hasContinuantPartAtAllTimes :Tag_E02 , :Spec_Duty_E02 .
+
+:Tag_E02 rdf:type owl:NamedIndividual , prop:EquipmentTagIdentifier ;
+    iof-core:identifies :TestInletHeater_E02 ;
+    iof-core:hasSimpleExpressionValue "E-02" .
+
+:Spec_Duty_E02 rdf:type owl:NamedIndividual , prop:RatedPowerSpecification ;
+    rdfs:label "Rated Thermal Duty"@en ;
+    iof-core:prescribes :TestInletHeater_E02 ;
+    iof-core:hasContinuantPartAtAllTimes :Val_Duty_E02 .
+
+:Val_Duty_E02 rdf:type owl:NamedIndividual , prop:PowerValueExpression ;
+    obo:IAO_0000039 uo:UO_0000037 ; # megawatt (UO)
+    iof-core:hasSimpleExpressionValue "15.0"^^xsd:double .
+
+
+### 4.2 Separador de Teste (V-01)
+:TestSeparator_V01 rdf:type owl:NamedIndividual , static:TestSeparator ;
+    rdfs:label "V-01 Test Separator Vessel"@en ;
+    core:isLocatedInModule :Module_M08 ;
+    core:hasPort :V01_Port_In , :V01_Port_Out_Oil .
+
+:V01_Port_In rdf:type owl:NamedIndividual , core:InletPort ;
+    core:isPortOf :TestSeparator_V01 .
+
+:V01_Port_Out_Oil rdf:type owl:NamedIndividual , core:OutletPort ;
+    core:isPortOf :TestSeparator_V01 ;
+    core:portConnectedTo :P02_Port_In .
+
+:Doc_Datasheet_V01 rdf:type owl:NamedIndividual , prop:EquipmentDesignDocument ;
+    rdfs:label "Datasheet Técnico - Separador V-01"@pt ;
+    iof-core:describes :TestSeparator_V01 ;
+    iof-core:hasContinuantPartAtAllTimes :Tag_V01 , :Spec_DesignPressure_V01 , :Spec_DesignTemp_V01 .
+
+:Tag_V01 rdf:type owl:NamedIndividual , prop:EquipmentTagIdentifier ;
+    iof-core:identifies :TestSeparator_V01 ;
+    iof-core:hasSimpleExpressionValue "V-01" .
+
+:Spec_DesignPressure_V01 rdf:type owl:NamedIndividual , prop:DesignPressureSpecification ;
+    rdfs:label "Design Pressure Specification"@en ;
+    iof-core:prescribes :TestSeparator_V01 ;
+    iof-core:hasContinuantPartAtAllTimes :Val_Pressure_V01 .
+
+:Val_Pressure_V01 rdf:type owl:NamedIndividual , prop:PressureValueExpression ;
+    obo:IAO_0000039 uo:UO_0000062 ; # bar (UO)
+    iof-core:hasSimpleExpressionValue "75.0"^^xsd:double .
+
+:Spec_DesignTemp_V01 rdf:type owl:NamedIndividual , prop:DesignTemperatureSpecification ;
+    rdfs:label "Design Temperature Specification"@en ;
+    iof-core:prescribes :TestSeparator_V01 ;
+    iof-core:hasContinuantPartAtAllTimes :Val_Temp_V01 .
+
+:Val_Temp_V01 rdf:type owl:NamedIndividual , prop:TemperatureValueExpression ;
+    obo:IAO_0000039 uo:UO_0000027 ; # degree Celsius (UO)
+    iof-core:hasSimpleExpressionValue "95.0"^^xsd:double .
+
+
+### 4.3 Bomba de Óleo do Separador de Teste (P-02)
+:TestOilPump_P02 rdf:type owl:NamedIndividual , dynamical:TestSeparatorOilPump ;
+    rdfs:label "P-02 Test Separator Oil Pump"@en ;
+    core:isLocatedInModule :Module_M08 ;
+    core:hasPort :P02_Port_In , :P02_Port_Out , :P02_Port_Elec .
+
+:P02_Port_In rdf:type owl:NamedIndividual , core:InletPort ;
+    core:isPortOf :TestOilPump_P02 .
+
+:P02_Port_Out rdf:type owl:NamedIndividual , core:OutletPort ;
+    core:isPortOf :TestOilPump_P02 ;
+    core:portConnectedTo :E02_Port_In .
+
+:P02_Port_Elec rdf:type owl:NamedIndividual , core:ElectricalPort ;
+    core:isPortOf :TestOilPump_P02 .
+
+:Doc_Datasheet_P02 rdf:type owl:NamedIndividual , prop:EquipmentDesignDocument ;
+    rdfs:label "Datasheet Técnico - Bomba P-02"@pt ;
+    iof-core:describes :TestOilPump_P02 ;
+    iof-core:hasContinuantPartAtAllTimes :Tag_P02 , :Spec_RatedPower_P02 .
+
+:Tag_P02 rdf:type owl:NamedIndividual , prop:EquipmentTagIdentifier ;
+    iof-core:identifies :TestOilPump_P02 ;
+    iof-core:hasSimpleExpressionValue "P-02" .
+
+:Spec_RatedPower_P02 rdf:type owl:NamedIndividual , prop:RatedPowerSpecification ;
+    rdfs:label "Rated Power Specification"@en ;
+    iof-core:prescribes :TestOilPump_P02 ;
+    iof-core:hasContinuantPartAtAllTimes :Val_Power_P02 .
+
+:Val_Power_P02 rdf:type owl:NamedIndividual , prop:PowerValueExpression ;
+    obo:IAO_0000039 uo:UO_0000036 ; # kilowatt (UO)
+    iof-core:hasSimpleExpressionValue "850.0"^^xsd:double .
+
+
+#################################################################
+# 5. SUBSISTEMA DE RECUPERAÇÃO DE VAPORES E COMPRESSÃO (GAS)
+#################################################################
+
+### 5.1 Compressor VRU (K-01)
+:VRUCompressor_K01 rdf:type owl:NamedIndividual , dynamical:ProcessVRUCompressor ;
+    rdfs:label "K-01 Process VRU Compressor"@en ;
+    core:isLocatedInModule :Module_M02 ;
+    core:hasPort :K01_Port_In , :K01_Port_Out , :K01_Port_Elec .
+
+:K01_Port_In rdf:type owl:NamedIndividual , core:InletPort ;
+    core:isPortOf :VRUCompressor_K01 .
+
+:K01_Port_Out rdf:type owl:NamedIndividual , core:OutletPort ;
+    core:isPortOf :VRUCompressor_K01 ;
+    core:portConnectedTo :K02_Port_In .
+
+:K01_Port_Elec rdf:type owl:NamedIndividual , core:ElectricalPort ;
+    core:isPortOf :VRUCompressor_K01 .
+
+:Doc_Datasheet_K01 rdf:type owl:NamedIndividual , prop:EquipmentDesignDocument ;
+    rdfs:label "Datasheet Técnico - Compressor VRU K-01"@pt ;
+    iof-core:describes :VRUCompressor_K01 ;
+    iof-core:hasContinuantPartAtAllTimes :Tag_K01 , :Spec_RatedPower_K01 , :Spec_DesignPressure_K01 .
+
+:Tag_K01 rdf:type owl:NamedIndividual , prop:EquipmentTagIdentifier ;
+    iof-core:identifies :VRUCompressor_K01 ;
+    iof-core:hasSimpleExpressionValue "K-01" .
+
+:Spec_RatedPower_K01 rdf:type owl:NamedIndividual , prop:RatedPowerSpecification ;
+    rdfs:label "Rated Power Specification"@en ;
+    iof-core:prescribes :VRUCompressor_K01 ;
+    iof-core:hasContinuantPartAtAllTimes :Val_Power_K01 .
+
+:Val_Power_K01 rdf:type owl:NamedIndividual , prop:PowerValueExpression ;
+    obo:IAO_0000039 uo:UO_0000037 ; # megawatt (UO)
+    iof-core:hasSimpleExpressionValue "4.5"^^xsd:double .
+
+:Spec_DesignPressure_K01 rdf:type owl:NamedIndividual , prop:DesignPressureSpecification ;
+    rdfs:label "Design Pressure Specification"@en ;
+    iof-core:prescribes :VRUCompressor_K01 ;
+    iof-core:hasContinuantPartAtAllTimes :Val_Pressure_K01 .
+
+:Val_Pressure_K01 rdf:type owl:NamedIndividual , prop:PressureValueExpression ;
+    obo:IAO_0000039 uo:UO_0000062 ; # bar (UO)
+    iof-core:hasSimpleExpressionValue "35.0"^^xsd:double .
+
+
+### 5.2 Compressor Principal de Baixa Pressão (K-02)
+:LPCompressor_K02 rdf:type owl:NamedIndividual , dynamical:LowPressureCompressor ;
+    rdfs:label "K-02 Low Pressure Main Gas Compressor"@en ;
+    core:isLocatedInModule :Module_M06 ;
+    core:hasPort :K02_Port_In , :K02_Port_Out , :K02_Port_Elec .
+
+:K02_Port_In rdf:type owl:NamedIndividual , core:InletPort ;
+    core:isPortOf :LPCompressor_K02 .
+
+:K02_Port_Out rdf:type owl:NamedIndividual , core:OutletPort ;
+    core:isPortOf :LPCompressor_K02 .
+
+:K02_Port_Elec rdf:type owl:NamedIndividual , core:ElectricalPort ;
+    core:isPortOf :LPCompressor_K02 .
+
+:Doc_Datasheet_K02 rdf:type owl:NamedIndividual , prop:EquipmentDesignDocument ;
+    rdfs:label "Datasheet Técnico - Compressor LP K-02"@pt ;
+    iof-core:describes :LPCompressor_K02 ;
+    iof-core:hasContinuantPartAtAllTimes :Tag_K02 , :Spec_RatedPower_K02 , :Spec_DesignPressure_K02 , :Spec_DesignFlow_K02 .
+
+:Tag_K02 rdf:type owl:NamedIndividual , prop:EquipmentTagIdentifier ;
+    iof-core:identifies :LPCompressor_K02 ;
+    iof-core:hasSimpleExpressionValue "K-02" .
+
+:Spec_RatedPower_K02 rdf:type owl:NamedIndividual , prop:RatedPowerSpecification ;
+    rdfs:label "Rated Power Specification"@en ;
+    iof-core:prescribes :LPCompressor_K02 ;
+    iof-core:hasContinuantPartAtAllTimes :Val_Power_K02 .
+
+:Val_Power_K02 rdf:type owl:NamedIndividual , prop:PowerValueExpression ;
+    obo:IAO_0000039 uo:UO_0000037 ; # megawatt (UO)
+    iof-core:hasSimpleExpressionValue "18.5"^^xsd:double .
+
+:Spec_DesignPressure_K02 rdf:type owl:NamedIndividual , prop:DesignPressureSpecification ;
+    rdfs:label "Design Pressure Specification (MAWP)"@en ;
+    iof-core:prescribes :LPCompressor_K02 ;
+    iof-core:hasContinuantPartAtAllTimes :Val_Pressure_K02 .
+
+:Val_Pressure_K02 rdf:type owl:NamedIndividual , prop:PressureValueExpression ;
+    obo:IAO_0000039 uo:UO_0000062 ; # bar (UO)
+    iof-core:hasSimpleExpressionValue "85.0"^^xsd:double .
+
+:Spec_DesignFlow_K02 rdf:type owl:NamedIndividual , prop:DesignFlowRateSpecification ;
+    rdfs:label "Design Flow Rate Specification"@en ;
+    iof-core:prescribes :LPCompressor_K02 ;
+    iof-core:hasContinuantPartAtAllTimes :Val_Flow_K02 .
+
+:Val_Flow_K02 rdf:type owl:NamedIndividual , prop:FlowRateValueExpression ;
+    obo:IAO_0000039 uo:UO_0000099 ; # m3/h (UO)
+    iof-core:hasSimpleExpressionValue "120000.0"^^xsd:double .
+
+
+#################################################################
+# 6. SUBSISTEMA DE GERAÇÃO E DISTRIBUIÇÃO ELÉTRICA (POWER)
+#################################################################
+
+### 6.1 Turbogerador Principal (GTG-01)
+:MainTurbineGenerator_GTG01 rdf:type owl:NamedIndividual , electrical:MainTurbineGenerator ;
+    rdfs:label "GTG-01 Main Gas Turbine Generator"@en ;
+    core:isLocatedInModule :Module_M06 ;
+    core:hasPort :GTG01_Port_Elec ;
+    core:powersEquipment :HV_Switchgear_01 ;
+    o3po:hasComponent :Shaft_GTG01 , :CombustionChamber_GTG01 .
+
+:GTG01_Port_Elec rdf:type owl:NamedIndividual , core:ElectricalPort ;
+    core:isPortOf :MainTurbineGenerator_GTG01 .
+
+:Shaft_GTG01 rdf:type owl:NamedIndividual , dynamical:Shaft ;
+    rdfs:label "Rotor Shaft GTG-01"@en .
+
+:CombustionChamber_GTG01 rdf:type owl:NamedIndividual , dynamical:CombustionChamber ;
+    rdfs:label "DLN Combustion Chamber GTG-01"@en .
+
+:Doc_Datasheet_GTG01 rdf:type owl:NamedIndividual , prop:EquipmentDesignDocument ;
+    rdfs:label "Datasheet Técnico - Turbogerador Principal GTG-01"@pt ;
+    iof-core:describes :MainTurbineGenerator_GTG01 ;
+    iof-core:hasContinuantPartAtAllTimes :Tag_GTG01 , :Spec_RatedPower_GTG01 , :Spec_RatedSpeed_GTG01 , :Spec_Efficiency_GTG01 , :Spec_TIT_GTG01 .
+
+:Tag_GTG01 rdf:type owl:NamedIndividual , prop:EquipmentTagIdentifier ;
+    iof-core:identifies :MainTurbineGenerator_GTG01 ;
+    iof-core:hasSimpleExpressionValue "GTG-01" .
+
+:Spec_RatedPower_GTG01 rdf:type owl:NamedIndividual , prop:RatedPowerSpecification ;
+    rdfs:label "Rated Power Specification (ISO 3977-1)"@en ;
+    iof-core:prescribes :MainTurbineGenerator_GTG01 ;
+    iof-core:hasContinuantPartAtAllTimes :Val_Power_GTG01 .
+
+:Val_Power_GTG01 rdf:type owl:NamedIndividual , prop:PowerValueExpression ;
+    obo:IAO_0000039 uo:UO_0000037 ; # megawatt (UO)
+    iof-core:hasSimpleExpressionValue "45.0"^^xsd:double .
+
+:Spec_RatedSpeed_GTG01 rdf:type owl:NamedIndividual , prop:RatedSpeedSpecification ;
+    rdfs:label "Rated Rotational Speed Specification"@en ;
+    iof-core:prescribes :MainTurbineGenerator_GTG01 ;
+    iof-core:hasContinuantPartAtAllTimes :Val_Speed_GTG01 .
+
+:Val_Speed_GTG01 rdf:type owl:NamedIndividual , prop:SpeedValueExpression ;
+    obo:IAO_0000039 uo:UO_0000106 ; # revolutions per minute (UO)
+    iof-core:hasSimpleExpressionValue "5100.0"^^xsd:double .
+
+:Spec_Efficiency_GTG01 rdf:type owl:NamedIndividual , prop:ThermalEfficiencySpecification ;
+    rdfs:label "Thermal Efficiency Specification"@en ;
+    iof-core:prescribes :MainTurbineGenerator_GTG01 ;
+    iof-core:hasContinuantPartAtAllTimes :Val_Efficiency_GTG01 .
+
+:Val_Efficiency_GTG01 rdf:type owl:NamedIndividual , prop:EfficiencyValueExpression ;
+    obo:IAO_0000039 uo:UO_0000187 ; # percent (UO)
+    iof-core:hasSimpleExpressionValue "38.5"^^xsd:double .
+
+:Spec_TIT_GTG01 rdf:type owl:NamedIndividual , prop:TurbineInletTemperatureSpecification ;
+    rdfs:label "Turbine Inlet Temperature Specification (TIT)"@en ;
+    iof-core:prescribes :MainTurbineGenerator_GTG01 ;
+    iof-core:hasContinuantPartAtAllTimes :Val_TIT_GTG01 .
+
+:Val_TIT_GTG01 rdf:type owl:NamedIndividual , prop:TemperatureValueExpression ;
+    obo:IAO_0000039 uo:UO_0000027 ; # degree Celsius (UO)
+    iof-core:hasSimpleExpressionValue "1150.0"^^xsd:double .
+
+
+### 6.2 Painel de Alta Tensão / Média Tensão (SWG-HV-01)
+:HV_Switchgear_01 rdf:type owl:NamedIndividual , electrical:HighVoltageSwitchgear ;
+    rdfs:label "SWG-HV-01 Main High Voltage Switchgear"@en ;
+    core:isLocatedInModule :Module_M06 ;
+    core:hasPort :HV01_Port_Elec ;
+    core:powersEquipment :PowerTransformer_TR01 .
+
+:HV01_Port_Elec rdf:type owl:NamedIndividual , core:ElectricalPort ;
+    core:isPortOf :HV_Switchgear_01 .
+
+:Doc_Datasheet_HV01 rdf:type owl:NamedIndividual , prop:EquipmentDesignDocument ;
+    rdfs:label "Datasheet Técnico - Painel HV SWG-01"@pt ;
+    iof-core:describes :HV_Switchgear_01 ;
+    iof-core:hasContinuantPartAtAllTimes :Tag_HV01 , :Spec_RatedPower_HV01 .
+
+:Tag_HV01 rdf:type owl:NamedIndividual , prop:EquipmentTagIdentifier ;
+    iof-core:identifies :HV_Switchgear_01 ;
+    iof-core:hasSimpleExpressionValue "SWG-HV-01" .
+
+:Spec_RatedPower_HV01 rdf:type owl:NamedIndividual , prop:RatedPowerSpecification ;
+    rdfs:label "Rated Power Capacity"@en ;
+    iof-core:prescribes :HV_Switchgear_01 ;
+    iof-core:hasContinuantPartAtAllTimes :Val_Power_HV01 .
+
+:Val_Power_HV01 rdf:type owl:NamedIndividual , prop:PowerValueExpression ;
+    obo:IAO_0000039 uo:UO_0000037 ; # megawatt (UO)
+    iof-core:hasSimpleExpressionValue "60.0"^^xsd:double .
+
+
+### 6.3 Transformador de Potência Rebaixador (TR-01)
+:PowerTransformer_TR01 rdf:type owl:NamedIndividual , electrical:PowerTransformer ;
+    rdfs:label "TR-01 Main Step-Down Power Transformer"@en ;
+    core:isLocatedInModule :Module_M06 ;
+    core:hasPort :TR01_Port_Elec ;
+    core:powersEquipment :MCC_01 .
+
+:TR01_Port_Elec rdf:type owl:NamedIndividual , core:ElectricalPort ;
+    core:isPortOf :PowerTransformer_TR01 .
+
+
+### 6.4 Centro de Controle de Motores (MCC-01)
+:MCC_01 rdf:type owl:NamedIndividual , electrical:MotorControlCenter ;
+    rdfs:label "MCC-01 Low Voltage Motor Control Center"@en ;
+    core:isLocatedInModule :Module_M06 ;
+    core:hasPort :MCC01_Port_Elec ;
+    core:powersEquipment :Motor_P01 .
+
+:MCC01_Port_Elec rdf:type owl:NamedIndividual , core:ElectricalPort ;
+    core:isPortOf :MCC_01 .
+
+
+### 6.5 Motor Elétrico da Bomba P-01 (M-P01)
+:Motor_P01 rdf:type owl:NamedIndividual , electrical:ElectricMotorEquipment ;
+    rdfs:label "M-P01 Seawater Lift Pump Electric Motor"@en ;
+    core:isLocatedInModule :Module_M01 ;
+    core:hasPort :MP01_Port_Elec .
+
+:MP01_Port_Elec rdf:type owl:NamedIndividual , core:ElectricalPort ;
+    core:isPortOf :Motor_P01 .
+
+
+### 6.6 Gerador Diesel de Emergência (EDG-01)
+:EmergencyGenerator_EDG01 rdf:type owl:NamedIndividual , electrical:EmergencyDieselGenerator ;
+    rdfs:label "EDG-01 Emergency Diesel Generator"@en ;
+    core:isLocatedInModule :Module_M02 ;
+    core:hasPort :EDG01_Port_Elec ;
+    core:powersEquipment :MCC_Emergency .
+
+:EDG01_Port_Elec rdf:type owl:NamedIndividual , core:ElectricalPort ;
+    core:isPortOf :EmergencyGenerator_EDG01 .
+
+:MCC_Emergency rdf:type owl:NamedIndividual , electrical:MotorControlCenter ;
+    rdfs:label "MCC-EMERGENCY Essential Motor Control Center"@en ;
+    core:isLocatedInModule :Module_M02 ;
+    core:hasPort :MCC_EMERG_Port_Elec .
+
+:MCC_EMERG_Port_Elec rdf:type owl:NamedIndividual , core:ElectricalPort ;
+    core:isPortOf :MCC_Emergency .
+

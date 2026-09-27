@@ -1,0 +1,348 @@
+@prefix : <http://usp.ai/ontologies/fpeo-shapes-equipments#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Core e Módulos de Domínio FPEO
+@prefix core: <http://usp.ai/ontologies/fpeo-equipments-core#> .
+@prefix static: <http://usp.ai/ontologies/fpeo-static-equipments#> .
+@prefix dynamical: <http://usp.ai/ontologies/fpeo-dynamical-equipments#> .
+@prefix electrical: <http://usp.ai/ontologies/fpeo-electrical-equipments#> .
+@prefix prop: <http://usp.ai/ontologies/fpeo-properties-equipments#> .
+@prefix iof-core: <https://spec.industrialontologies.org/ontology/core/Core/> .
+
+@base <http://usp.ai/ontologies/fpeo-shapes-equipments#> .
+
+<http://usp.ai/ontologies/fpeo-shapes-equipments> rdf:type owl:Ontology ;
+    rdfs:label "FPEO-Equipments SHACL Shapes Module"@en ;
+    rdfs:comment "Validação estrutural, cardinalidade e integridade topológica sob Hipótese de Mundo Fechado (CWA) para pySHACL."@pt .
+
+#################################################################
+# VALIDAÇÃO DE CONEXÕES OBRIGATÓRIAS E INTEGRAÇÃO DE PROCESSO
+#################################################################
+
+# Validação de descarga da bomba de teste em malha de aquecimento
+:TestSeparatorOilPumpShape
+    a sh:NodeShape ;
+    sh:targetClass dynamical:TestSeparatorOilPump ;
+    sh:property [
+        sh:path core:feedsFluidToEquipment ;
+        sh:minCount 1 ;
+        sh:or (
+            [ sh:class static:TestInletHeater ]
+            [ sh:class static:CrudeExchanger ]
+            [ sh:class static:CrudePreheater ]
+        ) ;
+        sh:message "Bomba do Separador de Teste deve descarregar em TestInletHeater, CrudeExchanger ou CrudePreheater."@pt ;
+    ] .
+
+# Validação de montante do sistema de tratamento de água do mar
+:SeawaterLiftPumpShape
+    a sh:NodeShape ;
+    sh:targetClass dynamical:SeawaterLiftPump ;
+    sh:property [
+        sh:path core:feedsFluidToEquipment ;
+        sh:minCount 1 ;
+        sh:class static:SeawaterCoarseStrainer ;
+        sh:message "Bomba de Captação de Água do Mar exige conexão de saída para SeawaterCoarseStrainer."@pt ;
+    ] .
+
+# Validação de alimentação do sistema de remoção de sulfato
+:SRUFeedPumpShape
+    a sh:NodeShape ;
+    sh:targetClass dynamical:SRUFeedPump ;
+    sh:property [
+        sh:path core:feedsFluidToEquipment ;
+        sh:minCount 1 ;
+        sh:class static:SRUCartridgeFilter ;
+        sh:message "Bomba de Alimentação do SRU exige conexão de saída para SRUCartridgeFilter."@pt ;
+    ] .
+
+# Validação de circulação do fluido de aquecimento da planta
+:HeatingMediumCirculationPumpShape
+    a sh:NodeShape ;
+    sh:targetClass dynamical:HeatingMediumCirculationPump ;
+    sh:property [
+        sh:path core:feedsFluidToEquipment ;
+        sh:minCount 1 ;
+        sh:or (
+            [ sh:class static:CrudeHeater ]
+            [ sh:class static:DilutionWaterHeater ]
+            [ sh:class static:PIPWaterHeater ]
+            [ sh:class static:TestInletHeater ]
+        ) ;
+        sh:message "Bomba de Circulação do Fluido Aquecedor deve alimentar ao menos um trocador de calor da malha térmica."@pt ;
+    ] .
+
+# Validação de desoleação primária de água produzida
+:WaterSkimVesselPumpShape
+    a sh:NodeShape ;
+    sh:targetClass dynamical:WaterSkimVesselPump ;
+    sh:property [
+        sh:path core:feedsFluidToEquipment ;
+        sh:minCount 1 ;
+        sh:class static:DeoilingHydrocyclone ;
+        sh:message "Bomba do Vaso Desnatador deve descarregar obrigatoriamente no DeoilingHydrocyclone."@pt ;
+    ] .
+
+# Validação de compressão de gás de recuperação de vapores
+:ProcessVRUCompressorShape
+    a sh:NodeShape ;
+    sh:targetClass dynamical:ProcessVRUCompressor ;
+    sh:property [
+        sh:path core:feedsFluidToEquipment ;
+        sh:minCount 1 ;
+        sh:class dynamical:LowPressureCompressor ;
+        sh:message "Compressor de VRU deve direcionar fluxo ao Compressor Principal de Baixa Pressão (LowPressureCompressor)."@pt ;
+    ] .
+
+# Validação de suprimento da malha de ar comprimido de instrumentação
+:InstrumentAirCompressorShape
+    a sh:NodeShape ;
+    sh:targetClass dynamical:InstrumentAirCompressor ;
+    sh:property [
+        sh:path core:feedsFluidToEquipment ;
+        sh:minCount 1 ;
+        sh:class static:AirReceiverTank ;
+        sh:message "Compressor de Ar de Instrumentos exige conexão jusante com o Vaso Pulmão (AirReceiverTank)."@pt ;
+    ] .
+
+# Validação de pré-filtragem na linha de óleo cru
+:CrudeExchangerPreFilterShape
+    a sh:NodeShape ;
+    sh:targetClass static:CrudeExchangerPreFilter ;
+    sh:property [
+        sh:path core:feedsFluidToEquipment ;
+        sh:minCount 1 ;
+        sh:or (
+            [ sh:class static:CrudeExchanger ]
+            [ sh:class static:CrudePreheater ]
+            [ sh:class static:CrudeHeater ]
+        ) ;
+        sh:message "Pré-Filtro de Óleo Cru deve descarregar em CrudeExchanger, CrudePreheater ou CrudeHeater."@pt ;
+    ] .
+
+# Validação de pré-filtragem da água de resfriamento
+:SWExchangerPreFilterShape
+    a sh:NodeShape ;
+    sh:targetClass static:SWExchangerPreFilter ;
+    sh:property [
+        sh:path core:feedsFluidToEquipment ;
+        sh:minCount 1 ;
+        sh:class static:CoolingMediumSeawaterExchanger ;
+        sh:message "Pré-Filtro de Água do Mar deve alimentar o trocador CoolingMediumSeawaterExchanger."@pt ;
+    ] .
+
+# Validação da integridade das membranas do SRU
+:SRUCartridgeFilterShape
+    a sh:NodeShape ;
+    sh:targetClass static:SRUCartridgeFilter ;
+    sh:property [
+        sh:path core:feedsFluidToEquipment ;
+        sh:minCount 1 ;
+        sh:class static:SRUMembraneTrain ;
+        sh:message "Filtro de Cartucho do SRU deve alimentar diretamente o Trem de Membranas (SRUMembraneTrain)."@pt ;
+    ] .
+
+# Validação de acúmulo de gás inerte de processo
+:NitrogenGenerationUnitShape
+    a sh:NodeShape ;
+    sh:targetClass static:NitrogenGenerationUnit ;
+    sh:property [
+        sh:path core:feedsFluidToEquipment ;
+        sh:minCount 1 ;
+        sh:class static:NitrogenReceiverTank ;
+        sh:message "Unidade de Nitrogênio deve alimentar o reservatório de estocagem (NitrogenReceiverTank)."@pt ;
+    ] .
+
+# Validação do sequenciamento de polimento de água oleosa
+:DeoilingHydrocycloneShape
+    a sh:NodeShape ;
+    sh:targetClass static:DeoilingHydrocyclone ;
+    sh:property [
+        sh:path core:feedsFluidToEquipment ;
+        sh:minCount 1 ;
+        sh:or (
+            [ sh:class static:GasFlotationCell ]
+            [ sh:class static:ProducedWaterInletCooler ]
+            [ sh:class static:ProducedWaterOverboardCooler ]
+            [ sh:class static:WaterSkimVessel ]
+        ) ;
+        sh:message "Descarga do Hidrociclone deve seguir para flotação, resfriamento ou retorno ao vaso desnatador."@pt ;
+    ] .
+
+#################################################################
+# VALIDAÇÃO DO SISTEMA DE ALÍVIO E FLARE (API 521)
+#################################################################
+
+# Validação de término topológico na ponteira do flare de alta pressão
+:IntegratedHPFlareTipShape
+    a sh:NodeShape ;
+    sh:targetClass static:IntegratedHPFlareTip ;
+    sh:property [
+        sh:path core:feedsFluidToEquipment ;
+        sh:maxCount 0 ;
+        sh:message "Ponteira de Flare HP é um nó terminal e não pode possuir conexões de saída de fluido."@pt ;
+    ] .
+
+# Validação de término topológico na ponteira do flare de baixa pressão
+:IntegratedLPFlareTipShape
+    a sh:NodeShape ;
+    sh:targetClass static:IntegratedLPFlareTip ;
+    sh:property [
+        sh:path core:feedsFluidToEquipment ;
+        sh:maxCount 0 ;
+        sh:message "Ponteira de Flare LP é um nó terminal e não pode possuir conexões de saída de fluido."@pt ;
+    ] .
+
+# Validação de encaminhamento de alívio do tambor de flare HP
+:HPFlareKnockoutDrumShape
+    a sh:NodeShape ;
+    sh:targetClass static:HPFlareKnockoutDrum ;
+    sh:property [
+        sh:path core:feedsFluidToEquipment ;
+        sh:minCount 1 ;
+        sh:class static:IntegratedHPFlareTip ;
+        sh:message "Vaso de Alívio HP (HP Flare KO Drum) deve descarregar na ponteira IntegratedHPFlareTip."@pt ;
+    ] .
+
+# Validação de encaminhamento de alívio do tambor de flare LP
+:LPFlareKnockoutDrumShape
+    a sh:NodeShape ;
+    sh:targetClass static:LPFlareKnockoutDrum ;
+    sh:property [
+        sh:path core:feedsFluidToEquipment ;
+        sh:minCount 1 ;
+        sh:class static:IntegratedLPFlareTip ;
+        sh:message "Vaso de Alívio LP (LP Flare KO Drum) deve descarregar na ponteira IntegratedLPFlareTip."@pt ;
+    ] .
+
+#################################################################
+# VALIDAÇÃO DA REDE DE DISTRIBUIÇÃO ELÉTRICA (SOLAS / IEC)
+#################################################################
+
+# Validação de geração principal conectada ao barramento de alta tensão
+:MainTurbineGeneratorShape
+    a sh:NodeShape ;
+    sh:targetClass electrical:MainTurbineGenerator ;
+    sh:property [
+        sh:path core:powersEquipment ;
+        sh:minCount 1 ;
+        sh:class electrical:HighVoltageSwitchgear ;
+        sh:message "Turbogerador Principal deve alimentar diretamente o Painel de Alta Tensão (HighVoltageSwitchgear)."@pt ;
+    ] .
+
+# Validação de cargas primárias conectadas ao barramento de alta tensão
+:HighVoltageSwitchgearShape
+    a sh:NodeShape ;
+    sh:targetClass electrical:HighVoltageSwitchgear ;
+    sh:property [
+        sh:path core:powersEquipment ;
+        sh:minCount 1 ;
+        sh:or (
+            [ sh:class electrical:PowerTransformer ]
+            [ sh:class electrical:VariableSpeedDrive ]
+            [ sh:class electrical:ElectricMotorEquipment ]
+        ) ;
+        sh:message "Painel de Alta Tensão deve alimentar Transformador, Painel VSD ou Motores de Alta Tensão."@pt ;
+    ] .
+
+# Validação de rebaixamento de tensão para quadros secundários
+:PowerTransformerShape
+    a sh:NodeShape ;
+    sh:targetClass electrical:PowerTransformer ;
+    sh:property [
+        sh:path core:powersEquipment ;
+        sh:minCount 1 ;
+        sh:or (
+            [ sh:class electrical:LowVoltageSwitchgear ]
+            [ sh:class electrical:MotorControlCenter ]
+        ) ;
+        sh:message "Transformador de Potência deve alimentar Painel de Baixa Tensão (LV) ou Centro de Controle de Motores (CCM)."@pt ;
+    ] .
+
+# Validação de circuitos de força do centro de controle de motores
+:MotorControlCenterShape
+    a sh:NodeShape ;
+    sh:targetClass electrical:MotorControlCenter ;
+    sh:property [
+        sh:path core:powersEquipment ;
+        sh:minCount 1 ;
+        sh:or (
+            [ sh:class electrical:ElectricMotorEquipment ]
+            [ sh:class electrical:VariableSpeedDrive ]
+        ) ;
+        sh:message "Centro de Controle de Motores (CCM) deve alimentar Motores Elétricos ou Inversores VSD."@pt ;
+    ] .
+
+# Validação de acionamento por variador de velocidade
+:VariableSpeedDriveShape
+    a sh:NodeShape ;
+    sh:targetClass electrical:VariableSpeedDrive ;
+    sh:property [
+        sh:path core:powersEquipment ;
+        sh:minCount 1 ;
+        sh:class electrical:ElectricMotorEquipment ;
+        sh:message "Inversor de Frequência (VSD) deve alimentar um Motor Elétrico."@pt ;
+    ] .
+
+#################################################################
+# VALIDAÇÃO DE ARQUITETURA E ESPECIFICAÇÃO DE TURBOMÁQUINAS
+#################################################################
+
+# Validação de completude mecânica de turbinas multieixo
+:MultiShaftGasTurbineShape
+    a sh:NodeShape ;
+    sh:targetClass dynamical:MultiShaftGasTurbine ;
+    sh:property [
+        sh:path prop:hasGasGenerator ;
+        sh:minCount 1 ;
+        sh:class dynamical:GasGenerator ;
+        sh:message "Turbina multieixo exige ao menos um Gerador de Gás (GasGenerator) associado."@pt ;
+    ] ;
+    sh:property [
+        sh:path prop:hasPowerTurbine ;
+        sh:minCount 1 ;
+        sh:class dynamical:PowerTurbine ;
+        sh:message "Turbina multieixo exige ao menos uma Turbina de Potência (PowerTurbine) associada."@pt ;
+    ] .
+
+# Validação da câmara de combustão do trem turbogerador
+:GasTurbineCombustionShape
+    a sh:NodeShape ;
+    sh:targetClass dynamical:GasTurbineEquipment ;
+    sh:property [
+        sh:path prop:hasCombustionChamber ;
+        sh:minCount 1 ;
+        sh:class dynamical:CombustionChamber ;
+        sh:message "Equipamento de Turbina a Gás deve possuir ao menos uma Câmara de Combustão declarada."@pt ;
+    ] .
+
+# Validação de especificações metrológicas normativas segundo a IOF
+:GasTurbineSpecificationShape
+    a sh:NodeShape ;
+    sh:targetClass dynamical:GasTurbineEquipment ;
+    sh:property [
+        sh:path iof-core:isPrescribedBy ;
+        sh:qualifiedValueShape [ sh:class prop:RatedPowerSpecification ] ;
+        sh:qualifiedMinCount 1 ;
+        sh:message "Auditoria IOF: A Turbina a Gás deve possuir folha de dados com RatedPowerSpecification."@pt ;
+    ] ;
+    sh:property [
+        sh:path iof-core:isPrescribedBy ;
+        sh:qualifiedValueShape [ sh:class prop:RatedSpeedSpecification ] ;
+        sh:qualifiedMinCount 1 ;
+        sh:message "Auditoria IOF: A Turbina a Gás deve possuir folha de dados com RatedSpeedSpecification."@pt ;
+    ] .
+
+# Validação de componentes estáticos de turbina sem linhas de processo
+:TurbineComponentEquipmentShape
+    a sh:NodeShape ;
+    sh:targetClass dynamical:TurbineComponentEquipment ;
+    sh:property [
+        sh:path core:feedsFluidToEquipment ;
+        sh:maxCount 0 ;
+        sh:message "Componente interno de turbina não pode possuir conexões de processo externas (feedsFluidToEquipment)."@pt ;
+    ] .

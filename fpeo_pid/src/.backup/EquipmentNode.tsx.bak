@@ -1,0 +1,245 @@
+import React, { memo } from 'react';
+import { Handle, Position, NodeProps } from '@xyflow/react';
+import { EquipmentCategory, EquipmentPort, EquipmentComponent } from '@/lib/types';
+import { CategoryIcon } from './icons';
+import { AlertTriangle, Cpu, Compass } from 'lucide-react';
+
+export interface EquipmentNodeData {
+  equipment: {
+    uri: string;
+    shortUri: string;
+    label: string;
+    classLabel: string;
+    category: EquipmentCategory;
+    ports: EquipmentPort[];
+    components?: EquipmentComponent[];
+  };
+  label: string;
+  category: EquipmentCategory;
+  classLabel: string;
+  hasError?: boolean;
+  errorMessage?: string;
+  isSelected?: boolean;
+  rotation?: number; // 0, 90, 180, 270
+}
+
+const categoryColors: Record<EquipmentCategory, { border: string; bg: string; text: string; badge: string }> = {
+  CompressorEquipment: { border: 'border-cyan-500/60', bg: 'bg-cyan-950/50', text: 'text-cyan-400', badge: 'bg-cyan-900/60 text-cyan-300 border-cyan-700' },
+  PumpEquipment: { border: 'border-cyan-400/60', bg: 'bg-cyan-950/40', text: 'text-cyan-300', badge: 'bg-cyan-900/40 text-cyan-200 border-cyan-700' },
+  GasTurbineEquipment: { border: 'border-amber-500/60', bg: 'bg-amber-950/50', text: 'text-amber-400', badge: 'bg-amber-900/60 text-amber-300 border-amber-700' },
+  PressureVesselEquipment: { border: 'border-emerald-500/60', bg: 'bg-emerald-950/50', text: 'text-emerald-400', badge: 'bg-emerald-900/60 text-emerald-300 border-emerald-700' },
+  HeatExchangeEquipment: { border: 'border-orange-500/60', bg: 'bg-orange-950/50', text: 'text-orange-400', badge: 'bg-orange-900/60 text-orange-300 border-orange-700' },
+  SeparationAndFilterEquipment: { border: 'border-purple-500/60', bg: 'bg-purple-950/50', text: 'text-purple-400', badge: 'bg-purple-900/60 text-purple-300 border-purple-700' },
+  StorageAndPipingHeaderEquipment: { border: 'border-slate-500/60', bg: 'bg-slate-950/50', text: 'text-slate-300', badge: 'bg-slate-900/60 text-slate-300 border-slate-700' },
+  ValveAndSecurityEquipment: { border: 'border-red-500/60', bg: 'bg-red-950/50', text: 'text-red-400', badge: 'bg-red-900/60 text-red-300 border-red-700' },
+  ElectricalEquipment: { border: 'border-yellow-500/60', bg: 'bg-yellow-950/50', text: 'text-yellow-400', badge: 'bg-yellow-900/60 text-yellow-300 border-yellow-700' },
+  RenewableEquipment: { border: 'border-green-500/60', bg: 'bg-green-950/50', text: 'text-green-400', badge: 'bg-green-900/60 text-green-300 border-green-700' },
+  GenericEquipment: { border: 'border-slate-600', bg: 'bg-slate-900/50', text: 'text-slate-400', badge: 'bg-slate-800 text-slate-400 border-slate-700' },
+};
+
+const POSITION_ORDER: Position[] = [Position.Left, Position.Top, Position.Right, Position.Bottom];
+
+function getRotatedPosition(basePos: Position, rotationAngle: number = 0): Position {
+  const steps = Math.floor(rotationAngle / 90) % 4;
+  const currIdx = POSITION_ORDER.indexOf(basePos);
+  if (currIdx === -1) return basePos;
+  return POSITION_ORDER[(currIdx + steps) % 4];
+}
+
+const rotationBadges: Record<number, { label: string; arrow: string }> = {
+  0: { label: '0°', arrow: '➡️' },
+  90: { label: '90°', arrow: '⬇️' },
+  180: { label: '180°', arrow: '⬅️' },
+  270: { label: '270°', arrow: '⬆️' },
+};
+
+function EquipmentNodeComponent({ data, selected }: NodeProps) {
+  const nodeData = data as unknown as EquipmentNodeData;
+  const { equipment, label, category, classLabel, hasError, errorMessage, rotation = 0 } = nodeData;
+  const colors = categoryColors[category] || categoryColors.GenericEquipment;
+
+  const currentRotation = rotationBadges[rotation] || rotationBadges[0];
+
+  // Calculate rotated position for each port
+  const portsWithPosition = (equipment.ports || []).map((port) => {
+    let basePos = Position.Left;
+    if (port.type === 'InletPort') basePos = Position.Left;
+    else if (port.type === 'OutletPort') basePos = Position.Right;
+    else if (port.type === 'ElectricalPort' || port.type === 'SignalPort') basePos = Position.Bottom;
+
+    const rotatedPos = getRotatedPosition(basePos, rotation);
+    return { ...port, rotatedPos };
+  });
+
+  // Group ports by their rotated Position (Left, Right, Top, Bottom)
+  const leftPorts = portsWithPosition.filter((p) => p.rotatedPos === Position.Left);
+  const rightPorts = portsWithPosition.filter((p) => p.rotatedPos === Position.Right);
+  const topPorts = portsWithPosition.filter((p) => p.rotatedPos === Position.Top);
+  const bottomPorts = portsWithPosition.filter((p) => p.rotatedPos === Position.Bottom);
+
+  return (
+    <div
+      className={`relative w-[280px] rounded-xl backdrop-blur-md border shadow-2xl transition-all duration-300 ${colors.bg} ${
+        hasError
+          ? 'border-red-500 ring-2 ring-red-500/50 shadow-red-500/20'
+          : selected
+          ? 'border-cyan-400 ring-2 ring-cyan-400/40 shadow-cyan-500/20'
+          : colors.border
+      }`}
+    >
+      {/* Static Error Badge */}
+      {hasError && (
+        <div className="absolute -top-3 -right-3 z-20 flex items-center gap-1 bg-red-600 text-white px-2.5 py-0.5 rounded-full text-xs font-extrabold shadow-md border border-red-400">
+          <AlertTriangle className="w-3.5 h-3.5" />
+          <span>INCONSISTENTE</span>
+        </div>
+      )}
+
+      {/* Rotation Indicator Badge */}
+      {selected && (
+        <div
+          title="Use as setas do teclado (⬆️ ⬇️ ⬅️ ➡️) para rotacionar a orientação do equipamento"
+          className="absolute -top-3 -left-3 z-20 flex items-center gap-1 bg-cyan-950 text-cyan-300 px-2 py-0.5 rounded-full text-[10px] font-mono font-bold shadow-lg border border-cyan-500/60 animate-pulse"
+        >
+          <Compass className="w-3 h-3 text-cyan-400" />
+          <span>{currentRotation.label} {currentRotation.arrow}</span>
+        </div>
+      )}
+
+      {/* Header (Always Horizontal & Legible) */}
+      <div className="flex items-center gap-3 p-3 border-b border-slate-800/80 bg-slate-900/60 rounded-t-xl">
+        <div className="p-2 rounded-lg bg-slate-950/80 border border-slate-800 shadow-inner flex items-center justify-center">
+          <CategoryIcon category={category} className="w-7 h-7" />
+        </div>
+        <div className="flex-1 min-w-0">
+          <h3 className="text-sm font-bold text-slate-100 truncate leading-tight" title={label}>
+            {label}
+          </h3>
+          <span className={`inline-block text-[10px] font-medium px-2 py-0.5 mt-1 rounded border ${colors.badge} truncate max-w-full`}>
+            {classLabel}
+          </span>
+        </div>
+      </div>
+
+      {/* Body / URI (Always Horizontal & Legible) */}
+      <div className="p-3 text-xs space-y-1.5 bg-slate-950/30">
+        <div className="flex justify-between items-center text-slate-400">
+          <span className="text-[10px] uppercase tracking-wider text-slate-500 font-semibold">ID Semântico</span>
+          <span className="font-mono text-[11px] text-slate-300 bg-slate-900/80 px-1.5 py-0.5 rounded border border-slate-800 truncate max-w-[170px]" title={equipment.shortUri}>
+            {equipment.shortUri}
+          </span>
+        </div>
+
+        {equipment.components && equipment.components.length > 0 && (
+          <div className="flex justify-between items-center pt-1 border-t border-slate-900 text-slate-400">
+            <span className="text-[10px] uppercase tracking-wider text-purple-400 font-semibold flex items-center gap-1">
+              <Cpu className="w-3 h-3 text-purple-400" />
+              Componentes
+            </span>
+            <span className="font-mono text-[10px] text-purple-300 bg-purple-950/80 px-1.5 py-0.5 rounded border border-purple-800 font-bold">
+              {equipment.components.length}
+            </span>
+          </div>
+        )}
+
+        {hasError && errorMessage && (
+          <div className="p-2 rounded bg-red-950/80 border border-red-800/80 text-[11px] text-red-200 leading-tight font-medium mt-2">
+            ⚠️ {errorMessage}
+          </div>
+        )}
+      </div>
+
+      {/* ----------------- PORT HANDLES AROUND 4 EDGES ----------------- */}
+
+      {/* LEFT SIDE HANDLES */}
+      <div className="absolute left-0 top-1/2 -translate-y-1/2 flex flex-col gap-3 -translate-x-1.5 z-10">
+        {leftPorts.map((p) => {
+          const isTarget = p.type === 'InletPort' || p.type === 'ElectricalPort';
+          const handleColor = p.type === 'InletPort' ? '!bg-emerald-500' : p.type === 'OutletPort' ? '!bg-orange-500' : '!bg-yellow-400';
+          const textColor = p.type === 'InletPort' ? 'text-emerald-400 border-emerald-800/60' : p.type === 'OutletPort' ? 'text-orange-400 border-orange-800/60' : 'text-yellow-300 border-yellow-800/60';
+
+          return (
+            <div key={p.uri} className="relative group">
+              <Handle
+                type={isTarget ? 'target' : 'source'}
+                position={Position.Left}
+                id={p.uri}
+                className={`w-3.5 h-3.5 ${handleColor} !border-2 !border-slate-900 rounded-full shadow-md`}
+              />
+              <span
+                title={p.shortUri}
+                className={`absolute left-4 top-1/2 -translate-y-1/2 text-[9px] font-mono bg-slate-950/90 px-1 rounded border ${textColor} pointer-events-none opacity-80 group-hover:opacity-100 transition-opacity truncate max-w-[90px] whitespace-nowrap shadow-sm`}
+              >
+                {p.type === 'InletPort' ? 'IN' : p.type === 'OutletPort' ? 'OUT' : 'ELEC'}: {p.shortUri}
+              </span>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* RIGHT SIDE HANDLES */}
+      <div className="absolute right-0 top-1/2 -translate-y-1/2 flex flex-col gap-3 translate-x-1.5 z-10">
+        {rightPorts.map((p) => {
+          const isTarget = p.type === 'InletPort' || p.type === 'ElectricalPort';
+          const handleColor = p.type === 'InletPort' ? '!bg-emerald-500' : p.type === 'OutletPort' ? '!bg-orange-500' : '!bg-yellow-400';
+          const textColor = p.type === 'InletPort' ? 'text-emerald-400 border-emerald-800/60' : p.type === 'OutletPort' ? 'text-orange-400 border-orange-800/60' : 'text-yellow-300 border-yellow-800/60';
+
+          return (
+            <div key={p.uri} className="relative group flex justify-end">
+              <Handle
+                type={isTarget ? 'target' : 'source'}
+                position={Position.Right}
+                id={p.uri}
+                className={`w-3.5 h-3.5 ${handleColor} !border-2 !border-slate-900 rounded-full shadow-md`}
+              />
+              <span
+                title={p.shortUri}
+                className={`absolute right-4 top-1/2 -translate-y-1/2 text-[9px] font-mono bg-slate-950/90 px-1 rounded border ${textColor} pointer-events-none opacity-80 group-hover:opacity-100 transition-opacity truncate max-w-[90px] whitespace-nowrap shadow-sm`}
+              >
+                {p.type === 'InletPort' ? 'IN' : p.type === 'OutletPort' ? 'OUT' : 'ELEC'}: {p.shortUri}
+              </span>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* TOP SIDE HANDLES */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 flex gap-3 -translate-y-1.5 z-10">
+        {topPorts.map((p) => {
+          const isTarget = p.type === 'InletPort' || p.type === 'ElectricalPort';
+          const handleColor = p.type === 'InletPort' ? '!bg-emerald-500' : p.type === 'OutletPort' ? '!bg-orange-500' : '!bg-yellow-400';
+
+          return (
+            <Handle
+              key={p.uri}
+              type={isTarget ? 'target' : 'source'}
+              position={Position.Top}
+              id={p.uri}
+              className={`w-3.5 h-3.5 ${handleColor} !border-2 !border-slate-900 rounded-full shadow-md`}
+            />
+          );
+        })}
+      </div>
+
+      {/* BOTTOM SIDE HANDLES */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex gap-3 translate-y-1.5 z-10">
+        {bottomPorts.map((p) => {
+          const isTarget = p.type === 'InletPort' || p.type === 'ElectricalPort';
+          const handleColor = p.type === 'InletPort' ? '!bg-emerald-500' : p.type === 'OutletPort' ? '!bg-orange-500' : '!bg-yellow-400';
+
+          return (
+            <Handle
+              key={p.uri}
+              type={isTarget ? 'target' : 'source'}
+              position={Position.Bottom}
+              id={p.uri}
+              className={`w-3.5 h-3.5 ${handleColor} !border-2 !border-slate-900 rounded-full shadow-md`}
+            />
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+export const EquipmentNode = memo(EquipmentNodeComponent);

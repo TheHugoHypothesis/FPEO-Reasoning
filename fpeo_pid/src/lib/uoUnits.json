@@ -1,0 +1,4020 @@
+[
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000269",
+    "id": "UO_0000269",
+    "label": "absorbance unit",
+    "short": "AU",
+    "definition": "A dimensionless logarithmic unit assigned to a measure of absorbance of light through a partially absorbing substance, defined as -log10(I/I_0) where I = transmitted light and I_0 = incident light."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000269",
+    "id": "UO_1000269",
+    "label": "absorbance unit based unit",
+    "short": "absorbance unit based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000129",
+    "id": "UO_0000129",
+    "label": "absorbed dose unit",
+    "short": "absorbed dose unit",
+    "definition": "A unit which is a standard measure of the energy imparted by ionizing radiation to unit mass of matter such as tissue."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000048",
+    "id": "UO_0000048",
+    "label": "acceleration unit",
+    "short": "acceleration unit",
+    "definition": "A unit which is a standard measure of the rate of change of velocity in either speed or direction."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010025",
+    "id": "UO_0010025",
+    "label": "acre",
+    "short": "acre",
+    "definition": "An area unit which is equivalent to 1 furlong x 1 chain. This is equal to an area of 4,046.856,4224 square meters, or 43,500 square feet."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1010025",
+    "id": "UO_1010025",
+    "label": "acre based unit",
+    "short": "acre based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000128",
+    "id": "UO_0000128",
+    "label": "activity (of a radionuclide) unit",
+    "short": "activity (of a radionuclide) unit",
+    "definition": "A unit which is a standard measure of the transformation (disintegration) rate of a radioactive substance."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000276",
+    "id": "UO_0000276",
+    "label": "amount per container",
+    "short": "amount per container",
+    "definition": "A concentration unit which is a standard measure of the amount of a substance in a given container."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000011",
+    "id": "UO_0000011",
+    "label": "ampere",
+    "short": "A",
+    "definition": "An electric current unit which is equal to the constant current which, if maintained in two straight parallel conductors of infinite length, of negligible circular cross-section, and placed 1 m apart in vacuum, would produce between these conductors a force equal to 2 x 10^[-7] newton per meter of length."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000011",
+    "id": "UO_1000011",
+    "label": "ampere based unit",
+    "short": "ampere based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000121",
+    "id": "UO_0000121",
+    "label": "angle unit",
+    "short": "angle unit",
+    "definition": "A unit which is a standard measure of the figure or space formed by the junction of two lines or planes."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000019",
+    "id": "UO_0000019",
+    "label": "angstrom",
+    "short": "Å",
+    "definition": "A length unit which is equal to 10 [-10] m."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000019",
+    "id": "UO_1000019",
+    "label": "angstrom based unit",
+    "short": "angstrom based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000050",
+    "id": "UO_0000050",
+    "label": "angular acceleration unit",
+    "short": "angular acceleration unit",
+    "definition": "A unit which is a standard measure of the rate of change of angular velocity."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000049",
+    "id": "UO_0000049",
+    "label": "angular velocity unit",
+    "short": "angular velocity unit",
+    "definition": "A unit which is a standard measure of the rate of angular movement about an axis; the angle rotated in a given time."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000054",
+    "id": "UO_0000054",
+    "label": "area density unit",
+    "short": "mass per unit area unit",
+    "definition": "A density unit which is a standard measure of the mass exerting an influence on a given area."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000047",
+    "id": "UO_0000047",
+    "label": "area unit",
+    "short": "area unit",
+    "definition": "A unit which is a standard measure of the amount of a 2-dimensional flat surface."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000304",
+    "id": "UO_0000304",
+    "label": "atto",
+    "short": "a",
+    "definition": "A prefix in the metric system denoting a factor of 10 to the power of -18."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000044",
+    "id": "UO_0000044",
+    "label": "attomole",
+    "short": "amol",
+    "definition": "A substance unit equal to 10^[-18] mol."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010043",
+    "id": "UO_0010043",
+    "label": "australian metric tablespoon",
+    "short": "australian metric tablespoon",
+    "definition": "An Australian metric tablespoon is a unit of measurement of volume used in Australia for cooking recipes and pharmaceutic prescriptions. It equals a 20mL volume."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010069",
+    "id": "UO_0010069",
+    "label": "bar",
+    "short": "bar",
+    "definition": "A pressure unit which is equal to 100,000 pascal or the pressure or stress on a surface caused by a force of 100,000 newtons spread over a surface of 1 m^[2]."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000244",
+    "id": "UO_0000244",
+    "label": "base pair",
+    "short": "basepair",
+    "definition": "A count unit which contains one nucleotide."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000244",
+    "id": "UO_1000244",
+    "label": "base pair based unit",
+    "short": "base pair based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000045",
+    "id": "UO_0000045",
+    "label": "base unit",
+    "short": "base unit",
+    "definition": "A unit which is one of a particular measure to which all measures of that type can be related."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000132",
+    "id": "UO_0000132",
+    "label": "becquerel",
+    "short": "Bq",
+    "definition": "An activity (of a radionuclide) unit which is equal to the activity of a quantity of radioactive material in which one nucleus decays per second or there is one atom disintegration per second (dps)."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000132",
+    "id": "UO_1000132",
+    "label": "becquerel based unit",
+    "short": "becquerel based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000232",
+    "id": "UO_0000232",
+    "label": "bit",
+    "short": "bit",
+    "definition": "An information unit which refers to a digit in the binary numeral system, which consists of base 2 digits (ie there are only 2 possible values: 0 or 1)."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000232",
+    "id": "UO_1000232",
+    "label": "bit based unit",
+    "short": "bit based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010076",
+    "id": "UO_0010076",
+    "label": "breaths per minute",
+    "short": "br/min",
+    "definition": "A rate unit which represents a measurement of the number of breaths taken by an organism per one minute."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000233",
+    "id": "UO_0000233",
+    "label": "byte",
+    "short": "B",
+    "definition": "An information unit which is equal to 8 bits."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000233",
+    "id": "UO_1000233",
+    "label": "byte based unit",
+    "short": "byte based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010021",
+    "id": "UO_0010021",
+    "label": "cable",
+    "short": "cable",
+    "definition": "A maritime length unit which is equal to 608 feet, 100 fathoms, or 185.3184 metres"
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1010021",
+    "id": "UO_1010021",
+    "label": "cable based unit",
+    "short": "cable based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000014",
+    "id": "UO_0000014",
+    "label": "candela",
+    "short": "cd",
+    "definition": "A luminous intensity unit which equal to the luminous intensity, in a given direction, of a source that emits monochromatic radiation of frequency 540 x 1012 hertz and that has a radiant intensity in that direction of 1/683 watt per steradian."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000014",
+    "id": "UO_1000014",
+    "label": "candela based unit",
+    "short": "candela based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000085",
+    "id": "UO_0000085",
+    "label": "candela per square meter",
+    "short": "candela per square metre",
+    "definition": "A luminance unit which is equal to a luminous intensity of one candela radiating from a surface whose area is one square meter."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000085",
+    "id": "UO_1000085",
+    "label": "candela per square meter based unit",
+    "short": "candela per square meter based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000202",
+    "id": "UO_0000202",
+    "label": "catalytic (activity) concentration unit",
+    "short": "catalytic (activity) concentration unit",
+    "definition": "A concentration unit which is a standard measure of the amount of the action of a catalyst in a given volume."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000119",
+    "id": "UO_0000119",
+    "label": "catalytic activity unit",
+    "short": "catalytic activity unit",
+    "definition": "A unit which is a standard measure of the amount of the action of a catalyst."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000200",
+    "id": "UO_0000200",
+    "label": "cell concentration unit",
+    "short": "cell concentration unit",
+    "definition": "A concentration unit which denotes the average cell number in a given volume."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010073",
+    "id": "UO_0010073",
+    "label": "cell count",
+    "short": "cell count",
+    "definition": "A count unit that denotes a count of cells."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000316",
+    "id": "UO_0000316",
+    "label": "cells per microliter",
+    "short": "cells per microlitre",
+    "definition": "A unit of cell concentration which is equal to one cell in a volume of 1 microliter."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000201",
+    "id": "UO_0000201",
+    "label": "cells per milliliter",
+    "short": "cells per millilitre",
+    "definition": "A unit of cell concentration which is equal to one cell in a volume of 1 milliliter."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000201",
+    "id": "UO_1000201",
+    "label": "cells per milliliter based unit",
+    "short": "cells per milliliter based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000317",
+    "id": "UO_0000317",
+    "label": "cells per well",
+    "short": "cells per well",
+    "definition": "A unit of cell concentration which is equal to 1 cell in a well or discrete container of arbitrary volume."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000298",
+    "id": "UO_0000298",
+    "label": "centi",
+    "short": "10^[-2]",
+    "definition": "A prefix in the metric system denoting a factor of one hundredth."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010055",
+    "id": "UO_0010055",
+    "label": "centigray",
+    "short": "cGy",
+    "definition": "An absorbed dose unit which is equal to 0.01 gray (Gy)"
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010061",
+    "id": "UO_0010061",
+    "label": "centigray per minute",
+    "short": "cGy/min",
+    "definition": "A derived absorbed dose unit which is equal to one centigray absorbed per minute."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000015",
+    "id": "UO_0000015",
+    "label": "centimeter",
+    "short": "centimetre",
+    "definition": "A length unit which is equal to one hundredth of a meter or 10^[-2] m."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000326",
+    "id": "UO_0000326",
+    "label": "centiMorgan",
+    "short": "cM",
+    "definition": "A unit used to express distances on a genetic map. In genetic mapping, distances between markers are determined by measuring the rate of meoitic recombination between them, which increases proportionately with the distance separating them. A cM is defined as the length of an interval in which there is a 1% probability of recombination. On the average, 1 cM is roughly equivalent to 1 megabase (Mb) of DNA, although this can vary widely due to hot and cold spots of recombination."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000327",
+    "id": "UO_0000327",
+    "label": "centiRay",
+    "short": "cR",
+    "definition": "A unit of genetic map distance defined corresponding to an interval in which there is a 1% probability of X-irradiation induced breakage. To be completely specified, the unit must be qualified by the radiation in dosage in rads (e.g. cR8000), because this determines the actual breakage probability."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000151",
+    "id": "UO_0000151",
+    "label": "century",
+    "short": "century",
+    "definition": "A time unit which is equal to 100 years."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000151",
+    "id": "UO_1000151",
+    "label": "century based unit",
+    "short": "century based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010015",
+    "id": "UO_0010015",
+    "label": "chain",
+    "short": "ch",
+    "definition": "A length unit which is equal to 20.1168 metres, 66 feet, or 22 yards."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1010015",
+    "id": "UO_1010015",
+    "label": "chain based unit",
+    "short": "chain based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000237",
+    "id": "UO_0000237",
+    "label": "chroma sampling unit",
+    "short": "chroma sampling unit",
+    "definition": "An image resolution unit which is a standard measure of the amount of spatial detail in an image."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000237",
+    "id": "UO_1000237",
+    "label": "chroma sampling unit based unit",
+    "short": "chroma sampling unit based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000210",
+    "id": "UO_0000210",
+    "label": "colony forming unit",
+    "short": "cfu",
+    "definition": "A dimensionless count unit which a measure of viable bacterial numbers."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000210",
+    "id": "UO_1000210",
+    "label": "colony forming unit based unit",
+    "short": "colony forming unit based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000213",
+    "id": "UO_0000213",
+    "label": "colony forming unit per milliliter",
+    "short": "cfu/ml",
+    "definition": "A colony forming unit which a measure of viable bacterial numbers in one milliliter."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000213",
+    "id": "UO_1000213",
+    "label": "colony forming unit per milliliter based unit",
+    "short": "colony forming unit per milliliter based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000212",
+    "id": "UO_0000212",
+    "label": "colony forming unit per volume",
+    "short": "colony forming unit per volume",
+    "definition": "A concentration unit which a measure of viable bacterial numbers in a given volume."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000051",
+    "id": "UO_0000051",
+    "label": "concentration unit",
+    "short": "concentration unit",
+    "definition": "A unit which represents a standard measurement of how much of a given substance there is mixed with another substance."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000261",
+    "id": "UO_0000261",
+    "label": "conduction unit",
+    "short": "conduction unit",
+    "definition": "A unit which represents a standard measurement of the transmission of an entity through a medium."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000194",
+    "id": "UO_0000194",
+    "label": "confluence percentage",
+    "short": "confluence percentage",
+    "definition": "A dimensionless percent unit which denotes the density of an attached or monolayer culture (e.g., cell culture)."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000194",
+    "id": "UO_1000194",
+    "label": "confluence percentage based unit",
+    "short": "confluence percentage based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000220",
+    "id": "UO_0000220",
+    "label": "coulomb",
+    "short": "C",
+    "definition": "An electrical charge unit which is equal to the amount of charge transferred by a current of 1 ampere in 1 second."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000220",
+    "id": "UO_1000220",
+    "label": "coulomb based unit",
+    "short": "coulomb based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000285",
+    "id": "UO_0000285",
+    "label": "count per molar",
+    "short": "1/M",
+    "definition": "A rate unit which is equal to one over one molar."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000285",
+    "id": "UO_1000285",
+    "label": "count per molar based unit",
+    "short": "count per molar based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000282",
+    "id": "UO_0000282",
+    "label": "count per molar second",
+    "short": "M^-1 s^-1",
+    "definition": "A rate unit which is equal to one over one molar second."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000282",
+    "id": "UO_1000282",
+    "label": "count per molar second based unit",
+    "short": "count per molar second based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000284",
+    "id": "UO_0000284",
+    "label": "count per nanomolar",
+    "short": "1/nM",
+    "definition": "A rate unit which is equal to one over one nanomolar."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000284",
+    "id": "UO_1000284",
+    "label": "count per nanomolar based unit",
+    "short": "count per nanomolar based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000281",
+    "id": "UO_0000281",
+    "label": "count per nanomolar second",
+    "short": "nM^-1 s^-1",
+    "definition": "A rate unit which is equal to one over one nanomolar second."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000281",
+    "id": "UO_1000281",
+    "label": "count per nanomolar second based unit",
+    "short": "count per nanomolar second based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000189",
+    "id": "UO_0000189",
+    "label": "count unit",
+    "short": "count",
+    "definition": "A dimensionless unit which denotes a simple count of things."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000148",
+    "id": "UO_0000148",
+    "label": "counts per minute",
+    "short": "cpm",
+    "definition": "An activity (of a radionuclide) unit which is equal to the number of light emissions produced by ionizing radiation in one minute."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000148",
+    "id": "UO_1000148",
+    "label": "counts per minute based unit",
+    "short": "counts per minute based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000097",
+    "id": "UO_0000097",
+    "label": "cubic centimeter",
+    "short": "cc",
+    "definition": "A volume unit which is equal to one millionth of a cubic meter or 10^[-9] m^[3], or to 1 ml."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000097",
+    "id": "UO_1000097",
+    "label": "cubic centimeter based unit",
+    "short": "cubic centimeter based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000090",
+    "id": "UO_0000090",
+    "label": "cubic centimeter per mole",
+    "short": "cm^[3]/mol",
+    "definition": "A molar volume unit which is equal to 1 cubic centimeter occupied by one mole of a substance in the form of a solid, liquid, or gas."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000090",
+    "id": "UO_1000090",
+    "label": "cubic centimeter per mole based unit",
+    "short": "cubic centimeter per mole based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000100",
+    "id": "UO_0000100",
+    "label": "cubic decimeter",
+    "short": "cubic decimetre",
+    "definition": "A volume unit which is equal to one thousand of a cubic meter or 10^[-3] m^[3], or to 1 L."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000100",
+    "id": "UO_1000100",
+    "label": "cubic decimeter based unit",
+    "short": "cubic decimeter based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000096",
+    "id": "UO_0000096",
+    "label": "cubic meter",
+    "short": "cubic metre",
+    "definition": "A volume unit which is equal to the volume of a cube with edges one meter in length. One cubic meter equals to 1000 liters."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000096",
+    "id": "UO_1000096",
+    "label": "cubic meter based unit",
+    "short": "cubic meter based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000093",
+    "id": "UO_0000093",
+    "label": "cubic meter per kilogram",
+    "short": "cubic metre per kilogram",
+    "definition": "A specific volume unit which is equal to one cubic meter volume occupied by one kilogram of a particular substance."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000093",
+    "id": "UO_1000093",
+    "label": "cubic meter per kilogram based unit",
+    "short": "cubic meter per kilogram based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000089",
+    "id": "UO_0000089",
+    "label": "cubic meter per mole",
+    "short": "cubic metre per mole",
+    "definition": "A molar volume unit which is equal to 1 cubic meter occupied by one mole of a substance in the form of a solid, liquid, or gas."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000089",
+    "id": "UO_1000089",
+    "label": "cubic meter per mole based unit",
+    "short": "cubic meter per mole based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000133",
+    "id": "UO_0000133",
+    "label": "curie",
+    "short": "Ci",
+    "definition": "An activity (of a radionuclide) unit which is equal to the activity of a quantity of radioactive material in which there are 3.7 x 10^[10] atom disintegration per second (dps)."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000133",
+    "id": "UO_1000133",
+    "label": "curie based unit",
+    "short": "curie based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000320",
+    "id": "UO_0000320",
+    "label": "curie per liter",
+    "short": "curie per litre",
+    "definition": "A unit of radioactivity concentration which is equal to one curie in a volume of 1 liter."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000221",
+    "id": "UO_0000221",
+    "label": "dalton",
+    "short": "Da",
+    "definition": "An independently to the base SI units defined mass unit which is equal to one twelfth of the mass of an unbound atom of the carbon-12 nuclide, at rest and in its ground state."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000221",
+    "id": "UO_1000221",
+    "label": "dalton based unit",
+    "short": "dalton based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000033",
+    "id": "UO_0000033",
+    "label": "day",
+    "short": "day",
+    "definition": "A time unit which is equal to 24 hours."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000033",
+    "id": "UO_1000033",
+    "label": "day based unit",
+    "short": "day based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000295",
+    "id": "UO_0000295",
+    "label": "deca",
+    "short": "10^[1]",
+    "definition": "A prefix in the metric system denoting a factor of ten."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000296",
+    "id": "UO_0000296",
+    "label": "deci",
+    "short": "10^[-1]",
+    "definition": "A prefix in the metric system denoting a factor of one tenth."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000259",
+    "id": "UO_0000259",
+    "label": "decibel",
+    "short": "dB",
+    "definition": "A ratio unit which is an indicator of sound power per unit area."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000209",
+    "id": "UO_0000209",
+    "label": "deciliter",
+    "short": "decilitre",
+    "definition": "A volume unit which is equal to one tenth of a liter or 10^[-1] L."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000185",
+    "id": "UO_0000185",
+    "label": "degree",
+    "short": "degree",
+    "definition": "A plane angle unit which is equal to 1/360 of a full rotation or 1.7453310^[-2] rad."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000185",
+    "id": "UO_1000185",
+    "label": "degree based unit",
+    "short": "degree based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000027",
+    "id": "UO_0000027",
+    "label": "degree Celsius",
+    "short": "C",
+    "definition": "A temperature unit which is equal to one kelvin degree. However, they have their zeros at different points. The centigrade scale has its zero at 273.15 K."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000027",
+    "id": "UO_1000027",
+    "label": "degree Celsius based unit",
+    "short": "degree Celsius based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000195",
+    "id": "UO_0000195",
+    "label": "degree Fahrenheit",
+    "short": "F",
+    "definition": "A temperature unit which is equal to 5/9ths of a kelvin. Negative 40 degrees Fahrenheit is equal to negative 40 degrees Celsius."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000195",
+    "id": "UO_1000195",
+    "label": "degree Fahrenheit based unit",
+    "short": "degree Fahrenheit based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000182",
+    "id": "UO_0000182",
+    "label": "density unit",
+    "short": "density unit",
+    "definition": "A unit which is a standard measure of the influence exerted by some mass."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000186",
+    "id": "UO_0000186",
+    "label": "dimensionless unit",
+    "short": "dimensionless unit",
+    "definition": "A unit which is a standard measure of physical quantity consisting of only a numerical number without any units."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000147",
+    "id": "UO_0000147",
+    "label": "disintegrations per minute",
+    "short": "dpm",
+    "definition": "An activity (of a radionuclide) unit which is equal to the activity of a quantity of radioactive material in which one nucleus decays per minute or there is one atom disintegration per minute."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000147",
+    "id": "UO_1000147",
+    "label": "disintegrations per minute based unit",
+    "short": "disintegrations per minute based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000216",
+    "id": "UO_0000216",
+    "label": "disintegrations per second",
+    "short": "dps",
+    "definition": "An activity (of a radionuclide) unit which is equal to the activity of a quantity of radioactive material in which one nucleus decays per second or there is one atom disintegration per second."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000216",
+    "id": "UO_1000216",
+    "label": "disintegrations per second based unit",
+    "short": "disintegrations per second based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000310",
+    "id": "UO_0000310",
+    "label": "dosage unit",
+    "short": "dosage unit",
+    "definition": "A concentration unit which is a standard measure of the amount of a toxic or pharmaceutical substance administered over time to a recipient subject, expressed in terms of the size of the subject."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000310",
+    "id": "UO_1000310",
+    "label": "dosage unit based unit",
+    "short": "dosage unit based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000130",
+    "id": "UO_0000130",
+    "label": "dose equivalent unit",
+    "short": "dose equivalent unit",
+    "definition": "A unit which is a standard measure of the expression of dose in terms of its biological effect."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000307",
+    "id": "UO_0000307",
+    "label": "dose unit",
+    "short": "dose unit",
+    "definition": "A concentration unit which is a standard measure of the amount of a toxic or pharmaceutical substance administered to a recipient subject, expressed in terms of the size of the subject."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000240",
+    "id": "UO_0000240",
+    "label": "dots per inch",
+    "short": "dpi",
+    "definition": "A spatial resolution unit which is a standard measure of the printing resolution, in particular the number of individual dots of ink a printer or toner can produce within a linear one-inch space."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000240",
+    "id": "UO_1000240",
+    "label": "dots per inch based unit",
+    "short": "dots per inch based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010032",
+    "id": "UO_0010032",
+    "label": "drachm",
+    "short": "dr",
+    "definition": "An imperial mass unit which is equivalent to 1.771,845,195,3125 grams, or 1/256 of 1 pound."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1010032",
+    "id": "UO_1010032",
+    "label": "drachm based unit",
+    "short": "drachm based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000238",
+    "id": "UO_0000238",
+    "label": "dynamic range unit",
+    "short": "dynamic range unit",
+    "definition": "An image resolution unit which is a standard measure of the amount of contrast available in a pixel."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000238",
+    "id": "UO_1000238",
+    "label": "dynamic range unit based unit",
+    "short": "dynamic range unit based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000255",
+    "id": "UO_0000255",
+    "label": "dyne per cm",
+    "short": "dyn/cm",
+    "definition": "A surface tension unit which is equal to one dyne per centimeter."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000255",
+    "id": "UO_1000255",
+    "label": "dyne per cm based unit",
+    "short": "dyne per cm based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000260",
+    "id": "UO_0000260",
+    "label": "effective dose unit",
+    "short": "effective dose unit",
+    "definition": "A unit which is a standard measure of the estimate of the stochastic effect that a non-uniform radiation dose has on a human."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000260",
+    "id": "UO_1000260",
+    "label": "effective dose unit based unit",
+    "short": "effective dose unit based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000156",
+    "id": "UO_0000156",
+    "label": "einstein per square meter per second",
+    "short": "einstein per square metre per second",
+    "definition": "An irradiance unit which is equal to one einstein per square meter per second. One einstein is one mole of photons, regardless of their frequency. Therefore, the number of photons in an einstein is Avogadro's number."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000156",
+    "id": "UO_1000156",
+    "label": "einstein per square meter per second based unit",
+    "short": "einstein per square meter per second based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000219",
+    "id": "UO_0000219",
+    "label": "electric charge",
+    "short": "electric charge",
+    "definition": "A unit which is a standard measure of the quantity of unbalanced electricity in a body (either positive or negative) and construed as an excess or deficiency of electrons."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000004",
+    "id": "UO_0000004",
+    "label": "electric current unit",
+    "short": "electric current unit",
+    "definition": "A unit which is a standard measure of the flow of electric charge."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000267",
+    "id": "UO_0000267",
+    "label": "electric field strength unit",
+    "short": "E-field strength",
+    "definition": "The electric field strength is a unit which is a measure of the potential difference between two points some distance apart."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000217",
+    "id": "UO_0000217",
+    "label": "electric potential difference unit",
+    "short": "electric potential difference unit",
+    "definition": "A unit which is a standard measure of the work done per unit charge as a charge is moved between two points in an electric field."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000262",
+    "id": "UO_0000262",
+    "label": "electrical conduction unit",
+    "short": "electrical conduction unit",
+    "definition": "A unit which represents a standard measurement of the movement of electrically charged particles through a transmission medium (electrical conductor)."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000266",
+    "id": "UO_0000266",
+    "label": "electronvolt",
+    "short": "eV",
+    "definition": "A non-SI unit of energy (eV) defined as the energy acquired by a single unbound electron when it passes through an electrostatic potential difference of one volt. An electronvolt is equal to 1.602 176 53(14) x 10^-19 J."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000266",
+    "id": "UO_1000266",
+    "label": "electronvolt based unit",
+    "short": "electronvolt based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000111",
+    "id": "UO_0000111",
+    "label": "energy unit",
+    "short": "energy unit",
+    "definition": "A unit which is a standard measure of the work done by a certain force (gravitational, electric, magnetic, force of inertia, etc)."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000181",
+    "id": "UO_0000181",
+    "label": "enzyme unit",
+    "short": "U",
+    "definition": "A catalytic unit activity which is equal to the amount of the enzyme that catalyzes the conversion of 1 micro mole of substrate per minute."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000181",
+    "id": "UO_1000181",
+    "label": "enzyme unit based unit",
+    "short": "enzyme unit based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000289",
+    "id": "UO_0000289",
+    "label": "exa",
+    "short": "10^[18]",
+    "definition": "A prefix in the metric system denoting a factor of ten to the power of 18."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000131",
+    "id": "UO_0000131",
+    "label": "exposure unit",
+    "short": "exposure unit",
+    "definition": "A unit which is a standard measure of the quantity that expresses the ability of radiation to ionize air and thereby create electric charges which can be collected and measured."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010020",
+    "id": "UO_0010020",
+    "label": "fathom",
+    "short": "ftm",
+    "definition": "A maritime length unit which is equal to 6.08 feet, or 1.853184 metres"
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1010020",
+    "id": "UO_1010020",
+    "label": "fathom based unit",
+    "short": "fathom based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000303",
+    "id": "UO_0000303",
+    "label": "femto",
+    "short": "10^[-15]",
+    "definition": "A prefix in the metric system denoting a factor of 10 to the power of -15."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000026",
+    "id": "UO_0000026",
+    "label": "femtogram",
+    "short": "fg",
+    "definition": "A mass unit which is equal to 10^[-15] g."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000104",
+    "id": "UO_0000104",
+    "label": "femtoliter",
+    "short": "femtolitre",
+    "definition": "A volume unit which is equal to 10^[-15] L."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000073",
+    "id": "UO_0000073",
+    "label": "femtomolar",
+    "short": "fM",
+    "definition": "A unit of molarity which is equal to 10^[-15] M."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000043",
+    "id": "UO_0000043",
+    "label": "femtomole",
+    "short": "fmol",
+    "definition": "A substance unit equal to 10^[-15] mol."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010026",
+    "id": "UO_0010026",
+    "label": "fluid ounce",
+    "short": "fl oz",
+    "definition": "An imperial volume unit which is equivalent to 28.413,0625 millilitres."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1010026",
+    "id": "UO_1010026",
+    "label": "fluid ounce based unit",
+    "short": "fluid ounce based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000322",
+    "id": "UO_0000322",
+    "label": "fold dilution",
+    "short": "fold dilution",
+    "definition": "A unit that is the ratio of concentration of two solutions of interest, typically with one solution derived from the other by the addition of solvent."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010013",
+    "id": "UO_0010013",
+    "label": "foot",
+    "short": "ft",
+    "definition": "A length unit which is equal to 0.3048 metres, or 12 inches."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1010013",
+    "id": "UO_1010013",
+    "label": "foot based unit",
+    "short": "foot based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000153",
+    "id": "UO_0000153",
+    "label": "foot candle",
+    "short": "ft-c",
+    "definition": "An illuminance unit which is equal to the illuminance produced by 1 lumen evenly spread over an area 1 foot^[2]. One footcandle is equal to 10.76 lux."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000153",
+    "id": "UO_1000153",
+    "label": "foot candle based unit",
+    "short": "foot candle based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000107",
+    "id": "UO_0000107",
+    "label": "force unit",
+    "short": "force unit",
+    "definition": "A unit which is a standard measure of the force is applied when a mass is accelerated."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000318",
+    "id": "UO_0000318",
+    "label": "formazin nephelometric unit",
+    "short": "FNU",
+    "definition": "1000 formazin turbidity units (FNU) on the empirical formazin turbidity scale represents reflectance of insol. reaction products of 0.0725 g hydrazine sulfate with 0.7250 g hexamethylenetetramine diluted to 1 L."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000191",
+    "id": "UO_0000191",
+    "label": "fraction",
+    "short": "fraction",
+    "definition": "A dimensionless ratio unit which relates the part (the numerator) to the whole (the denominator)."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000105",
+    "id": "UO_0000105",
+    "label": "frequency unit",
+    "short": "frequency unit",
+    "definition": "A unit which is a standard measure of the number of repetitive actions in a particular time."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010016",
+    "id": "UO_0010016",
+    "label": "furlong",
+    "short": "fur",
+    "definition": "A length unit which is equal to 20,116.8 metres, 660 feet, or 10 chains."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1010016",
+    "id": "UO_1010016",
+    "label": "furlong based unit",
+    "short": "furlong based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010030",
+    "id": "UO_0010030",
+    "label": "gallon",
+    "short": "gal",
+    "definition": "An imperial volume unit which is equivalent to 4,546.09 millilitres, or 8 pints."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1010030",
+    "id": "UO_1010030",
+    "label": "gallon based unit",
+    "short": "gallon based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000292",
+    "id": "UO_0000292",
+    "label": "giga",
+    "short": "10^[9]",
+    "definition": "A prefix in the metric system denoting a factor of ten to the power of 9."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000330",
+    "id": "UO_0000330",
+    "label": "giga base pair",
+    "short": "Gb",
+    "definition": "A unit equal to one billion base pairs."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000331",
+    "id": "UO_0000331",
+    "label": "gigabyte",
+    "short": "GB",
+    "definition": "An information unit which is equal to 1000000000 bytes."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010056",
+    "id": "UO_0010056",
+    "label": "gigaelectronvolt",
+    "short": "GeV",
+    "definition": "A unit of energy that is equal to one thousand million electronvolts."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010057",
+    "id": "UO_0010057",
+    "label": "gigaelectronvolt per nucleon",
+    "short": "GeV/nucleon",
+    "definition": "Derived unit which is equal to the total kinetic energy of an atomic nucleus in GeV divided by the number of nucleons in the nucleus"
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010027",
+    "id": "UO_0010027",
+    "label": "gill",
+    "short": "gi",
+    "definition": "An imperial volume unit which is equivalent to 142.065,3125 millilitres."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1010027",
+    "id": "UO_1010027",
+    "label": "gill based unit",
+    "short": "gill based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010031",
+    "id": "UO_0010031",
+    "label": "grain",
+    "short": "gr",
+    "definition": "An imperial mass unit which is equivalent to 64.798,91 milligrams."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1010031",
+    "id": "UO_1010031",
+    "label": "grain based unit",
+    "short": "grain based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000021",
+    "id": "UO_0000021",
+    "label": "gram",
+    "short": "g",
+    "definition": "A mass unit which is equal to one thousandth of a kilogram or 10^[-3] kg."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000021",
+    "id": "UO_1000021",
+    "label": "gram based unit",
+    "short": "gram based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000084",
+    "id": "UO_0000084",
+    "label": "gram per cubic centimeter",
+    "short": "g/cm^[3]",
+    "definition": "A mass unit density which is equal to mass of an object in grams divided by the volume in cubic centimeters."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000084",
+    "id": "UO_1000084",
+    "label": "gram per cubic centimeter based unit",
+    "short": "gram per cubic centimeter based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000208",
+    "id": "UO_0000208",
+    "label": "gram per deciliter",
+    "short": "g/dl",
+    "definition": "A mass density unit which is equal to mass of an object in grams divided by the volume in deciliters."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000208",
+    "id": "UO_1000208",
+    "label": "gram per deciliter based unit",
+    "short": "gram per deciliter based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000175",
+    "id": "UO_0000175",
+    "label": "gram per liter",
+    "short": "g/L",
+    "definition": "A mass unit density which is equal to mass of an object in grams divided by the volume in liters."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000175",
+    "id": "UO_1000175",
+    "label": "gram per liter based unit",
+    "short": "gram per liter based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000173",
+    "id": "UO_0000173",
+    "label": "gram per milliliter",
+    "short": "g/ml",
+    "definition": "A mass unit density which is equal to mass of an object in grams divided by the volume in milliliter."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000173",
+    "id": "UO_1000173",
+    "label": "gram per milliliter based unit",
+    "short": "gram per milliliter based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000088",
+    "id": "UO_0000088",
+    "label": "gram per mole",
+    "short": "g/mol",
+    "definition": "A molar mass unit which is equal to one gram of mass of one mole of chemical element or chemical compound."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000088",
+    "id": "UO_1000088",
+    "label": "gram per mole based unit",
+    "short": "gram per mole based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010049",
+    "id": "UO_0010049",
+    "label": "gram per square meter",
+    "short": "g/m^[2]",
+    "definition": "An area density unit which is equal to the mass of an object in grams divided by the surface area in meters squared."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1010049",
+    "id": "UO_1010049",
+    "label": "gram per square meter based unit",
+    "short": "gram per square meter based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000134",
+    "id": "UO_0000134",
+    "label": "gray",
+    "short": "Gy",
+    "definition": "An absorbed dose unit which is equal to the absorption of one joule of radiation energy by one kilogram of matter."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000134",
+    "id": "UO_1000134",
+    "label": "gray based unit",
+    "short": "gray based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010060",
+    "id": "UO_0010060",
+    "label": "gray per minute",
+    "short": "Gy/min",
+    "definition": "A derived absorbed dose unit which is equal to one gray absorbed per minute."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1010060",
+    "id": "UO_1010060",
+    "label": "gray per minute based unit",
+    "short": "gray per minute based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000152",
+    "id": "UO_0000152",
+    "label": "half life",
+    "short": "half life",
+    "definition": "A time unit which represents the period over which the activity or concentration of a specified chemical or element falls to half its original activity or concentration."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000152",
+    "id": "UO_1000152",
+    "label": "half life based unit",
+    "short": "half life based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010074",
+    "id": "UO_0010074",
+    "label": "heartbeats per minute",
+    "short": "BPM",
+    "definition": "A rate unit which represents a measurement of the number of an organism's heartbeats per one minute."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000263",
+    "id": "UO_0000263",
+    "label": "heat conduction unit",
+    "short": "heat conduction unit",
+    "definition": "A unit which represents a standard measurement of the spontaneous transfer of thermal energy through matter, from a region of higher temperature to a region of lower temperature."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010010",
+    "id": "UO_0010010",
+    "label": "hectare",
+    "short": "HA",
+    "definition": "An area unit which is equal to an area of 10,000 square meters. Equivalent to 2.471 acres."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1010010",
+    "id": "UO_1010010",
+    "label": "hectare based unit",
+    "short": "hectare based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000287",
+    "id": "UO_0000287",
+    "label": "hecto",
+    "short": "10^[2]",
+    "definition": "A prefix in the metric system denoting a factor of one hundred."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000106",
+    "id": "UO_0000106",
+    "label": "hertz",
+    "short": "Hz",
+    "definition": "A frequency unit which is equal to 1 complete cycle of a recurring phenomenon in 1 second."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000106",
+    "id": "UO_1000106",
+    "label": "hertz based unit",
+    "short": "hertz based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000032",
+    "id": "UO_0000032",
+    "label": "hour",
+    "short": "h",
+    "definition": "A time unit which is equal to 3600 seconds or 60 minutes."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000032",
+    "id": "UO_1000032",
+    "label": "hour based unit",
+    "short": "hour based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010037",
+    "id": "UO_0010037",
+    "label": "hundredweight",
+    "short": "cwt",
+    "definition": "An imperial mass unit which is equivalent to 50.802,345,44 kilograms, 112 pounds, or 8 stone."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1010037",
+    "id": "UO_1010037",
+    "label": "hundredweight based unit",
+    "short": "hundredweight based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000115",
+    "id": "UO_0000115",
+    "label": "illuminance unit",
+    "short": "illuminance unit",
+    "definition": "A unit which is a standard measure of the luminous flux incident on a unit area."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000236",
+    "id": "UO_0000236",
+    "label": "image resolution unit",
+    "short": "image resolution unit",
+    "definition": "An information unit which is a standard measure of the detail an image holds."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010011",
+    "id": "UO_0010011",
+    "label": "inch",
+    "short": "in",
+    "definition": "A length unit which is equal to 0.0254 metres."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1010011",
+    "id": "UO_1010011",
+    "label": "inch based unit",
+    "short": "inch based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000231",
+    "id": "UO_0000231",
+    "label": "information unit",
+    "short": "information unit",
+    "definition": "A unit which is a standard measure of the amount of information."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000154",
+    "id": "UO_0000154",
+    "label": "irradiance unit",
+    "short": "irradiance unit",
+    "definition": "A unit which is a standard measure of the power of electromagnetic radiation at a surface, per unit area."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000112",
+    "id": "UO_0000112",
+    "label": "joule",
+    "short": "J",
+    "definition": "An energy unit which is equal to the energy required when a force of 1 newton moves an object 1 meter in the direction of the force."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000112",
+    "id": "UO_1000112",
+    "label": "joule based unit",
+    "short": "joule based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000120",
+    "id": "UO_0000120",
+    "label": "katal",
+    "short": "kat",
+    "definition": "A catalytic unit activity which is equal to the activity of a catalyst in moles per second, such as the amount of an enzyme needed to transform one mole of substrate per second."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000120",
+    "id": "UO_1000120",
+    "label": "katal based unit",
+    "short": "katal based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000203",
+    "id": "UO_0000203",
+    "label": "katal per cubic meter",
+    "short": "kat/m^[3]",
+    "definition": "A catalytic (activity) concentration unit which is equal to 1 katal activity of a catalyst in a given volume of one cubic meter."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000203",
+    "id": "UO_1000203",
+    "label": "katal per cubic meter based unit",
+    "short": "katal per cubic meter based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000204",
+    "id": "UO_0000204",
+    "label": "katal per liter",
+    "short": "kat/l",
+    "definition": "A catalytic (activity) concentration unit which is equal to 1 katal activity of a catalyst in a given volume of one thousandth of a cubic meter."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000204",
+    "id": "UO_1000204",
+    "label": "katal per liter based unit",
+    "short": "katal per liter based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000012",
+    "id": "UO_0000012",
+    "label": "kelvin",
+    "short": "K",
+    "definition": "A thermodynamic temperature unit which is equal to the fraction 1/273.16 of the thermodynamic temperature of the triple point of water."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000012",
+    "id": "UO_1000012",
+    "label": "kelvin based unit",
+    "short": "kelvin based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000245",
+    "id": "UO_0000245",
+    "label": "kibibyte",
+    "short": "KiB",
+    "definition": "An information unit which is equal to 1024 B."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000245",
+    "id": "UO_1000245",
+    "label": "kibibyte based unit",
+    "short": "kibibyte based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000294",
+    "id": "UO_0000294",
+    "label": "kilo",
+    "short": "10^[3]",
+    "definition": "A prefix in the metric system denoting a factor of one thousand."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000328",
+    "id": "UO_0000328",
+    "label": "kilo base pair",
+    "short": "kbp",
+    "definition": "A unit equal to one thousand base pairs."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000234",
+    "id": "UO_0000234",
+    "label": "kilobyte",
+    "short": "kB",
+    "definition": "An information unit which is equal to 1000 bytes."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000222",
+    "id": "UO_0000222",
+    "label": "kilodalton",
+    "short": "kDa",
+    "definition": "A mass unit which is equal to one thousand daltons."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010059",
+    "id": "UO_0010059",
+    "label": "kiloelectronvolt per micron",
+    "short": "keV/micron",
+    "definition": "A derived unit equal to the energy deposited by ionizing radiation per micron of path length in matter"
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000009",
+    "id": "UO_0000009",
+    "label": "kilogram",
+    "short": "kg",
+    "definition": "A mass unit which is equal to the mass of the International Prototype Kilogram kept by the BIPM at Svres, France."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000091",
+    "id": "UO_0000091",
+    "label": "kilogram meter per second",
+    "short": "kg.m/s",
+    "definition": "A momentum unit which is equal to the momentum of a one kilogram mass object with a speed of one meter per second."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000083",
+    "id": "UO_0000083",
+    "label": "kilogram per cubic meter",
+    "short": "kg/m^[3]",
+    "definition": "A mass unit density which is equal to mass of an object in kilograms divided by the volume in cubic meters."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000283",
+    "id": "UO_0000283",
+    "label": "kilogram per hectare",
+    "short": "kilogram per hectare",
+    "definition": "An area density unit which is equal to the mass of an object in kilograms divided by the surface area in hectares."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000174",
+    "id": "UO_0000174",
+    "label": "kilogram per liter",
+    "short": "kg/L",
+    "definition": "A mass unit density which is equal to mass of an object in kilograms divided by the volume in liters."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000184",
+    "id": "UO_0000184",
+    "label": "kilogram per meter",
+    "short": "kg/m",
+    "definition": "An area density unit which is equal to the mass of an object in kilograms divided by one meter."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000087",
+    "id": "UO_0000087",
+    "label": "kilogram per mole",
+    "short": "kg/mol",
+    "definition": "A molar mass unit which is equal to one kilogram of mass of one mole of chemical element or chemical compound."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000086",
+    "id": "UO_0000086",
+    "label": "kilogram per square meter",
+    "short": "kg/m^[2]",
+    "definition": "An area density unit which is equal to the mass of an object in kilograms divided by the surface area in meters squared."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010066",
+    "id": "UO_0010066",
+    "label": "kilometer",
+    "short": "kilometre",
+    "definition": "A length unit which is equal to one thousand meters."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010008",
+    "id": "UO_0010008",
+    "label": "kilometer per hour",
+    "short": "kilometre per hour",
+    "definition": "A speed/velocity unit which is equal to the speed of an object traveling 1 kilometer distance in one hour."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000248",
+    "id": "UO_0000248",
+    "label": "kilovolt",
+    "short": "kV",
+    "definition": "An electric potential difference unit which is equal to one thousand volts or 10^[3] V."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000230",
+    "id": "UO_0000230",
+    "label": "kilovolt-hour",
+    "short": "kVh",
+    "definition": "A magnetic flux unit which is equal to one thousand volt-hours."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000224",
+    "id": "UO_0000224",
+    "label": "kilowatt-hour",
+    "short": "kilowatt-hour",
+    "definition": "An energy unit which is equal to 1,000 watt-hours."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010051",
+    "id": "UO_0010051",
+    "label": "large calorie",
+    "short": "big calorie",
+    "definition": "A unit of energy widely used in nutrition, equivalent to the amount of heat needed to cause one kilogram of water to rise in temperature by one degree Celsius."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1010051",
+    "id": "UO_1010051",
+    "label": "large calorie based unit",
+    "short": "large calorie based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010018",
+    "id": "UO_0010018",
+    "label": "league",
+    "short": "lea",
+    "definition": "A length unit which is equal to 3 miles, or 4,828.032 metres"
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1010018",
+    "id": "UO_1010018",
+    "label": "league based unit",
+    "short": "league based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000001",
+    "id": "UO_0000001",
+    "label": "length unit",
+    "short": "length unit",
+    "definition": "A unit which is a standard measure of the distance between two points."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000157",
+    "id": "UO_0000157",
+    "label": "light unit",
+    "short": "light unit",
+    "definition": "A unit which is a standard measure of the intensity of light."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000183",
+    "id": "UO_0000183",
+    "label": "linear density unit",
+    "short": "linear density unit",
+    "definition": "A density unit which is a standard measure of the mass exerting an influence on a one-dimensional object."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000099",
+    "id": "UO_0000099",
+    "label": "liter",
+    "short": "L",
+    "definition": "A volume unit which is equal to one thousandth of a cubic meter or 10^[-3] m^[3], or to 1 decimeter."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000099",
+    "id": "UO_1000099",
+    "label": "liter based unit",
+    "short": "liter based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000197",
+    "id": "UO_0000197",
+    "label": "liter per kilogram",
+    "short": "l/kg",
+    "definition": "A specific volume unit which is equal to one liter volume occupied by one kilogram of a particular substance."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000197",
+    "id": "UO_1000197",
+    "label": "liter per kilogram based unit",
+    "short": "liter per kilogram based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000118",
+    "id": "UO_0000118",
+    "label": "lumen",
+    "short": "lm",
+    "definition": "A luminous flux unit which is equal to the luminous flux emitted into 1 steradian by a point source of 1 candela."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000118",
+    "id": "UO_1000118",
+    "label": "lumen based unit",
+    "short": "lumen based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000053",
+    "id": "UO_0000053",
+    "label": "luminance unit",
+    "short": "luminance unit",
+    "definition": "A unit which is a standard measure of the luminous intensity impinging on a given area."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000117",
+    "id": "UO_0000117",
+    "label": "luminous flux unit",
+    "short": "luminous flux unit",
+    "definition": "A unit which is a standard measure of the flow of radiant energy."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000007",
+    "id": "UO_0000007",
+    "label": "luminous intensity unit",
+    "short": "luminous intensity unit",
+    "definition": "A unit which is a standard measure of the wavelength-weighted power emitted by a light source in a particular direction."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000116",
+    "id": "UO_0000116",
+    "label": "lux",
+    "short": "lx",
+    "definition": "An illuminance unit which is equal to the illuminance produced by 1 lumen evenly spread over an area 1 m^[2]."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000116",
+    "id": "UO_1000116",
+    "label": "lux based unit",
+    "short": "lux based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000227",
+    "id": "UO_0000227",
+    "label": "magnetic flux density unit",
+    "short": "B",
+    "definition": "A unit which is a standard measure of the strength of a magnetic field."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000225",
+    "id": "UO_0000225",
+    "label": "magnetic flux unit",
+    "short": "magnetic flux unit",
+    "definition": "A unit which is a standard measure of quantity of magnetism, taking account of the strength and the extent of a magnetic field."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010019",
+    "id": "UO_0010019",
+    "label": "maritime length unit",
+    "short": "maritime length unit",
+    "definition": "A maritime length unit is one used primarily at sea."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1010019",
+    "id": "UO_1010019",
+    "label": "maritime length unit based unit",
+    "short": "maritime length unit based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000052",
+    "id": "UO_0000052",
+    "label": "mass density unit",
+    "short": "mass per unit volume",
+    "definition": "A density unit which is a standard measure of the mass of a substance in a given volume."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000180",
+    "id": "UO_0000180",
+    "label": "mass per unit volume",
+    "short": "mass per unit volume",
+    "definition": "A concentration unit which is a standard measure of the mass of a substance in a given volume (density)."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000180",
+    "id": "UO_1000180",
+    "label": "mass per unit volume based unit",
+    "short": "mass per unit volume based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000163",
+    "id": "UO_0000163",
+    "label": "mass percentage",
+    "short": "w/w",
+    "definition": "A dimensionless concentration unit which denotes the mass of a substance in a mixture as a percentage of the mass of the entire mixture."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000163",
+    "id": "UO_1000163",
+    "label": "mass percentage based unit",
+    "short": "mass percentage based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000002",
+    "id": "UO_0000002",
+    "label": "mass unit",
+    "short": "mass unit",
+    "definition": "A unit which is a standard measure of the amount of matter/energy of a physical object."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000164",
+    "id": "UO_0000164",
+    "label": "mass volume percentage",
+    "short": "(w/v)",
+    "definition": "A dimensionless concentration unit which denotes the mass of the substance in a mixture as a percentage of the volume of the entire mixture."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000164",
+    "id": "UO_1000164",
+    "label": "mass volume percentage based unit",
+    "short": "mass volume percentage based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000246",
+    "id": "UO_0000246",
+    "label": "mebibyte",
+    "short": "MiB",
+    "definition": "An information unit which is equal to 1024 KiB."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000246",
+    "id": "UO_1000246",
+    "label": "mebibyte based unit",
+    "short": "mebibyte based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000293",
+    "id": "UO_0000293",
+    "label": "mega",
+    "short": "10^[6]",
+    "definition": "A prefix in the metric system denoting a factor of million."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000329",
+    "id": "UO_0000329",
+    "label": "mega base pair",
+    "short": "Mb",
+    "definition": "A unit equal to one million base pairs"
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000235",
+    "id": "UO_0000235",
+    "label": "megabyte",
+    "short": "MB",
+    "definition": "An information unit which is equal to 1000 kB."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010058",
+    "id": "UO_0010058",
+    "label": "megaelectronvolt per nucleon",
+    "short": "MeV/nucleon",
+    "definition": "Derived unit which is equal to the total kinetic energy of an atomic nucleus in MeV divided by the number of nucleons in the nucleus"
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000325",
+    "id": "UO_0000325",
+    "label": "megaHertz",
+    "short": "mH",
+    "definition": "A frequency unit which is equal to one million hertz or 10^[6] V."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000252",
+    "id": "UO_0000252",
+    "label": "megavolt",
+    "short": "MV",
+    "definition": "An electric potential difference unit which is equal to one million volts or 10^[6] V."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000008",
+    "id": "UO_0000008",
+    "label": "meter",
+    "short": "m",
+    "definition": "A length unit which is equal to the length of the path traveled by light in vacuum during a time interval of 1/299 792 458 of a second."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000008",
+    "id": "UO_1000008",
+    "label": "meter based unit",
+    "short": "meter based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000094",
+    "id": "UO_0000094",
+    "label": "meter per second",
+    "short": "m/s",
+    "definition": "A speed/velocity unit which is equal to the speed of an object traveling 1 meter distance in one second."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000094",
+    "id": "UO_1000094",
+    "label": "meter per second based unit",
+    "short": "meter per second based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000077",
+    "id": "UO_0000077",
+    "label": "meter per second per second",
+    "short": "m/s^[2]",
+    "definition": "An acceleration unit which is equal to the acceleration an object changing its velocity by 1meter/s over a time period that equals one second."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000077",
+    "id": "UO_1000077",
+    "label": "meter per second per second based unit",
+    "short": "meter per second per second based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010045",
+    "id": "UO_0010045",
+    "label": "metric cup",
+    "short": "C",
+    "definition": "A metric cup is a unit of measurement of volume widely used in cooking recipes and pharmaceutic prescriptions. It equals a 250mL volume."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000299",
+    "id": "UO_0000299",
+    "label": "micro",
+    "short": "10^[-6]",
+    "definition": "A prefix in the metric system denoting a factor of 10 to the power of -6."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000038",
+    "id": "UO_0000038",
+    "label": "microampere",
+    "short": "uA",
+    "definition": "An electric current unit current which is equal to one millionth of an ampere or 10^[-6] A."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000146",
+    "id": "UO_0000146",
+    "label": "microcurie",
+    "short": "uCi",
+    "definition": "An activity (of a radionuclide) unit which is equal to one millionth of a curie or 10^[-6] Ci."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000321",
+    "id": "UO_0000321",
+    "label": "microcurie per milliliter",
+    "short": "microcurie per millilitre",
+    "definition": "A unit of radioactivity concentration which is equal to one micro curie in a volume of 1 liter."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000160",
+    "id": "UO_0000160",
+    "label": "microeinstein per square meter per second",
+    "short": "microeinstein per square metre per second",
+    "definition": "An irradiance unit which is equal to one microeinstein per square meter per second or 10^[-6] microeinstein/sm^[2]."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000023",
+    "id": "UO_0000023",
+    "label": "microgram",
+    "short": "ug",
+    "definition": "A mass unit which is equal to one millionth of a gram or 10^[-6] g."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010068",
+    "id": "UO_0010068",
+    "label": "microgram per deciliter",
+    "short": "microgram per decilitre",
+    "definition": "A mass unit density which is equal to mass of an object in micrograms divided by the volume in deciliters."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000301",
+    "id": "UO_0000301",
+    "label": "microgram per liter",
+    "short": "microgram per litre",
+    "definition": "A mass unit density which is equal to mass of an object in micrograms divided by the volume in liters."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010072",
+    "id": "UO_0010072",
+    "label": "microgram per microliter",
+    "short": "mcg/mcL",
+    "definition": "A mass unit density which is equal to mass of an object in nanograms divided by the volume in microliters."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000274",
+    "id": "UO_0000274",
+    "label": "microgram per milliliter",
+    "short": "microgram per millilitre",
+    "definition": "A mass unit density which is equal to mass of an object in micrograms divided by the volume in millliters."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010071",
+    "id": "UO_0010071",
+    "label": "microgram per square centimeter",
+    "short": "mcg/cm2",
+    "definition": "An area density unit which is equal to the mass of an object in micrograms divided by the surface area in square centimeters."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010053",
+    "id": "UO_0010053",
+    "label": "micrograms per wheaton bottle",
+    "short": "micrograms per bottle",
+    "definition": "A unit of mass concentration defined as the number of micrograms of a substance per 250 ml Wheaton bottle."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000141",
+    "id": "UO_0000141",
+    "label": "microgray",
+    "short": "uGy",
+    "definition": "An absorbed dose unit which is equal to one millionth of a gray or 10^[-6] Gy."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000101",
+    "id": "UO_0000101",
+    "label": "microliter",
+    "short": "microlitre",
+    "definition": "A volume unit which is equal to one millionth of a liter or 10^[-6] L."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000199",
+    "id": "UO_0000199",
+    "label": "microliter per kilogram",
+    "short": "microlitre per kilogram",
+    "definition": "A specific volume unit which is equal to one millionth of a liter per kilogram or 10^[-6] l/kg."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000271",
+    "id": "UO_0000271",
+    "label": "microliters per minute",
+    "short": "microlitres per minute",
+    "definition": "A volumetric flow rate unit which is equal to one microliter volume through a given surface in one minute."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000017",
+    "id": "UO_0000017",
+    "label": "micrometer",
+    "short": "micrometre",
+    "definition": "A length unit which is equal to one millionth of a meter or 10^[-6] m."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000070",
+    "id": "UO_0000070",
+    "label": "micromolal",
+    "short": "um",
+    "definition": "A molality unit which is equal to one millionth of a molal or 10^[-6] m."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000064",
+    "id": "UO_0000064",
+    "label": "micromolar",
+    "short": "uM",
+    "definition": "A unit of molarity which is equal to one millionth of a molar or 10^[-6] M."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000039",
+    "id": "UO_0000039",
+    "label": "micromole",
+    "short": "umol",
+    "definition": "A substance unit equal to a millionth of a mol or 10^[-6] mol."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010004",
+    "id": "UO_0010004",
+    "label": "micromole per kilogram",
+    "short": "micromole per kilogram",
+    "definition": "A specific concentration unit which is equal to 1 micromole of a given substance per kilogram of solvent."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010003",
+    "id": "UO_0010003",
+    "label": "micromole per litre",
+    "short": "micromole per litre",
+    "definition": "A specific concentration unit which is equal to 1 micromole in a given volume of one thousandth of a cubic meter."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000241",
+    "id": "UO_0000241",
+    "label": "micron pixel",
+    "short": "micrometer pixel",
+    "definition": "A spatial resolution unit which is equal to a pixel size of one micrometer."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000029",
+    "id": "UO_0000029",
+    "label": "microsecond",
+    "short": "us",
+    "definition": "A time unit which is equal to one millionth of a second or 10^[-6] s."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000139",
+    "id": "UO_0000139",
+    "label": "microsievert",
+    "short": "uSv",
+    "definition": "A dose equivalent unit which is equal to one millionth of a sievert or 10^[-6] Sv."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000249",
+    "id": "UO_0000249",
+    "label": "microvolt",
+    "short": "uV",
+    "definition": "An electric potential difference unit which is equal to one millionth of a volt or 10^[-6] V."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010017",
+    "id": "UO_0010017",
+    "label": "mile",
+    "short": "mi",
+    "definition": "A length unit which is equal to 1,609.344 metres, or 8 furlongs."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1010017",
+    "id": "UO_1010017",
+    "label": "mile based unit",
+    "short": "mile based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000297",
+    "id": "UO_0000297",
+    "label": "milli",
+    "short": "10^[-3]",
+    "definition": "A prefix in the metric system denoting a factor of one thousandth."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000037",
+    "id": "UO_0000037",
+    "label": "milliampere",
+    "short": "mA",
+    "definition": "An electric current unit current which is equal to one thousandth of an ampere or 10^[-3] A."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000145",
+    "id": "UO_0000145",
+    "label": "millicurie",
+    "short": "mCi",
+    "definition": "An activity (of a radionuclide) unit which is equal to one thousandth of a curie or 10^[-3] Ci."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010009",
+    "id": "UO_0010009",
+    "label": "millidalton",
+    "short": "mDa",
+    "definition": "A mass unit which is equal to one thousandth of a dalton, i.e. 1/12000 the mass of 12C"
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000022",
+    "id": "UO_0000022",
+    "label": "milligram",
+    "short": "mg",
+    "definition": "A mass unit which is equal to one thousandth of a gram or 10^[-3] g."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010067",
+    "id": "UO_0010067",
+    "label": "milligram per deciliter",
+    "short": "mg/dl",
+    "definition": "A mass unit density which is equal to mass of an object in milligrams divided by the volume in deciliters."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000308",
+    "id": "UO_0000308",
+    "label": "milligram per kilogram",
+    "short": "milligram per kilogram",
+    "definition": "A dose unit which is equal to 1 milligram of a toxic or pharmaceutical substance per kilogram body weight of the recipient subject."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000311",
+    "id": "UO_0000311",
+    "label": "milligram per kilogram per day",
+    "short": "milligram per kilogram per day",
+    "definition": "A dosage unit which is equal to 1 milligram per day of a toxic or pharmaceutical substance per kilogram body weight of the recipient subject."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000273",
+    "id": "UO_0000273",
+    "label": "milligram per liter",
+    "short": "mg/L",
+    "definition": "A mass unit density which is equal to mass of an object in milligrams divided by the volume in liters."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000176",
+    "id": "UO_0000176",
+    "label": "milligram per milliliter",
+    "short": "mg/ml",
+    "definition": "A mass unit density which is equal to mass of an object in milligrams divided by the volume in milliliters."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000309",
+    "id": "UO_0000309",
+    "label": "milligram per square meter",
+    "short": "milligram per square meter",
+    "definition": "A dose unit which is equal to 1 milligram of a toxic or pharmaceutical substance per square meter of surface area of the recipient subject."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000142",
+    "id": "UO_0000142",
+    "label": "milligray",
+    "short": "mGy",
+    "definition": "An absorbed dose unit which is equal to one thousandth of a gray or 10^[-3] Gy."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010063",
+    "id": "UO_0010063",
+    "label": "milligray per day",
+    "short": "mGy/min",
+    "definition": "A derived absorbed dose unit which is equal to one milligray absorbed per day."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010064",
+    "id": "UO_0010064",
+    "label": "milligray per hour",
+    "short": "mGy/h",
+    "definition": "A derived absorbed dose unit which is equal to one milligray absorbed per hour."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010062",
+    "id": "UO_0010062",
+    "label": "milligray per minute",
+    "short": "mGy/day",
+    "definition": "A derived absorbed dose unit which is equal to one milligray absorbed per minute."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010065",
+    "id": "UO_0010065",
+    "label": "milligray per second",
+    "short": "mGy/s",
+    "definition": "A derived absorbed dose unit which is equal to one milligray absorbed per second."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000098",
+    "id": "UO_0000098",
+    "label": "milliliter",
+    "short": "millilitre",
+    "definition": "A volume unit which is equal to one thousandth of a liter or 10^[-3] L, or to 1 cubic centimeter."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000206",
+    "id": "UO_0000206",
+    "label": "milliliter per cubic meter",
+    "short": "millilitre per cubic metre",
+    "definition": "A volume per unit volume unit which is equal to one millionth of a liter of solute in one cubic meter of solution."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000198",
+    "id": "UO_0000198",
+    "label": "milliliter per kilogram",
+    "short": "millilitre per kilogram",
+    "definition": "A specific volume unit which is equal to a thousandth of a liter per kilogram or 10^[-3] l/kg."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000207",
+    "id": "UO_0000207",
+    "label": "milliliter per liter",
+    "short": "millilitre per litre",
+    "definition": "A volume per unit volume unit which is equal to one millionth of a liter of solute in one liter of solution."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000016",
+    "id": "UO_0000016",
+    "label": "millimeter",
+    "short": "millimetre",
+    "definition": "A length unit which is equal to one thousandth of a meter or 10^[-3] m."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010005",
+    "id": "UO_0010005",
+    "label": "millimeters per day",
+    "short": "mm/day",
+    "definition": "A speed/velocity unit which is equal to the speed of an object traveling 1 millimeter distance in one day."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000272",
+    "id": "UO_0000272",
+    "label": "millimetres of mercury",
+    "short": "millimeters of mercury",
+    "definition": "A unit of pressure equal to the amount of fluid pressure one millimeter deep in mercury at zero degrees centigrade on Earth."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000069",
+    "id": "UO_0000069",
+    "label": "millimolal",
+    "short": "mm",
+    "definition": "A molality unit which is equal to one thousandth of a molal or 10^[-3] m."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000063",
+    "id": "UO_0000063",
+    "label": "millimolar",
+    "short": "mM",
+    "definition": "A unit of molarity which is equal to one thousandth of a molar or 10^[-3] M."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000040",
+    "id": "UO_0000040",
+    "label": "millimole",
+    "short": "mmol",
+    "definition": "A substance unit equal to a thousandth of a mol or 10^[-3] mol."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000028",
+    "id": "UO_0000028",
+    "label": "millisecond",
+    "short": "ms",
+    "definition": "A time unit which is equal to one thousandth of a second or 10^[-3] s."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010002",
+    "id": "UO_0010002",
+    "label": "millisiemens",
+    "short": "mS",
+    "definition": "An electrical conduction unit which is equal to one thousandth of a siemen or 10^[-3] siemens."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000138",
+    "id": "UO_0000138",
+    "label": "millisievert",
+    "short": "mSv",
+    "definition": "A dose equivalent unit which is equal to one thousandth of a sievert or 10^[-3] Sv."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000279",
+    "id": "UO_0000279",
+    "label": "milliunits per milliliter",
+    "short": "mU/ml",
+    "definition": "A unit per milliliter unit which is equal to one thousandth of a unit of an agreed arbitrary amount per one milliliter."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000247",
+    "id": "UO_0000247",
+    "label": "millivolt",
+    "short": "mV",
+    "definition": "An electric potential difference unit which is equal to one thousandth of a volt or 10^[-3] V."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000031",
+    "id": "UO_0000031",
+    "label": "minute",
+    "short": "min",
+    "definition": "A time unit which is equal to 60 seconds."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000031",
+    "id": "UO_1000031",
+    "label": "minute based unit",
+    "short": "minute based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000068",
+    "id": "UO_0000068",
+    "label": "molal",
+    "short": "m",
+    "definition": "A unit of concentration which expresses a concentration of a solution of 1 mole per kilogram of solvent (mol/kg)."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000068",
+    "id": "UO_1000068",
+    "label": "molal based unit",
+    "short": "molal based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000062",
+    "id": "UO_0000062",
+    "label": "molar",
+    "short": "M",
+    "definition": "A unit of concentration which expresses a concentration of 1 mole of solute per liter of solution (mol/L)."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000062",
+    "id": "UO_1000062",
+    "label": "molar based unit",
+    "short": "molar based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000055",
+    "id": "UO_0000055",
+    "label": "molar mass unit",
+    "short": "molar mass unit",
+    "definition": "A unit which is a standard measure of the mass of a homogeneous substance containing 6.02 x 1023 atoms or molecules."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000056",
+    "id": "UO_0000056",
+    "label": "molar volume unit",
+    "short": "molar volume unit",
+    "definition": "A unit which is a standard measure of the volume of a homogeneous substance containing 6.02 x 1023 atoms or molecules."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000013",
+    "id": "UO_0000013",
+    "label": "mole",
+    "short": "mol",
+    "definition": "A substance unit which is equal to the amount of substance of a molecular system which contains as many elementary entities as there are atoms in 0.012 kilogram of carbon 12."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000013",
+    "id": "UO_1000013",
+    "label": "mole based unit",
+    "short": "mole based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000076",
+    "id": "UO_0000076",
+    "label": "mole fraction",
+    "short": "(x)",
+    "definition": "A concentration unit which denotes the number of moles of solute as a proportion of the total number of moles in a solution."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000076",
+    "id": "UO_1000076",
+    "label": "mole fraction based unit",
+    "short": "mole fraction based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000192",
+    "id": "UO_0000192",
+    "label": "molecule count",
+    "short": "molecule count",
+    "definition": "A dimensionless count unit which denotes the number of molecules."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000192",
+    "id": "UO_1000192",
+    "label": "molecule count based unit",
+    "short": "molecule count based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000057",
+    "id": "UO_0000057",
+    "label": "momentum unit",
+    "short": "momentum unit",
+    "definition": "A unit which is a standard measure of the quantity of motion measured by the product of mass and velocity."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000035",
+    "id": "UO_0000035",
+    "label": "month",
+    "short": "month",
+    "definition": "A time unit which is approximately equal to the length of time of one of cycle of the moon's phases which in science is taken to be equal to 30 days."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000035",
+    "id": "UO_1000035",
+    "label": "month based unit",
+    "short": "month based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010075",
+    "id": "UO_0010075",
+    "label": "multiplicity of infection",
+    "short": "MOI",
+    "definition": "A ratio unit which denotes the quantity of infectious agents to infection targets."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000300",
+    "id": "UO_0000300",
+    "label": "nano",
+    "short": "10^[-9]",
+    "definition": "A prefix in the metric system denoting a factor of 10 to the power of -9."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000024",
+    "id": "UO_0000024",
+    "label": "nanogram",
+    "short": "ng",
+    "definition": "A mass unit which is equal to one thousandth of one millionth of a gram or 10^[-9] g."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010050",
+    "id": "UO_0010050",
+    "label": "nanogram per microliter",
+    "short": "nanogram per microlitre",
+    "definition": "A mass unit density which is equal to mass of an object in nanograms divided by the volume in microliters."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000275",
+    "id": "UO_0000275",
+    "label": "nanogram per milliliter",
+    "short": "nanogram per millilitre",
+    "definition": "A mass unit density which is equal to mass of an object in nanograms divided by the volume in milliliters."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000143",
+    "id": "UO_0000143",
+    "label": "nanogray",
+    "short": "nGy",
+    "definition": "An absorbed dose unit which is equal to one thousandth of a millionth of a gray or 10^[-9] Gy."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000102",
+    "id": "UO_0000102",
+    "label": "nanoliter",
+    "short": "nanolitre",
+    "definition": "A volume unit which is equal to one thousandth of one millionth of a liter or 10^[-9] L."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000018",
+    "id": "UO_0000018",
+    "label": "nanometer",
+    "short": "nanometre",
+    "definition": "A length unit which is equal to one thousandth of one millionth of a meter or 10^[-9] m."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000071",
+    "id": "UO_0000071",
+    "label": "nanomolal",
+    "short": "nm",
+    "definition": "A molality unit which is equal to one thousandth of one millionth of a molal or 10^[-9] m."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000065",
+    "id": "UO_0000065",
+    "label": "nanomolar",
+    "short": "nM",
+    "definition": "A unit of molarity which is equal to one thousandth of one millionth of a molar or 10^[-9] M."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000041",
+    "id": "UO_0000041",
+    "label": "nanomole",
+    "short": "nmol",
+    "definition": "A substance unit equal to one thousandth of one millionth of a mole or 10^[-9] mol."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000150",
+    "id": "UO_0000150",
+    "label": "nanosecond",
+    "short": "ns",
+    "definition": "A time unit which is equal to one thousandth of one millionth of a second or 10^[-9] s."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000144",
+    "id": "UO_0000144",
+    "label": "nanosievert",
+    "short": "nSv",
+    "definition": "A dose equivalent unit which is equal to one thousandth of a millionth of a sievert or 10^[-9] Sv."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000250",
+    "id": "UO_0000250",
+    "label": "nanovolt",
+    "short": "nV",
+    "definition": "An electric potential difference unit which is equal to one billionth of a volt or 10^[-12] V."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010022",
+    "id": "UO_0010022",
+    "label": "nautical mile",
+    "short": "nautical mile",
+    "definition": "A maritime length unit which is equal to 6,080 feet, 10 cables, or 1,853.184 metres"
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1010022",
+    "id": "UO_1010022",
+    "label": "nautical mile based unit",
+    "short": "nautical mile based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000108",
+    "id": "UO_0000108",
+    "label": "newton",
+    "short": "N",
+    "definition": "A force unit which is equal to the force required to cause an acceleration of 1m/s2 of a mass of 1 Kg in the direction of the force."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000108",
+    "id": "UO_1000108",
+    "label": "newton based unit",
+    "short": "newton based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000254",
+    "id": "UO_0000254",
+    "label": "newton per meter",
+    "short": "N/m",
+    "definition": "A surface tension unit which is equal to one newton per meter."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000254",
+    "id": "UO_1000254",
+    "label": "newton per meter based unit",
+    "short": "newton per meter based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000278",
+    "id": "UO_0000278",
+    "label": "nmole/disk",
+    "short": "nmole/disk",
+    "definition": "A unit which is equal to one nanomole per disk, where a disk is some physical surface/container upon which the substance is deposited."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000075",
+    "id": "UO_0000075",
+    "label": "normal",
+    "short": "N",
+    "definition": "A unit of concentration which is one gram equivalent of a solute per liter of solution. A gram equivalent weight or equivalent is a measure of the reactive capacity of a given molecule."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000075",
+    "id": "UO_1000075",
+    "label": "normal based unit",
+    "short": "normal based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010048",
+    "id": "UO_0010048",
+    "label": "obsolete micromole",
+    "short": "obsolete micromole",
+    "definition": "DEPRECATED: Duplicate of http://purl.obolibrary.org/obo/UO_0000039. A substance unit which is equal to one millionth of a mole."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010033",
+    "id": "UO_0010033",
+    "label": "ounce",
+    "short": "oz",
+    "definition": "An imperial mass unit which is equivalent to 28.349,523,125 grams, or 1/16 of 1 pound."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1010033",
+    "id": "UO_1010033",
+    "label": "ounce based unit",
+    "short": "ounce based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000170",
+    "id": "UO_0000170",
+    "label": "parts per billion",
+    "short": "10^[-9]",
+    "definition": "A dimensionless concentration notation which denotes the amount of a given substance in a total amount of 1,000,000,000 regardless of the units of measure as long as they are the same or 1 part in 10^[9]."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000170",
+    "id": "UO_1000170",
+    "label": "parts per billion based unit",
+    "short": "parts per billion based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000167",
+    "id": "UO_0000167",
+    "label": "parts per hundred",
+    "short": "10^[-2]",
+    "definition": "A dimensionless concentration notation which denotes the amount of a given substance in a total amount of 100 regardless of the units of measure as long as they are the same."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000167",
+    "id": "UO_1000167",
+    "label": "parts per hundred based unit",
+    "short": "parts per hundred based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000169",
+    "id": "UO_0000169",
+    "label": "parts per million",
+    "short": "10^[-6]",
+    "definition": "A dimensionless concentration notation which denotes the amount of a given substance in a total amount of 1,000,000 regardless of the units of measure used as long as they are the same or 1 part in 10^[6]."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000169",
+    "id": "UO_1000169",
+    "label": "parts per million based unit",
+    "short": "parts per million based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000166",
+    "id": "UO_0000166",
+    "label": "parts per notation unit",
+    "short": "parts per notation unit",
+    "definition": "A dimensionless concentration notation which describes the amount of one substance in another. It is the ratio of the amount of the substance of interest to the amount of that substance plus the amount of the substance."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000172",
+    "id": "UO_0000172",
+    "label": "parts per quadrillion",
+    "short": "10^[-15]",
+    "definition": "A dimensionless concentration notation which denotes the amount of a given substance in a total amount of 1,000,000,000,000 regardless of the units of measure used as long as they are the same or 1 part in 10^[15]."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000172",
+    "id": "UO_1000172",
+    "label": "parts per quadrillion based unit",
+    "short": "parts per quadrillion based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000168",
+    "id": "UO_0000168",
+    "label": "parts per thousand",
+    "short": "10^[-3]",
+    "definition": "A dimensionless concentration notation which denotes the amount of a given substance in a total amount of 1000 regardless of the units of measure as long as they are the same."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000168",
+    "id": "UO_1000168",
+    "label": "parts per thousand based unit",
+    "short": "parts per thousand based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000171",
+    "id": "UO_0000171",
+    "label": "parts per trillion",
+    "short": "10^[-12]",
+    "definition": "A dimensionless concentration notation which denotes the amount of a given substance in a total amount of 1,000,000,000 regardless of the units of measure used as long as they are the same or 1 part in 10^[12]."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000171",
+    "id": "UO_1000171",
+    "label": "parts per trillion based unit",
+    "short": "parts per trillion based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000110",
+    "id": "UO_0000110",
+    "label": "pascal",
+    "short": "Pa",
+    "definition": "A pressure unit which is equal to the pressure or stress on a surface caused by a force of 1 newton spread over a surface of 1 m^[2]."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000110",
+    "id": "UO_1000110",
+    "label": "pascal based unit",
+    "short": "pascal based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000257",
+    "id": "UO_0000257",
+    "label": "pascal second",
+    "short": "Pa  s",
+    "definition": "A viscosity unit which is equal to one pascale per second."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000257",
+    "id": "UO_1000257",
+    "label": "pascal second based unit",
+    "short": "pascal second based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010077",
+    "id": "UO_0010077",
+    "label": "PCR quantification cycle",
+    "short": "Ct",
+    "definition": "A count unit of how many Polymerase Chain Reaction (PCR) cycles it took to detect a real signal from a sample. Equivalent to the PCR cycle number at which a sample's reaction curve intersects the threshold line."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000187",
+    "id": "UO_0000187",
+    "label": "percent",
+    "short": "%",
+    "definition": "A dimensionless ratio unit which denotes numbers as fractions of 100."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010023",
+    "id": "UO_0010023",
+    "label": "perch",
+    "short": "perch",
+    "definition": "An area unit which is equal to an area of 25.292,852,64 square meters, or 1 square rod."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1010023",
+    "id": "UO_1010023",
+    "label": "perch based unit",
+    "short": "perch based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000290",
+    "id": "UO_0000290",
+    "label": "peta",
+    "short": "10^[15]",
+    "definition": "A prefix in the metric system denoting a factor of ten to the power of 15."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000196",
+    "id": "UO_0000196",
+    "label": "pH",
+    "short": "pH",
+    "definition": "A dimensionless concentration notation which denotes the acidity of a solution in terms of activity of hydrogen ions (H+)."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000196",
+    "id": "UO_1000196",
+    "label": "pH based unit",
+    "short": "pH based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000188",
+    "id": "UO_0000188",
+    "label": "pi",
+    "short": "pi",
+    "definition": "A dimensionless unit which denoted an irrational real number, approximately equal to 3.14159 which is the ratio of a circle's circumference to its diameter in Euclidean geometry."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000188",
+    "id": "UO_1000188",
+    "label": "pi based unit",
+    "short": "pi based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000302",
+    "id": "UO_0000302",
+    "label": "pico",
+    "short": "10^[-12]",
+    "definition": "A prefix in the metric system denoting a factor of 10 to the power of -12."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010054",
+    "id": "UO_0010054",
+    "label": "picoampere",
+    "short": "pA",
+    "definition": "An electric current unit current which is equal to one trillionth of an ampere or 10^[-12] A."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000025",
+    "id": "UO_0000025",
+    "label": "picogram",
+    "short": "pg",
+    "definition": "A mass unit which is equal to 10^[-12] g."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010070",
+    "id": "UO_0010070",
+    "label": "picogram per milliliter",
+    "short": "pg/mL",
+    "definition": "A gram per milliliter unit which is equal to one picogram per one milliliter."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000103",
+    "id": "UO_0000103",
+    "label": "picoliter",
+    "short": "picolitre",
+    "definition": "A volume unit which is equal to 10^[-12] L."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000020",
+    "id": "UO_0000020",
+    "label": "picometer",
+    "short": "picometre",
+    "definition": "A length unit which is equal to 10^[-12] m."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000072",
+    "id": "UO_0000072",
+    "label": "picomolal",
+    "short": "pm",
+    "definition": "A molality unit which is equal to 10^[-12] m."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000066",
+    "id": "UO_0000066",
+    "label": "picomolar",
+    "short": "pM",
+    "definition": "A unit of molarity which is equal to 10^[-12] M."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000042",
+    "id": "UO_0000042",
+    "label": "picomole",
+    "short": "pmol",
+    "definition": "A substance unit equal to 10^[-12] mol."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000030",
+    "id": "UO_0000030",
+    "label": "picosecond",
+    "short": "ps",
+    "definition": "A time unit which is equal to 10^[-12] s."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000251",
+    "id": "UO_0000251",
+    "label": "picovolt",
+    "short": "pV",
+    "definition": "An electric potential difference unit which is equal to one trillionth of a volt or 10^[-12] V."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010028",
+    "id": "UO_0010028",
+    "label": "pint",
+    "short": "pt",
+    "definition": "An imperial volume unit which is equivalent to 568.261,25 millilitres."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1010028",
+    "id": "UO_1010028",
+    "label": "pint based unit",
+    "short": "pint based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000242",
+    "id": "UO_0000242",
+    "label": "pixels per inch",
+    "short": "pixel density",
+    "definition": "A spatial resolution unit which is a standard measure of the resolution of a computer display, related to the size of the display in inches and the total number of pixels in the horizontal and vertical directions."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000242",
+    "id": "UO_1000242",
+    "label": "pixels per inch based unit",
+    "short": "pixels per inch based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000243",
+    "id": "UO_0000243",
+    "label": "pixels per millimeter",
+    "short": "pixels per millimetre",
+    "definition": "A spatial resolution unit which is a standard measure of the number of pixels in one millimeter length or width of a digital image divided by the physical length or width of a printed image."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000243",
+    "id": "UO_1000243",
+    "label": "pixels per millimeter based unit",
+    "short": "pixels per millimeter based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000122",
+    "id": "UO_0000122",
+    "label": "plane angle unit",
+    "short": "plane angle unit",
+    "definition": "A unit which is a standard measure of the angle formed by two straight lines in the same plane."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000211",
+    "id": "UO_0000211",
+    "label": "plaque forming unit",
+    "short": "pfu",
+    "definition": "A dimensionless count unit which a measure of plaque forming units in a given volume."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000211",
+    "id": "UO_1000211",
+    "label": "plaque forming unit based unit",
+    "short": "plaque forming unit based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000215",
+    "id": "UO_0000215",
+    "label": "plaque forming unit per milliliter",
+    "short": "pfu/ml",
+    "definition": "A concentration unit which a measure of plaque forming units in one milliliter."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000215",
+    "id": "UO_1000215",
+    "label": "plaque forming unit per milliliter based unit",
+    "short": "plaque forming unit per milliliter based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000214",
+    "id": "UO_0000214",
+    "label": "plaque forming unit per volume",
+    "short": "plaque forming unit per volume",
+    "definition": "A concentration unit which a measure of plaque forming units in a given volume."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000258",
+    "id": "UO_0000258",
+    "label": "poise",
+    "short": "P",
+    "definition": "A viscosity unit which is equal to one dyne second per square centimeter."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000258",
+    "id": "UO_1000258",
+    "label": "poise based unit",
+    "short": "poise based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010034",
+    "id": "UO_0010034",
+    "label": "pound",
+    "short": "lb",
+    "definition": "An imperial mass unit which is equivalent to 453.592,37 grams."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1010034",
+    "id": "UO_1010034",
+    "label": "pound based unit",
+    "short": "pound based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010052",
+    "id": "UO_0010052",
+    "label": "pounds per square inch",
+    "short": "lbf/in^[2]",
+    "definition": "A pressure unit which is equal to 6894.757 pascal."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000113",
+    "id": "UO_0000113",
+    "label": "power unit",
+    "short": "power unit",
+    "definition": "A unit which is a standard measure power or the rate of doing work."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000046",
+    "id": "UO_0000046",
+    "label": "prefix",
+    "short": "prefix",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000109",
+    "id": "UO_0000109",
+    "label": "pressure unit",
+    "short": "pressure unit",
+    "definition": "A unit which is a standard measure of the force applied to a given area."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000193",
+    "id": "UO_0000193",
+    "label": "purity percentage",
+    "short": "purity percentage",
+    "definition": "A dimensionless percent unit which denotes the homogeneity of a biomaterial."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000193",
+    "id": "UO_1000193",
+    "label": "purity percentage based unit",
+    "short": "purity percentage based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010029",
+    "id": "UO_0010029",
+    "label": "quart",
+    "short": "qt",
+    "definition": "An imperial volume unit which is equivalent to 1,136.5225 millilitres, or two pints."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1010029",
+    "id": "UO_1010029",
+    "label": "quart based unit",
+    "short": "quart based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010036",
+    "id": "UO_0010036",
+    "label": "quarter",
+    "short": "qr",
+    "definition": "An imperial mass unit which is equivalent to 12.700,586,36 kilograms, or 28 pounds."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1010036",
+    "id": "UO_1010036",
+    "label": "quarter based unit",
+    "short": "quarter based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000135",
+    "id": "UO_0000135",
+    "label": "rad",
+    "short": "rad",
+    "definition": "An absorbed dose unit which is equal to 0.01 gray (Gy)."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000135",
+    "id": "UO_1000135",
+    "label": "rad based unit",
+    "short": "rad based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000123",
+    "id": "UO_0000123",
+    "label": "radian",
+    "short": "rad",
+    "definition": "A plane angle unit which is equal to the angle subtended at the center of a circle by an arc equal in length to the radius of the circle, approximately 57 degrees 17 minutes and 44.6 seconds."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000123",
+    "id": "UO_1000123",
+    "label": "radian based unit",
+    "short": "radian based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000079",
+    "id": "UO_0000079",
+    "label": "radian per second",
+    "short": "rad/s",
+    "definition": "An angular unit velocity which is equal to about 9.54930 rpm (revolutions per minute)."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000079",
+    "id": "UO_1000079",
+    "label": "radian per second based unit",
+    "short": "radian per second based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000078",
+    "id": "UO_0000078",
+    "label": "radian per second per second",
+    "short": "alpha",
+    "definition": "An angular unit acceleration which is equal to the angular acceleration of an object changing its angular velocity by 1rad/s over a time period that equals one second."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000078",
+    "id": "UO_1000078",
+    "label": "radian per second per second based unit",
+    "short": "radian per second per second based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000161",
+    "id": "UO_0000161",
+    "label": "radiance unit",
+    "short": "radiance unit",
+    "definition": "A unit which is a standard measure of the power of electromagnetic radiation through space or through a material medium in the form of electromagnetic waves."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000159",
+    "id": "UO_0000159",
+    "label": "radiant intensity unit",
+    "short": "radiant intensity unit",
+    "definition": "A unit which is a standard measure of the intensity of electromagnetic radiation."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000127",
+    "id": "UO_0000127",
+    "label": "radiation unit",
+    "short": "radiation unit",
+    "definition": "A unit which is a standard measure of the amount of radiation emitted by a given radiation source as well as the amount of radiation absorbed or deposited in a specific material by a radiation source."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000319",
+    "id": "UO_0000319",
+    "label": "radioactivity concentration",
+    "short": "radioactivity concentration",
+    "definition": "A concentration unit which is a standard measure of the amount of radioactivity in a given volume."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000280",
+    "id": "UO_0000280",
+    "label": "rate unit",
+    "short": "rate unit",
+    "definition": "A unit which represents a standard measurement occurrence of a process per unit time."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010006",
+    "id": "UO_0010006",
+    "label": "ratio",
+    "short": "ratio",
+    "definition": "A dimensionless ratio unit which, given a pair of quantities a and b, for which b is a multiple of a, denotes b by giving the multiplier (coefficient) c for a to result in b."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000190",
+    "id": "UO_0000190",
+    "label": "ratio unit",
+    "short": "ratio unit",
+    "definition": "A dimensionless unit which denotes an amount or magnitude of one quantity relative to another."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000314",
+    "id": "UO_0000314",
+    "label": "relative fluorescence unit",
+    "short": "relative fluorescence unit",
+    "definition": "A relative light unit which is a measure of relative fluorescence intensity."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000314",
+    "id": "UO_1000314",
+    "label": "relative fluorescence unit based unit",
+    "short": "relative fluorescence unit based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000312",
+    "id": "UO_0000312",
+    "label": "relative light unit",
+    "short": "relative light unit",
+    "definition": "A derived unit which is a measure of relative light intensity, as typically measured by a luminometer, spectrophotometer, or fluorimeter in biological research applications."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000312",
+    "id": "UO_1000312",
+    "label": "relative light unit based unit",
+    "short": "relative light unit based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000313",
+    "id": "UO_0000313",
+    "label": "relative luminescence unit",
+    "short": "relative luminescence unit",
+    "definition": "A relative light unit which is a measure of relative luminescence intensity."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000313",
+    "id": "UO_1000313",
+    "label": "relative luminescence unit based unit",
+    "short": "relative luminescence unit based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000136",
+    "id": "UO_0000136",
+    "label": "roentgen",
+    "short": "R",
+    "definition": "An exposure unit which is equal to the amount of radiation required to liberate positive and negative charges of one electrostatic unit of charge in 1 cm^[3] of air at standard temperature and pressure (STP). This corresponds to the generation of approximately 2.0810^[9] ion pairs."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000136",
+    "id": "UO_1000136",
+    "label": "roentgen based unit",
+    "short": "roentgen based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000140",
+    "id": "UO_0000140",
+    "label": "Roentgen equivalent man",
+    "short": "rem",
+    "definition": "A dose equivalent unit which when multiplied by hundred is equal to one sievert or 1 Sv. 1 Sv is equal to 100 rem."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000140",
+    "id": "UO_1000140",
+    "label": "Roentgen equivalent man based unit",
+    "short": "Roentgen equivalent man based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010024",
+    "id": "UO_0010024",
+    "label": "rood",
+    "short": "rood",
+    "definition": "An area unit which is equivalent to 1 furlong x 1 rod. This is equal to an area of 1,011.714,1056 square meters, or 40 square rods."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1010024",
+    "id": "UO_1010024",
+    "label": "rood based unit",
+    "short": "rood based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000058",
+    "id": "UO_0000058",
+    "label": "rotational frequency unit",
+    "short": "rotational frequency unit",
+    "definition": "A unit which is a standard measure of the number of rotations in a given time."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000010",
+    "id": "UO_0000010",
+    "label": "second",
+    "short": "s",
+    "definition": "A time unit which is equal to the duration of 9 192 631 770 periods of the radiation corresponding to the transition between the two hyperfine levels of the ground state of the caesium 133 atom."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000010",
+    "id": "UO_1000010",
+    "label": "second based unit",
+    "short": "second based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000264",
+    "id": "UO_0000264",
+    "label": "siemens",
+    "short": "A V^-1",
+    "definition": "An electrical conduction unit which is equal to A/V."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000264",
+    "id": "UO_1000264",
+    "label": "siemens based unit",
+    "short": "siemens based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000137",
+    "id": "UO_0000137",
+    "label": "sievert",
+    "short": "Sv",
+    "definition": "A dose equivalent unit which is equal to the absorption of one joule of radiation energy by one kilogram of matter."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000137",
+    "id": "UO_1000137",
+    "label": "sievert based unit",
+    "short": "sievert based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010039",
+    "id": "UO_0010039",
+    "label": "slug",
+    "short": "slug",
+    "definition": "An imperial gravitational unit which is equivalent to a mass that accelerates by 1ft/s² when a force of one pound (lbf) is exerted on it."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1010039",
+    "id": "UO_1010039",
+    "label": "slug based unit",
+    "short": "slug based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000124",
+    "id": "UO_0000124",
+    "label": "solid angle unit",
+    "short": "solid angle unit",
+    "definition": "A unit which is a standard measure of the angle formed by three or more planes intersecting at a common point."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000239",
+    "id": "UO_0000239",
+    "label": "spatial resolution unit",
+    "short": "spatial resolution unit",
+    "definition": "An image resolution unit which is a standard measure of the way luminance and chrominance may be sampled at different levels."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000059",
+    "id": "UO_0000059",
+    "label": "specific volume unit",
+    "short": "specific volume unit",
+    "definition": "A unit which is a standard measure of the volume of a given mass of substance (the reciprocal of density)."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000060",
+    "id": "UO_0000060",
+    "label": "speed/velocity unit",
+    "short": "speed/velocity unit",
+    "definition": "A unit which is a standard measure of the rate of movement. Speed is measured in the same physical units of measurement as velocity, but does not contain the element of direction that velocity has. Speed is thus the magnitude component of velocity."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000324",
+    "id": "UO_0000324",
+    "label": "square angstrom",
+    "short": "A^[2]",
+    "definition": "An area unit which is equal to an area enclosed by a square with sides each 1 angstrom long."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000081",
+    "id": "UO_0000081",
+    "label": "square centimeter",
+    "short": "cm^[2]",
+    "definition": "An area unit which is equal to one ten thousandth of a square meter or 10^[-4] m^[2]."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000081",
+    "id": "UO_1000081",
+    "label": "square centimeter based unit",
+    "short": "square centimeter based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000080",
+    "id": "UO_0000080",
+    "label": "square meter",
+    "short": "m^[2]",
+    "definition": "An area unit which is equal to an area enclosed by a square with sides each 1 meter long."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000080",
+    "id": "UO_1000080",
+    "label": "square meter based unit",
+    "short": "square meter based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010001",
+    "id": "UO_0010001",
+    "label": "square micrometer",
+    "short": "square micrometre",
+    "definition": "An area unit which is equal to an area enclosed by a square with sides each 1 micrometer long."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1010001",
+    "id": "UO_1010001",
+    "label": "square micrometer based unit",
+    "short": "square micrometer based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000082",
+    "id": "UO_0000082",
+    "label": "square millimeter",
+    "short": "mm^[2]",
+    "definition": "An area unit which is equal to one millionth of a square meter or 10^[-6] m^[2]."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000082",
+    "id": "UO_1000082",
+    "label": "square millimeter based unit",
+    "short": "square millimeter based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000125",
+    "id": "UO_0000125",
+    "label": "steradian",
+    "short": "sr",
+    "definition": "A solid angle unit which is equal to the solid angle subtended at the center of a sphere by an area on the surface of the sphere that is equal to the radius squared."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000125",
+    "id": "UO_1000125",
+    "label": "steradian based unit",
+    "short": "steradian based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010035",
+    "id": "UO_0010035",
+    "label": "stone",
+    "short": "st",
+    "definition": "An imperial mass unit which is equivalent to 6,350.293,18 grams, or 14 pounds."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1010035",
+    "id": "UO_1010035",
+    "label": "stone based unit",
+    "short": "stone based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000006",
+    "id": "UO_0000006",
+    "label": "substance unit",
+    "short": "substance unit",
+    "definition": "A unit which is a standardised quantity of an element or compound with uniform composition."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000253",
+    "id": "UO_0000253",
+    "label": "surface tension unit",
+    "short": "surface tension unit",
+    "definition": "A unit which is a standard measure of the ability of a liguid to attraction of molecules at its surface as a result of unbalanced molecular cohesive forces."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010042",
+    "id": "UO_0010042",
+    "label": "tablespoon",
+    "short": "metric tablespoon",
+    "definition": "A metric tablespoon is a unit of measurement of volume widely used in cooking recipes and pharmaceutic prescriptions. It equals a 15mL volume."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010040",
+    "id": "UO_0010040",
+    "label": "teaspoon",
+    "short": "metric teaspoon",
+    "definition": "A metric teaspoon is a unit of measurement of volume widely used in cooking recipes and pharmaceutic prescriptions. It equals a 5mL volume."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1010040",
+    "id": "UO_1010040",
+    "label": "teaspoon based unit",
+    "short": "teaspoon based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000005",
+    "id": "UO_0000005",
+    "label": "temperature unit",
+    "short": "temperature derived unit",
+    "definition": "A unit which is a standard measure of the average kinetic energy of the particles in a sample of matter."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000291",
+    "id": "UO_0000291",
+    "label": "tera",
+    "short": "T",
+    "definition": "A prefix in the metric system denoting a factor of ten to the power of 12."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000332",
+    "id": "UO_0000332",
+    "label": "terabyte",
+    "short": "TB",
+    "definition": "An information unit which is equal to 1000 gigabytes."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000228",
+    "id": "UO_0000228",
+    "label": "tesla",
+    "short": "T",
+    "definition": "A magnetic flux density unit which is equal to one weber per square meter."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000228",
+    "id": "UO_1000228",
+    "label": "tesla based unit",
+    "short": "tesla based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010012",
+    "id": "UO_0010012",
+    "label": "thou",
+    "short": "mil",
+    "definition": "A length unit which is equal to 0.0254 millimetres."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1010012",
+    "id": "UO_1010012",
+    "label": "thou based unit",
+    "short": "thou based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000003",
+    "id": "UO_0000003",
+    "label": "time unit",
+    "short": "time derived unit",
+    "definition": "A unit which is a standard measure of the dimension in which events occur in sequence."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010080",
+    "id": "UO_0010080",
+    "label": "titer",
+    "short": "titer",
+    "definition": "A concentration unit which denotes the minimum amount of a substance in a solution that still yields a positive reading, as determined by serial dilution."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010038",
+    "id": "UO_0010038",
+    "label": "ton",
+    "short": "t",
+    "definition": "An imperial mass unit which is equivalent to 1,016.046,9088 kilograms, or 2,240 pounds."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1010038",
+    "id": "UO_1010038",
+    "label": "ton based unit",
+    "short": "ton based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000323",
+    "id": "UO_0000323",
+    "label": "ton per hectare",
+    "short": "ton per hectare",
+    "definition": "An area density unit which is equal to the mass of an object in tons divided by the surface area in hectares."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000315",
+    "id": "UO_0000315",
+    "label": "turbidity unit",
+    "short": "turbidity unit",
+    "definition": "A unit used to indicate the clarity of water or other solutions or suspensions, as measured by the ability of the solution or suspension to scatter light of a defined wavelength range."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000092",
+    "id": "UO_0000092",
+    "label": "turns per second",
+    "short": "1/s",
+    "definition": "A rotational frequency unit which is equal to the number complete turn in a period of time that equals to 1 second."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000092",
+    "id": "UO_1000092",
+    "label": "turns per second based unit",
+    "short": "turns per second based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000277",
+    "id": "UO_0000277",
+    "label": "ug/disk",
+    "short": "ug/disk",
+    "definition": "A unit which is equal to one microgram per disk, where a disk is some physical surface/container upon which the substance is deposited."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000000",
+    "id": "UO_0000000",
+    "label": "unit",
+    "short": "unit",
+    "definition": "A unit of measurement is a standardized quantity of a physical quality."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000067",
+    "id": "UO_0000067",
+    "label": "unit of molality",
+    "short": "unit of molality",
+    "definition": "A concentration unit which is a standard measure of the number of moles of a given substance per kilogram of solvent."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000061",
+    "id": "UO_0000061",
+    "label": "unit of molarity",
+    "short": "unit of molarity",
+    "definition": "A concentration unit which is a standard measure of the number of moles of a given substance per liter of solution."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000074",
+    "id": "UO_0000074",
+    "label": "unit of normality",
+    "short": "unit of normality",
+    "definition": "A unit of concentration which highlights the chemical nature of salts."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000179",
+    "id": "UO_0000179",
+    "label": "unit per liter",
+    "short": "U/l",
+    "definition": "A unit per milliliter unit which is equal to one unit of an agreed arbitrary amount per one liter."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000179",
+    "id": "UO_1000179",
+    "label": "unit per liter based unit",
+    "short": "unit per liter based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000178",
+    "id": "UO_0000178",
+    "label": "unit per milliliter",
+    "short": "U/ml",
+    "definition": "A unit per milliliter unit which is equal to one unit of an agreed arbitrary amount per one milliliter."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000178",
+    "id": "UO_1000178",
+    "label": "unit per milliliter based unit",
+    "short": "unit per milliliter based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000177",
+    "id": "UO_0000177",
+    "label": "unit per volume unit",
+    "short": "unit per volume unit",
+    "definition": "A concentration unit which is a standard measure of the number of units, as an agreed arbitrary amount, of a given substance per a specific volume of solution."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010046",
+    "id": "UO_0010046",
+    "label": "united states customary cup",
+    "short": "us customary cup",
+    "definition": "A United States customary units cup is a unit of measurement of volume widely used in cooking recipes and pharmaceutic prescriptions in America. It equals a 236.59 mL volume."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010044",
+    "id": "UO_0010044",
+    "label": "united states customary tablespoon",
+    "short": "us customary tablespoon",
+    "definition": "A United States customary units tablespoon is a unit of measurement of volume widely used in cooking recipes and pharmaceutic prescriptions in America. It equals a 14.79 mL volume."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010041",
+    "id": "UO_0010041",
+    "label": "united states customary teaspoon",
+    "short": "us customary teaspoon",
+    "definition": "A United States customary units teaspoon is a unit of measurement of volume widely used in cooking recipes and pharmaceutic prescriptions in America. It equals a 4.93 mL volume."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010047",
+    "id": "UO_0010047",
+    "label": "united states fda cup",
+    "short": "us fda cup",
+    "definition": "A United States FDA cup is a unit of measurement of volume used by the US Federal Department of Agriculture as a nutritional serving measure. It equals a 240 mL volume."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000256",
+    "id": "UO_0000256",
+    "label": "viscosity unit",
+    "short": "viscosity unit",
+    "definition": "A unit which is a standard measure of the internal resistance of fluids to flow."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000218",
+    "id": "UO_0000218",
+    "label": "volt",
+    "short": "V",
+    "definition": "An electric potential difference unit which is equal to the work per unit charge. One volt is the potential difference required to move one coulomb of charge between two points in a circuit while using one joule of energy."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000218",
+    "id": "UO_1000218",
+    "label": "volt based unit",
+    "short": "volt based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000268",
+    "id": "UO_0000268",
+    "label": "volt per meter",
+    "short": "V/m",
+    "definition": "The volt per meter is a unit of electric field strength equal to the a potential difference of 1 volt existing between two points that are 1 meter apart."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000268",
+    "id": "UO_1000268",
+    "label": "volt per meter based unit",
+    "short": "volt per meter based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000229",
+    "id": "UO_0000229",
+    "label": "volt-hour",
+    "short": "Vh",
+    "definition": "A magnetic flux unit which is equal to 3600 Wb."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000229",
+    "id": "UO_1000229",
+    "label": "volt-hour based unit",
+    "short": "volt-hour based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010007",
+    "id": "UO_0010007",
+    "label": "volt-second per square centimeter",
+    "short": "Vs/cm^2",
+    "definition": "An electrical mobility unit which is equal to one volt second per square centimeter."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000205",
+    "id": "UO_0000205",
+    "label": "volume per unit volume",
+    "short": "volume per unit volume",
+    "definition": "A dimensionless concentration unit which denotes the given volume of the solute in the total volume of the resulting solution."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000165",
+    "id": "UO_0000165",
+    "label": "volume percentage",
+    "short": "% (v/v)",
+    "definition": "A dimensionless concentration unit which denotes the volume of the solute in mL per 100 mL of the resulting solution."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000165",
+    "id": "UO_1000165",
+    "label": "volume percentage based unit",
+    "short": "volume percentage based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000095",
+    "id": "UO_0000095",
+    "label": "volume unit",
+    "short": "volume unit",
+    "definition": "A unit which is a standard measure of the amount of space occupied by any substance, whether solid, liquid, or gas."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000270",
+    "id": "UO_0000270",
+    "label": "volumetric flow rate unit",
+    "short": "volumetric flow rate unit",
+    "definition": "A unit which is a standard measure of the volume of fluid which passes through a given surface per unit time ."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000114",
+    "id": "UO_0000114",
+    "label": "watt",
+    "short": "W",
+    "definition": "A power unit which is equal to the power used when work is done at the rate of 1 joule per second."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000114",
+    "id": "UO_1000114",
+    "label": "watt based unit",
+    "short": "watt based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000265",
+    "id": "UO_0000265",
+    "label": "watt per meter kelvin",
+    "short": "W/m K",
+    "definition": "An heat conduction unit which is equal to one watt divided by meter kelvin."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000265",
+    "id": "UO_1000265",
+    "label": "watt per meter kelvin based unit",
+    "short": "watt per meter kelvin based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000155",
+    "id": "UO_0000155",
+    "label": "watt per square meter",
+    "short": "W/m^[2]",
+    "definition": "An irradiance unit which is equal to 1 watt of radiant power incident per one square meter surface area."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000155",
+    "id": "UO_1000155",
+    "label": "watt per square meter based unit",
+    "short": "watt per square meter based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000162",
+    "id": "UO_0000162",
+    "label": "watt per steradian",
+    "short": "W/sr",
+    "definition": "A radiant intensity unit which is equal to one kilogram meter squared per second cubed per steradian."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000162",
+    "id": "UO_1000162",
+    "label": "watt per steradian based unit",
+    "short": "watt per steradian based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000158",
+    "id": "UO_0000158",
+    "label": "watt per steradian per square meter",
+    "short": "W/sr m^[2]",
+    "definition": "A radiance unit which is equal to one watt of radiant power incident per steradian solid angle per one square meter projected area of the source, as viewed from the given direction."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000158",
+    "id": "UO_1000158",
+    "label": "watt per steradian per square meter based unit",
+    "short": "watt per steradian per square meter based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000223",
+    "id": "UO_0000223",
+    "label": "watt-hour",
+    "short": "Wh",
+    "definition": "An energy unit which is equal to the amount of electrical energy equivalent to a one-watt load drawing power for one hour."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000223",
+    "id": "UO_1000223",
+    "label": "watt-hour based unit",
+    "short": "watt-hour based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000226",
+    "id": "UO_0000226",
+    "label": "weber",
+    "short": "V s",
+    "definition": "A magnetic flux unit which is equal to the amount of flux that when linked with a single turn of wire for an interval of one second will induce an electromotive force of one volt."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000226",
+    "id": "UO_1000226",
+    "label": "weber based unit",
+    "short": "weber based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000034",
+    "id": "UO_0000034",
+    "label": "week",
+    "short": "week",
+    "definition": "A time unit which is equal to 7 days."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000034",
+    "id": "UO_1000034",
+    "label": "week based unit",
+    "short": "week based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0010014",
+    "id": "UO_0010014",
+    "label": "yard",
+    "short": "yd",
+    "definition": "A length unit which is equal to 0.9144 metres, or 3 feet."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1010014",
+    "id": "UO_1010014",
+    "label": "yard based unit",
+    "short": "yard based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000036",
+    "id": "UO_0000036",
+    "label": "year",
+    "short": "year",
+    "definition": "A time unit which is equal to 12 months which in science is taken to be equal to 365.25 days."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_1000036",
+    "id": "UO_1000036",
+    "label": "year based unit",
+    "short": "year based unit",
+    "definition": ""
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000306",
+    "id": "UO_0000306",
+    "label": "yocto",
+    "short": "y",
+    "definition": "A prefix in the metric system denoting a factor of 10 to the power of -24."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000286",
+    "id": "UO_0000286",
+    "label": "yotta",
+    "short": "10^[24]",
+    "definition": "A prefix in the metric system denoting a factor of ten to the power of 24."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000305",
+    "id": "UO_0000305",
+    "label": "zepto",
+    "short": "z",
+    "definition": "A prefix in the metric system denoting a factor of 10 to the power of -21."
+  },
+  {
+    "uri": "http://purl.obolibrary.org/obo/UO_0000288",
+    "id": "UO_0000288",
+    "label": "zetta",
+    "short": "10^[21]",
+    "definition": "A prefix in the metric system denoting a factor of ten to the power of 21."
+  }
+]

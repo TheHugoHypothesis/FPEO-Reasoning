@@ -1,0 +1,875 @@
+[
+  {
+    "id": 1,
+    "rf_id": "RF01",
+    "subdomain": "Core",
+    "question": "Which module is the K-01 compressor located in?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX core: <http://usp.ai/ontologies/fpeo-equipments-core#>\nSELECT ?module WHERE {\n  abox:VRUCompressor_K01 core:isLocatedInModule ?module .\n}",
+    "expected_results": [
+      [
+        "Module_M02"
+      ]
+    ]
+  },
+  {
+    "id": 2,
+    "rf_id": "RF02",
+    "subdomain": "Core",
+    "question": "Which physical ports belong to equipment K-01?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX core: <http://usp.ai/ontologies/fpeo-equipments-core#>\nSELECT ?port WHERE {\n  abox:VRUCompressor_K01 core:hasPort ?port .\n}",
+    "expected_results": [
+      [
+        "K01_Port_In"
+      ],
+      [
+        "K01_Port_Out"
+      ],
+      [
+        "K01_Port_Elec"
+      ]
+    ]
+  },
+  {
+    "id": 3,
+    "rf_id": "RF03",
+    "subdomain": "Core",
+    "question": "Which equipment receives fluid from compressor K-01?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX core: <http://usp.ai/ontologies/fpeo-equipments-core#>\nSELECT ?target WHERE {\n  abox:VRUCompressor_K01 core:hasPort ?pOut .\n  ?pOut core:portConnectedTo ?pIn .\n  ?pIn core:isPortOf ?target .\n}",
+    "expected_results": [
+      [
+        "LPCompressor_K02"
+      ]
+    ]
+  },
+  {
+    "id": 4,
+    "rf_id": "RF24",
+    "subdomain": "Core",
+    "question": "Which modules are located on FPSO P-78?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX core: <http://usp.ai/ontologies/fpeo-equipments-core#>\nSELECT ?module WHERE {\n  ?module core:isLocatedInFPSO abox:FPSO_P78 .\n}",
+    "expected_results": [
+      [
+        "Module_M01"
+      ],
+      [
+        "Module_M02"
+      ]
+    ]
+  },
+  {
+    "id": 5,
+    "rf_id": "RF24",
+    "subdomain": "Core",
+    "question": "Which modules are located on FPSO P-79?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX core: <http://usp.ai/ontologies/fpeo-equipments-core#>\nSELECT ?module WHERE {\n  ?module core:isLocatedInFPSO abox:FPSO_P79 .\n}",
+    "expected_results": [
+      [
+        "Module_M06"
+      ],
+      [
+        "Module_M08"
+      ]
+    ]
+  },
+  {
+    "id": 6,
+    "rf_id": "RF25",
+    "subdomain": "Core",
+    "question": "Which equipment (or equipments) is in the same module as GTG-01?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX core: <http://usp.ai/ontologies/fpeo-equipments-core#>\nSELECT DISTINCT ?equipment WHERE {\n  abox:MainTurbineGenerator_GTG01 core:isLocatedInModule ?module .\n  ?equipment core:isLocatedInModule ?module .\n  FILTER (?equipment != abox:MainTurbineGenerator_GTG01)\n}",
+    "expected_results": [
+      [
+        "LPCompressor_K02"
+      ],
+      [
+        "HV_Switchgear_01"
+      ],
+      [
+        "PowerTransformer_TR01"
+      ],
+      [
+        "MCC_01"
+      ]
+    ]
+  },
+  {
+    "id": 7,
+    "rf_id": "RF25",
+    "subdomain": "Core",
+    "question": "Which equipment (or equipments) is in the same module as compressor K-02?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX core: <http://usp.ai/ontologies/fpeo-equipments-core#>\nSELECT DISTINCT ?equipment WHERE {\n  abox:LPCompressor_K02 core:isLocatedInModule ?module .\n  ?equipment core:isLocatedInModule ?module .\n  FILTER (?equipment != abox:LPCompressor_K02)\n}",
+    "expected_results": [
+      [
+        "MainTurbineGenerator_GTG01"
+      ],
+      [
+        "HV_Switchgear_01"
+      ],
+      [
+        "PowerTransformer_TR01"
+      ],
+      [
+        "MCC_01"
+      ]
+    ]
+  },
+  {
+    "id": 8,
+    "rf_id": "RF25",
+    "subdomain": "Core",
+    "question": "Which equipment (or equipments) is in the same module as pump P-01?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX core: <http://usp.ai/ontologies/fpeo-equipments-core#>\nSELECT DISTINCT ?equipment WHERE {\n  abox:SeawaterLiftPump_P01 core:isLocatedInModule ?module .\n  ?equipment core:isLocatedInModule ?module .\n  FILTER (?equipment != abox:SeawaterLiftPump_P01)\n}",
+    "expected_results": [
+      [
+        "SeawaterStrainer_F01"
+      ],
+      [
+        "SeawaterCooler_E01"
+      ],
+      [
+        "Motor_P01"
+      ]
+    ]
+  },
+  {
+    "id": 9,
+    "rf_id": "RF25",
+    "subdomain": "Core",
+    "question": "Which equipment (or equipments) is in the same module as emergency generator EDG-01?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX core: <http://usp.ai/ontologies/fpeo-equipments-core#>\nSELECT DISTINCT ?equipment WHERE {\n  abox:EmergencyGenerator_EDG01 core:isLocatedInModule ?module .\n  ?equipment core:isLocatedInModule ?module .\n  FILTER (?equipment != abox:EmergencyGenerator_EDG01)\n}",
+    "expected_results": [
+      [
+        "VRUCompressor_K01"
+      ],
+      [
+        "MCC_Emergency"
+      ]
+    ]
+  },
+  {
+    "id": 10,
+    "rf_id": "RF26",
+    "subdomain": "Core",
+    "question": "Which equipment has the F01_Port_In port?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX core: <http://usp.ai/ontologies/fpeo-equipments-core#>\nSELECT ?equipment WHERE {\n  ?equipment core:hasPort abox:F01_Port_In .\n}",
+    "expected_results": [
+      [
+        "SeawaterStrainer_F01"
+      ]
+    ]
+  },
+  {
+    "id": 11,
+    "rf_id": "RF26",
+    "subdomain": "Core",
+    "question": "Which equipment has the E01_Port_In port?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX core: <http://usp.ai/ontologies/fpeo-equipments-core#>\nSELECT ?equipment WHERE {\n  ?equipment core:hasPort abox:E01_Port_In .\n}",
+    "expected_results": [
+      [
+        "SeawaterCooler_E01"
+      ]
+    ]
+  },
+  {
+    "id": 12,
+    "rf_id": "RF26",
+    "subdomain": "Core",
+    "question": "Which equipment has the V01_Port_In port?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX core: <http://usp.ai/ontologies/fpeo-equipments-core#>\nSELECT ?equipment WHERE {\n  ?equipment core:hasPort abox:V01_Port_In .\n}",
+    "expected_results": [
+      [
+        "TestSeparator_V01"
+      ]
+    ]
+  },
+  {
+    "id": 13,
+    "rf_id": "RF26",
+    "subdomain": "Core",
+    "question": "Which equipment has the P02_Port_In port?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX core: <http://usp.ai/ontologies/fpeo-equipments-core#>\nSELECT ?equipment WHERE {\n  ?equipment core:hasPort abox:P02_Port_In .\n}",
+    "expected_results": [
+      [
+        "TestOilPump_P02"
+      ]
+    ]
+  },
+  {
+    "id": 14,
+    "rf_id": "RF27",
+    "subdomain": "Core",
+    "question": "Which equipment is connected to the outlet of filter F-01?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX core: <http://usp.ai/ontologies/fpeo-equipments-core#>\nSELECT ?equipment WHERE {\n  abox:SeawaterStrainer_F01 core:hasPort ?pOut .\n  ?pOut a core:OutletPort ; core:portConnectedTo ?pIn .\n  ?pIn core:isPortOf ?equipment .\n}",
+    "expected_results": [
+      [
+        "SeawaterCooler_E01"
+      ]
+    ]
+  },
+  {
+    "id": 15,
+    "rf_id": "RF27",
+    "subdomain": "Core",
+    "question": "Which equipment is connected to the outlet of heater E-02?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX core: <http://usp.ai/ontologies/fpeo-equipments-core#>\nSELECT ?equipment WHERE {\n  abox:TestInletHeater_E02 core:hasPort ?pOut .\n  ?pOut a core:OutletPort ; core:portConnectedTo ?pIn .\n  ?pIn core:isPortOf ?equipment .\n}",
+    "expected_results": [
+      [
+        "TestSeparator_V01"
+      ]
+    ]
+  },
+  {
+    "id": 16,
+    "rf_id": "RF27",
+    "subdomain": "Core",
+    "question": "Which equipment is connected to the outlet of separator V-01?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX core: <http://usp.ai/ontologies/fpeo-equipments-core#>\nSELECT ?equipment WHERE {\n  abox:TestSeparator_V01 core:hasPort ?pOut .\n  ?pOut a core:OutletPort ; core:portConnectedTo ?pIn .\n  ?pIn core:isPortOf ?equipment .\n}",
+    "expected_results": [
+      [
+        "TestOilPump_P02"
+      ]
+    ]
+  },
+  {
+    "id": 17,
+    "rf_id": "RF27",
+    "subdomain": "Core",
+    "question": "Which equipment is connected to the outlet of compressor K-01?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX core: <http://usp.ai/ontologies/fpeo-equipments-core#>\nSELECT ?equipment WHERE {\n  abox:VRUCompressor_K01 core:hasPort ?pOut .\n  ?pOut a core:OutletPort ; core:portConnectedTo ?pIn .\n  ?pIn core:isPortOf ?equipment .\n}",
+    "expected_results": [
+      [
+        "LPCompressor_K02"
+      ]
+    ]
+  },
+  {
+    "id": 18,
+    "rf_id": "RF27",
+    "subdomain": "Core",
+    "question": "Which equipment receives the outlet of pump P-01?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX core: <http://usp.ai/ontologies/fpeo-equipments-core#>\nSELECT ?equipment WHERE {\n  abox:SeawaterLiftPump_P01 core:hasPort ?pOut .\n  ?pOut a core:OutletPort ; core:portConnectedTo ?pIn .\n  ?pIn core:isPortOf ?equipment .\n}",
+    "expected_results": [
+      [
+        "SeawaterStrainer_F01"
+      ]
+    ]
+  },
+  {
+    "id": 19,
+    "rf_id": "RF28",
+    "subdomain": "Core",
+    "question": "Which equipment has the identifier P-01?",
+    "sparql_gold": "PREFIX iof-core: <https://spec.industrialontologies.org/ontology/core/Core/>\nSELECT ?equipment WHERE {\n  ?tag iof-core:hasSimpleExpressionValue \"P-01\" ;\n       iof-core:identifies ?equipment .\n}",
+    "expected_results": [
+      [
+        "SeawaterLiftPump_P01"
+      ]
+    ]
+  },
+  {
+    "id": 20,
+    "rf_id": "RF28",
+    "subdomain": "Core",
+    "question": "Which equipment has the identifier F-01?",
+    "sparql_gold": "PREFIX iof-core: <https://spec.industrialontologies.org/ontology/core/Core/>\nSELECT ?equipment WHERE {\n  ?tag iof-core:hasSimpleExpressionValue \"F-01\" ;\n       iof-core:identifies ?equipment .\n}",
+    "expected_results": [
+      [
+        "SeawaterStrainer_F01"
+      ]
+    ]
+  },
+  {
+    "id": 21,
+    "rf_id": "RF28",
+    "subdomain": "Core",
+    "question": "Which equipment has the identifier E-01?",
+    "sparql_gold": "PREFIX iof-core: <https://spec.industrialontologies.org/ontology/core/Core/>\nSELECT ?equipment WHERE {\n  ?tag iof-core:hasSimpleExpressionValue \"E-01\" ;\n       iof-core:identifies ?equipment .\n}",
+    "expected_results": [
+      [
+        "SeawaterCooler_E01"
+      ]
+    ]
+  },
+  {
+    "id": 22,
+    "rf_id": "RF28",
+    "subdomain": "Core",
+    "question": "Which equipment has the identifier E-02?",
+    "sparql_gold": "PREFIX iof-core: <https://spec.industrialontologies.org/ontology/core/Core/>\nSELECT ?equipment WHERE {\n  ?tag iof-core:hasSimpleExpressionValue \"E-02\" ;\n       iof-core:identifies ?equipment .\n}",
+    "expected_results": [
+      [
+        "TestInletHeater_E02"
+      ]
+    ]
+  },
+  {
+    "id": 23,
+    "rf_id": "RF28",
+    "subdomain": "Core",
+    "question": "Which equipment has the identifier V-01?",
+    "sparql_gold": "PREFIX iof-core: <https://spec.industrialontologies.org/ontology/core/Core/>\nSELECT ?equipment WHERE {\n  ?tag iof-core:hasSimpleExpressionValue \"V-01\" ;\n       iof-core:identifies ?equipment .\n}",
+    "expected_results": [
+      [
+        "TestSeparator_V01"
+      ]
+    ]
+  },
+  {
+    "id": 24,
+    "rf_id": "RF28",
+    "subdomain": "Core",
+    "question": "Which equipment has the identifier P-02?",
+    "sparql_gold": "PREFIX iof-core: <https://spec.industrialontologies.org/ontology/core/Core/>\nSELECT ?equipment WHERE {\n  ?tag iof-core:hasSimpleExpressionValue \"P-02\" ;\n       iof-core:identifies ?equipment .\n}",
+    "expected_results": [
+      [
+        "TestOilPump_P02"
+      ]
+    ]
+  },
+  {
+    "id": 25,
+    "rf_id": "RF28",
+    "subdomain": "Core",
+    "question": "Which equipment has the identifier K-01?",
+    "sparql_gold": "PREFIX iof-core: <https://spec.industrialontologies.org/ontology/core/Core/>\nSELECT ?equipment WHERE {\n  ?tag iof-core:hasSimpleExpressionValue \"K-01\" ;\n       iof-core:identifies ?equipment .\n}",
+    "expected_results": [
+      [
+        "VRUCompressor_K01"
+      ]
+    ]
+  },
+  {
+    "id": 26,
+    "rf_id": "RF28",
+    "subdomain": "Core",
+    "question": "Which equipment has the identifier K-02?",
+    "sparql_gold": "PREFIX iof-core: <https://spec.industrialontologies.org/ontology/core/Core/>\nSELECT ?equipment WHERE {\n  ?tag iof-core:hasSimpleExpressionValue \"K-02\" ;\n       iof-core:identifies ?equipment .\n}",
+    "expected_results": [
+      [
+        "LPCompressor_K02"
+      ]
+    ]
+  },
+  {
+    "id": 27,
+    "rf_id": "RF28",
+    "subdomain": "Core",
+    "question": "Which equipment has the identifier GTG-01?",
+    "sparql_gold": "PREFIX iof-core: <https://spec.industrialontologies.org/ontology/core/Core/>\nSELECT ?equipment WHERE {\n  ?tag iof-core:hasSimpleExpressionValue \"GTG-01\" ;\n       iof-core:identifies ?equipment .\n}",
+    "expected_results": [
+      [
+        "MainTurbineGenerator_GTG01"
+      ]
+    ]
+  },
+  {
+    "id": 28,
+    "rf_id": "RF28",
+    "subdomain": "Core",
+    "question": "Which equipment has the identifier SWG-HV-01?",
+    "sparql_gold": "PREFIX iof-core: <https://spec.industrialontologies.org/ontology/core/Core/>\nSELECT ?equipment WHERE {\n  ?tag iof-core:hasSimpleExpressionValue \"SWG-HV-01\" ;\n       iof-core:identifies ?equipment .\n}",
+    "expected_results": [
+      [
+        "HV_Switchgear_01"
+      ]
+    ]
+  },
+  {
+    "id": 29,
+    "rf_id": "RF04",
+    "subdomain": "Static",
+    "question": "Which pressure separation vessels are present in the topside process plant?",
+    "sparql_gold": "PREFIX static: <http://usp.ai/ontologies/fpeo-static-equipments#>\nSELECT ?vessel WHERE {\n  ?vessel a/rdfs:subClassOf* static:TestSeparator .\n}",
+    "expected_results": [
+      [
+        "TestSeparator_V01"
+      ]
+    ]
+  },
+  {
+    "id": 30,
+    "rf_id": "RF05",
+    "subdomain": "Static",
+    "question": "Which heat exchangers receive process flow originating from pump P-01?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX core: <http://usp.ai/ontologies/fpeo-equipments-core#>\nPREFIX static: <http://usp.ai/ontologies/fpeo-static-equipments#>\nSELECT ?hex WHERE {\n  abox:SeawaterLiftPump_P01 (core:hasPort/core:portConnectedTo/core:isPortOf)+ ?hex .\n  ?hex a/rdfs:subClassOf* static:CoolingMediumSeawaterExchanger .\n}",
+    "expected_results": [
+      [
+        "SeawaterCooler_E01"
+      ]
+    ]
+  },
+  {
+    "id": 31,
+    "rf_id": "RF09",
+    "subdomain": "Dynamical",
+    "question": "Which gas compressors are located in module M-02?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX core: <http://usp.ai/ontologies/fpeo-equipments-core#>\nPREFIX dynamical: <http://usp.ai/ontologies/fpeo-dynamical-equipments#>\nSELECT ?compressor WHERE {\n  ?compressor a/rdfs:subClassOf* dynamical:ProcessVRUCompressor ;\n              core:isLocatedInModule abox:Module_M02 .\n}",
+    "expected_results": [
+      [
+        "VRUCompressor_K01"
+      ]
+    ]
+  },
+  {
+    "id": 32,
+    "rf_id": "RF10",
+    "subdomain": "Dynamical",
+    "question": "Which strainer or filter receives fluid discharged from seawater lift pump P-01?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX core: <http://usp.ai/ontologies/fpeo-equipments-core#>\nPREFIX static: <http://usp.ai/ontologies/fpeo-static-equipments#>\nSELECT ?strainer WHERE {\n  abox:SeawaterLiftPump_P01 core:hasPort ?pOut .\n  ?pOut core:portConnectedTo ?pIn .\n  ?pIn core:isPortOf ?strainer .\n  ?strainer a/rdfs:subClassOf* static:SeawaterCoarseStrainer .\n}",
+    "expected_results": [
+      [
+        "SeawaterStrainer_F01"
+      ]
+    ]
+  },
+  {
+    "id": 33,
+    "rf_id": "RF11",
+    "subdomain": "Dynamical",
+    "question": "Which compressor receives compressed gas discharged from VRU compressor K-01?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX core: <http://usp.ai/ontologies/fpeo-equipments-core#>\nPREFIX dynamical: <http://usp.ai/ontologies/fpeo-dynamical-equipments#>\nSELECT ?compressor WHERE {\n  abox:VRUCompressor_K01 core:hasPort ?pOut .\n  ?pOut core:portConnectedTo ?pIn .\n  ?pIn core:isPortOf ?compressor .\n  ?compressor a/rdfs:subClassOf* dynamical:LowPressureCompressor .\n}",
+    "expected_results": [
+      [
+        "LPCompressor_K02"
+      ]
+    ]
+  },
+  {
+    "id": 34,
+    "rf_id": "RF33",
+    "subdomain": "Dynamical",
+    "question": "What are the components of GTG-01?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX o3po: <https://www.inf.ufrgs.br/ontologies/o3po#>\nSELECT ?component WHERE {\n  abox:MainTurbineGenerator_GTG01 o3po:hasComponent ?component .\n}",
+    "expected_results": [
+      [
+        "Shaft_GTG01"
+      ],
+      [
+        "CombustionChamber_GTG01"
+      ]
+    ]
+  },
+  {
+    "id": 35,
+    "rf_id": "RF34",
+    "subdomain": "Dynamical",
+    "question": "How many internal components does GTG-01 have?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX o3po: <https://www.inf.ufrgs.br/ontologies/o3po#>\nSELECT (COUNT(?component) AS ?count) WHERE {\n  abox:MainTurbineGenerator_GTG01 o3po:hasComponent ?component .\n}",
+    "expected_results": [
+      [
+        "2"
+      ]
+    ]
+  },
+  {
+    "id": 36,
+    "rf_id": "RF35",
+    "subdomain": "Dynamical",
+    "question": "Which shaft is part of GTG-01?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX dynamical: <http://usp.ai/ontologies/fpeo-dynamical-equipments#>\nPREFIX o3po: <https://www.inf.ufrgs.br/ontologies/o3po#>\nSELECT ?shaft WHERE {\n  abox:MainTurbineGenerator_GTG01 o3po:hasComponent ?shaft .\n  ?shaft a dynamical:Shaft .\n}",
+    "expected_results": [
+      [
+        "Shaft_GTG01"
+      ]
+    ]
+  },
+  {
+    "id": 37,
+    "rf_id": "RF35",
+    "subdomain": "Dynamical",
+    "question": "Which combustion chamber is part of GTG-01?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX dynamical: <http://usp.ai/ontologies/fpeo-dynamical-equipments#>\nPREFIX o3po: <https://www.inf.ufrgs.br/ontologies/o3po#>\nSELECT ?chamber WHERE {\n  abox:MainTurbineGenerator_GTG01 o3po:hasComponent ?chamber .\n  ?chamber a dynamical:CombustionChamber .\n}",
+    "expected_results": [
+      [
+        "CombustionChamber_GTG01"
+      ]
+    ]
+  },
+  {
+    "id": 38,
+    "rf_id": "RF13",
+    "subdomain": "Electrical",
+    "question": "Which electric driver motors are registered in the topside facility?",
+    "sparql_gold": "PREFIX electrical: <http://usp.ai/ontologies/fpeo-electrical-equipments#>\nSELECT ?motor WHERE {\n  ?motor a/rdfs:subClassOf* electrical:ElectricMotorEquipment .\n}",
+    "expected_results": [
+      [
+        "Motor_P01"
+      ]
+    ]
+  },
+  {
+    "id": 39,
+    "rf_id": "RF14",
+    "subdomain": "Electrical",
+    "question": "Which main turbine generators supply electrical power to high-voltage switchgear SWG-HV-01?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX core: <http://usp.ai/ontologies/fpeo-equipments-core#>\nSELECT ?gtg WHERE {\n  ?gtg core:powersEquipment abox:HV_Switchgear_01 .\n}",
+    "expected_results": [
+      [
+        "MainTurbineGenerator_GTG01"
+      ]
+    ]
+  },
+  {
+    "id": 40,
+    "rf_id": "RF16",
+    "subdomain": "Electrical",
+    "question": "Which switchgear or switchboard is directly powered by emergency diesel generator EDG-01?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX core: <http://usp.ai/ontologies/fpeo-equipments-core#>\nSELECT ?swg WHERE {\n  abox:EmergencyGenerator_EDG01 core:powersEquipment ?swg .\n}",
+    "expected_results": [
+      [
+        "MCC_Emergency"
+      ]
+    ]
+  },
+  {
+    "id": 41,
+    "rf_id": "RF29",
+    "subdomain": "Electrical",
+    "question": "Which equipment does GTG-01 directly power?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX core: <http://usp.ai/ontologies/fpeo-equipments-core#>\nSELECT ?target WHERE {\n  abox:MainTurbineGenerator_GTG01 core:powersEquipment ?target .\n}",
+    "expected_results": [
+      [
+        "HV_Switchgear_01"
+      ]
+    ]
+  },
+  {
+    "id": 42,
+    "rf_id": "RF29",
+    "subdomain": "Electrical",
+    "question": "Which equipment does SWG-HV-01 directly power?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX core: <http://usp.ai/ontologies/fpeo-equipments-core#>\nSELECT ?target WHERE {\n  abox:HV_Switchgear_01 core:powersEquipment ?target .\n}",
+    "expected_results": [
+      [
+        "PowerTransformer_TR01"
+      ]
+    ]
+  },
+  {
+    "id": 43,
+    "rf_id": "RF29",
+    "subdomain": "Electrical",
+    "question": "Which equipment does TR-01 directly power?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX core: <http://usp.ai/ontologies/fpeo-equipments-core#>\nSELECT ?target WHERE {\n  abox:PowerTransformer_TR01 core:powersEquipment ?target .\n}",
+    "expected_results": [
+      [
+        "MCC_01"
+      ]
+    ]
+  },
+  {
+    "id": 44,
+    "rf_id": "RF29",
+    "subdomain": "Electrical",
+    "question": "Which equipment does MCC-01 directly power?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX core: <http://usp.ai/ontologies/fpeo-equipments-core#>\nSELECT ?target WHERE {\n  abox:MCC_01 core:powersEquipment ?target .\n}",
+    "expected_results": [
+      [
+        "Motor_P01"
+      ]
+    ]
+  },
+  {
+    "id": 45,
+    "rf_id": "RF29",
+    "subdomain": "Electrical",
+    "question": "Which equipment does EDG-01 directly power?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX core: <http://usp.ai/ontologies/fpeo-equipments-core#>\nSELECT ?target WHERE {\n  abox:EmergencyGenerator_EDG01 core:powersEquipment ?target .\n}",
+    "expected_results": [
+      [
+        "MCC_Emergency"
+      ]
+    ]
+  },
+  {
+    "id": 46,
+    "rf_id": "RF30",
+    "subdomain": "Electrical",
+    "question": "Which equipment directly powers SWG-HV-01?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX core: <http://usp.ai/ontologies/fpeo-equipments-core#>\nSELECT ?source WHERE {\n  ?source core:powersEquipment abox:HV_Switchgear_01 .\n}",
+    "expected_results": [
+      [
+        "MainTurbineGenerator_GTG01"
+      ]
+    ]
+  },
+  {
+    "id": 47,
+    "rf_id": "RF30",
+    "subdomain": "Electrical",
+    "question": "Which equipment directly powers TR-01?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX core: <http://usp.ai/ontologies/fpeo-equipments-core#>\nSELECT ?source WHERE {\n  ?source core:powersEquipment abox:PowerTransformer_TR01 .\n}",
+    "expected_results": [
+      [
+        "HV_Switchgear_01"
+      ]
+    ]
+  },
+  {
+    "id": 48,
+    "rf_id": "RF30",
+    "subdomain": "Electrical",
+    "question": "Which equipment directly powers MCC-01?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX core: <http://usp.ai/ontologies/fpeo-equipments-core#>\nSELECT ?source WHERE {\n  ?source core:powersEquipment abox:MCC_01 .\n}",
+    "expected_results": [
+      [
+        "PowerTransformer_TR01"
+      ]
+    ]
+  },
+  {
+    "id": 49,
+    "rf_id": "RF31",
+    "subdomain": "Electrical",
+    "question": "What is the electrical power path from GTG-01 to MCC-01?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX core: <http://usp.ai/ontologies/fpeo-equipments-core#>\nSELECT ?swg ?tr WHERE {\n  abox:MainTurbineGenerator_GTG01 core:powersEquipment ?swg .\n  ?swg core:powersEquipment ?tr .\n  ?tr core:powersEquipment abox:MCC_01 .\n}",
+    "expected_results": [
+      [
+        "HV_Switchgear_01",
+        "PowerTransformer_TR01"
+      ]
+    ]
+  },
+  {
+    "id": 50,
+    "rf_id": "RF32",
+    "subdomain": "Electrical",
+    "question": "What is the electrical power path from GTG-01 to motor M-P01?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX core: <http://usp.ai/ontologies/fpeo-equipments-core#>\nSELECT ?swg ?tr ?mcc WHERE {\n  abox:MainTurbineGenerator_GTG01 core:powersEquipment ?swg .\n  ?swg core:powersEquipment ?tr .\n  ?tr core:powersEquipment ?mcc .\n  ?mcc core:powersEquipment abox:Motor_P01 .\n}",
+    "expected_results": [
+      [
+        "HV_Switchgear_01",
+        "PowerTransformer_TR01",
+        "MCC_01"
+      ]
+    ]
+  },
+  {
+    "id": 51,
+    "rf_id": "RF36",
+    "subdomain": "Properties & Metrology",
+    "question": "What is the rated power of pump P-01?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX iof-core: <https://spec.industrialontologies.org/ontology/core/Core/>\nSELECT ?value WHERE {\n  abox:Spec_RatedPower_P01 iof-core:prescribes abox:SeawaterLiftPump_P01 ;\n                           iof-core:hasContinuantPartAtAllTimes ?val .\n  ?val iof-core:hasSimpleExpressionValue ?value .\n}",
+    "expected_results": [
+      [
+        "3200.0"
+      ]
+    ]
+  },
+  {
+    "id": 52,
+    "rf_id": "RF36",
+    "subdomain": "Properties & Metrology",
+    "question": "What is the rated power of pump P-02?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX iof-core: <https://spec.industrialontologies.org/ontology/core/Core/>\nSELECT ?value WHERE {\n  abox:Spec_RatedPower_P02 iof-core:prescribes abox:TestOilPump_P02 ;\n                           iof-core:hasContinuantPartAtAllTimes ?val .\n  ?val iof-core:hasSimpleExpressionValue ?value .\n}",
+    "expected_results": [
+      [
+        "850.0"
+      ]
+    ]
+  },
+  {
+    "id": 53,
+    "rf_id": "RF36",
+    "subdomain": "Properties & Metrology",
+    "question": "What is the rated power of compressor K-01?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX iof-core: <https://spec.industrialontologies.org/ontology/core/Core/>\nSELECT ?value WHERE {\n  abox:Spec_RatedPower_K01 iof-core:prescribes abox:VRUCompressor_K01 ;\n                           iof-core:hasContinuantPartAtAllTimes ?val .\n  ?val iof-core:hasSimpleExpressionValue ?value .\n}",
+    "expected_results": [
+      [
+        "4.5"
+      ]
+    ]
+  },
+  {
+    "id": 54,
+    "rf_id": "RF36",
+    "subdomain": "Properties & Metrology",
+    "question": "What is the rated power of compressor K-02?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX iof-core: <https://spec.industrialontologies.org/ontology/core/Core/>\nSELECT ?value WHERE {\n  abox:Spec_RatedPower_K02 iof-core:prescribes abox:LPCompressor_K02 ;\n                           iof-core:hasContinuantPartAtAllTimes ?val .\n  ?val iof-core:hasSimpleExpressionValue ?value .\n}",
+    "expected_results": [
+      [
+        "18.5"
+      ]
+    ]
+  },
+  {
+    "id": 55,
+    "rf_id": "RF36",
+    "subdomain": "Properties & Metrology",
+    "question": "What is the rated power of GTG-01?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX iof-core: <https://spec.industrialontologies.org/ontology/core/Core/>\nSELECT ?value WHERE {\n  abox:Spec_RatedPower_GTG01 iof-core:prescribes abox:MainTurbineGenerator_GTG01 ;\n                             iof-core:hasContinuantPartAtAllTimes ?val .\n  ?val iof-core:hasSimpleExpressionValue ?value .\n}",
+    "expected_results": [
+      [
+        "45.0"
+      ]
+    ]
+  },
+  {
+    "id": 56,
+    "rf_id": "RF37",
+    "subdomain": "Properties & Metrology",
+    "question": "What is the design pressure of pump P-01?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX iof-core: <https://spec.industrialontologies.org/ontology/core/Core/>\nSELECT ?value WHERE {\n  abox:Spec_DesignPressure_P01 iof-core:prescribes abox:SeawaterLiftPump_P01 ;\n                               iof-core:hasContinuantPartAtAllTimes ?val .\n  ?val iof-core:hasSimpleExpressionValue ?value .\n}",
+    "expected_results": [
+      [
+        "180.0"
+      ]
+    ]
+  },
+  {
+    "id": 57,
+    "rf_id": "RF37",
+    "subdomain": "Properties & Metrology",
+    "question": "What is the design pressure of filter F-01?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX iof-core: <https://spec.industrialontologies.org/ontology/core/Core/>\nSELECT ?value WHERE {\n  abox:Spec_DesignPressure_F01 iof-core:prescribes abox:SeawaterStrainer_F01 ;\n                               iof-core:hasContinuantPartAtAllTimes ?val .\n  ?val iof-core:hasSimpleExpressionValue ?value .\n}",
+    "expected_results": [
+      [
+        "25.0"
+      ]
+    ]
+  },
+  {
+    "id": 58,
+    "rf_id": "RF37",
+    "subdomain": "Properties & Metrology",
+    "question": "What is the design pressure of heat exchanger E-01?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX iof-core: <https://spec.industrialontologies.org/ontology/core/Core/>\nSELECT ?value WHERE {\n  abox:Spec_DesignPressure_E01 iof-core:prescribes abox:SeawaterCooler_E01 ;\n                               iof-core:hasContinuantPartAtAllTimes ?val .\n  ?val iof-core:hasSimpleExpressionValue ?value .\n}",
+    "expected_results": [
+      [
+        "30.0"
+      ]
+    ]
+  },
+  {
+    "id": 59,
+    "rf_id": "RF37",
+    "subdomain": "Properties & Metrology",
+    "question": "What is the design pressure of separator V-01?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX iof-core: <https://spec.industrialontologies.org/ontology/core/Core/>\nSELECT ?value WHERE {\n  abox:Spec_DesignPressure_V01 iof-core:prescribes abox:TestSeparator_V01 ;\n                               iof-core:hasContinuantPartAtAllTimes ?val .\n  ?val iof-core:hasSimpleExpressionValue ?value .\n}",
+    "expected_results": [
+      [
+        "75.0"
+      ]
+    ]
+  },
+  {
+    "id": 60,
+    "rf_id": "RF37",
+    "subdomain": "Properties & Metrology",
+    "question": "What is the design pressure of compressor K-01?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX iof-core: <https://spec.industrialontologies.org/ontology/core/Core/>\nSELECT ?value WHERE {\n  abox:Spec_DesignPressure_K01 iof-core:prescribes abox:VRUCompressor_K01 ;\n                               iof-core:hasContinuantPartAtAllTimes ?val .\n  ?val iof-core:hasSimpleExpressionValue ?value .\n}",
+    "expected_results": [
+      [
+        "35.0"
+      ]
+    ]
+  },
+  {
+    "id": 61,
+    "rf_id": "RF37",
+    "subdomain": "Properties & Metrology",
+    "question": "What is the design pressure of compressor K-02?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX iof-core: <https://spec.industrialontologies.org/ontology/core/Core/>\nSELECT ?value WHERE {\n  abox:Spec_DesignPressure_K02 iof-core:prescribes abox:LPCompressor_K02 ;\n                               iof-core:hasContinuantPartAtAllTimes ?val .\n  ?val iof-core:hasSimpleExpressionValue ?value .\n}",
+    "expected_results": [
+      [
+        "85.0"
+      ]
+    ]
+  },
+  {
+    "id": 62,
+    "rf_id": "RF38",
+    "subdomain": "Properties & Metrology",
+    "question": "What is the design flow rate of pump P-01?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX iof-core: <https://spec.industrialontologies.org/ontology/core/Core/>\nSELECT ?value WHERE {\n  abox:Spec_DesignFlow_P01 iof-core:prescribes abox:SeawaterLiftPump_P01 ;\n                           iof-core:hasContinuantPartAtAllTimes ?val .\n  ?val iof-core:hasSimpleExpressionValue ?value .\n}",
+    "expected_results": [
+      [
+        "2400.0"
+      ]
+    ]
+  },
+  {
+    "id": 63,
+    "rf_id": "RF38",
+    "subdomain": "Properties & Metrology",
+    "question": "What is the design flow rate of compressor K-02?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX iof-core: <https://spec.industrialontologies.org/ontology/core/Core/>\nSELECT ?value WHERE {\n  abox:Spec_DesignFlow_K02 iof-core:prescribes abox:LPCompressor_K02 ;\n                           iof-core:hasContinuantPartAtAllTimes ?val .\n  ?val iof-core:hasSimpleExpressionValue ?value .\n}",
+    "expected_results": [
+      [
+        "120000.0"
+      ]
+    ]
+  },
+  {
+    "id": 64,
+    "rf_id": "RF39",
+    "subdomain": "Properties & Metrology",
+    "question": "What is the thermal duty of heat exchanger E-01?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX iof-core: <https://spec.industrialontologies.org/ontology/core/Core/>\nSELECT ?value WHERE {\n  abox:Spec_Duty_E01 iof-core:prescribes abox:SeawaterCooler_E01 ;\n                     iof-core:hasContinuantPartAtAllTimes ?val .\n  ?val iof-core:hasSimpleExpressionValue ?value .\n}",
+    "expected_results": [
+      [
+        "25.0"
+      ]
+    ]
+  },
+  {
+    "id": 65,
+    "rf_id": "RF39",
+    "subdomain": "Properties & Metrology",
+    "question": "What is the thermal duty of heater E-02?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX iof-core: <https://spec.industrialontologies.org/ontology/core/Core/>\nSELECT ?value WHERE {\n  abox:Spec_Duty_E02 iof-core:prescribes abox:TestInletHeater_E02 ;\n                     iof-core:hasContinuantPartAtAllTimes ?val .\n  ?val iof-core:hasSimpleExpressionValue ?value .\n}",
+    "expected_results": [
+      [
+        "15.0"
+      ]
+    ]
+  },
+  {
+    "id": 66,
+    "rf_id": "RF40",
+    "subdomain": "Properties & Metrology",
+    "question": "What is the design temperature of separator V-01?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX iof-core: <https://spec.industrialontologies.org/ontology/core/Core/>\nSELECT ?value WHERE {\n  abox:Spec_DesignTemp_V01 iof-core:prescribes abox:TestSeparator_V01 ;\n                           iof-core:hasContinuantPartAtAllTimes ?val .\n  ?val iof-core:hasSimpleExpressionValue ?value .\n}",
+    "expected_results": [
+      [
+        "95.0"
+      ]
+    ]
+  },
+  {
+    "id": 67,
+    "rf_id": "RF41",
+    "subdomain": "Properties & Metrology",
+    "question": "What is the rated speed of GTG-01?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX iof-core: <https://spec.industrialontologies.org/ontology/core/Core/>\nSELECT ?value WHERE {\n  abox:Spec_RatedSpeed_GTG01 iof-core:prescribes abox:MainTurbineGenerator_GTG01 ;\n                             iof-core:hasContinuantPartAtAllTimes ?val .\n  ?val iof-core:hasSimpleExpressionValue ?value .\n}",
+    "expected_results": [
+      [
+        "5100.0"
+      ]
+    ]
+  },
+  {
+    "id": 68,
+    "rf_id": "RF42",
+    "subdomain": "Properties & Metrology",
+    "question": "What is the efficiency of GTG-01?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX iof-core: <https://spec.industrialontologies.org/ontology/core/Core/>\nSELECT ?value WHERE {\n  abox:Spec_Efficiency_GTG01 iof-core:prescribes abox:MainTurbineGenerator_GTG01 ;\n                             iof-core:hasContinuantPartAtAllTimes ?val .\n  ?val iof-core:hasSimpleExpressionValue ?value .\n}",
+    "expected_results": [
+      [
+        "38.5"
+      ]
+    ]
+  },
+  {
+    "id": 69,
+    "rf_id": "RF42",
+    "subdomain": "Properties & Metrology",
+    "question": "What is the turbine inlet temperature of GTG-01?",
+    "sparql_gold": "PREFIX abox: <http://usp.ai/ontologies/fpeo-collect-equipments-abox#>\nPREFIX iof-core: <https://spec.industrialontologies.org/ontology/core/Core/>\nSELECT ?value WHERE {\n  abox:Spec_TIT_GTG01 iof-core:prescribes abox:MainTurbineGenerator_GTG01 ;\n                      iof-core:hasContinuantPartAtAllTimes ?val .\n  ?val iof-core:hasSimpleExpressionValue ?value .\n}",
+    "expected_results": [
+      [
+        "1150.0"
+      ]
+    ]
+  }
+]

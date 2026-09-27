@@ -1,0 +1,451 @@
+import { Parser, Store, DataFactory } from 'n3';
+import { NAMESPACES, getShortUri } from './namespaces';
+import {
+  Equipment,
+  EquipmentCategory,
+  EquipmentPort,
+  PortType,
+  PortConnection,
+  OntologyGraph,
+  EquipmentTriple,
+  EquipmentComponent,
+  OntologyClass,
+} from './types';
+
+const { namedNode } = DataFactory;
+
+function isComponentPredicate(predUri: string): boolean {
+  return (
+    predUri === `${NAMESPACES.o3po}hasComponent` ||
+    predUri.endsWith('hasComponent') ||
+    predUri.endsWith('hasComponentPartAtAllTimes')
+  );
+}
+
+// Helper to check if a subject is a port
+function isPortClass(typeUri: string): boolean {
+  return (
+    typeUri.endsWith('EquipmentPort') ||
+    typeUri.endsWith('InletPort') ||
+    typeUri.endsWith('OutletPort') ||
+    typeUri.endsWith('ElectricalPort') ||
+    typeUri.endsWith('SignalPort')
+  );
+}
+
+function resolvePortType(typeUris: string[]): PortType {
+  for (const uri of typeUris) {
+    if (uri.endsWith('InletPort')) return 'InletPort';
+    if (uri.endsWith('OutletPort')) return 'OutletPort';
+    if (uri.endsWith('ElectricalPort')) return 'ElectricalPort';
+    if (uri.endsWith('SignalPort')) return 'SignalPort';
+  }
+  return 'InletPort';
+}
+
+function resolveEquipmentCategory(classUris: string[], store: Store): EquipmentCategory {
+  for (const classUri of classUris) {
+    const localName = classUri.split('#').pop() || classUri.split('/').pop() || '';
+    
+    // Check direct match or subclass pattern
+    if (localName.includes('Compressor') || localName.includes('VRU')) return 'CompressorEquipment';
+    if (localName.includes('Pump')) return 'PumpEquipment';
+    if (localName.includes('Turbine') || localName.includes('Generator')) return 'GasTurbineEquipment';
+    if (localName.includes('Separator') || localName.includes('Drum') || localName.includes('Vessel') || localName.includes('Receiver') || localName.includes('Deaerator')) return 'PressureVesselEquipment';
+    if (localName.includes('Heater') || localName.includes('Cooler') || localName.includes('Exchanger') || localName.includes('Coil') || localName.includes('WHRU')) return 'HeatExchangeEquipment';
+    if (localName.includes('Filter') || localName.includes('Strainer') || localName.includes('Hydrocyclone') || localName.includes('Flotation') || localName.includes('Membrane') || localName.includes('Osmosis')) return 'SeparationAndFilterEquipment';
+    if (localName.includes('Tank') || localName.includes('Header') || localName.includes('Tower') || localName.includes('Tip')) return 'StorageAndPipingHeaderEquipment';
+    if (localName.includes('Valve') || localName.includes('Disc') || localName.includes('Choke') || localName.includes('IRCD')) return 'ValveAndSecurityEquipment';
+    if (localName.includes('Switchgear') || localName.includes('Transformer') || localName.includes('MCC') || localName.includes('Motor') || localName.includes('Busbar') || localName.includes('Cable') || localName.includes('Electrochlorinator')) return 'ElectricalEquipment';
+    if (localName.includes('Solar') || localName.includes('Renewable')) return 'RenewableEquipment';
+  }
+  return 'GenericEquipment';
+}
+
+export async function parseTurtleContent(ttlContents: string[], filenames: string[]): Promise<OntologyGraph> {
+  const store = new Store();
+  const parser = new Parser();
+
+  for (const content of ttlContents) {
+    try {
+      const quads = parser.parse(content);
+      store.addQuads(quads);
+    } catch (e) {
+      console.warn('Error parsing Turtle content:', e);
+    }
+  }
+
+  const rdfType = namedNode(`${NAMESPACES.rdf}type`);
+  const rdfsLabel = namedNode(`${NAMESPACES.rdfs}label`);
+  const owlNamedIndividual = namedNode(`${NAMESPACES.owl}NamedIndividual`);
+  const hasPortNode = namedNode(`${NAMESPACES.core}hasPort`);
+  const isPortOfNode = namedNode(`${NAMESPACES.core}isPortOf`);
+  const portConnectedToNode = namedNode(`${NAMESPACES.core}portConnectedTo`);
+  const feedsFluidNode = namedNode(`${NAMESPACES.core}feedsFluidToEquipment`);
+  const powersEquipmentNode = namedNode(`${NAMESPACES.core}powersEquipment`);
+
+  // Step 1: Find all individuals
+  const individualSubjectUris = new Set<string>();
+
+  // 1a. Explicit owl:NamedIndividual
+  const explicitInds = store.getSubjects(rdfType, owlNamedIndividual, null);
+  explicitInds.forEach(node => individualSubjectUris.add(node.value));
+
+  // 1b. Any subject with an rdf:type that is not owl:Ontology, owl:Class, owl:ObjectProperty, owl:Restriction
+  const allTypeQuads = store.getQuads(null, rdfType, null, null);
+  for (const quad of allTypeQuads) {
+    const s = quad.subject.value;
+    const o = quad.object.value;
+    if (
+      !o.startsWith(NAMESPACES.owl) &&
+      !o.startsWith(NAMESPACES.rdf) &&
+      !o.startsWith(NAMESPACES.rdfs)
+    ) {
+      individualSubjectUris.add(s);
+    }
+  }
+
+  // Step 2: Separate Ports vs Equipments
+  const portUris = new Set<string>();
+  const equipmentUris = new Set<string>();
+
+  for (const uri of individualSubjectUris) {
+    const types = store.getObjects(namedNode(uri), rdfType, null).map(o => o.value);
+    const isPort = types.some(t => isPortClass(t)) ||
+      store.getSubjects(hasPortNode, namedNode(uri), null).length > 0 ||
+      store.getObjects(namedNode(uri), isPortOfNode, null).length > 0;
+
+    if (isPort) {
+      portUris.add(uri);
+    } else {
+      equipmentUris.add(uri);
+    }
+  }
+
+  // Step 3: Build Equipment Data Structures
+  const equipments: Equipment[] = [];
+  const portToEquipmentMap = new Map<string, string>();
+
+  // Map equipment <-> ports from core:hasPort and core:isPortOf
+  for (const eqUri of equipmentUris) {
+    const portsOfEq = store.getObjects(namedNode(eqUri), hasPortNode, null).map(o => o.value);
+    portsOfEq.forEach(pUri => portToEquipmentMap.set(pUri, eqUri));
+  }
+
+  for (const pUri of portUris) {
+    if (!portToEquipmentMap.has(pUri)) {
+      const eqObjs = store.getObjects(namedNode(pUri), isPortOfNode, null);
+      if (eqObjs.length > 0) {
+        portToEquipmentMap.set(pUri, eqObjs[0].value);
+      }
+    }
+  }
+
+  for (const eqUri of equipmentUris) {
+    const eqNode = namedNode(eqUri);
+    
+    // Label
+    const labels = store.getObjects(eqNode, rdfsLabel, null);
+    const label = labels.length > 0 ? labels[0].value : getShortUri(eqUri);
+
+    // Types / Classes
+    const types = store.getObjects(eqNode, rdfType, null)
+      .map(o => o.value)
+      .filter(t => t !== `${NAMESPACES.owl}NamedIndividual`);
+
+    const classUri = types[0] || `${NAMESPACES.core}TopsideEquipment`;
+    const classLabel = getShortUri(classUri);
+    const category = resolveEquipmentCategory(types, store);
+
+    // Triples associated with equipment
+    const triples: EquipmentTriple[] = store.getQuads(eqNode, null, null, null).map(q => ({
+      subject: getShortUri(q.subject.value),
+      predicate: getShortUri(q.predicate.value),
+      object: getShortUri(q.object.value),
+    }));
+
+    // Find ports of this equipment
+    const eqPorts: EquipmentPort[] = [];
+    for (const [pUri, belongingEqUri] of portToEquipmentMap.entries()) {
+      if (belongingEqUri === eqUri) {
+        const pNode = namedNode(pUri);
+        const pTypes = store.getObjects(pNode, rdfType, null).map(o => o.value);
+        const pType = resolvePortType(pTypes);
+        const pLabels = store.getObjects(pNode, rdfsLabel, null);
+        const pLabel = pLabels.length > 0 ? pLabels[0].value : getShortUri(pUri);
+
+        // check port connected to
+        const connectedObjs = store.getObjects(pNode, portConnectedToNode, null);
+        const connectedToPortUri = connectedObjs.length > 0 ? connectedObjs[0].value : undefined;
+
+        eqPorts.push({
+          uri: pUri,
+          shortUri: getShortUri(pUri),
+          type: pType,
+          label: pLabel,
+          equipmentUri: eqUri,
+          connectedToPortUri,
+        });
+      }
+    }
+
+    // Extract components (o3po:hasComponent relations)
+    const components: EquipmentComponent[] = [];
+    const addedCompUris = new Set<string>();
+
+    // 1. ABox Instance Level: Direct quads with hasComponent predicate
+    const eqQuads = store.getQuads(eqNode, null, null, null);
+    for (const q of eqQuads) {
+      if (isComponentPredicate(q.predicate.value)) {
+        const compUri = q.object.value;
+        if (!addedCompUris.has(compUri)) {
+          addedCompUris.add(compUri);
+          const compNode = namedNode(compUri);
+          const compLabels = store.getObjects(compNode, rdfsLabel, null);
+          const compLabel = compLabels.length > 0 ? compLabels[0].value : getShortUri(compUri);
+          const compTypes = store.getObjects(compNode, rdfType, null)
+            .map(o => o.value)
+            .filter(t => t !== `${NAMESPACES.owl}NamedIndividual`);
+          const compTypeUri = compTypes[0] || '';
+          const compTypeLabel = compTypeUri ? getShortUri(compTypeUri) : '';
+
+          components.push({
+            uri: compUri,
+            shortUri: getShortUri(compUri),
+            label: compLabel,
+            predicate: getShortUri(q.predicate.value),
+            typeUri: compTypeUri,
+            typeLabel: compTypeLabel,
+            source: 'instance',
+          });
+        }
+      }
+    }
+
+    // 2. TBox Class Level: SubClassOf restrictions on eq's class
+    if (classUri) {
+      const classNode = namedNode(classUri);
+      const rdfsSubClassOfNode = namedNode(`${NAMESPACES.rdfs}subClassOf`);
+      const owlOnPropertyNode = namedNode(`${NAMESPACES.owl}onProperty`);
+      const owlSomeValuesFromNode = namedNode(`${NAMESPACES.owl}someValuesFrom`);
+      const owlAllValuesFromNode = namedNode(`${NAMESPACES.owl}allValuesFrom`);
+
+      const superClasses = store.getObjects(classNode, rdfsSubClassOfNode, null);
+      for (const superClassNode of superClasses) {
+        const onProps = store.getObjects(superClassNode, owlOnPropertyNode, null);
+        if (onProps.some(p => isComponentPredicate(p.value))) {
+          const targets = [
+            ...store.getObjects(superClassNode, owlSomeValuesFromNode, null),
+            ...store.getObjects(superClassNode, owlAllValuesFromNode, null),
+          ];
+          for (const targetNode of targets) {
+            const targetUri = targetNode.value;
+            if (!addedCompUris.has(targetUri)) {
+              addedCompUris.add(targetUri);
+              const targetLabels = store.getObjects(targetNode, rdfsLabel, null);
+              const targetLabel = targetLabels.length > 0 ? targetLabels[0].value : getShortUri(targetUri);
+
+              components.push({
+                uri: targetUri,
+                shortUri: getShortUri(targetUri),
+                label: targetLabel,
+                predicate: 'o3po:hasComponent',
+                typeUri: targetUri,
+                typeLabel: targetLabel,
+                source: 'tbox',
+              });
+            }
+          }
+        }
+      }
+    }
+
+    // Extract inFPSOModule predicate
+    const inFPSOModuleNode = namedNode(NAMESPACES.inFPSOModule);
+    const moduleObjs = store.getObjects(eqNode, inFPSOModuleNode, null);
+    const moduleUri = moduleObjs.length > 0 ? moduleObjs[0].value : undefined;
+    const moduleCode = moduleUri ? getShortUri(moduleUri).replace(/^core:/, '').replace(/^Module_/, '') : undefined;
+
+    equipments.push({
+      uri: eqUri,
+      shortUri: getShortUri(eqUri),
+      label,
+      classUri,
+      classLabel,
+      category,
+      ports: eqPorts,
+      triples,
+      components,
+      moduleUri,
+      moduleCode,
+    });
+  }
+
+  // Step 4: Extract Connections
+  const connections: PortConnection[] = [];
+  const connectionSet = new Set<string>();
+
+  // 4a. Port to Port connections (core:portConnectedTo)
+  const portQuads = store.getQuads(null, portConnectedToNode, null, null);
+  for (const quad of portQuads) {
+    const srcPortUri = quad.subject.value;
+    const tgtPortUri = quad.object.value;
+
+    const srcEqUri = portToEquipmentMap.get(srcPortUri);
+    const tgtEqUri = portToEquipmentMap.get(tgtPortUri);
+
+    if (srcEqUri && tgtEqUri && srcEqUri !== tgtEqUri) {
+      const connId = `${srcPortUri}->${tgtPortUri}`;
+      const revConnId = `${tgtPortUri}->${srcPortUri}`;
+
+      if (!connectionSet.has(connId) && !connectionSet.has(revConnId)) {
+        connectionSet.add(connId);
+        connections.push({
+          id: connId,
+          sourceEquipmentUri: srcEqUri,
+          sourcePortUri: srcPortUri,
+          targetEquipmentUri: tgtEqUri,
+          targetPortUri: tgtPortUri,
+          connectionType: 'portConnectedTo',
+        });
+      }
+    }
+  }
+
+  // 4b. Direct equipment fluid flow (core:feedsFluidToEquipment)
+  const feedQuads = store.getQuads(null, feedsFluidNode, null, null);
+  for (const quad of feedQuads) {
+    const srcEq = quad.subject.value;
+    const tgtEq = quad.object.value;
+    const connId = `feeds:${srcEq}->${tgtEq}`;
+    if (!connectionSet.has(connId)) {
+      connectionSet.add(connId);
+      connections.push({
+        id: connId,
+        sourceEquipmentUri: srcEq,
+        sourcePortUri: `${srcEq}_out`,
+        targetEquipmentUri: tgtEq,
+        targetPortUri: `${tgtEq}_in`,
+        connectionType: 'feedsFluidToEquipment',
+      });
+    }
+  }
+
+  // 4c. Power relations (core:powersEquipment)
+  const powerQuads = store.getQuads(null, powersEquipmentNode, null, null);
+  for (const quad of powerQuads) {
+    const srcEq = quad.subject.value;
+    const tgtEq = quad.object.value;
+    const connId = `powers:${srcEq}->${tgtEq}`;
+    if (!connectionSet.has(connId)) {
+      connectionSet.add(connId);
+      connections.push({
+        id: connId,
+        sourceEquipmentUri: srcEq,
+        sourcePortUri: `${srcEq}_elec`,
+        targetEquipmentUri: tgtEq,
+        targetPortUri: `${tgtEq}_elec`,
+        connectionType: 'powersEquipment',
+      });
+    }
+  }
+
+  // Step 5: Extract Available OWL Classes dynamically from store
+  const owlClassNode = namedNode(`${NAMESPACES.owl}Class`);
+  const classSubjects = store.getSubjects(rdfType, owlClassNode, null);
+  const availableClasses: OntologyClass[] = [];
+  const classUriSet = new Set<string>();
+
+  for (const cNode of classSubjects) {
+    const cUri = cNode.value;
+    if (
+      cUri.startsWith('_:') ||
+      cUri.startsWith(NAMESPACES.owl) ||
+      cUri.startsWith(NAMESPACES.rdf) ||
+      cUri.startsWith(NAMESPACES.rdfs)
+    ) {
+      continue;
+    }
+    if (!classUriSet.has(cUri)) {
+      classUriSet.add(cUri);
+      const cLabels = store.getObjects(cNode, rdfsLabel, null);
+      const cLabel = cLabels.length > 0 ? cLabels[0].value : getShortUri(cUri);
+      const category = resolveEquipmentCategory([cUri], store);
+
+      availableClasses.push({
+        uri: cUri,
+        shortUri: getShortUri(cUri),
+        label: cLabel,
+        category,
+        defaultPorts: [
+          { type: 'InletPort', label: 'IN_01' },
+          { type: 'OutletPort', label: 'OUT_01' },
+        ],
+      });
+    }
+  }
+
+  return {
+    equipments,
+    connections,
+    availableClasses,
+    rawTriplesCount: store.size,
+    filesLoaded: filenames,
+  };
+}
+
+export function generateTurtleFromGraph(graph: OntologyGraph): string {
+  let ttl = `@prefix : <http://usp.ai/ontologies/fpeo-collect-equipments-abox#> .\n`;
+  ttl += `@prefix owl: <http://www.w3.org/2002/07/owl#> .\n`;
+  ttl += `@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n`;
+  ttl += `@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n`;
+  ttl += `@prefix core: <http://usp.ai/ontologies/fpeo-equipments-core#> .\n`;
+  ttl += `@prefix static: <http://usp.ai/ontologies/fpeo-static-equipments#> .\n`;
+  ttl += `@prefix dynamical: <http://usp.ai/ontologies/fpeo-dynamical-equipments#> .\n`;
+  ttl += `@prefix valve: <http://usp.ai/ontologies/fpeo-valves-security#> .\n`;
+  ttl += `@prefix o3po: <https://www.inf.ufrgs.br/ontologies/o3po#> .\n\n`;
+
+  for (const eq of graph.equipments) {
+    const portsList = eq.ports.map(p => `:${getShortUri(p.uri).replace(/^abox:/, '')}`).join(' , ');
+    const compsList = eq.components.map(c => `:${getShortUri(c.uri).replace(/^abox:/, '')}`).join(' , ');
+
+    ttl += `### ${eq.label}\n`;
+    ttl += `:${eq.shortUri.replace(/^abox:/, '')} rdf:type owl:NamedIndividual , <${eq.classUri}> ;\n`;
+    ttl += `    rdfs:label "${eq.label}"@en ;\n`;
+    if (portsList) {
+      ttl += `    core:hasPort ${portsList} ;\n`;
+    }
+    if (compsList) {
+      ttl += `    o3po:hasComponent ${compsList} ;\n`;
+    }
+    if (eq.moduleUri) {
+      const moduleRef = eq.moduleUri.startsWith('http') ? `<${eq.moduleUri}>` : `core:${eq.moduleUri}`;
+      ttl += `    core:inFPSOModule ${moduleRef} ;\n`;
+    }
+    ttl = ttl.replace(/;\n$/, ' .\n\n');
+
+    // Individual Ports
+    for (const port of eq.ports) {
+      const portShort = getShortUri(port.uri).replace(/^abox:/, '');
+      ttl += `:${portShort} rdf:type owl:NamedIndividual , core:${port.type} ;\n`;
+      ttl += `    rdfs:label "${port.label || port.shortUri}" ;\n`;
+      ttl += `    core:isPortOf :${eq.shortUri.replace(/^abox:/, '')} ;\n`;
+      if (port.connectedToPortUri) {
+        const tgtShort = getShortUri(port.connectedToPortUri).replace(/^abox:/, '');
+        ttl += `    core:portConnectedTo :${tgtShort} ;\n`;
+      }
+      ttl = ttl.replace(/;\n$/, ' .\n\n');
+    }
+
+    // Individual Components
+    for (const comp of eq.components) {
+      if (comp.source === 'instance') {
+        const compShort = getShortUri(comp.uri).replace(/^abox:/, '');
+        ttl += `:${compShort} rdf:type owl:NamedIndividual ;\n`;
+        ttl += `    rdfs:label "${comp.label}"@en .\n\n`;
+      }
+    }
+  }
+
+  return ttl;
+}

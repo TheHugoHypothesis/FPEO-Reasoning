@@ -1,0 +1,281 @@
+@prefix : <http://usp.ai/ontologies/fpeo-dynamical-equipments#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix o3po: <https://www.inf.ufrgs.br/ontologies/o3po#> .
+@prefix core: <http://usp.ai/ontologies/fpeo-equipments-core#> .
+
+@base <http://usp.ai/ontologies/fpeo-dynamical-equipments#> .
+
+<http://usp.ai/ontologies/fpeo-dynamical-equipments> rdf:type owl:Ontology ;
+    owl:imports <http://usp.ai/ontologies/fpeo-equipments-core> ;
+    dc:creator "Hugo Cardoso Ferreira de Araújo" ;
+    dc:description "Dynamical Equipments Module for FPEO-Equipments Ontology"@en .
+
+
+#################################################################
+#    1. Abstrações Intermediárias de Equipamentos Dinâmicos
+#################################################################
+
+:CompressorEquipment rdf:type owl:Class ;
+    rdfs:subClassOf core:DynamicalEquipment ;
+    rdfs:label "Compressor Equipment"@en , "Equipamento Compressor"@pt ;
+    skos:definition "A dynamical equipment engineered to increase the pressure of a compressible fluid (gas or vapor) by absorbing mechanical work."@en .
+
+:PumpEquipment rdf:type owl:Class ;
+    rdfs:subClassOf core:DynamicalEquipment ;
+    rdfs:label "Pump Equipment"@en , "Equipamento Bomba"@pt ;
+    skos:definition "A dynamical equipment engineered to transport or increase the pressure of an incompressible fluid (liquid) through continuous or positive displacement movement."@en .
+
+:GasTurbineEquipment rdf:type owl:Class ;
+    rdfs:subClassOf core:DynamicalEquipment ;
+    rdfs:label "Gas Turbine Equipment"@en , "Equipamento Turbina a Gás"@pt ;
+    skos:definition "A internal combustion rotary engine that extracts energy from a flow of hot combustion gas produced by the continuous burning of fuel."@en .
+
+:TurbineComponentEquipment rdf:type owl:Class ;
+    rdfs:subClassOf core:DynamicalEquipment ;
+    rdfs:label "Turbine Subcomponent Equipment"@en , "Subcomponente de Turbina"@pt ;
+    skos:definition "Rotary or structural mechanical artifact designed as a functional assembly or core component within a gas turbine drive system."@en .
+
+
+#################################################################
+#    2. Equipamentos Concretos: Compressores (CompressorEquipment)
+#################################################################
+
+:ProcessVRUCompressor rdf:type owl:Class ;
+    rdfs:subClassOf :CompressorEquipment ;
+    rdfs:label "Process VRU Compressor"@en , "Compressor da Unidade de Recuperação de Vapores (VRU)"@pt ;
+    rdfs:isDefinedBy "ISO 10440 (Screw Compressors)" .
+
+:MainGasCompressorTrainA rdf:type owl:Class ;
+    rdfs:subClassOf :CompressorEquipment ;
+    rdfs:label "Main Gas Compressor (Train A)"@en , "Compressor Principal de Gás (Trem A)"@pt ;
+    rdfs:isDefinedBy "ISO 10439 (Centrifugal Compressors)" .
+
+:MainGasCompressorTrainB rdf:type owl:Class ;
+    rdfs:subClassOf :CompressorEquipment ;
+    rdfs:label "Main Gas Compressor (Train B)"@en , "Compressor Principal de Gás (Trem B)"@pt ;
+    rdfs:isDefinedBy "ISO 10439 (Centrifugal Compressors)" .
+
+:ReinjectionGasCompressor rdf:type owl:Class ;
+    rdfs:subClassOf :CompressorEquipment ;
+    rdfs:label "Reinjection Gas Compressor"@en , "Compressor de Reinjeção de Gás"@pt ;
+    rdfs:isDefinedBy "ISO 10439" .
+
+:LiftGasCompressor rdf:type owl:Class ;
+    rdfs:subClassOf :CompressorEquipment ;
+    rdfs:label "Lift Gas Compressor"@en , "Compressor de Gás Lift"@pt ;
+    rdfs:isDefinedBy "ISO 10439" .
+
+:HighPressureCompressor rdf:type owl:Class ;
+    rdfs:subClassOf :CompressorEquipment ;
+    rdfs:label "High Pressure Compressor"@en , "Compressor de Alta Pressão"@pt ;
+    rdfs:isDefinedBy "ISO 10439" .
+
+:LowPressureCompressor rdf:type owl:Class ;
+    rdfs:subClassOf :CompressorEquipment ;
+    rdfs:label "Low Pressure Compressor"@en , "Compressor de Baixa Pressão"@pt ;
+    rdfs:isDefinedBy "ISO 10439" .
+
+:InstrumentAirCompressor rdf:type owl:Class ;
+    rdfs:subClassOf :CompressorEquipment ;
+    rdfs:label "Instrument Air Compressor"@en , "Compressor de Ar de Instrumentos"@pt ;
+    skos:altLabel "Utility Air Compressor"@en , "Compressor de Ar de Utilidades"@pt ;
+    rdfs:isDefinedBy "ISO 10440" .
+
+
+#################################################################
+#    3. Equipamentos Concretos: Bombas (PumpEquipment)
+#################################################################
+
+:CentrifugalPumpEquipment rdf:type owl:Class ;
+    rdfs:subClassOf :PumpEquipment ;
+    rdfs:label "Centrifugal Pump Equipment"@en , "Equipamento Bomba Centrífuga"@pt ;
+    skos:altLabel "Kinetic Pump Equipment"@en , "Bomba Cinética"@pt ;
+    skos:definition "A pump equipment that converts rotational kinetic energy from an impeller into hydrodynamic energy to transport fluids."@en ;
+    rdfs:isDefinedBy "ISO 13709 / API Std 610" .
+
+:PositiveDisplacementPumpEquipment rdf:type owl:Class ;
+    rdfs:subClassOf :PumpEquipment ;
+    rdfs:label "Positive Displacement Pump Equipment"@en , "Equipamento Bomba de Deslocamento Positivo"@pt ;
+    skos:definition "A pump equipment that moves fluid by trapping a fixed amount and forcing (displacing) that trapped volume into the discharge pipe."@en ;
+    rdfs:isDefinedBy "API Std 674 / API Std 675" .
+
+:TestSeparatorOilPump rdf:type owl:Class ;
+    rdfs:subClassOf :CentrifugalPumpEquipment ;
+    rdfs:label "Test Separator Oil Pump"@en , "Bomba de Óleo do Separador de Teste"@pt ;
+    rdfs:isDefinedBy "ISO 13709 (Centrifugal Pumps)" .
+
+:ElectrostaticTreaterWaterPump rdf:type owl:Class ;
+    rdfs:subClassOf :CentrifugalPumpEquipment ;
+    rdfs:label "Electrostatic Treater Water Pump"@en , "Bomba de Água do Tratador Eletrostático"@pt ;
+    rdfs:isDefinedBy "ISO 13709" .
+
+:ElectrostaticTreaterFeedPump rdf:type owl:Class ;
+    rdfs:subClassOf :CentrifugalPumpEquipment ;
+    rdfs:label "Electrostatic Treater Feed Pump"@en , "Bomba de Alimentação do Tratador Eletrostático"@pt ;
+    rdfs:isDefinedBy "ISO 13709" .
+
+:SeawaterLiftPump rdf:type owl:Class ;
+    rdfs:subClassOf :CentrifugalPumpEquipment ;
+    rdfs:label "Seawater Lift Pump"@en , "Bomba de Elevação de Água do Mar"@pt ;
+    skos:altLabel "Seawater Intake Pump"@en , "Bomba de Captação de Água do Mar"@pt ;
+    rdfs:isDefinedBy "ISO 13709" .
+
+:WaterSkimVesselPump rdf:type owl:Class ;
+    rdfs:subClassOf :CentrifugalPumpEquipment ;
+    rdfs:label "Water Collection Skim Vessel Pump"@en , "Bomba do Vaso Desnatador de Água Produzida"@pt ;
+    rdfs:isDefinedBy "ISO 13709" .
+
+:SRUFeedPump rdf:type owl:Class ;
+    rdfs:subClassOf :CentrifugalPumpEquipment ;
+    rdfs:label "SRU Feed Pump"@en , "Bomba de Alimentação do SRU"@pt ;
+    rdfs:isDefinedBy "ISO 13709" .
+
+:SeawaterInjectionPump rdf:type owl:Class ;
+    rdfs:subClassOf :CentrifugalPumpEquipment ;
+    rdfs:label "Seawater Injection Pump"@en , "Bomba de Injeção de Água do Mar"@pt ;
+    rdfs:isDefinedBy "ISO 13709" .
+
+:HeatingMediumCirculationPump rdf:type owl:Class ;
+    rdfs:subClassOf :CentrifugalPumpEquipment ;
+    rdfs:label "Heating Medium Circulation Pump"@en , "Bomba de Circulação do Fluido Aquecedor"@pt ;
+    rdfs:isDefinedBy "ISO 13709" .
+
+:CoolingMediumCirculationPump rdf:type owl:Class ;
+    rdfs:subClassOf :CentrifugalPumpEquipment ;
+    rdfs:label "Cooling Medium Circulation Pump"@en , "Bomba de Circulação do Fluido Refrigerante"@pt ;
+    rdfs:isDefinedBy "ISO 13709" .
+
+:ChemicalInjectionPump rdf:type owl:Class ;
+    rdfs:subClassOf :PositiveDisplacementPumpEquipment ;
+    rdfs:label "Chemical Injection Pump"@en , "Bomba de Injeção Química"@pt ;
+    rdfs:isDefinedBy "API Std 675 (Controlled Volume Pumps)" .
+
+:ChemicalTransferPump rdf:type owl:Class ;
+    rdfs:subClassOf :PositiveDisplacementPumpEquipment ;
+    rdfs:label "Chemical Transfer Pump"@en , "Bomba de Transferência de Produtos Químicos"@pt ;
+    rdfs:isDefinedBy "API Std 674 / ISO 13709" .
+
+:ClosedDrainPump rdf:type owl:Class ;
+    rdfs:subClassOf :PositiveDisplacementPumpEquipment ;
+    rdfs:label "Closed Drain Pump"@en , "Bomba do Dreno Fechado"@pt ;
+    rdfs:isDefinedBy "API Std 674 / ISO 13709" .
+
+
+#################################################################
+#    4. Equipamentos Concretos: Turbinas a Gás (GasTurbineEquipment)
+#################################################################
+
+:Aeroderivative rdf:type owl:Class ;
+    rdfs:subClassOf :GasTurbineEquipment ;
+    rdfs:label "Aeroderivative Gas Turbine"@en , "Turbina a Gás Aeroderivativa"@pt ;
+    skos:definition "Aircraft propulsion gas generator adapted to drive mechanical, electrical or marine equipment. [Source: ISO 3977-3, 3.1]"@en ;
+    rdfs:isDefinedBy "ISO 3977-3, 3.1" .
+
+:HeavyDutyIndustrial rdf:type owl:Class ;
+    rdfs:subClassOf :GasTurbineEquipment ;
+    rdfs:label "Heavy Duty Industrial Gas Turbine"@en , "Turbina a Gás Industrial Pesada (Heavy Duty)"@pt ;
+    skos:definition "Heavy duty frame gas turbine designed specifically for stationary industrial power generation or mechanical drive applications."@en ;
+    rdfs:isDefinedBy "ISO 3977-3" .
+
+:BledGasTurbine rdf:type owl:Class ;
+    rdfs:subClassOf :GasTurbineEquipment ;
+    rdfs:label "Bled Gas Turbine"@en , "Turbina a Gás com Sangria"@pt ;
+    skos:definition "Gas turbine which has, for external use, extraction of compressed air between compressor stages and/or at the discharge of the compressor."@en ;
+    rdfs:isDefinedBy "ISO 11042 / API Spec 616" .
+
+:MultiShaftGasTurbine rdf:type owl:Class ;
+    rdfs:subClassOf :GasTurbineEquipment ;
+    rdfs:label "Multi Shaft Gas Turbine"@en , "Turbina a Gás Multieixo"@pt ;
+    skos:definition "Gas turbine combination including at least two turbines working on independent shafts."@en ;
+    rdfs:isDefinedBy "ISO 11042" .
+
+:SingleShaftGasTurbine rdf:type owl:Class ;
+    rdfs:subClassOf :GasTurbineEquipment ;
+    rdfs:label "Single Shaft Gas Turbine"@en , "Turbina a Gás Monoeixo"@pt ;
+    skos:definition "Gas turbine where compressor and turbine stages are coupled on a single common shaft."@en ;
+    rdfs:isDefinedBy "ISO 11042" .
+
+
+#################################################################
+#    5. Subcomponentes e Montagens de Turbina (TurbineComponentEquipment)
+#################################################################
+
+:GasGenerator rdf:type owl:Class ;
+    rdfs:subClassOf :TurbineComponentEquipment ;
+    rdfs:label "Gas Generator Assembly"@en , "Gerador de Gás"@pt ;
+    skos:definition "Assembly of gas turbine components which produces heated pressurized gas to a power turbine or process."@en .
+
+:HighPressureTurbine rdf:type owl:Class ;
+    rdfs:subClassOf :TurbineComponentEquipment ;
+    rdfs:label "High Pressure Turbine"@en , "Turbina de Alta Pressão"@pt .
+
+:LowPressureTurbine rdf:type owl:Class ;
+    rdfs:subClassOf :TurbineComponentEquipment ;
+    rdfs:label "Low Pressure Turbine"@en , "Turbina de Baixa Pressão"@pt .
+
+:PowerTurbine rdf:type owl:Class ;
+    rdfs:subClassOf :TurbineComponentEquipment ;
+    rdfs:label "Power Turbine"@en , "Turbina de Potência"@pt ;
+    skos:definition "Turbine having a separate shaft from which useful output power is derived."@en .
+
+:Shaft rdf:type owl:Class ;
+    rdfs:subClassOf :TurbineComponentEquipment ;
+    rdfs:label "Shaft"@en , "Eixo Mecânico"@pt ;
+    skos:altLabel "Rotor"@en , "Rotor Mecânico"@pt ;
+    skos:definition "The mechanical element that couples the compressor and turbine stages to transfer rotational energy."@en .
+
+:CombustionChamber rdf:type owl:Class ;
+    rdfs:subClassOf :TurbineComponentEquipment ;
+    rdfs:label "Combustion Chamber"@en , "Câmara de Combustão"@pt ;
+    skos:definition "Heat source in which fuel reacts with compressed air to increase the working fluid temperature."@en .
+
+:DriveTrain rdf:type owl:Class ;
+    rdfs:subClassOf :TurbineComponentEquipment ;
+    rdfs:label "Drive Train"@en , "Trem de Acionamento"@pt ;
+    skos:definition "Assembly of rotational components transmitting mechanical power from the gas turbine to driven equipment, including shafts, couplings and gearboxes. [Source: ISO 3977-1, 2.8]"@en ;
+    rdfs:isDefinedBy "ISO 3977-1, 2.8" .
+
+:Gearbox rdf:type owl:Class ;
+    rdfs:subClassOf :TurbineComponentEquipment ;
+    rdfs:label "Gearbox"@en , "Caixa de Engrenagens"@pt ;
+    skos:altLabel "Speed Reducer"@en , "Redutor de Velocidade"@pt ;
+    skos:definition "Mechanical transmission device comprising gears that matches rotational speed and torque between the driver turbine and driven load. [Source: ISO 3977-3]"@en ;
+    rdfs:isDefinedBy "ISO 3977-3" .
+
+:Coupling rdf:type owl:Class ;
+    rdfs:subClassOf :TurbineComponentEquipment ;
+    rdfs:label "Flexible Shaft Coupling"@en , "Acoplamento Flexível de Eixos"@pt ;
+    skos:definition "Mechanical component that connects two rotating shafts together for the purpose of transmitting power."@en ;
+    rdfs:isDefinedBy "ISO 3977-3 / API Spec 671" .
+
+:PowerGenerationPackage rdf:type owl:Class ;
+    rdfs:subClassOf :GasTurbineEquipment ;
+    rdfs:label "Gas Turbine Power Generation Package"@en , "Pacote de Geração de Potência por Turbina a Gás"@pt ;
+    skos:definition "Integrated skid-mounted package comprising the gas turbine driver, driven electrical generator, auxiliary systems and control enclosure. [Source: ISO 3977-3]"@en ;
+    rdfs:isDefinedBy "ISO 3977-3" .
+
+
+#################################################################
+#    AXIOMAS DE DISJUNÇÃO RAIZ E SUB-MECÂNICA (CONSOLIDADOS)
+#################################################################
+
+[] rdf:type owl:AllDisjointClasses ;
+   owl:members ( :CompressorEquipment
+                 :GasTurbineEquipment
+                 :PumpEquipment
+                 :TurbineComponentEquipment ) .
+
+[] rdf:type owl:AllDisjointClasses ;
+   owl:members ( :CentrifugalPumpEquipment
+                 :PositiveDisplacementPumpEquipment ) .
+
+[] rdf:type owl:AllDisjointClasses ;
+   owl:members ( :BledGasTurbine
+                 :MultiShaftGasTurbine
+                 :SingleShaftGasTurbine ) .

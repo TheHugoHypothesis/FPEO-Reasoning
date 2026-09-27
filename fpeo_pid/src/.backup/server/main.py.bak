@@ -1,0 +1,73 @@
+import uvicorn
+from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
+from typing import List, Optional, Dict, Any
+
+from reasoner import analyze_turtle_with_hermit
+from llm_explainer import generate_llm_explanation
+
+app = FastAPI(
+    title="FPEO Semantic Reasoner & Auditor API",
+    description="Backend service running HermiT OWL DL Reasoner via Owlready2 and Ollama LLM integration",
+    version="1.0.0"
+)
+
+# Enable CORS for Next.js frontend
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+class AuditRequest(BaseModel):
+    ttl_contents: List[str]
+    ollama_url: Optional[str] = "http://localhost:11434"
+    ollama_model: Optional[str] = "llama3:latest"
+
+class ExplainRequest(BaseModel):
+    justifications: List[Dict[str, Any]]
+    ollama_url: Optional[str] = "http://localhost:11434"
+    ollama_model: Optional[str] = "llama3:latest"
+
+@app.get("/health")
+def health_check():
+    return {"status": "ok", "service": "FPEO Reasoner Backend", "reasoner": "HermiT (Owlready2)"}
+
+@app.post("/api/audit")
+def audit_ontology(request: AuditRequest):
+    if not request.ttl_contents:
+        raise HTTPException(status_code=400, detail="No TTL content provided")
+
+    try:
+        audit_result = analyze_turtle_with_hermit(request.ttl_contents)
+        
+        # Generate LLM explanation if justifications exist
+        if not audit_result["isConsistent"] and audit_result["justifications"]:
+            llm_text = generate_llm_explanation(
+                audit_result["justifications"],
+                ollama_url=request.ollama_url or "http://localhost:11434",
+                model_name=request.ollama_model or "llama3:latest"
+            )
+            audit_result["llmExplanation"] = llm_text
+
+        return audit_result
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Reasoner error: {str(e)}")
+
+@app.post("/api/explain")
+def explain_justifications(request: ExplainRequest):
+    try:
+        explanation = generate_llm_explanation(
+            request.justifications,
+            ollama_url=request.ollama_url or "http://localhost:11434",
+            model_name=request.ollama_model or "llama3:latest"
+        )
+        return {"explanation": explanation}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"LLM explanation error: {str(e)}")
+
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)

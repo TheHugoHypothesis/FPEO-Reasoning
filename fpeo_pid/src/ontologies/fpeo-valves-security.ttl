@@ -1,0 +1,121 @@
+@prefix : <http://usp.ai/ontologies/fpeo-valves-security#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix core: <http://usp.ai/ontologies/fpeo-equipments-core#> .
+
+@base <http://usp.ai/ontologies/fpeo-valves-security#> .
+
+<http://usp.ai/ontologies/fpeo-valves-security> rdf:type owl:Ontology ;
+    owl:imports <http://usp.ai/ontologies/fpeo-equipments-core> ;
+    dc:creator "Hugo Cardoso Ferreira de Araújo" ;
+    dc:description "Valves and Process Security Module for FPEO-Equipments Ontology"@en .
+
+
+#################################################################
+#    1. Abstrações Intermediárias de Válvulas e Segurança
+#################################################################
+
+:PressureSafetyAndReliefEquipment rdf:type owl:Class ;
+    rdfs:subClassOf core:ValveAndSecurityEquipment ;
+    rdfs:label "Pressure Safety and Relief Equipment"@en , "Equipamento de Segurança e Alívio de Pressão"@pt ;
+    skos:definition "Safety devices designed to automatically relieve excess pressure from pressure vessels or piping systems to protect integrity."@en .
+
+:ProcessControlEquipment rdf:type owl:Class ;
+    rdfs:subClassOf core:ValveAndSecurityEquipment ;
+    rdfs:label "Process Control Equipment"@en , "Equipamento de Controle de Processo"@pt ;
+    skos:definition "Final control elements designed to regulate fluid flow rate, pressure, temperature, or liquid level in process loops."@en .
+
+:IsolationAndShutdownEquipment rdf:type owl:Class ;
+    rdfs:subClassOf core:ValveAndSecurityEquipment ;
+    rdfs:label "Isolation and Shutdown Equipment"@en , "Equipamento de Isolamento e Parada de Emergência"@pt ;
+    skos:definition "Valves engineered for positive shutoff, emergency shutdown (ESD), or unidirectional flow prevention to isolate process units."@en .
+
+
+#################################################################
+#    2. Equipamentos Concretos: Alívio e Segurança (PressureSafetyAndReliefEquipment)
+#################################################################
+
+:PressureReliefValve rdf:type owl:Class ;
+    rdfs:subClassOf :PressureSafetyAndReliefEquipment ;
+    rdfs:label "Pressure Relief Valve"@en , "Válvula de Alívio de Pressão"@pt ;
+    skos:altLabel "Pressure Safety Valve"@en , "Válvula de Segurança e Alívio"@pt ;
+    skos:definition "Automatic pressure-relieving device actuated by static pressure upstream to open when pressure exceeds a specified setpoint."@en ;
+    rdfs:isDefinedBy "API Std 520 / API Std 526" .
+
+:RuptureDisc rdf:type owl:Class ;
+    rdfs:subClassOf :PressureSafetyAndReliefEquipment ;
+    rdfs:label "Rupture Disc Device"@en , "Disco de Ruptura"@pt ;
+    skos:definition "Non-reclosing pressure relief device actuated by differential pressure and designed to burst at a predetermined set value."@en ;
+    rdfs:isDefinedBy "API Std 520 / ISO 4126-2" .
+
+:FuelStopValve rdf:type owl:Class ;
+    rdfs:subClassOf :PressureSafetyAndReliefEquipment ;
+    rdfs:label "Turbine Fuel Stop Valve"@en , "Válvula de Bloqueio Rápido do Combustível da Turbina"@pt ;
+    skos:definition "Emergency trip device which, when actuated by protection system, rapidly shuts off all fuel flow to the combustion chamber."@en ;
+    rdfs:isDefinedBy "ISO 11042 / API Spec 616" .
+
+
+#################################################################
+#    3. Equipamentos Concretos: Controle de Processo (ProcessControlEquipment)
+#################################################################
+
+:InjectionRateControlDevice rdf:type owl:Class ;
+    rdfs:subClassOf :ProcessControlEquipment ;
+    rdfs:label "Injection Rate Control Device (IRCD)"@en , "Dispositivo de Controle de Taxa de Injeção (IRCD)"@pt ;
+    skos:definition "Flow regulation valve engineered to precisely meter high-pressure chemical injection into subsea or topside lines."@en ;
+    rdfs:isDefinedBy "IEC 60534 / API Spec 14A" .
+
+:FlowControlValve rdf:type owl:Class ;
+    rdfs:subClassOf :ProcessControlEquipment ;
+    rdfs:label "Process Flow Control Valve"@en , "Válvula de Controle de Vazão"@pt ;
+    skos:definition "Power-actuated valve used to regulate fluid flow rate by modulating orifice area in response to control signals."@en ;
+    rdfs:isDefinedBy "IEC 60534" .
+
+:PressureControlValve rdf:type owl:Class ;
+    rdfs:subClassOf :ProcessControlEquipment ;
+    rdfs:label "Pressure Control Valve"@en , "Válvula de Controle de Pressão"@pt ;
+    skos:altLabel "Choke Valve"@en , "Válvula Choke"@pt ;
+    skos:definition "Control valve designed to reduce and regulate fluid pressure downstream or maintain upstream backpressure."@en ;
+    rdfs:isDefinedBy "IEC 60534 / API Spec 6A" .
+
+:FuelGovernorValve rdf:type owl:Class ;
+    rdfs:subClassOf :ProcessControlEquipment ;
+    rdfs:label "Turbine Fuel Governor Valve"@en , "Válvula Governadora do Combustível da Turbina"@pt ;
+    skos:definition "Final metering valve modulating fuel input to a gas turbine to maintain rotor speed or load setpoint."@en ;
+    rdfs:isDefinedBy "ISO 11042" .
+
+
+#################################################################
+#    4. Equipamentos Concretos: Isolamento e Parada (IsolationAndShutdownEquipment)
+#################################################################
+
+:EmergencyShutdownValve rdf:type owl:Class ;
+    rdfs:subClassOf :IsolationAndShutdownEquipment ;
+    rdfs:label "Emergency Shutdown Valve (ESDV)"@en , "Válvula de Parada de Emergência (ESDV)"@pt ;
+    skos:definition "Actuated safety valve designed to isolate a process module or plant section upon detection of hazardous emergency conditions."@en ;
+    rdfs:isDefinedBy "ISO 14313 / API Spec 6D / API Std 14C" .
+
+:ShutdownValve rdf:type owl:Class ;
+    rdfs:subClassOf :IsolationAndShutdownEquipment ;
+    rdfs:label "Process Shutdown Valve (SDV)"@en , "Válvula de Parada do Processo (SDV)"@pt ;
+    skos:definition "Actuated valve used to automatically isolate specific process equipment or lines during automated unit shutdowns."@en ;
+    rdfs:isDefinedBy "API Spec 6D / API Std 14C" .
+
+:CheckValve rdf:type owl:Class ;
+    rdfs:subClassOf :IsolationAndShutdownEquipment ;
+    rdfs:label "Check Valve"@en , "Válvula de Retenção"@pt ;
+    skos:altLabel "Non-Return Valve"@en , "Válvula de Não Retorno"@pt ;
+    skos:definition "Unidirectional automatic valve that allows fluid flow in one direction and closes automatically to prevent backflow."@en ;
+    rdfs:isDefinedBy "API Spec 6D / ISO 14313" .
+
+:ManualIsolationValve rdf:type owl:Class ;
+    rdfs:subClassOf :IsolationAndShutdownEquipment ;
+    rdfs:label "Manual Block Valve"@en , "Válvula Manual de Bloqueio"@pt ;
+    skos:altLabel "Isolation Valve"@en , "Válvula de Isolamento"@pt ;
+    skos:definition "Manually operated valve (e.g., ball, gate, plug valve) providing tight shutoff for routine maintenance isolation."@en ;
+    rdfs:isDefinedBy "API Spec 6D / ISO 15761" .

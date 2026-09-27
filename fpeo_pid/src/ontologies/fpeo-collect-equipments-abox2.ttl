@@ -1,0 +1,102 @@
+@prefix : <http://usp.ai/ontologies/fpeo-collect-equipments-abox#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix obo: <http://purl.obolibrary.org/obo/> .
+@prefix uo: <http://purl.obolibrary.org/obo/> .
+@prefix iof-core: <https://spec.industrialontologies.org/ontology/core/Core/> .
+@prefix o3po: <https://www.inf.ufrgs.br/ontologies/o3po#> .
+@prefix core: <http://usp.ai/ontologies/fpeo-equipments-core#> .
+@prefix static: <http://usp.ai/ontologies/fpeo-static-equipments#> .
+@prefix dynamical: <http://usp.ai/ontologies/fpeo-dynamical-equipments#> .
+@prefix prop: <http://usp.ai/ontologies/fpeo-properties-equipments#> .
+@prefix rules: <http://usp.ai/ontologies/fpeo-rules-equipments#> .
+
+<http://usp.ai/ontologies/fpeo-collect-equipments-abox2> rdf:type owl:Ontology ;
+    owl:imports <http://usp.ai/ontologies/fpeo-rules-equipments> ;
+    dc:creator "Hugo Cardoso Ferreira de Araújo" ;
+    dc:description "Incompatible Scenario ABox Validation (HP Compressor to LP Knockout Drum with Design Specifications)"@en .
+
+#################################################################
+# 1. NAVIO FPSO E MÓDULO TOPSIDE
+#################################################################
+
+:FPSO_P78 rdf:type owl:NamedIndividual , o3po:FPSO ;
+    rdfs:label "FPSO P-78 Marechal Duque"@en .
+
+:Module_M04 rdf:type owl:NamedIndividual , core:FPSOModule ;
+    rdfs:label "M-04 Exportation Gas Compression Module"@en ;
+    obo:RO_0001025 :FPSO_P78 ;
+    core:isLocatedInFPSO :FPSO_P78 .
+
+
+#################################################################
+# 2. CENÁRIO INCOMPATÍVEL: HP COMPRESSOR -> LP KODRUM
+#################################################################
+
+### 2.1 Compressor de Alta Pressão (Dinâmico)
+:K_101_HP_Compressor rdf:type owl:NamedIndividual , dynamical:HighPressureCompressor ;
+    rdfs:label "K-101 High Pressure Compressor"@en ;
+    core:isLocatedInModule :Module_M04 ;
+    core:hasPort :K101_Port_Out .
+
+:K101_Port_Out rdf:type owl:NamedIndividual , core:OutletPort ;
+    core:isPortOf :K_101_HP_Compressor ;
+    core:portConnectedTo :V101_Port_In .
+
+:Doc_Datasheet_K101 rdf:type owl:NamedIndividual , prop:EquipmentDesignDocument ;
+    rdfs:label "Datasheet Técnico - Compressor HP K-101"@pt ;
+    iof-core:describes :K_101_HP_Compressor ;
+    iof-core:hasContinuantPartAtAllTimes :Tag_K101 , :Spec_RatedPower_K101 , :Spec_DesignPressure_K101 .
+
+:Tag_K101 rdf:type owl:NamedIndividual , prop:EquipmentTagIdentifier ;
+    iof-core:identifies :K_101_HP_Compressor ;
+    iof-core:hasSimpleExpressionValue "K-101" .
+
+:Spec_RatedPower_K101 rdf:type owl:NamedIndividual , prop:RatedPowerSpecification ;
+    rdfs:label "Rated Power Specification"@en ;
+    iof-core:prescribes :K_101_HP_Compressor ;
+    iof-core:hasContinuantPartAtAllTimes :Val_Power_K101 .
+
+:Val_Power_K101 rdf:type owl:NamedIndividual , prop:PowerValueExpression ;
+    obo:IAO_0000039 uo:UO_0000037 ; # megawatt (UO)
+    iof-core:hasSimpleExpressionValue "22.0"^^xsd:double .
+
+:Spec_DesignPressure_K101 rdf:type owl:NamedIndividual , prop:DesignPressureSpecification ;
+    rdfs:label "Design Discharge Pressure"@en ;
+    iof-core:prescribes :K_101_HP_Compressor ;
+    iof-core:hasContinuantPartAtAllTimes :Val_Pressure_K101 .
+
+:Val_Pressure_K101 rdf:type owl:NamedIndividual , prop:PressureValueExpression ;
+    obo:IAO_0000039 uo:UO_0000062 ; # bar (UO)
+    iof-core:hasSimpleExpressionValue "250.0"^^xsd:double .
+
+
+### 2.2 Vaso Knockout de Baixa Pressão (Estático)
+:V_101_LP_KODrum rdf:type owl:NamedIndividual , static:LPFlareKnockoutDrum ;
+    rdfs:label "V-101 LP Flare Knockout Drum"@en ;
+    core:isLocatedInModule :Module_M04 ;
+    core:hasPort :V101_Port_In .
+
+:V101_Port_In rdf:type owl:NamedIndividual , core:InletPort ;
+    core:isPortOf :V_101_LP_KODrum .
+
+:Doc_Datasheet_V101 rdf:type owl:NamedIndividual , prop:EquipmentDesignDocument ;
+    rdfs:label "Datasheet Técnico - Vaso KODrum V-101"@pt ;
+    iof-core:describes :V_101_LP_KODrum ;
+    iof-core:hasContinuantPartAtAllTimes :Tag_V101 , :Spec_DesignPressure_V101 .
+
+:Tag_V101 rdf:type owl:NamedIndividual , prop:EquipmentTagIdentifier ;
+    iof-core:identifies :V_101_LP_KODrum ;
+    iof-core:hasSimpleExpressionValue "V-101" .
+
+:Spec_DesignPressure_V101 rdf:type owl:NamedIndividual , prop:DesignPressureSpecification ;
+    rdfs:label "Design Pressure Specification (MAWP)"@en ;
+    iof-core:prescribes :V_101_LP_KODrum ;
+    iof-core:hasContinuantPartAtAllTimes :Val_Pressure_V101 .
+
+:Val_Pressure_V101 rdf:type owl:NamedIndividual , prop:PressureValueExpression ;
+    obo:IAO_0000039 uo:UO_0000062 ; # bar (UO)
+    iof-core:hasSimpleExpressionValue "8.0"^^xsd:double .

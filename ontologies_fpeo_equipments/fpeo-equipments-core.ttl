@@ -1,0 +1,245 @@
+@prefix : <http://usp.ai/ontologies/fpeo-equipments-core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix o3po: <https://www.inf.ufrgs.br/ontologies/o3po#> .
+@prefix iof-core: <https://spec.industrialontologies.org/ontology/core/Core/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+
+@base <http://usp.ai/ontologies/fpeo-equipments-core#> .
+
+<http://usp.ai/ontologies/fpeo-equipments-core> rdf:type owl:Ontology ;
+    owl:imports <https://www.inf.ufrgs.br/ontologies/o3po/2.0> ;
+    dc:creator "Hugo Cardoso Ferreira de Araújo" ;
+    dc:description "Core Module for FPEO-Equipments Ontology defining fundamental equipment classes, ports, and flow properties"@en .
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://usp.ai/ontologies/fpeo-equipments-coreDynamicalEquipment
+:DynamicalEquipment rdf:type owl:Class ;
+                    rdfs:subClassOf :TopsideEquipment ;
+                    rdfs:label "Dynamical Equipment"@en ;
+                    skos:definition "Topside equipment that utilizes mechanical work and continuous rotational or positive displacement motion to pressurize, transport, or compress process and utility fluids."@en .
+
+
+###  http://usp.ai/ontologies/fpeo-equipments-coreElectricalEquipment
+:ElectricalEquipment rdf:type owl:Class ;
+                     rdfs:subClassOf :TopsideEquipment ;
+                     rdfs:label "Electrical Equipment"@en ;
+                     skos:definition "A topside equipment designed to generate, transform, distribute, switch, or convert electrical energy for power distribution or driving mechanical loads."@en .
+
+
+###  http://usp.ai/ontologies/fpeo-equipments-coreElectricalPort
+:ElectricalPort rdf:type owl:Class ;
+                rdfs:subClassOf :EquipmentPort ;
+                rdfs:label "Electrical Port"@en ;
+                skos:definition "An equipment port designed as the physical conductor interface (terminals/junctions) for transmitting or receiving electrical power in topside equipment."@en .
+
+
+###  http://usp.ai/ontologies/fpeo-equipments-coreEquipmentPort
+:EquipmentPort rdf:type owl:Class ;
+               rdfs:subClassOf iof-core:MaterialArtifact ;
+               rdfs:label "Equipment Port"@en ;
+               skos:definition "A material artifact that acts as a physical, fluidic, or electrical boundary interface of a topside equipment, allowing physical connection and transfer to another equipment or piping line."@en .
+
+
+###  http://usp.ai/ontologies/fpeo-equipments-coreInletPort
+:InletPort rdf:type owl:Class ;
+           rdfs:subClassOf :EquipmentPort ;
+           rdfs:label "Inlet Port"@en ;
+           skos:definition "An equipment port designed as the physical boundary interface to admit process or utility fluids into a topside equipment."@en .
+
+
+###  http://usp.ai/ontologies/fpeo-equipments-coreOutletPort
+:OutletPort rdf:type owl:Class ;
+            rdfs:subClassOf :EquipmentPort ;
+            rdfs:label "Outlet Port"@en ;
+            skos:definition "An equipment port designed as the physical boundary interface to discharge process or utility fluids from a topside equipment."@en .
+
+
+###  http://usp.ai/ontologies/fpeo-equipments-coreRenewableEquipment
+:RenewableEquipment rdf:type owl:Class ;
+                    rdfs:subClassOf :TopsideEquipment ;
+                    rdfs:label "Renewable Equipment"@en ;
+                    skos:definition "A topside equipment designed to capture, convert, or condition energy from renewable sources to support decarbonized power supply in offshore operations."@en .
+
+
+###  http://usp.ai/ontologies/fpeo-equipments-coreSignalPort
+:SignalPort rdf:type owl:Class ;
+            rdfs:subClassOf :EquipmentPort ;
+            rdfs:label "Signal Port"@en ;
+            skos:definition "An equipment port designed as the physical interface for transmitting or receiving analog, digital, or pneumatic signals for control, measurement, and safety interlocking."@en .
+
+
+###  http://usp.ai/ontologies/fpeo-equipments-coreStaticEquipment
+:StaticEquipment rdf:type owl:Class ;
+                 rdfs:subClassOf :TopsideEquipment ;
+                 rdfs:label "Static Equipment"@en ;
+                 skos:definition "A topside equipment designed to contain, separate, filter, or transfer mass and heat between fluids without relying on primary rotating moving parts to achieve its main process function."@en .
+
+
+###  http://usp.ai/ontologies/fpeo-equipments-coreTopsideEquipment
+:TopsideEquipment rdf:type owl:Class ;
+                  rdfs:subClassOf iof-core:MaterialArtifact ;
+                  rdfs:label "Topside Equipment"@en ;
+                  skos:definition "Material Artifact designed to perform a specific process, utility, safety, or power generation function within the topside facilities of a floating production, storage, and offloading (FPSO) unit."@en .
+
+
+###  http://usp.ai/ontologies/fpeo-equipments-coreValveAndSecurityEquipment
+:ValveAndSecurityEquipment rdf:type owl:Class ;
+                           rdfs:subClassOf :TopsideEquipment ;
+                           rdfs:label "Valve and Security Equipment"@en ;
+                           skos:definition "A topside equipment designed to control, isolate, block, or relieve fluid flow and pressure to maintain operational safety and protect against overpressure events."@en .
+
+
+###  http://usp.ai/ontologies/fpeo-equipments-core#InstrumentationAndControlEquipment
+:InstrumentationAndControlEquipment rdf:type owl:Class ;
+                                    rdfs:subClassOf :TopsideEquipment ;
+                                    rdfs:label "Instrumentation and Control Equipment"@en , "Equipamento de Instrumentação e Controle"@pt ;
+                                    skos:definition "A topside equipment designed to measure, monitor, transmit, or control physical process variables (e.g., pressure, temperature, flow, level) or send signal interlocks for plant automation and safety."@en .
+
+
+###  http://usp.ai/ontologies/fpeo-equipments-core#FPSOModule
+:FPSOModule rdf:type owl:Class ;
+            rdfs:subClassOf iof-core:EngineeredSystem ;
+            rdfs:label "FPSO Module"@en , "Módulo do FPSO"@pt ;
+            skos:definition "A distinct structural and functional topside module/skid of a Floating Production Storage and Offloading (FPSO) facility, integrating equipment, piping, electrical, and control systems for a designated process or utility function."@en .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+:hasPort rdf:type owl:ObjectProperty ;
+         rdfs:domain :TopsideEquipment ;
+         rdfs:range :EquipmentPort ;
+         owl:inverseOf :isPortOf ;
+         rdfs:label "has port"@en , "possui porta"@pt ;
+         skos:definition "Relates a topside equipment to a physical port interface that belongs to it."@en .
+
+:isPortOf rdf:type owl:ObjectProperty , owl:FunctionalProperty ;
+          rdfs:domain :EquipmentPort ;
+          rdfs:range :TopsideEquipment ;
+          rdfs:label "is port of"@en , "é porta de"@pt ;
+          skos:definition "Relates an equipment port to the unique topside equipment it belongs to."@en .
+
+:portConnectedTo rdf:type owl:ObjectProperty , owl:SymmetricProperty , owl:IrreflexiveProperty ;
+                 rdfs:subPropertyOf o3po:connectedTo ;
+                 rdfs:domain :EquipmentPort ;
+                 rdfs:range :EquipmentPort ;
+                 rdfs:label "port connected to"@en , "porta conectada a"@pt ;
+                 skos:definition "Physical boundary connection between two equipment ports."@en .
+
+:feedsFluidToEquipment rdf:type owl:ObjectProperty , owl:TransitiveProperty ;
+                        rdfs:subPropertyOf o3po:feedsFluidTo ;
+                        rdfs:domain :TopsideEquipment ;
+                        rdfs:range :TopsideEquipment ;
+                        owl:inverseOf :receivesFluidFromEquipment ;
+
+                        # PROPERTY CHAIN:
+                        # Eq1 (hasPort) Port1 (portConnectedTo) Port2 (isPortOf) Eq2 => Eq1 feedsFluidToEquipment Eq2
+                        owl:propertyChainAxiom ( :hasPort
+                                                 :portConnectedTo
+                                                 :isPortOf
+                                               ) ;
+
+                        rdfs:label "feeds fluid to equipment"@en , "envia fluido para equipamento"@pt ;
+                        skos:definition "Represents process fluid flow direction from an upstream topside equipment to a downstream topside equipment."@en .
+
+:receivesFluidFromEquipment rdf:type owl:ObjectProperty ;
+                            rdfs:subPropertyOf o3po:hasFluidFedBy ;
+                            rdfs:domain :TopsideEquipment ;
+                            rdfs:range :TopsideEquipment ;
+                            rdfs:label "receives fluid from equipment"@en , "recebe fluido de equipamento"@pt .
+
+:powersEquipment rdf:type owl:ObjectProperty ;
+                 rdfs:domain :ElectricalEquipment ;
+                 rdfs:range :TopsideEquipment ;
+                 rdfs:label "powers equipment"@en , "alimenta equipamento"@pt ;
+                 skos:definition "Relates an electrical equipment to another topside equipment that receives electrical power from it."@en .
+
+:monitorsEquipment rdf:type owl:ObjectProperty ;
+                   rdfs:domain :InstrumentationAndControlEquipment ;
+                   rdfs:range :TopsideEquipment ;
+                   rdfs:label "monitors equipment"@en , "monitora equipamento"@pt ;
+                   skos:definition "Relates an instrumentation equipment to the topside equipment whose process variables it monitors."@en .
+
+:isLocatedInModule rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf <http://purl.obolibrary.org/obo/RO_0001025> ;
+                   rdfs:domain :TopsideEquipment ;
+                   rdfs:range :FPSOModule ;
+                   owl:inverseOf :containsEquipment ;
+                   rdfs:label "is located in module"@en , "está localizado no módulo"@pt ;
+                   skos:definition "Relates a topside equipment to the specific FPSO topside module or skid in which it is physically installed."@en .
+
+:containsEquipment rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf <http://purl.obolibrary.org/obo/RO_0001015> ;
+                   rdfs:domain :FPSOModule ;
+                   rdfs:range :TopsideEquipment ;
+                   rdfs:label "contains equipment"@en , "contém equipamento"@pt ;
+                   skos:definition "Relates an FPSO topside module to the topside equipment installed within its boundary."@en .
+
+:isLocatedInFPSO rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf <http://purl.obolibrary.org/obo/RO_0001025> ;
+                rdfs:domain :FPSOModule ;
+                rdfs:range o3po:FPSO ;
+                owl:inverseOf :hasFPSOModule ;
+                rdfs:label "is located in FPSO"@en , "está localizado no FPSO"@pt ;
+                skos:definition "Relates an FPSO topside module or process skid to the floating production vessel on which it is physically installed."@en .
+
+:hasFPSOModule rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf <http://purl.obolibrary.org/obo/RO_0001015> ;
+               rdfs:domain o3po:FPSO ;
+               rdfs:range :FPSOModule ;
+               rdfs:label "has FPSO module"@en , "possui módulo FPSO"@pt ;
+               skos:definition "Relates an FPSO vessel to the topside modules physically installed on its deck."@en .
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :DynamicalEquipment
+                :ElectricalEquipment
+                :InstrumentationAndControlEquipment
+                :RenewableEquipment
+                :StaticEquipment
+                :ValveAndSecurityEquipment
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :ElectricalPort
+                :InletPort
+                :OutletPort
+                :SignalPort
+              )
+] .
+
+# Uma InletPort só pode se conectar com portas que NÃO sejam InletPort (ou seja, com OutletPort)
+
+:InletPort rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty :portConnectedTo ;
+    owl:allValuesFrom [
+        rdf:type owl:Class ;
+        owl:complementOf :InletPort
+    ]
+] .
+
+:OutletPort rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty :portConnectedTo ;
+    owl:allValuesFrom [
+        rdf:type owl:Class ;
+        owl:complementOf :OutletPort
+    ]
+] .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi

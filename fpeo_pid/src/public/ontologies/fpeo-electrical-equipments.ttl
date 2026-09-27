@@ -1,0 +1,219 @@
+@prefix : <http://usp.ai/ontologies/fpeo-electrical-equipments#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix core: <http://usp.ai/ontologies/fpeo-equipments-core#> .
+
+@base <http://usp.ai/ontologies/fpeo-electrical-equipments#> .
+
+<http://usp.ai/ontologies/fpeo-electrical-equipments> rdf:type owl:Ontology ;
+    owl:imports <http://usp.ai/ontologies/fpeo-equipments-core> ;
+    dc:creator "Hugo Cardoso Ferreira de Araújo" ;
+    dc:description "Electrical Equipments Module for FPEO-Equipments Ontology"@en .
+
+
+#################################################################
+#    1. Abstrações Intermediárias de Equipamentos Elétricos
+#################################################################
+
+:PowerGenerationEquipment rdf:type owl:Class ;
+    rdfs:subClassOf core:ElectricalEquipment ;
+    rdfs:label "Power Generation Equipment"@en , "Equipamento de Geração de Energia"@pt ;
+    skos:definition "An electrical equipment designed to convert mechanical energy or chemical reactions into electrical power for offshore topside distribution."@en .
+
+:PowerTransformationAndConversionEquipment rdf:type owl:Class ;
+    rdfs:subClassOf core:ElectricalEquipment ;
+    rdfs:label "Power Transformation and Conversion Equipment"@en , "Equipamento de Transformação e Conversão Elétrica"@pt ;
+    skos:definition "An electrical equipment designed to alter voltage levels, frequency, or convert electrical current (AC/DC) for process or power needs."@en .
+
+:PowerDistributionAndSwitchingEquipment rdf:type owl:Class ;
+    rdfs:subClassOf core:ElectricalEquipment ;
+    rdfs:label "Power Distribution and Switching Equipment"@en , "Equipamento de Distribuição e Manobra Elétrica"@pt ;
+    skos:definition "An electrical equipment engineered to route, switch, protect, and isolate electrical circuits across topside modules."@en .
+
+:ElectricalConductorEquipment rdf:type owl:Class ;
+    rdfs:subClassOf core:ElectricalEquipment ;
+    rdfs:label "Electrical Conductor Equipment"@en , "Equipamento Condutor Elétrico"@pt ;
+    skos:definition "An electrical physical artifact designed to transmit electrical energy between power sources, switchgears, and loads."@en .
+
+:ElectricMotorEquipment rdf:type owl:Class ;
+    rdfs:subClassOf core:ElectricalEquipment ;
+    rdfs:label "Electric Motor Equipment"@en , "Equipamento Motor Elétrico"@pt ;
+    skos:definition "An electromechanical device that converts electrical energy into rotational mechanical work to drive pumps or compressors."@en ;
+    rdfs:isDefinedBy "IEC 60034" .
+
+
+#################################################################
+#    2. Equipamentos Concretos: Geração de Energia
+#################################################################
+
+:MainTurbineGenerator rdf:type owl:Class ;
+    rdfs:subClassOf :PowerGenerationEquipment ;
+    rdfs:label "Main Turbine Generator"@en , "Gerador Principal a Turbina"@pt ;
+    skos:definition "Primary synchronous generator coupled to a gas turbine driver to supply continuous main power for topside facilities."@en ;
+    rdfs:isDefinedBy "IEC 61892-1 / IEEE 45" .
+
+:EmergencyDieselGenerator rdf:type owl:Class ;
+    rdfs:subClassOf :PowerGenerationEquipment ;
+    rdfs:label "Emergency Diesel Generator"@en , "Gerador Diesel de Emergência"@pt ;
+    skos:definition "Auxiliary generator driven by a diesel engine to supply emergency power during main blackout events."@en ;
+    rdfs:isDefinedBy "IEC 61892-2 / SOLAS Reg II-1" .
+
+
+#################################################################
+#    3. Equipamentos Concretos: Transformação e Conversão
+#################################################################
+
+:Electrochlorinator rdf:type owl:Class ;
+    rdfs:subClassOf :PowerTransformationAndConversionEquipment ;
+    rdfs:label "Electrochlorinator"@en , "Eletroclorador"@pt ;
+    skos:definition "An electrical electrochemical unit that uses direct electrical current to produce sodium hypochlorite from seawater for biofouling control."@en ;
+    rdfs:isDefinedBy "IEC 61892" .
+
+:PowerTransformer rdf:type owl:Class ;
+    rdfs:subClassOf :PowerTransformationAndConversionEquipment ;
+    rdfs:label "Power Transformer"@en , "Transformador de Potência"@pt ;
+    skos:definition "Static electrical equipment that converts voltage and current levels via electromagnetic induction."@en ;
+    rdfs:isDefinedBy "IEC 60076 / IEC 61892-3" .
+
+:VariableSpeedDrive rdf:type owl:Class ;
+    rdfs:subClassOf :PowerTransformationAndConversionEquipment ;
+    rdfs:label "Variable Speed Drive"@en , "Inversor de Frequência"@pt ;
+    skos:altLabel "VSD"@en , "VSD"@pt ;
+    skos:definition "Power electronics equipment that controls motor speed and torque by adjusting power supply frequency and voltage."@en ;
+    rdfs:isDefinedBy "IEC 61800" .
+
+
+#################################################################
+#    4. Equipamentos Concretos: Distribuição e Manobra
+#################################################################
+
+:HighVoltageSwitchgear rdf:type owl:Class ;
+    rdfs:subClassOf :PowerDistributionAndSwitchingEquipment ;
+    rdfs:label "High Voltage Switchgear"@en , "Painel de Alta Tensão"@pt ;
+    skos:altLabel "HV Switchgear"@en , "Painel de Média Tensão"@pt ;
+    skos:definition "Assembly of primary switching and circuit-breaking devices for main high voltage electrical distribution."@en ;
+    rdfs:isDefinedBy "IEC 62271 / IEC 61892-3" .
+
+:LowVoltageSwitchgear rdf:type owl:Class ;
+    rdfs:subClassOf :PowerDistributionAndSwitchingEquipment ;
+    rdfs:label "Low Voltage Switchgear"@en , "Painel de Baixa Tensão"@pt ;
+    skos:altLabel "LV Switchgear"@en , "Painel LV"@pt ;
+    skos:definition "Switchgear assembly operating at low voltages for feeding sub-distribution centers and auxiliary systems."@en ;
+    rdfs:isDefinedBy "IEC 61439 / IEC 61892-3" .
+
+:MotorControlCenter rdf:type owl:Class ;
+    rdfs:subClassOf :PowerDistributionAndSwitchingEquipment ;
+    rdfs:label "Motor Control Center (MCC)"@en , "Centro de Controle de Motores (CCM)"@pt ;
+    skos:definition "Assembly to control electric motors in a central location, comprising motor starters, contactors, and protection relays."@en ;
+    rdfs:isDefinedBy "IEC 61439-2" .
+
+:Busbar rdf:type owl:Class ;
+    rdfs:subClassOf :PowerDistributionAndSwitchingEquipment ;
+    rdfs:label "Busbar"@en , "Barramento Elétrico"@pt ;
+    skos:definition "A metallic strip or bar contained within switchgears for local high-current power distribution and switching."@en ;
+    rdfs:isDefinedBy "IEC 61439" .
+
+:PowerCable rdf:type owl:Class ;
+    rdfs:subClassOf :ElectricalConductorEquipment ;
+    rdfs:label "Power Cable"@en , "Cabo de Potência"@pt ;
+    skos:definition "An assembly of one or more insulated electrical conductors used to transmit high/low voltage electrical energy."@en ;
+    rdfs:isDefinedBy "IEC 60092-350 / IEC 61892-4" .
+
+
+#################################################################
+#    AXIOMAS DE DISJUNÇÃO RAIZ E SUB-MECÂNICA
+#################################################################
+
+[] rdf:type owl:AllDisjointClasses ;
+   owl:members ( :ElectricalConductorEquipment
+                 :ElectricMotorEquipment
+                 :PowerDistributionAndSwitchingEquipment
+                 :PowerGenerationEquipment
+                 :PowerTransformationAndConversionEquipment ) .
+
+[] rdf:type owl:AllDisjointClasses ;
+   owl:members ( :HighVoltageSwitchgear
+                 :LowVoltageSwitchgear
+                 :MotorControlCenter ) .
+
+
+#################################################################
+# 1. Regras de Distribuição Usando EXCLUSIVAMENTE 'core:powersEquipment'
+#################################################################
+
+### 1.1 Gerador Principal DEVE alimentar o Painel de Alta/Média Tensão (HV)
+:MainTurbineGenerator rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:powersEquipment ;
+    owl:someValuesFrom :HighVoltageSwitchgear
+] , [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:powersEquipment ;
+    owl:minCardinality "1"^^xsd:nonNegativeInteger
+] .
+
+### 1.2 Painel HV DEVE alimentar Transformadores de Potência ou Motores de Alta Tensão
+:HighVoltageSwitchgear rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:powersEquipment ;
+    owl:someValuesFrom [
+        rdf:type owl:Class ;
+        owl:unionOf ( :PowerTransformer :VariableSpeedDrive :ElectricMotorEquipment )
+    ]
+] .
+
+### 1.3 Transformador de Potência Rebaixador DEVE alimentar o Painel de Baixa Tensão (LV) ou CCM
+:PowerTransformer rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:powersEquipment ;
+    owl:someValuesFrom [
+        rdf:type owl:Class ;
+        owl:unionOf ( :LowVoltageSwitchgear :MotorControlCenter )
+    ]
+] .
+
+### 1.4 CCM (Motor Control Center) DEVE alimentar Motores Elétricos ou VSDs
+:MotorControlCenter rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:powersEquipment ;
+    owl:someValuesFrom [
+        rdf:type owl:Class ;
+        owl:unionOf ( :ElectricMotorEquipment :VariableSpeedDrive )
+    ]
+] .
+
+### 1.5 VSD (Inversor) deve alimentar motores elétricos
+:VariableSpeedDrive rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:powersEquipment ;
+    owl:someValuesFrom :ElectricMotorEquipment
+] .
+
+
+#################################################################
+# 2. Segregação do Sistema de Emergência (SOLAS / IEC 61892-2)
+#################################################################
+
+### 2.1 Gerador de Emergência NÃO pode alimentar diretamente o Painel Principal de Alta Tensão (HV)
+:EmergencyDieselGenerator rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:powersEquipment ;
+    owl:someValuesFrom [ owl:complementOf :HighVoltageSwitchgear ]
+] .
+
+
+#################################################################
+# 3. Restrição de Portas nos Equipamentos Elétricos
+#################################################################
+
+### Todo Equipamento Elétrico DEVE possuir pelo menos 1 ElectricalPort associada
+core:ElectricalEquipment rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:hasPort ;
+    owl:someValuesFrom core:ElectricalPort
+] .

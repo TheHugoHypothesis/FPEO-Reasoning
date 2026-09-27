@@ -1,0 +1,112 @@
+@prefix : <http://usp.ai/ontologies/fpeo-crosswalk-equipments#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+# Top-Level e Ontologias de Referência Externa
+@prefix o3po: <https://www.inf.ufrgs.br/ontologies/o3po#> .
+@prefix iof-core: <https://spec.industrialontologies.org/ontology/core/Core/> .
+
+# Módulos FPEO-Equipments
+@prefix core: <http://usp.ai/ontologies/fpeo-equipments-core#> .
+@prefix static: <http://usp.ai/ontologies/fpeo-static-equipments#> .
+@prefix dynamical: <http://usp.ai/ontologies/fpeo-dynamical-equipments#> .
+@prefix electrical: <http://usp.ai/ontologies/fpeo-electrical-equipments#> .
+@prefix valve: <http://usp.ai/ontologies/fpeo-valves-security#> .
+@prefix renewable: <http://usp.ai/ontologies/fpeo-renewable-equipments#> .
+@prefix sensors: <http://usp.ai/ontologies/fpeo-sensors-equipments#> .
+
+@base <http://usp.ai/ontologies/fpeo-crosswalk-equipments#> .
+
+<http://usp.ai/ontologies/fpeo-crosswalk-equipments> rdf:type owl:Ontology ;
+    owl:imports <http://usp.ai/ontologies/fpeo-equipments-core> ,
+                <http://usp.ai/ontologies/fpeo-static-equipments> ,
+                <http://usp.ai/ontologies/fpeo-dynamical-equipments> ,
+                <http://usp.ai/ontologies/fpeo-electrical-equipments> ,
+                <http://usp.ai/ontologies/fpeo-valves-security> ,
+                <http://usp.ai/ontologies/fpeo-renewable-equipments> ,
+                <http://usp.ai/ontologies/fpeo-sensors-equipments> ,
+                <https://www.inf.ufrgs.br/ontologies/o3po/2.0> ;
+    dc:creator "Hugo Cardoso Ferreira de Araújo" ;
+    dc:description "Semantic Crosswalk and Alignment Module for FPEO-Equipments Ontology establishing equivalences and property mappings with O3PO"@en .
+
+
+#################################################################
+# 1. ALINHAMENTO DE EQUIPAMENTOS DINÂMICOS (BOMBAS)
+#################################################################
+
+dynamical:PumpEquipment owl:equivalentClass o3po:Pump .
+dynamical:CentrifugalPumpEquipment owl:equivalentClass o3po:CentrifugalPump .
+dynamical:PositiveDisplacementPumpEquipment owl:equivalentClass o3po:PositiveDisplacementPump .
+
+
+#################################################################
+# 2. ALINHAMENTO DE TROCADORES DE CALOR, RESFRIADORES E AQUECEDORES
+#################################################################
+
+### Classe Geral de Troca Térmica
+static:HeatExchangeEquipment owl:equivalentClass o3po:HeatExchanger .
+
+### Especialização de Resfriadores (Coolers)
+static:CoolingMediumSeawaterExchanger rdfs:subClassOf o3po:Cooler .
+static:ProducedWaterInletCooler rdfs:subClassOf o3po:Cooler .
+static:ProducedWaterOverboardCooler rdfs:subClassOf o3po:Cooler .
+static:SalesOilCooler rdfs:subClassOf o3po:Cooler .
+static:HeatingMediumTrimCooler rdfs:subClassOf o3po:Cooler .
+
+### Especialização de Aquecedores (Heaters)
+static:CrudeHeater rdfs:subClassOf o3po:Heater .
+static:CrudePreheater rdfs:subClassOf o3po:Heater .
+static:TestInletHeater rdfs:subClassOf o3po:Heater .
+static:DilutionWaterHeater rdfs:subClassOf o3po:Heater .
+static:PIPWaterHeater rdfs:subClassOf o3po:Heater .
+static:DieselInjectionHeater rdfs:subClassOf o3po:Heater .
+
+
+#################################################################
+# 3. ALINHAMENTO DE FILTROS E SEPARADORES
+#################################################################
+
+static:FilterEquipment owl:equivalentClass o3po:Filter .
+static:ParticulateFilterEquipment owl:equivalentClass o3po:ParticulateFilter .
+static:CoalescingFilterEquipment owl:equivalentClass o3po:CoalescingFilter .
+static:TestSeparator rdfs:subClassOf o3po:Separator .
+
+
+#################################################################
+# 4. ALINHAMENTO DE VASOS DE PRESSÃO E DEPURADORES (SCRUBBERS)
+#################################################################
+
+static:PressureVesselEquipment owl:equivalentClass o3po:Vessel .
+static:HPFlareKnockoutDrum rdfs:subClassOf o3po:GasScrubber .
+static:LPFlareKnockoutDrum rdfs:subClassOf o3po:GasScrubber .
+static:MolecularSieveGasDehydrator rdfs:subClassOf o3po:MolecularSieveVessel .
+
+
+#################################################################
+# 5. ALINHAMENTO DE PORTAS E BOCAIS (NOZZLES)
+#################################################################
+
+core:InletPort rdfs:subClassOf o3po:Nozzle .
+core:OutletPort rdfs:subClassOf o3po:Nozzle .
+
+
+#################################################################
+# 6. ALINHAMENTO DE SENSORES E INSTRUMENTAÇÃO
+#################################################################
+
+sensors:MeasuringInstrument rdfs:subClassOf o3po:Sensor .
+sensors:FlowMeter owl:equivalentClass o3po:Flowmeter .
+sensors:OvertemperatureDetector rdfs:subClassOf o3po:TemperatureSensor .
+
+
+#################################################################
+# 7. ALINHAMENTO DE VÁLVULAS E CHOKES
+#################################################################
+
+core:ValveAndSecurityEquipment owl:equivalentClass o3po:Valve .
+valve:PressureControlValve rdfs:subClassOf o3po:Choke .

@@ -1,0 +1,147 @@
+@prefix : <http://usp.ai/ontologies/fpeo-sensors-equipments#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix core: <http://usp.ai/ontologies/fpeo-equipments-core#> .
+
+@base <http://usp.ai/ontologies/fpeo-sensors-equipments#> .
+
+<http://usp.ai/ontologies/fpeo-sensors-equipments> rdf:type owl:Ontology ;
+    owl:imports <http://usp.ai/ontologies/fpeo-equipments-core> ;
+    dc:creator "Hugo Cardoso Ferreira de Araújo" ;
+    dc:creator "Inácio Turbiani" ;
+    dc:description "Sensors and Instrumentation Equipment Module for FPEO-Equipments Ontology"@en .
+
+# ================================================================
+# CLASSES BASE DE INSTRUMENTOS DE MEDIÇÃO
+# ================================================================
+
+### Classe Pai de Instrumentos de Medição
+:MeasuringInstrument rdf:type owl:Class ;
+                     rdfs:subClassOf core:InstrumentationAndControlEquipment ;
+                     rdfs:label "Measuring Instrument"@en , "Instrumento de Medição"@pt-br ;
+                     rdfs:comment "Equipment whose function is to measure one or more physical or chemical quantities of a process (e.g., flow, gas concentration), providing a measurable signal or value. Common superclass for gas analyzers and flow meters."@en ,
+                                  "Equipamento cuja função é medir uma ou mais grandezas físicas ou químicas de um processo (ex.: vazão, concentração de gases), fornecendo um sinal ou valor mensurável. Superclasse comum para analisadores de gases e medidores de vazão desta ontologia."@pt-br .
+
+# ================================================================
+# MEDIDORES DE VAZÃO (FLOW METERS)
+# ================================================================
+
+:FlowMeter rdf:type owl:Class ;
+           rdfs:subClassOf :MeasuringInstrument ;
+           rdfs:label "Flow Meter"@en , "Medidor de Vazão"@pt-br ;
+           rdfs:comment "Instrument that measures the flow rate (mass or volumetric) of a fluid in a process pipe or duct."@en ,
+                        "Instrumento que mede a vazão (mássica ou volumétrica) de um fluido em um duto ou tubulação de processo."@pt-br .
+
+:FuelFlowMeter rdf:type owl:Class ;
+               rdfs:subClassOf :FlowMeter ;
+               rdfs:label "Fuel Flow Meter"@en , "Medidor de Vazão de Combustível"@pt-br ;
+               rdfs:comment "Flow meter installed in the gas turbine fuel system, used to measure the fuel flow rate supplied to the combustion chamber(s) — a quantity used in calculating specific fuel consumption (ISO 3977-1, 2.33) and the unit energy balance."@en ,
+                            "Medidor de vazão instalado no sistema de combustível da turbina a gás, usado para medir a vazão de combustível fornecida à(s) câmara(s) de combustão — grandeza usada no cálculo do consumo específico de combustível (ISO 3977-1, 2.33) e no balanço de energia da unidade."@pt-br .
+
+:MassFlowMeter rdf:type owl:Class ;
+               rdfs:subClassOf :FuelFlowMeter ;
+               owl:disjointWith :VolumetricFlowMeter ;
+               rdfs:label "Mass Flow Meter"@en , "Medidor de Vazão Mássica"@pt-br ;
+               rdfs:comment "Fuel flow meter that directly measures the mass flow rate of the fluid (e.g., Coriolis technology), without requiring density compensation."@en ,
+                            "Medidor de vazão de combustível que mede diretamente a vazão mássica do fluido (ex.: tecnologia Coriolis), sem necessidade de compensação de densidade."@pt-br .
+
+:VolumetricFlowMeter rdf:type owl:Class ;
+                     rdfs:subClassOf :FuelFlowMeter ;
+                     rdfs:label "Volumetric Flow Meter"@en , "Medidor de Vazão Volumétrica"@pt-br ;
+                     rdfs:comment "Fuel flow meter that measures the volumetric flow rate of the fluid (e.g., turbine, orifice plate, or ultrasonic technologies), generally requiring density/temperature/pressure compensation to obtain equivalent mass flow."@en ,
+                                  "Medidor de vazão de combustível que mede a vazão volumétrica do fluido (ex.: tecnologias de turbina, placa de orifício ou ultrassônica), geralmente requerendo compensação de densidade/temperatura/pressão para obter a vazão mássica equivalente."@pt-br .
+
+# ================================================================
+# ANALISADORES DE GASES (GAS ANALYZERS)
+# ================================================================
+
+:GasAnalyzer rdf:type owl:Class ;
+             rdfs:subClassOf :MeasuringInstrument ;
+             rdfs:label "Gas Analyzer"@en , "Analisador de Gases"@pt-br ;
+             rdfs:comment "Instrument that measures the concentration of one or more gaseous components (pollutants or reference gases) in an exhaust gas sample."@en ,
+                          "Instrumento que mede a concentração de um ou mais componentes gasosos (poluentes ou gases de referência) em uma amostra de gás de exaustão."@pt-br .
+
+:NOxAnalyzer rdf:type owl:Class ;
+             rdfs:subClassOf :GasAnalyzer ;
+             rdfs:label "NOx Analyzer"@en , "Analisador de Óxidos de Nitrogênio (NOx)"@pt-br ;
+             rdfs:comment "Gas analyzer dedicated to measuring the concentration of nitrogen oxides (NO + NO2) in the exhaust gas sample."@en ,
+                          "Analisador de gases dedicado à medição da concentração de óxidos de nitrogênio (NO + NO2) na amostra de gás de exaustão."@pt-br .
+
+:O2Analyzer rdf:type owl:Class ;
+            rdfs:subClassOf :GasAnalyzer ;
+            rdfs:label "O2 Analyzer"@en , "Analisador de Oxigênio (O2)"@pt-br ;
+            rdfs:comment "Gas analyzer dedicated to measuring the concentration of residual oxygen in the exhaust gas sample, typically used for correction/normalization of other emission readings."@en ,
+                         "Analisador de gases dedicado à medição da concentração de oxigênio residual na amostra de gás de exaustão, usado tipicamente para correção/normalização das demais leituras de emissão."@pt-br .
+
+:SO2Analyzer rdf:type owl:Class ;
+             rdfs:subClassOf :GasAnalyzer ;
+             rdfs:label "SO2 Analyzer"@en , "Analisador de Dióxido de Enxofre (SO2)"@pt-br ;
+             rdfs:comment "Gas analyzer dedicated to measuring the concentration of sulfur dioxide in the exhaust gas sample, relevant when liquid fuel with sulfur content is used."@en ,
+                          "Analisador de gases dedicado à medição da concentração de dióxido de enxofre na amostra de gás de exaustão, relevante quando há combustível líquido com teor de enxofre."@pt-br .
+
+:CO2Analyzer rdf:type owl:Class ;
+             rdfs:subClassOf :GasAnalyzer ;
+             rdfs:label "CO2 Analyzer"@en , "Analisador de Dióxido de Carbono (CO2)"@pt-br ;
+             rdfs:comment "Gas analyzer dedicated to measuring the concentration of carbon dioxide in the exhaust gas sample."@en ,
+                          "Analisador de gases dedicado à medição da concentração de dióxido de carbono na amostra de gás de exaustão."@pt-br .
+
+:COAnalyzer rdf:type owl:Class ;
+            rdfs:subClassOf :GasAnalyzer ;
+            rdfs:label "CO Analyzer"@en , "Analisador de Monóxido de Carbono (CO)"@pt-br ;
+            rdfs:comment "Gas analyzer dedicated to measuring the concentration of carbon monoxide in the exhaust gas sample."@en ,
+                         "Analisador de gases dedicado à medição da concentração de monóxido de carbono na amostra de gás de exaustão."@pt-br .
+
+# ================================================================
+# DISPOSITIVOS DE SEGURANÇA E DISPARO
+# ================================================================
+
+:OverspeedTripDevice rdf:type owl:Class ;
+                     rdfs:subClassOf core:InstrumentationAndControlEquipment ;
+                     rdfs:label "Overspeed Trip Device"@en , "Dispositivo de Disparo por Sobrevelocidade (Overspeed Trip)"@pt-br ;
+                     rdfs:comment "Control or trip element that immediately activates the overspeed protection system when rotor speed reaches a predetermined value. [Source: ISO 3977-1, 2.23]"@en ,
+                                  "Elemento de controle ou disparo que ativa imediatamente o sistema de proteção contra sobrevelocidade quando a velocidade do rotor atinge um valor preestabelecido. [Fonte: ISO 3977-1, 2.23 [ISO 11086]]"@pt-br .
+
+:OvertemperatureDetector rdf:type owl:Class ;
+                         rdfs:subClassOf core:InstrumentationAndControlEquipment ;
+                         rdfs:label "Overtemperature Detector"@en , "Detector de Sobretemperatura"@pt-br ;
+                         rdfs:comment "Primary sensing element directly responsive to temperature that immediately activates, via suitable amplifiers or converters, the overtemperature protection system when temperature reaches a predetermined value. [Source: ISO 3977-1, 2.30]"@en ,
+                                      "Elemento sensor primário diretamente responsivo à temperatura, que ativa imediatamente, por meio de amplificadores ou conversores adequados, o sistema de proteção contra sobretemperatura quando a temperatura atinge um valor preestabelecido. [Fonte: ISO 3977-1, 2.30 [ISO 11086]]"@pt-br .
+
+:FlameDetector rdf:type owl:Class ;
+               rdfs:subClassOf core:InstrumentationAndControlEquipment ;
+               rdfs:label "Optical Flame Detector"@en , "Detector Óptico de Chama"@pt-br ;
+               rdfs:comment "Optical sensor (UV/IR) that continuously verifies the presence of flame in the gas turbine combustion chambers, tripping fuel shutoff on flameout."@en ,
+                            "Sensor óptico (UV/IR) que monitora continuamente a presença de chama na câmara de combustão, acionando o bloqueio de combustível em caso de extinção de chama."@pt-br ;
+               rdfs:isDefinedBy "ISO 3977-3" .
+
+:VibrationSensor rdf:type owl:Class ;
+                 rdfs:subClassOf core:InstrumentationAndControlEquipment ;
+                 rdfs:label "Bearing Vibration Sensor"@en , "Sensor de Vibração de Mancal"@pt-br ;
+                 skos:definition "Proximity probe, velocity transducer, or accelerometer measuring shaft and bearing vibration levels for machinery protection."@en ;
+                 rdfs:isDefinedBy "ISO 3977-3 / ISO 10816-4" .
+
+:ContinuousEmissionMonitoringSystem rdf:type owl:Class ;
+                                    rdfs:subClassOf core:InstrumentationAndControlEquipment ;
+                                    rdfs:label "Continuous Emission Monitoring System (CEMS)"@en , "Sistema de Monitoramento Contínuo de Emissões (CEMS)"@pt-br ;
+                                    rdfs:comment "Integrated instrumental package that continuously measures and records the concentration of air pollutants (NOx, CO, CO2, SO2, O2) in exhaust gas stacks."@en ,
+                                                 "Conjunto instrumental integrado que mede e registra continuamente as concentrações de poluentes gasosos na chaminé da turbina a gás."@pt-br ;
+                                    rdfs:isDefinedBy "ISO 11042-1 / EPA 40 CFR 60" .
+
+:EmissionsDataAcquisitionSystem rdf:type owl:Class ;
+                                rdfs:subClassOf core:InstrumentationAndControlEquipment ;
+                                rdfs:label "Emissions Data Acquisition System (EDAS)"@en , "Sistema de Aquisição de Dados de Emissões (EDAS)"@pt-br ;
+                                skos:definition "Automated data system that collects, normalizes, averages, and generates compliance reports from CEMS analyzers."@en .
+
+# ================================================================
+# PROPRIEDADES AUXILIARES DE INSTRUMENTAÇÃO
+# ================================================================
+
+:measuresFlowOf rdf:type owl:ObjectProperty ;
+                rdfs:domain :FlowMeter ;
+                rdfs:label "measures flow of"@en , "mede vazão de"@pt-br ;
+                skos:definition "Relates a flow meter to the substance or fluid whose flow rate it measures."@en .

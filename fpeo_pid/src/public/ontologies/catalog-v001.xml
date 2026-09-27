@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <group id="Folder Repository" prefer="public" xml:base="">
+        <!-- Ontologias Base Externas Reutilizadas -->
+        <uri name="https://www.inf.ufrgs.br/ontologies/o3po/2.0" uri="o3po.ttl"/>
+        <uri name="https://www.inf.ufrgs.br/ontologies/o3po" uri="o3po.ttl"/>
+        <uri name="https://spec.industrialontologies.org/ontology/core/Core/" uri="Core.rdf"/>
+        <uri name="https://spec.industrialontologies.org/ontology/202401/core/Core/" uri="Core.rdf"/>
+        <uri name="http://purl.obolibrary.org/obo/uo.owl" uri="uo.owl"/>
+
+        <!-- Camada 1: Topo Base da FPEO -->
+        <uri name="http://usp.ai/ontologies/fpeo-equipments-core" uri="fpeo-equipments-core.ttl"/>
+
+        <!-- Camada 2: Módulos de Domínio Específicos -->
+        <uri name="http://usp.ai/ontologies/fpeo-static-equipments" uri="fpeo-static-equipments.ttl"/>
+        <uri name="http://usp.ai/ontologies/fpeo-dynamical-equipments" uri="fpeo-dynamical-equipments.ttl"/>
+        <uri name="http://usp.ai/ontologies/fpeo-electrical-equipments" uri="fpeo-electrical-equipments.ttl"/>
+        <uri name="http://usp.ai/ontologies/fpeo-renewable-equipments" uri="fpeo-renewable-equipments.ttl"/>
+        <uri name="http://usp.ai/ontologies/fpeo-sensors-equipments" uri="fpeo-sensors-equipments.ttl"/>
+        <uri name="http://usp.ai/ontologies/fpeo-valves-security" uri="fpeo-valves-security.ttl"/>
+
+        <!-- Camada 3: Mapeamento e Alinhamento Semântico -->
+        <uri name="http://usp.ai/ontologies/fpeo-crosswalk-equipments" uri="fpeo-crosswalk-equipments.ttl"/>
+
+        <!-- Camada 4: Propriedades, Dados, Medições e Prescrições -->
+        <uri name="http://usp.ai/ontologies/fpeo-properties-equipments" uri="fpeo-properties-equipments.ttl"/>
+
+        <!-- Camada 5: Regras SWRL e Restrições de Interlock -->
+        <uri name="http://usp.ai/ontologies/fpeo-rules-equipments" uri="fpeo-rules-equipments.ttl"/>
+
+        <!-- Camada 6: Instâncias e Grafos de P&ID (ABox) -->
+        <uri name="http://usp.ai/ontologies/fpeo-collect-equipments-abox" uri="fpeo-collect-equipments-abox.ttl"/>
+        <uri name="http://usp.ai/ontologies/fpeo-collect-equipments-abox2" uri="fpeo-collect-equipments-abox2.ttl"/>
+    </group>
+</catalog>

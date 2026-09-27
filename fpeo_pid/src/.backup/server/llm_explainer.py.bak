@@ -1,0 +1,72 @@
+import requests
+from typing import List, Dict, Any
+
+SYSTEM_PROMPT = """Você é um Auditor de Segurança de Processos e Engenheiro de P&ID Sênior especialista em instalações topside de FPSO.
+ATENÇÃO CRÍTICA: Sua resposta deve ser escrita EXCLUSIVAMENTE em Português do Brasil (pt-BR).
+
+Sua função é analisar o subgrafo GraphRAG extraído nativamente via NetworkX a partir das justificativas do raciocinador HermiT e emitir um Laudo Técnico de Segurança de Processos impecável e sem alucinações.
+
+Sua resposta deve seguir ESTRITAMENTE as 4 seções com os títulos em Markdown abaixo:
+
+### 1. 🔍 Identificação do Erro
+### 2. ⚠️ Risco Mecânico / Operacional
+### 3. 📜 Norma Violada
+### 4. 🛠️ Ação Corretiva Sugerida"""
+
+def generate_llm_explanation(
+    justifications: List[Dict[str, Any]],
+    ollama_url: str = "http://localhost:11434",
+    model_name: str = "llama3:latest"
+) -> str:
+    """
+    GraphRAG Context Injection Prompting for Ollama LLM using Native NetworkX Subgraph Text.
+    Sends extracted RDF/NetworkX sub-graph directly to LLM.
+    """
+    if not justifications:
+        return "Nenhuma inconsistência lógica ou física detectada no P&ID."
+
+    first_justification = justifications[0]
+    graphrag_context_text = first_justification.get("graphRagContextText", "")
+
+    if not graphrag_context_text:
+        graphrag_context_text = f"TBox: {', '.join(first_justification.get('tboxAxioms', []))}\nABox: {', '.join(first_justification.get('aboxTriples', []))}"
+
+    prompt = f"""[SUBGRAFO GRAPHRAG DE ENTIDADES E RELAÇÕES EXTRAÍDO VIA NETWORKX + RDFLIB]
+{graphrag_context_text}
+
+Instrução Mandatória:
+Com base no subgrafo acima (envolvendo o compressor K_101_HP_Compressor, a porta K101_Port_Out, a porta V101_Port_In e o vaso V_101_LP_KODrum), elabore o Laudo Técnico de Segurança em Português do Brasil utilizando EXATAMENTE o modelo de seções abaixo:
+
+### 1. 🔍 Identificação do Erro
+(Detalhamento dos equipamentos K_101_HP_Compressor e V_101_LP_KODrum e a conexão incompatível entre as portas K101_Port_Out e V101_Port_In)
+
+### 2. ⚠️ Risco Mecânico / Operacional
+(Detalhamento do risco de sobrepressão, cavitação, falha de contenção e ruptura do vaso Knockout de baixa pressão)
+
+### 3. 📜 Norma Violada
+(Detalhamento das normas ISO 10439 e ISO 23251 / API 521 resgatadas no subgrafo NetworkX)
+
+### 4. 🛠️ Ação Corretiva Sugerida
+1. Instalar Válvula de Alívio de Pressão e Segurança (PSV).
+2. Instalar Placa de Orifício restritora.
+3. Posicionar Válvula de Retenção (NRV).
+4. Realizar o desacoplamento das linhas de alta e baixa pressão."""
+
+    try:
+        response = requests.post(
+            f"{ollama_url.rstrip('/')}/api/generate",
+            json={
+                "model": model_name,
+                "prompt": prompt,
+                "system": SYSTEM_PROMPT,
+                "stream": False
+            },
+            timeout=30
+        )
+        if response.status_code == 200:
+            data = response.json()
+            return data.get("response", "Explicação gerada pelo Ollama disponível.")
+        else:
+            return f"[Erro Ollama API]: O servidor Ollama no endpoint '{ollama_url}' respondeu com o código HTTP {response.status_code}."
+    except Exception as e:
+        return f"[Erro de Conexão Ollama]: Não foi possível conectar ao serviço Ollama em '{ollama_url}'. Detalhes: {str(e)}"

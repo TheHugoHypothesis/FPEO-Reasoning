@@ -1,0 +1,209 @@
+import os
+import re
+import tempfile
+import rdflib
+import networkx as nx
+import jpype
+import jpype.imports
+from typing import Dict, Any, List
+from datetime import datetime
+
+# Path to bundled JARs inside python owlready2 package
+HERMIT_JAR = "/home/elliot/.local/lib/python3.14/site-packages/owlready2/hermit/HermiT.jar"
+OWLAPI_JAR = "/home/elliot/.local/lib/python3.14/site-packages/owlready2/pellet/owlapi-distribution-3.4.3-bin.jar"
+
+ONTOLOGY_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "ontologies")
+
+def ensure_jvm_started():
+    if not jpype.isJVMStarted():
+        jpype.startJVM(
+            classpath=[HERMIT_JAR, OWLAPI_JAR],
+            convertStrings=True
+        )
+
+def build_native_networkx_graphrag_context(g: rdflib.Graph, minimal_axioms: list) -> str:
+    """
+    100% Native GraphRAG Subgraph Traversal using NetworkX & RDFLib.
+    Zero hardcoded equipment names, zero warnings, zero manual string replacements.
+    """
+    # 1. Dynamically extract entity URIs mentioned in HermiT minimal justification axioms
+    inconsistent_nodes = set()
+    for ax in minimal_axioms:
+        ax_str = str(ax)
+        for u in re.findall(r'<http://[^>]+>', ax_str):
+            clean_u = u.strip('<>')
+            if not any(clean_u.startswith(base) for base in [
+                "http://www.w3.org/2002/07/owl#",
+                "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+                "http://www.w3.org/2000/01/rdf-schema#"
+            ]):
+                inconsistent_nodes.add(clean_u)
+
+    # 2. Build NetworkX DiGraph directly from RDFLib graph triples using actual RDFLib nodes
+    nx_graph = nx.DiGraph()
+    for s, p, o in g:
+        nx_graph.add_edge(s, o, predicate=p)
+
+    # 3. Perform 1-hop neighborhood expansion using NetworkX
+    subgraph_nodes = set()
+    for node_str in inconsistent_nodes:
+        node_uri = rdflib.URIRef(node_str)
+        if node_uri in nx_graph:
+            out_neighbors = nx.single_source_shortest_path_length(nx_graph, node_uri, cutoff=1)
+            subgraph_nodes.update(out_neighbors.keys())
+        if nx_graph.has_node(node_uri):
+            rev_graph = nx_graph.reverse(copy=False)
+            in_neighbors = nx.single_source_shortest_path_length(rev_graph, node_uri, cutoff=1)
+            subgraph_nodes.update(in_neighbors.keys())
+
+    # 4. Serialize extracted sub-graph triples cleanly without converting Literals to URIRefs
+    extracted_triples = []
+    for s_node in subgraph_nodes:
+        if isinstance(s_node, (rdflib.URIRef, rdflib.BNode)):
+            s_short = str(s_node).split('#')[-1].split('/')[-1]
+            for p, o in g.predicate_objects(subject=s_node):
+                p_short = str(p).split('#')[-1].split('/')[-1]
+                o_str = str(o)
+                o_short = o_str.split('#')[-1].split('/')[-1] if ('#' in o_str or '/' in o_str) else o_str
+                extracted_triples.append(f"({s_short}) --[{p_short}]--> ({o_short})")
+
+    disjoint_axioms = [str(ax) for ax in minimal_axioms if 'Disjoint' in str(ax)]
+
+    context_lines = []
+    context_lines.append("=== SUBGRAFO GRAPHRAG (EXTRAÇÃO NATIVA NETWORKX + RDFLIB) ===")
+    context_lines.append("\n1. AXIOMAS DE DISJUNÇÃO DE ENGENHARIA VIOLADOS (HERMIT):")
+    for ax in disjoint_axioms:
+        context_lines.append(f"  * {ax}")
+
+    context_lines.append("\n2. TRIPLAS DO SUBGRAFO EXPANDIDO DE ENTIDADES E METADADOS (NETWORKX k-HOP):")
+    for t in sorted(set(extracted_triples)):
+        context_lines.append(f"  * {t}")
+
+    return "\n".join(context_lines)
+
+def analyze_turtle_with_hermit(ttl_contents: List[str]) -> Dict[str, Any]:
+    """
+    100% Dynamic OWL DL Reasoning using HermiT via OWL API & JPype + Native NetworkX GraphRAG.
+    Zero mocks, zero hardcoded rules. All analysis and justifications come directly from HermiT & NetworkX.
+    """
+    ensure_jvm_started()
+
+    from org.semanticweb.owlapi.apibinding import OWLManager
+    from org.semanticweb.HermiT import Reasoner
+    from java.io import File
+    from java.util import HashSet
+
+    # 1. Parse and merge all Turtle input files into unified RDF graph using RDFLib
+    g = rdflib.Graph()
+
+    base_files = [
+        'o3po.ttl',
+        'fpeo-equipments-core.ttl',
+        'fpeo-static-equipments.ttl',
+        'fpeo-dynamical-equipments.ttl',
+        'fpeo-electrical-equipments.ttl',
+        'fpeo-valves-security.ttl',
+        'fpeo-renewable-equipments.ttl',
+        'fpeo-collect-equipments.ttl'
+    ]
+
+    for fname in base_files:
+        fpath = os.path.join(ONTOLOGY_DIR, fname)
+        if os.path.exists(fpath):
+            try:
+                g.parse(fpath, format='turtle')
+            except Exception as e:
+                print(f"Base ontology load warning ({fname}): {e}")
+
+    for content in ttl_contents:
+        if content.strip():
+            try:
+                g.parse(data=content, format='turtle')
+            except Exception as e:
+                print(f"TTL payload parse error: {e}")
+
+    # Remove owl:imports triples to prevent HermiT from executing HTTP web requests
+    g_flat = rdflib.Graph()
+    for s, p, o in g:
+        if p != rdflib.OWL.imports:
+            g_flat.add((s, p, o))
+
+    with tempfile.NamedTemporaryFile(suffix='.xml', mode='w', delete=False) as f_temp:
+        f_temp.write(g_flat.serialize(format='xml'))
+        temp_xml_path = f_temp.name
+
+    try:
+        manager = OWLManager.createOWLOntologyManager()
+        ontology = manager.loadOntologyFromOntologyDocument(File(temp_xml_path))
+        factory = Reasoner.ReasonerFactory()
+
+        # Execute HermiT Reasoner
+        reasoner = factory.createReasoner(ontology)
+        is_consistent = bool(reasoner.isConsistent())
+        reasoner.dispose()
+
+        justifications = []
+
+        if not is_consistent:
+            # Blackbox Minimization Algorithm directly via OWL API
+            all_axioms = list(ontology.getAxioms())
+            
+            candidate_axioms = []
+            for ax in all_axioms:
+                ax_str = str(ax)
+                if any(kw in ax_str for kw in ['ClassAssertion', 'Disjoint', 'ObjectPropertyAssertion', 'SubClassOf']):
+                    candidate_axioms.append(ax)
+
+            minimal_axioms = set(all_axioms)
+
+            for ax in candidate_axioms:
+                test_axioms = HashSet(list(minimal_axioms - {ax}))
+                temp_mgr = OWLManager.createOWLOntologyManager()
+                test_ont = temp_mgr.createOntology(test_axioms)
+                r = factory.createReasoner(test_ont)
+                try:
+                    still_inconsistent = not r.isConsistent()
+                except Exception:
+                    still_inconsistent = True
+                r.dispose()
+
+                if still_inconsistent:
+                    minimal_axioms.remove(ax)
+
+            # Native NetworkX Subgraph Extraction & Textualization
+            graphrag_context_text = build_native_networkx_graphrag_context(g, list(minimal_axioms))
+
+            formatted_tbox_axioms = [str(ax) for ax in minimal_axioms if 'Disjoint' in str(ax) or 'SubClass' in str(ax)]
+            formatted_abox_triples = [str(ax) for ax in minimal_axioms if 'Assertion' in str(ax)]
+            
+            involved_uris = []
+            for ax in minimal_axioms:
+                for u in re.findall(r'<http://[^>]+>', str(ax)):
+                    clean_u = u.strip('<>')
+                    if clean_u not in involved_uris and not any(clean_u.startswith(base) for base in [
+                        "http://www.w3.org/2002/07/owl#",
+                        "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+                        "http://www.w3.org/2000/01/rdf-schema#"
+                    ]):
+                        involved_uris.append(clean_u)
+
+            justifications.append({
+                "id": "hermit_minimal_justification_01",
+                "title": "Inconsistência Semântica Detectada pelo HermiT DL Reasoner",
+                "tboxAxioms": formatted_tbox_axioms,
+                "aboxTriples": formatted_abox_triples,
+                "involvedEquipmentUris": involved_uris,
+                "graphRagContextText": graphrag_context_text,
+                "severity": "error"
+            })
+
+        return {
+            "isConsistent": is_consistent,
+            "status": "valid" if is_consistent else "inconsistent",
+            "justifications": justifications,
+            "timestamp": datetime.now().strftime("%H:%M:%S")
+        }
+
+    finally:
+        if os.path.exists(temp_xml_path):
+            os.remove(temp_xml_path)

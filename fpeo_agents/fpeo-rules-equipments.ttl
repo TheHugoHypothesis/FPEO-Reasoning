@@ -1,0 +1,127 @@
+@prefix : <http://usp.ai/ontologies/fpeo-rules-equipments#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Core e Módulos de Domínio FPEO
+@prefix core: <http://usp.ai/ontologies/fpeo-equipments-core#> .
+@prefix static: <http://usp.ai/ontologies/fpeo-static-equipments#> .
+@prefix dynamical: <http://usp.ai/ontologies/fpeo-dynamical-equipments#> .
+@prefix electrical: <http://usp.ai/ontologies/fpeo-electrical-equipments#> .
+@prefix prop: <http://usp.ai/ontologies/fpeo-properties-equipments#> .
+
+@base <http://usp.ai/ontologies/fpeo-rules-equipments#> .
+
+<http://usp.ai/ontologies/fpeo-rules-equipments> rdf:type owl:Ontology ;
+    owl:imports <http://usp.ai/ontologies/fpeo-properties-equipments> ;
+    dc:creator "Hugo Cardoso Ferreira de Araújo" ;
+    dc:description "Process Safety and Semantic Disjointness Axioms Module for FPEO-Equipments Ontology"@en .
+
+#################################################################
+# REGRAS ANTI-SURGE, ANTI-RUPTURA E PROTEÇÃO MECÂNICA
+#################################################################
+
+# Proibição de compressores descarregando diretamente na ponteira de flare
+dynamical:CompressorEquipment owl:disjointWith [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:someValuesFrom static:IntegratedHPFlareTip
+] .
+
+# Proibição de sobrepressurização: compressor HP alimentando KO drum LP
+dynamical:HighPressureCompressor owl:disjointWith [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:someValuesFrom static:LPFlareKnockoutDrum
+] .
+
+# Incompatibilidade térmica: compressor HP alimentando trocador de água do mar
+dynamical:HighPressureCompressor owl:disjointWith [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:someValuesFrom static:CoolingMediumSeawaterExchanger
+] .
+
+# Proibição de retrofluxo em célula de flotação a gás para o hidrociclone
+static:GasFlotationCell owl:disjointWith [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:someValuesFrom static:DeoilingHydrocyclone
+] .
+
+#################################################################
+# REGRAS DE SEGREGAÇÃO DE DRENAGEM E EFLUENTES
+#################################################################
+
+# Segregação ambiental: dreno aberto perigoso descarregando em dreno não-perigoso
+static:HazardousOpenDrainHeader owl:disjointWith [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:someValuesFrom static:NonHazardousOpenDrainHeader
+] .
+
+# Segregação de processo: bomba de dreno fechado descartando em tanque de slop limpo
+dynamical:ClosedDrainPump owl:disjointWith [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:someValuesFrom static:CleanSlopTank
+] .
+
+# Segregação de processo: vaso de dreno fechado descarregando em tanque de slop limpo
+static:ClosedDrainDrum owl:disjointWith [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:someValuesFrom static:CleanSlopTank
+] .
+
+# Segregação de efluentes: bomba de injeção química alimentando dreno não-perigoso
+dynamical:ChemicalInjectionPump owl:disjointWith [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:feedsFluidToEquipment ;
+    owl:someValuesFrom static:NonHazardousOpenDrainHeader
+] .
+
+#################################################################
+# REGRAS DE DISTRIBUIÇÃO E SEGREGAÇÃO ELÉTRICA
+#################################################################
+
+# Segregação de segurança: gerador de emergência alimentando painel HV principal
+electrical:EmergencyDieselGenerator owl:disjointWith [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:powersEquipment ;
+    owl:someValuesFrom electrical:HighVoltageSwitchgear
+] .
+
+#################################################################
+# REGRAS DE ARQUITETURA MECÂNICA DE TURBOMÁQUINAS
+#################################################################
+
+# Consistência estrutural: turbina monoeixo com turbina de potência independente
+dynamical:SingleShaftGasTurbine owl:disjointWith [
+    rdf:type owl:Restriction ;
+    owl:onProperty prop:hasPowerTurbine ;
+    owl:someValuesFrom dynamical:PowerTurbine
+] .
+
+#################################################################
+# REGRAS DE CONECTIVIDADE TOPOLÓGICA DE PORTAS FÍSICAS
+#################################################################
+
+# Restrição universal: portas de entrada conectam-se unicamente a portas de saída
+core:InletPort rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:portConnectedTo ;
+    owl:allValuesFrom core:OutletPort
+] .
+
+# Restrição universal: portas de saída conectam-se unicamente a portas de entrada
+core:OutletPort rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty core:portConnectedTo ;
+    owl:allValuesFrom core:InletPort
+] .
+
+# Disjunção direta entre naturezas físicas de portas
+core:InletPort owl:disjointWith core:OutletPort .

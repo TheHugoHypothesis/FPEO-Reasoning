@@ -1,0 +1,40 @@
+@prefix : <http://usp.ai/ontologies/fpeo-collect-equipments#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+# Top-Level e Ontologias de Referência External
+@prefix o3po: <https://www.inf.ufrgs.br/ontologies/o3po#> .
+@prefix iof-core: <https://spec.industrialontologies.org/ontology/core/Core/> .
+
+# Módulos FPEO-Equipments
+@prefix core: <http://usp.ai/ontologies/fpeo-equipments-core#> .
+@prefix static: <http://usp.ai/ontologies/fpeo-static-equipments#> .
+@prefix dynamical: <http://usp.ai/ontologies/fpeo-dynamical-equipments#> .
+@prefix electrical: <http://usp.ai/ontologies/fpeo-electrical-equipments#> .
+@prefix valve: <http://usp.ai/ontologies/fpeo-valves-security#> .
+@prefix renewable: <http://usp.ai/ontologies/fpeo-renewable-equipments#> .
+@prefix sensors: <http://usp.ai/ontologies/fpeo-sensors-equipments#> .  # Correção: "equipments" no plural
+
+@base <http://usp.ai/ontologies/fpeo-collect-equipments#> .
+
+<http://usp.ai/ontologies/fpeo-collect-equipments> rdf:type owl:Ontology ;
+    owl:imports <http://usp.ai/ontologies/fpeo-equipments-core> ,
+                <http://usp.ai/ontologies/fpeo-static-equipments> ,
+                <http://usp.ai/ontologies/fpeo-dynamical-equipments> ,
+                <http://usp.ai/ontologies/fpeo-electrical-equipments> ,
+                <http://usp.ai/ontologies/fpeo-valves-security> ,
+                <http://usp.ai/ontologies/fpeo-renewable-equipments> ,
+                <http://usp.ai/ontologies/fpeo-sensors-equipments> ,
+                <https://www.inf.ufrgs.br/ontologies/o3po/2.0> ;
+    dc:creator "Hugo Cardoso Ferreira de Araújo" ;
+    dc:description "Master Integration, Aggregation, and O3PO Matching Module for FPEO-Equipments Ontology"@en .
+
+
+static:FilterEquipment owl:equivalentClass o3po:Filter .
+static:ParticulateFilterEquipment owl:equivalentClass o3po:ParticulateFilter .
+static:CoalescingFilterEquipment owl:equivalentClass o3po:CoalescingFilter .

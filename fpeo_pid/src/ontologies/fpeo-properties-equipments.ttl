@@ -1,0 +1,259 @@
+@prefix : <http://usp.ai/ontologies/fpeo-properties-equipments#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+# Ontologias de Referência e Fundamentação Realista (BFO, IOF-Core, UO, O3PO)
+@prefix bfo: <http://purl.obolibrary.org/obo/> .
+@prefix obo: <http://purl.obolibrary.org/obo/> .
+@prefix iof-core: <https://spec.industrialontologies.org/ontology/core/Core/> .
+@prefix o3po: <https://www.inf.ufrgs.br/ontologies/o3po#> .
+
+# Módulos FPEO-Equipments
+@prefix core: <http://usp.ai/ontologies/fpeo-equipments-core#> .
+@prefix static: <http://usp.ai/ontologies/fpeo-static-equipments#> .
+@prefix dynamical: <http://usp.ai/ontologies/fpeo-dynamical-equipments#> .
+@prefix electrical: <http://usp.ai/ontologies/fpeo-electrical-equipments#> .
+@prefix valve: <http://usp.ai/ontologies/fpeo-valves-security#> .
+@prefix sensors: <http://usp.ai/ontologies/fpeo-sensors-equipments#> .
+@prefix crosswalk: <http://usp.ai/ontologies/fpeo-crosswalk-equipments#> .
+
+@base <http://usp.ai/ontologies/fpeo-properties-equipments#> .
+
+<http://usp.ai/ontologies/fpeo-properties-equipments> rdf:type owl:Ontology ;
+    owl:imports <http://usp.ai/ontologies/fpeo-crosswalk-equipments> ,
+                <https://spec.industrialontologies.org/ontology/core/Core/> ,
+                <http://purl.obolibrary.org/obo/uo.owl> ;
+    dc:creator "Hugo Cardoso Ferreira de Araújo" ;
+    dc:description "Properties, Data Artifacts, Metrological Units (UO) and Design Prescriptions Module for FPEO-Equipments Ontology under Industrial Ontologies Foundry (IOF-Core) and Ontological Realism"@en .
+
+
+#################################################################
+# 1. TAXONOMIA DE ENTIDADES DE INFORMAÇÃO E MEDIÇÃO (IOF-CORE / UO)
+#################################################################
+
+### 1.1 Documentos de Engenharia e Datasheets
+:EquipmentDesignDocument rdf:type owl:Class ;
+    rdfs:subClassOf iof-core:DesignDocument ;
+    rdfs:label "Equipment Design Document"@en , "Documento de Projeto do Equipamento"@pt ;
+    skos:altLabel "Equipment Datasheet"@en , "Folha de Dados do Equipamento"@pt ;
+    skos:definition "An organized collection of information content entities comprising technical design prescriptions, ratings, and identifiers describing a physical topside equipment."@en .
+
+### 1.2 Identificadores e Tags
+:EquipmentTagIdentifier rdf:type owl:Class ;
+    rdfs:subClassOf iof-core:Identifier ;
+    rdfs:label "Equipment Tag Identifier"@en , "Identificador de Tag de Equipamento"@pt ;
+    skos:altLabel "Equipment Tag"@en , "Tag de Equipamento"@pt ;
+    skos:definition "An identifier assigned by engineering convention (e.g. ISA-5.1) that denotes a unique equipment in the process plant."@en .
+
+:ModelIdentifier rdf:type owl:Class ;
+    rdfs:subClassOf iof-core:Identifier ;
+    rdfs:label "Model Identifier"@en , "Identificador de Modelo"@pt ;
+    skos:altLabel "Part Number Identifier"@en , "Identificador de Número de Peça"@pt ;
+    skos:definition "An identifier designating a manufacturer model or product series."@en .
+
+### 1.3 Prescrições e Especificações de Projeto (IOF-Core DesignSpecification)
+:RatedPowerSpecification rdf:type owl:Class ;
+    rdfs:subClassOf iof-core:DesignSpecification ;
+    rdfs:label "Rated Power Specification"@en , "Especificação de Potência Nominal"@pt ;
+    skos:definition "Design specification prescribing the nominal power capacity of a machine under rated conditions (ISO 3977-1)."@en .
+
+:RatedSpeedSpecification rdf:type owl:Class ;
+    rdfs:subClassOf iof-core:DesignSpecification ;
+    rdfs:label "Rated Speed Specification"@en , "Especificação de Rotação Nominal"@pt ;
+    skos:definition "Design specification prescribing the design rotational speed (RPM) of a turbomachine."@en .
+
+:HeatRateSpecification rdf:type owl:Class ;
+    rdfs:subClassOf iof-core:DesignSpecification ;
+    rdfs:label "Heat Rate Specification"@en , "Especificação de Taxa de Calor"@pt ;
+    skos:definition "Design specification prescribing the design heat rate consumption per unit of energy produced."@en .
+
+:ThermalEfficiencySpecification rdf:type owl:Class ;
+    rdfs:subClassOf iof-core:DesignSpecification ;
+    rdfs:label "Thermal Efficiency Specification"@en , "Especificação de Eficiência Térmica"@pt ;
+    skos:definition "Design specification prescribing the target thermodynamic efficiency of a machine."@en .
+
+:TurbineInletTemperatureSpecification rdf:type owl:Class ;
+    rdfs:subClassOf iof-core:DesignSpecification ;
+    rdfs:label "Turbine Inlet Temperature Specification (TIT)"@en , "Especificação de Temperatura de Entrada da Turbina (TIT)"@pt ;
+    skos:definition "Design specification prescribing the maximum design temperature of combustion gas entering turbine nozzles."@en .
+
+:ExhaustGasTemperatureSpecification rdf:type owl:Class ;
+    rdfs:subClassOf iof-core:DesignSpecification ;
+    rdfs:label "Exhaust Gas Temperature Specification (EGT)"@en , "Especificação de Temperatura dos Gases de Exaustão (EGT)"@pt ;
+    skos:definition "Design specification prescribing the design temperature of exhaust gases."@en .
+
+:DesignPressureSpecification rdf:type owl:Class ;
+    rdfs:subClassOf iof-core:DesignSpecification ;
+    rdfs:label "Design Pressure Specification"@en , "Especificação de Pressão de Projeto"@pt ;
+    skos:definition "Design specification prescribing the maximum design pressure / MAWP of a pressure vessel or piping."@en .
+
+:DesignTemperatureSpecification rdf:type owl:Class ;
+    rdfs:subClassOf iof-core:DesignSpecification ;
+    rdfs:label "Design Temperature Specification"@en , "Especificação de Temperatura de Projeto"@pt ;
+    skos:definition "Design specification prescribing design temperature limits."@en .
+
+:DesignFlowRateSpecification rdf:type owl:Class ;
+    rdfs:subClassOf iof-core:DesignSpecification ;
+    rdfs:label "Design Flow Rate Specification"@en , "Especificação de Vazão de Projeto"@pt ;
+    skos:definition "Design specification prescribing design fluid flow rate capacity."@en .
+
+
+### 1.4 Expressões de Valor e Medição (IOF-Core ValueExpression / MeasuredValueExpression)
+:PowerValueExpression rdf:type owl:Class ;
+    rdfs:subClassOf iof-core:ValueExpression ;
+    rdfs:label "Power Value Expression"@en , "Expressão de Valor de Potência"@pt ;
+    skos:definition "A value expression representing a quantified power magnitude paired with a power unit of measure (e.g. watt, megawatt from UO)."@en .
+
+:SpeedValueExpression rdf:type owl:Class ;
+    rdfs:subClassOf iof-core:ValueExpression ;
+    rdfs:label "Speed Value Expression"@en , "Expressão de Valor de Velocidade"@pt ;
+    skos:altLabel "Rotational Frequency Value Expression"@en , "Expressão de Valor de Frequência de Rotação"@pt ;
+    skos:definition "A value expression representing a rotational speed or frequency paired with a speed/frequency unit of measure (e.g. rpm, hertz from UO)."@en .
+
+:TemperatureValueExpression rdf:type owl:Class ;
+    rdfs:subClassOf iof-core:ValueExpression ;
+    rdfs:label "Temperature Value Expression"@en , "Expressão de Valor de Temperatura"@pt ;
+    skos:definition "A value expression representing a thermal magnitude paired with a temperature unit of measure (e.g. degree Celsius, kelvin from UO)."@en .
+
+:PressureValueExpression rdf:type owl:Class ;
+    rdfs:subClassOf iof-core:ValueExpression ;
+    rdfs:label "Pressure Value Expression"@en , "Expressão de Valor de Pressão"@pt ;
+    skos:definition "A value expression representing pressure paired with a pressure unit of measure (e.g. bar, pascal, psi from UO)."@en .
+
+:FlowRateValueExpression rdf:type owl:Class ;
+    rdfs:subClassOf iof-core:ValueExpression ;
+    rdfs:label "Flow Rate Value Expression"@en , "Expressão de Valor de Vazão"@pt ;
+    skos:definition "A value expression representing volumetric or mass flow rate paired with a flow unit of measure."@en .
+
+:HeatRateValueExpression rdf:type owl:Class ;
+    rdfs:subClassOf iof-core:ValueExpression ;
+    rdfs:label "Heat Rate Value Expression"@en , "Expressão de Valor de Taxa de Calor"@pt ;
+    skos:definition "A value expression representing specific heat consumption paired with an energy/power unit of measure."@en .
+
+:EfficiencyValueExpression rdf:type owl:Class ;
+    rdfs:subClassOf iof-core:ValueExpression ;
+    rdfs:label "Efficiency Value Expression"@en , "Expressão de Valor de Eficiência"@pt ;
+    skos:altLabel "Percentage Value Expression"@en , "Expressão de Valor Percentual"@pt ;
+    skos:definition "A value expression representing dimensionless efficiency paired with a percentage unit of measure (e.g. percent from UO)."@en .
+
+
+#################################################################
+# 2. PROPRIEDADES DE OBJETO REALISTAS (IOF-CORE / UO / BFO)
+#################################################################
+
+### 2.1 Conexão com a Unidade de Medida da UO (has measurement unit label)
+obo:IAO_0000039 rdf:type owl:ObjectProperty ;
+    rdfs:domain iof-core:ValueExpression ;
+    rdfs:range obo:UO_0000000 ; # Unit (UO.owl)
+    rdfs:label "has measurement unit label"@en , "tem rótulo de unidade de medida"@pt ;
+    skos:definition "Relates an IOF ValueExpression to the standardized unit of measurement instance defined in the Unit of Measurement Ontology (UO)."@en .
+
+
+### 2.2 Relações Mereológicas e Funcionais de Equipamentos (Domínio)
+:drives rdf:type owl:ObjectProperty ;
+    owl:inverseOf :isDrivenBy ;
+    rdfs:label "drives"@en , "aciona"@pt ;
+    skos:definition "Functional mechanical relationship between a driving driver equipment (e.g. gas turbine) and driven equipment (e.g. generator, compressor)."@en .
+
+:isDrivenBy rdf:type owl:ObjectProperty ;
+    rdfs:label "is driven by"@en , "é acionado por"@pt .
+
+:hasDrivenEquipment rdf:type owl:ObjectProperty ;
+    rdfs:domain dynamical:GasTurbineEquipment ;
+    rdfs:label "has driven equipment"@en , "tem equipamento acionado"@pt .
+
+:hasGearbox rdf:type owl:ObjectProperty ;
+    rdfs:label "has gearbox"@en , "tem caixa de engrenagens"@pt .
+
+:hasCoupling rdf:type owl:ObjectProperty ;
+    rdfs:label "has coupling"@en , "tem acoplamento"@pt .
+
+:hasGasGenerator rdf:type owl:ObjectProperty ;
+    rdfs:domain dynamical:GasTurbineEquipment ;
+    rdfs:range dynamical:GasGenerator ;
+    rdfs:label "has gas generator"@en , "tem gerador de gás"@pt .
+
+:hasPowerTurbine rdf:type owl:ObjectProperty ;
+    rdfs:domain dynamical:GasTurbineEquipment ;
+    rdfs:range dynamical:PowerTurbine ;
+    rdfs:label "has power turbine"@en , "tem turbina de potência"@pt .
+
+:hasCombustionChamber rdf:type owl:ObjectProperty ;
+    rdfs:range dynamical:CombustionChamber ;
+    rdfs:label "has combustion chamber"@en , "tem câmara de combustão"@pt .
+
+:hasCompressor rdf:type owl:ObjectProperty ;
+    owl:inverseOf :isCompressorOf ;
+    rdfs:label "has compressor"@en , "tem compressor"@pt .
+
+:isCompressorOf rdf:type owl:ObjectProperty ;
+    rdfs:label "is compressor of"@en , "é compressor de"@pt .
+
+:hasAuxiliarySystem rdf:type owl:ObjectProperty ;
+    rdfs:label "has auxiliary system"@en , "tem sistema auxiliar"@pt .
+
+:hasFuelSystem rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf :hasAuxiliarySystem ;
+    rdfs:label "has fuel system"@en , "tem sistema de combustível"@pt .
+
+:hasLubeOilSystem rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf :hasAuxiliarySystem ;
+    rdfs:label "has lube oil system"@en , "tem sistema de óleo lubrificante"@pt .
+
+:suppliesFuelTo rdf:type owl:ObjectProperty ;
+    rdfs:label "supplies fuel to"@en , "fornece combustível para"@pt .
+
+:monitorsEmissionsAt rdf:type owl:ObjectProperty ;
+    owl:inverseOf :hasEmissionsMonitor ;
+    rdfs:label "monitors emissions at"@en , "monitora emissões em"@pt .
+
+:hasEmissionsMonitor rdf:type owl:ObjectProperty ;
+    rdfs:label "has emissions monitor"@en , "tem monitor de emissões"@pt .
+
+:measuresFlowOf rdf:type owl:ObjectProperty ;
+    rdfs:domain sensors:FlowMeter ;
+    rdfs:label "measures flow of"@en , "mede vazão de"@pt .
+
+
+#################################################################
+# 3. PROPRIEDADES DE DADOS REUTILIZADAS DA IOF-CORE
+#################################################################
+
+### 3.1 Expressão de Valor Simples (IOF-Core hasSimpleExpressionValue)
+iof-core:hasSimpleExpressionValue rdf:type owl:DatatypeProperty ;
+    rdfs:domain iof-core:ValueExpression ;
+    rdfs:range rdfs:Literal ;
+    rdfs:label "has simple expression value"@en , "tem valor de expressão simples"@pt ;
+    skos:definition "Relates a value expression to the literal that represents the magnitude or category of an entity."@en .
+
+
+#################################################################
+# 4. RESTRIÇÕES AXIOMÁTICAS DO MODELO REALISTA (IOF-CORE / UO)
+#################################################################
+
+### 4.1 Toda Expressão de Valor DEVE ter 1 Unidade da UO e 1 Valor Numérico Simples
+iof-core:ValueExpression rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty obo:IAO_0000039 ; # has measurement unit label
+    owl:someValuesFrom obo:UO_0000000 # Unit (UO.owl)
+] , [
+    rdf:type owl:Restriction ;
+    owl:onProperty iof-core:hasSimpleExpressionValue ;
+    owl:someValuesFrom rdfs:Literal
+] .
+
+### 4.2 Toda Especificação de Projeto deve prescrever um Equipamento e conter Expressão de Valor
+iof-core:DesignSpecification rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty iof-core:prescribes ;
+    owl:someValuesFrom core:TopsideEquipment
+] , [
+    rdf:type owl:Restriction ;
+    owl:onProperty iof-core:hasContinuantPartAtAllTimes ;
+    owl:someValuesFrom iof-core:ValueExpression
+] .
